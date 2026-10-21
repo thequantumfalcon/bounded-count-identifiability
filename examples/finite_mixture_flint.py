@@ -143,6 +143,35 @@ def main():
         require(
             Q(0) <= variance <= intermediate <= bound, "range variance bound: " + name
         )
+        count_variance = moments[2] + moments[1] - moments[1] ** 2
+        factorial_two_variance = (
+            moments[4] + 4 * moments[3] + 2 * moments[2] - moments[2] ** 2
+        )
+        conditional_second = tuple(r**2 + 2 * p * r for r in rates)
+        between_second = qsum(
+            w * (g - moments[2]) ** 2 for w, g in zip(weights, conditional_second)
+        )
+        within_second = qsum(
+            w * (4 * r**3 + (12 * p + 2 - 4 * p**2) * r**2 + 4 * p * r)
+            for w, r in zip(weights, rates)
+        )
+        require(
+            count_variance == mean_rate + p * (1 - p) + variance,
+            "count total variance: " + name,
+        )
+        require(
+            factorial_two_variance == within_second + between_second,
+            "factorial-two total variance: " + name,
+        )
+        first_ceiling = upper + Q(1, 4) + upper**2 / 4
+        second_ceiling = (
+            4 * upper**3 + 10 * upper**2 + 4 * upper + (upper**2 + 2 * upper) ** 2 / 4
+        )
+        require(Q(0) <= count_variance <= first_ceiling, "first ceiling: " + name)
+        require(
+            Q(0) <= factorial_two_variance <= second_ceiling,
+            "second ceiling: " + name,
+        )
         sharp += variance == bound and upper > lower
         fixture_count += 1
         if not name.startswith("grid-"):
@@ -160,6 +189,10 @@ def main():
                     "rate_mean": str(mean_rate),
                     "rate_variance": str(variance),
                     "variance_bound": str(bound),
+                    "count_variance": str(count_variance),
+                    "factorial_two_variance": str(factorial_two_variance),
+                    "count_variance_ceiling": str(first_ceiling),
+                    "factorial_two_variance_ceiling": str(second_ceiling),
                 }
             )
         cached.append((p, moments[1], cumulants[2], mean_rate, variance))
@@ -230,6 +263,55 @@ def main():
         }
     )
 
+    # A bounded random rate can violate both fixed-rate variance ceilings.
+    mixed_boundary = observe(Q(1), (Q(1, 2), Q(1, 2)), (Q(0), Q(8)))[0]
+    for label, actual, wrong in (
+        (
+            "fixed-rate first variance ceiling applied to a mixture",
+            mixed_boundary[2] + mixed_boundary[1] - mixed_boundary[1] ** 2,
+            Q(8) + Q(1, 4),
+        ),
+        (
+            "fixed-rate second variance ceiling applied to a mixture",
+            mixed_boundary[4]
+            + 4 * mixed_boundary[3]
+            + 2 * mixed_boundary[2]
+            - mixed_boundary[2] ** 2,
+            Q(4 * 8**3 + 10 * 8**2 + 4 * 8),
+        ),
+    ):
+        require(actual > wrong, label)
+        controls.append(
+            {
+                "name": label,
+                "actual_variance": str(actual),
+                "deliberately_wrong_bound": str(wrong),
+                "rejected": True,
+            }
+        )
+
+    # Conditional independence given one shared rate does not yield the
+    # unconditional pairwise independence needed by the sampling theorem.
+    # With p=0 and shared rate 0 or 1 equally, rate=0 forces every count to 0.
+    n, alpha, ceiling = 1000, Q(1, 20), Q(3, 2)
+    radius_squared = 2 * ceiling / (n * alpha)
+    zero_rate_error_squared = Q(1, 2) ** 2
+    actual_mean_variance = Q(1, 2) / n + Q(1, 4)
+    require(actual_mean_variance > ceiling / n, "reject shared-rate variance/N")
+    require(zero_rate_error_squared > radius_squared, "shared-zero-rate failure")
+    require(Q(1, 2) > alpha, "shared-rate failure probability exceeds alpha")
+    shared_rate_control = {
+        "windows": n,
+        "alpha": str(alpha),
+        "single_window_ceiling": str(ceiling),
+        "actual_sample_mean_variance": str(actual_mean_variance),
+        "incorrect_variance_ceiling": str(ceiling / n),
+        "radius_squared": str(radius_squared),
+        "error_squared_on_zero_rate_event": str(zero_rate_error_squared),
+        "failure_probability_lower_bound": "1/2",
+        "scope": "Exact arithmetic for the documented shared-latent-rate counterexample; its probability interpretation is a written argument, not a proof-assistant check.",
+    }
+
     require(source_hash == sha(__file__), "source unchanged")
     no_production_imports = not any(
         name == "bounded_counts" or name.startswith("bounded_counts.")
@@ -251,10 +333,13 @@ def main():
         "fixture_count": fixture_count,
         "moment_formula_comparisons": fixture_count * ORDER,
         "adjacent_pair_stability_checks": len(cached) - 1,
+        "total_variance_identity_checks": 2 * fixture_count,
+        "sampling_variance_ceiling_checks": 2 * fixture_count,
         "nonconstant_sharp_variance_examples": int(sharp),
         "deliberately_wrong_formulas": controls,
         "two_moment_ambiguity": ambiguities,
         "boundary_fixtures": boundary_outputs,
+        "shared_rate_dependence_control": shared_rate_control,
         "limits": {
             "maximum_mixture_atoms": 3,
             "maximum_rate": 11,

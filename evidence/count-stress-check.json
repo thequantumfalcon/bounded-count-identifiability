@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "status": "COMPLETE",
+  "evidence_kind": "Local synthetic execution of the public-source bytes; not a hosted-CI result or measurement",
+  "source": {
+    "path": "examples/count_model_stress.py",
+    "sha256": "fd1f8f8ae5fcecae2c53dfc75d53aa2bc13d9daaab700cd521a185bd8046153d"
+  },
+  "protocol_sha256": "b802bf6367fffda0a7540a6fb68c2bdd6fcd4a8597afbcbfdc338419f4dc683c",
+  "execution_receipt_sha256": "ae1076e90cb5994e1e51e30995adb8eff1957f1c56e06f4e91ee3f5ef2acaf33",
+  "execution": {
+    "started_utc": "2026-10-21T20:41:49.288755+00:00",
+    "python": "3.11.9",
+    "platform": "Windows",
+    "wall_seconds": 2.7455589000019245,
+    "master_seed": 20261021,
+    "repetitions_per_model": 200,
+    "windows_per_repetition": 2000,
+    "total_counts": 1200000,
+    "total_raw_bytes": 2400000
+  },
+  "models": {
+    "fixed_baseline": {
+      "parameters": {
+        "id": "fixed_baseline",
+        "p": "3/10",
+        "rates": [
+          "1/2"
+        ],
+        "weights": [
+          "1"
+        ]
+      },
+      "population_factorial_moments_1_to_3": [
+        "4/5",
+        "11/20",
+        "7/20"
+      ],
+      "empirical_factorial_moments_1_to_3": [
+        "160001/200000",
+        "27559/50000",
+        "17607/50000"
+      ],
+      "raw_counts": {
+        "path": "fixed_baseline.counts.u16le",
+        "sha256": "073e264ff06b9a36678d33e7024baf82377746227970ee72e5dbdc7596b8f8d9",
+        "bytes": 800000,
+        "shape": [
+          200,
+          2000
+        ],
+        "dtype": "unsigned 16-bit little-endian",
+        "maximum": 7
+      }
+    },
+    "matched_mixture": {
+      "parameters": {
+        "id": "matched_mixture",
+        "p": "3/10",
+        "rates": [
+          "0",
+          "3/5"
+        ],
+        "weights": [
+          "1/2",
+          "1/2"
+        ]
+      },
+      "population_factorial_moments_1_to_3": [
+        "3/5",
+        "9/25",
+        "27/100"
+      ],
+      "empirical_factorial_moments_1_to_3": [
+        "240663/400000",
+        "36389/100000",
+        "54963/200000"
+      ],
+      "raw_counts": {
+        "path": "matched_mixture.counts.u16le",
+        "sha256": "e1f8a5602f0fef514cbbd439531530bdd9aa827edaa9145204af75d7a48faf18",
+        "bytes": 800000,
+        "shape": [
+          200,
+          2000
+        ],
+        "dtype": "unsigned 16-bit little-endian",
+        "maximum": 7
+      }
+    },
+    "matched_poisson": {
+      "parameters": {
+        "id": "matched_poisson",
+        "p": "0",
+        "rates": [
+          "3/5"
+        ],
+        "weights": [
+          "1"
+        ]
+      },
+      "population_factorial_moments_1_to_3": [
+        "3/5",
+        "9/25",
+        "27/125"
+      ],
+      "empirical_factorial_moments_1_to_3": [
+        "119889/200000",
+        "35867/100000",
+        "429/2000"
+      ],
+      "raw_counts": {
+        "path": "matched_poisson.counts.u16le",
+        "sha256": "b8db68765d95e1752d8980450afc0bf9711ca9add85e07b57cf230cb89c58ea2",
+        "bytes": 800000,
+        "shape": [
+          200,
+          2000
+        ],
+        "dtype": "unsigned 16-bit little-endian",
+        "maximum": 8
+      }
+    }
+  },
+  "primary_contrast": {
+    "quantity": "Matched-mixture minus matched-Poisson third factorial moment",
+    "exact_population_target": "27/500",
+    "empirical_estimate": "12063/200000",
+    "ideal_iid_estimator_variance": "2673243/100000000000",
+    "allocated_alpha": "1/40",
+    "benchmark_interval": [
+      "6903722477/250000000000",
+      "23253777523/250000000000"
+    ]
+  },
+  "uncertainty": {
+    "method": "Chebyshev with exact prescribed-law variances; outward rational square roots",
+    "marginal_alpha_each": "1/360",
+    "number_of_marginal_means": 9,
+    "union_bound_total_alpha": "1/20",
+    "scope": "Known generating-law benchmark under ideal independent windows/models, not unknown-law data-derived confidence or a proof of PRNG independence"
+  },
+  "observed_outcomes": {
+    "all_ten_targets_inside_benchmark_intervals": true,
+    "primary_interval_excludes_zero": true,
+    "outcomes_gate_success": false,
+    "empirical_coverage_rate_estimated": false
+  },
+  "integrity_checks": {
+    "controls": {
+      "status": "PASS",
+      "factorial_product_value_checks": 117,
+      "generating_series_comparisons": 21,
+      "faulty_sampler_detected": true,
+      "faulty_mean_rate_replacement_detected": true,
+      "scope": "Deterministic selected controls, not exhaustive sampler verification"
+    },
+    "all_raw_counts_and_statistics_reanalyzed": true,
+    "source_protocol_and_all_artifact_hashes_verified": true,
+    "scope": "Additional local check within the same development workflow, not outside human review"
+  },
+  "raw_data_availability": {
+    "tracked_in_git": false,
+    "initial_local_raw_data": "Retained in development records; not a public archive",
+    "ci_artifact_name": "count-stress-ci-receipt",
+    "configured_ci_artifact_retention_days": 14,
+    "reproduction": "The public script creates a fresh complete dataset and source-bound receipt. Download hosted raw artifacts before expiry if permanent retention is needed."
+  },
+  "limitations": [
+    "Synthetic data only; no physical calibration or validation.",
+    "Finite-precision Knuth sampling approximates the ideal law; distinct deterministic seeds do not prove independence.",
+    "No fixed-rate variance ceiling is applied to the mixture; no empirical plug-in cumulants are computed.",
+    "One pooled inclusion event does not validate a 95% coverage frequency.",
+    "No arbitrary-mixture identification, optimal sample complexity, originality, outside review or formal executable verification is established."
+  ]
+}

@@ -202,6 +202,16 @@ RESEARCH_ROOTS = {
         "rateVariance_le_range",
         "mixture_stability",
     ),
+    "CountFiniteMixedPoissonSampling": (
+        "finite_sum_memLp",
+        "finite_total_variance",
+        "count_memLp",
+        "factorial_two_memLp",
+        "mixture_means",
+        "count_variance_ceiling",
+        "factorial_variance_ceiling",
+        "sample_means_coverage",
+    ),
 }
 
 DIRECTORIES = {
@@ -221,6 +231,7 @@ DIRECTORIES = {
     "PoissonFactorialMomentsV1": "poisson-factorial-moments",
     "BernoulliPoissonStatisticsV1": "bernoulli-poisson-statistics",
     "CountFiniteMixedPoisson": "finite-mixture",
+    "CountFiniteMixedPoissonSampling": "finite-mixture-sampling",
 }
 
 ALLOWED_AXIOMS = {"propext", "Classical.choice", "Quot.sound"}

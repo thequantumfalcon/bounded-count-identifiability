@@ -242,6 +242,72 @@ these two exact population statistics, the two-model argument forces a
 worst-case error of at least `h/2`. It does not give that lower bound for
 estimators using the full data or additional population statistics.
 
+### Sampling bounds for finite mixtures
+
+The [finite-mixture sampling extension](../lean/extensions/finite-mixture-sampling/README.md)
+derives square integrability and conservative single-window variance ceilings
+for the actual count and its second factorial statistic. For component rates in
+a supplied $[0,B]$, they are
+
+$$
+W_1=B+\tfrac14+\tfrac{B^2}{4},\qquad
+W_2=4B^3+10B^2+4B+\tfrac{(B^2+2B)^2}{4}.
+$$
+
+Finite total variance separates the weighted component variances from the
+variance of component means. The mean count ranges over an interval of length
+$B$; the component mean of the second statistic lies in $[0,B^2+2B]$.
+The bounded-range variance inequality supplies the additional terms above.
+These bounds are conservative and are not claimed to be optimal.
+
+For $N>0$ observed windows with this common mixture law and unconditional
+pairwise independence of the observed counts, the formal theorem bounds
+
+```math
+\Pr\!\left\{
+|\widehat m_1-m_1|>\sqrt{\frac{2W_1}{N\alpha}}
+\quad\text{or}\quad
+|\widehat m_2-m_2|>\sqrt{\frac{2W_2}{N\alpha}}
+\right\}\leq\alpha,
+```
+
+where $m_1=p+\sum_i w_i r_i$ and $m_2=\sum_i w_i(r_i^2+2pr_i)$.
+For a confidence interpretation take $0<\alpha<1$. The zero-background case is
+included; no independence between the two estimators is required. This closes
+the sampling-bound step for the specified finite mixtures. It does not justify
+the fixed-rate parameter projection for this broader model: the two-moment
+ambiguity above persists even with exactly known population moments. General
+mixing laws, calibration of $B$ and dependent-window bounds remain open.
+
+### A shared random rate can defeat averaging
+
+Marginal mixture laws do not establish independence across windows. Take source
+zero, draw one rate $\Lambda\in\lbrace0,1\rbrace$ with equal probabilities for the entire
+record, and conditionally draw independent Poisson($\Lambda$) counts $Z_i$.
+Each window has the same finite-mixture marginal, but distinct windows have
+covariance $\operatorname{Var}(\Lambda)=1/4$. Consequently,
+
+$$
+\operatorname{Var}\left(\frac1N\sum_{i=1}^N Z_i\right)
+=\frac{1}{2N}+\frac14.
+$$
+
+For $B=1$, the finite-mixture single-window ceiling
+$W_1=B+1/4+B^2/4=3/2$ is valid. The formal sampling theorem obtains its $1/N$
+variance reduction from unconditional pairwise independence. At $N=1000$ and $\alpha=0.05$, the
+corresponding simultaneous-Chebyshev mean radius has square $3/50$. On the
+event $\Lambda=0$, of probability $1/2$, every observation is zero and its
+sample mean differs from the population mean $1/2$ by $1/2$; the squared error
+$1/4$ exceeds $3/50$. The nominal 5% failure bound therefore fails in this
+model, despite conditional independence given the shared rate.
+
+This is a written probability counterexample with
+[exact arithmetic checks](../examples/finite_mixture_flint.py), not a formalized
+dependent-process theorem or a laboratory observation. Independently drawing
+the rate and counts anew for each window is a different model. Pairwise
+independence of the observed windows must be justified where a sampling theorem
+requires it; it does not follow from a marginal law or conditional independence.
+
 ## Reproduction and trust
 
 After fetching the pinned dependencies as described in the
@@ -251,7 +317,7 @@ After fetching the pinned dependencies as described in the
 python lean/extensions/d1-law/verify_law_bridge.py --suite research --run external-research
 ```
 
-This suite recompiles all six core modules and sixteen extensions in dependency
+This suite recompiles all six core modules and seventeen extensions in dependency
 order with `--trust=0`, checks source manifests, exact printed theorem lists,
 standard axioms, diagnostics and output bindings. The axiom lists come from a
 generated import-only query in a separate Lean process, with exact unique root

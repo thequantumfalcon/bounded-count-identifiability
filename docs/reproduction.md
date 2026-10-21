@@ -91,7 +91,10 @@ python examples/finite_mixture_flint.py
 
 Its finite fixtures check moments, the mean and second-cumulant identities,
 the rate-range variance bound, endpoint equality and the two-statistic ambiguity
-example. Deliberately incorrect formulas must fail the checks. The output records
+example. It also checks total-variance identities and bounded-rate variance
+ceilings for the first two factorial statistics. Controls reject using the
+fixed-rate ceilings for mixtures and check the arithmetic of the documented
+shared-rate dependence counterexample. Deliberately incorrect formulas must fail the checks. The output records
 versions, source hash and execution counts; CI preserves it as `flint-ci-receipt`.
 This adds arithmetic and implementation diversity within the same research
 campaign. It neither verifies the executable generally nor supplies independent
@@ -140,7 +143,7 @@ uses the same verifier with `--suite research`:
 python lean/extensions/d1-law/verify_law_bridge.py --suite research --run external-research
 ```
 
-It freshly checks the six core modules and all sixteen extensions. Their source
+It freshly checks the six core modules and all seventeen extensions. Their source
 manifests and theorem-root lists are checked separately. A valid axiom list may
 use any subset of `propext`, `Classical.choice` and `Quot.sound`, including no
 axioms; additional axioms, missing roots and duplicate roots are rejected.
@@ -202,3 +205,24 @@ python examples/d1_confidence_scale.py
 
 It is a diagnostic centered at population moments, not a simulated or measured
 experiment. See the [parameter-specific interpretation](claims.md#population-centered-scale-diagnostic).
+
+## Synthetic sampling experiment
+
+The standard-library [count experiment](stress-test.md) samples three specified
+laws, retains all 1.2 million generated counts and compares their empirical
+factorial moments with exact targets:
+
+```sh
+python -I -B examples/count_model_stress.py --output build/count-stress-local
+```
+
+Use a new output directory for each run. The seed and design are fixed before
+sampling. The script rejects implementation-control or data-integrity failures;
+coverage and separation outcomes are reported without gating success. Its
+prescribed-law Chebyshev intervals are ideal-IID benchmarks, not inference for
+an unknown measured law or proof of pseudorandom independence.
+
+The hosted `stress` job is part of the required aggregate CI check. Its
+`count-stress-ci-receipt` artifact retains source, protocol, raw data, controls
+and summaries for 14 days. Check the exact commit and download that artifact
+within the retention period; raw binary counts are not committed to Git.

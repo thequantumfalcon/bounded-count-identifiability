@@ -27,8 +27,10 @@ actual laws, and the exact D=1 projection formula with clipping and empty
 cases are formalized in separate extensions. A bounded second-cumulant
 perturbation has a formal D=1 stability bound. A finite-mixture probability
 construction now derives that perturbation from actual factorial moments and
-supplies a variance allowance from a stated component-rate range. General
-mixing laws and empirical calibration remain open. The tasks below exclude
+supplies a variance allowance from a stated component-rate range. A subsequent
+finite-mixture sampling extension derives square integrability, variance ceilings
+and simultaneous moment coverage under unconditional pairwise independence of
+observed windows. General mixing laws and empirical calibration remain open. The tasks below exclude
 these completed pieces.
 
 The [originality follow-up](originality-review.md) distinguishes related
@@ -39,7 +41,7 @@ preparing or publishing that request is not evidence that review has occurred.
 | Priority | Work | Completion criterion |
 | --- | --- | --- |
 | 1 | Verify the executable D=1 inference procedure. | Connect executable acceptance, witnesses and emptiness certificates to the formally defined region. The analytic cumulant connection, actual factorial moments, quadratic-transform square integrability and interval elimination are proved; they do not verify Python/Sage execution or its arithmetic library. |
-| 2 | Prove robustness to specified deviations. | Extend the actual finite-mixture construction to general mixing laws and justify the rate range or variance allowance from calibration, including its uncertainty. Derive sampling bounds for random-rate backgrounds. Extend to stated tail-moment, detector-response or temporal-dependence conditions. Identify nonidentifiability when assumptions are insufficient. |
+| 2 | Prove robustness to specified deviations. | Extend the actual finite-mixture construction to general mixing laws and justify the rate range or variance allowance from calibration, including its uncertainty. Extend the finite-mixture sampling bounds to more general random-rate backgrounds and justify any dependent-window analysis. Extend to stated tail-moment, detector-response or temporal-dependence conditions. Identify nonidentifiability when assumptions are insufficient. |
 | 3 | Extend constructive inference. | Develop a general-$D$ feasible-region solver with checkable witnesses or emptiness certificates, and formalize the global continuity estimate. State arithmetic precision, termination and complexity limits. |
 | 4 | Improve statistical efficiency. | Compare justified confidence procedures on identical, saved synthetic data; then derive sharper concentration or likelihood guarantees. Keep coverage, computation time and interval width separate. Do not infer optimality from a favorable simulation. |
 | 5 | Broaden prior-art and external review. | Obtain independent scrutiny of the exact theorem, proof, formal statement and references. Search older and differently named results. Attribute the established sharpness construction throughout. No originality conclusion follows from an unsuccessful search. |
@@ -50,6 +52,12 @@ parameter choice. It is reproducible with exact rational enclosures, but does
 not establish typical-data performance or a sample-size lower bound. The
 required Sage CI job now supplies repeatable finite boundary, membership and
 witness controls; formal verification of executable behavior remains priority 1.
+
+The [synthetic count experiment](stress-test.md) now supplies a frozen design,
+saved counts, exact targets and prescribed-law uncertainty benchmarks for three
+small models. It reproduces the third-moment distinction of a specified pair
+whose first two moments agree. This does not compare optimal estimators or
+validate a confidence procedure on unknown measured laws.
 
 Formal work can proceed locally on these statements. The completed analytic
 cumulant connection closes a specification gap; it does not establish detector

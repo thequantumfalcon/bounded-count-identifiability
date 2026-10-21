@@ -6,6 +6,9 @@ The Python API is experimental; no stable release has been published.
 
 ## [Unreleased]
 
+- Updated the hash-pinned development dependency packaging to 26.3, following
+  review of the official wheel/source hashes and the routine dependency PR.
+
 - Reviewed and updated development tools: build 1.6.1, pyproject-hooks 1.3.3,
   coverage 7.16.2, Ruff 0.17.0 and zizmor 1.30.1. Download hashes were checked
   against the corresponding PyPI release files; compatibility, security-hardening
@@ -25,10 +28,24 @@ The Python API is experimental; no stable release has been published.
 
 ### Added
 
+- A bounded, reproducible synthetic experiment with 1.2 million saved counts,
+  exact factorial-moment targets, prescribed-law uncertainty benchmarks,
+  independent binary readback and deliberate-fault controls. CI requires
+  technical completion; statistical coverage and separation are informational.
+- Actual finite-mixture square integrability, finite total variance and
+  conservative sampling error bounds in Lean. Coverage requires common
+  mixture laws and unconditional pairwise independence of observed windows;
+  it does not justify the fixed-rate parameter projection for mixtures.
+- A written shared-rate counterexample showing that conditional independence
+  does not supply the cross-window independence assumed by the sampling theorem.
+  Separate FLINT controls check its arithmetic, finite-mixture total variances
+  and bounded-rate variance ceilings.
+
 - An actual finite-mixture Bernoulli–Poisson probability construction in Lean,
   including all positive factorial moments, the second-cumulant interpretation,
   a conditional rate-range variance bound and the resulting pairwise stability.
-  This does not validate calibration or extend fixed-rate sampling guarantees.
+  This population construction does not validate calibration; sampling bounds
+  are supplied by the separate finite-mixture sampling extension.
 - A separate Python-FLINT reproduction of finite-mixture generating series,
   factorial moments, second cumulants and range bounds, including deliberate
   wrong-formula controls. Exact finite agreement supplements the universal proof.
