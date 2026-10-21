@@ -41,6 +41,13 @@ preparing or publishing that request is not evidence that review has occurred.
 | 4 | Improve statistical efficiency. | Compare justified confidence procedures on identical, saved synthetic data; then derive sharper concentration or likelihood guarantees. Keep coverage, computation time and interval width separate. Do not infer optimality from a favorable simulation. |
 | 5 | Broaden prior-art and external review. | Obtain independent scrutiny of the exact theorem, proof, formal statement and references. Search older and differently named results. Attribute the established sharpness construction throughout. No originality conclusion follows from an unsuccessful search. |
 
+The [population-centered scale diagnostic](claims.md#population-centered-scale-diagnostic)
+makes the current confidence bound's conservatism explicit for one fixed
+parameter choice. It is reproducible with exact rational enclosures, but does
+not establish typical-data performance or a sample-size lower bound. The
+required Sage CI job now supplies repeatable finite boundary, membership and
+witness controls; formal verification of executable behavior remains priority 1.
+
 Formal work can proceed locally on these statements. The completed analytic
 cumulant connection closes a specification gap; it does not establish detector
 assumptions. Source review, a reproducible build and additional checkers improve

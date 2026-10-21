@@ -1,0 +1,229 @@
+{
+  "record_type": "dated_evidence_index_and_settings_readback",
+  "recorded_utc": "2026-10-21T17:23:43.265758+00:00",
+  "repository": "https://github.com/thequantumfalcon/bounded-count-identifiability",
+  "index_semantics": "The completed milestone below predates this index. Its successful runs do not certify later verifier changes. For the commit being reviewed, inspect that commit's Actions runs and uploaded receipts. An index committed with a change cannot contain a completed hosted result for its own final commit hash.",
+  "completed_milestone": {
+    "checked_utc": "2026-10-21T12:17:45.731901+00:00",
+    "commit": "68e644a497428c6580a1daf6506998ead2a6bc57",
+    "pull_request": {
+      "number": 9,
+      "url": "https://github.com/thequantumfalcon/bounded-count-identifiability/pull/9",
+      "merged_at": "2026-10-21T12:13:19Z"
+    },
+    "github_signature_verified": true,
+    "runs": [
+      {
+        "id": 39597901234,
+        "name": "Push on main",
+        "event": "dynamic",
+        "head_sha": "68e644a497428c6580a1daf6506998ead2a6bc57",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39597901234"
+      },
+      {
+        "id": 39597870564,
+        "name": "OpenSSF Scorecard",
+        "event": "push",
+        "head_sha": "68e644a497428c6580a1daf6506998ead2a6bc57",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39597870564"
+      },
+      {
+        "id": 39597870649,
+        "name": "CI",
+        "event": "push",
+        "head_sha": "68e644a497428c6580a1daf6506998ead2a6bc57",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39597870649"
+      },
+      {
+        "id": 39597266176,
+        "name": "Dependency review",
+        "event": "pull_request",
+        "head_sha": "68e644a497428c6580a1daf6506998ead2a6bc57",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39597266176"
+      },
+      {
+        "id": 39597266207,
+        "name": "CI",
+        "event": "pull_request",
+        "head_sha": "68e644a497428c6580a1daf6506998ead2a6bc57",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39597266207"
+      },
+      {
+        "id": 39597262599,
+        "name": "PR #9",
+        "event": "dynamic",
+        "head_sha": "68e644a497428c6580a1daf6506998ead2a6bc57",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39597262599"
+      }
+    ],
+    "formal_receipt": {
+      "artifact": "lean-ci-receipt",
+      "artifact_relative_path": "build/research/ci-check/result.json",
+      "sha256": "ee06b78e023baee5708f2e5a8bcd5dc6b77b870828273a33fad21d24b82e5b01",
+      "modules": 21,
+      "recorded_theorem_roots": 124,
+      "scope": "Historical successful fresh project compilation with cached upstream dependencies. The older verifier read axiom messages from compilation output; BCI-01 and BCI-02 identify limitations of that audit, so this is not evidence that the repaired audit passed."
+    },
+    "private_readback_sha256": "51d78fa125f54c6bd10904534eba38f4f5e99544c7102a61daeb47dcc7250fc8"
+  },
+  "settings_readback": {
+    "checked_utc": "2026-10-21T17:23:43.265758+00:00",
+    "method": "Authenticated read-only GitHub REST API queries; no settings were changed.",
+    "settings": {
+      "actions": {
+        "enabled": true,
+        "allowed_actions": "selected",
+        "selected_actions_url": "https://api.github.com/repositories/1427944450/actions/permissions/selected-actions",
+        "sha_pinning_required": true
+      },
+      "workflow_permissions": {
+        "default_workflow_permissions": "read",
+        "can_approve_pull_request_reviews": false
+      },
+      "fork_workflow_approval": {
+        "approval_policy": "all_external_contributors"
+      },
+      "private_vulnerability_reporting": {
+        "enabled": true
+      },
+      "codeql_setup": {
+        "state": "configured",
+        "languages": [
+          "actions",
+          "python"
+        ],
+        "query_suite": "default",
+        "threat_model": "remote",
+        "updated_at": "2026-10-21T07:14:06Z",
+        "schedule": "weekly",
+        "runner_type": "standard",
+        "runner_label": ""
+      },
+      "security_and_analysis": {
+        "secret_scanning": {
+          "status": "enabled"
+        },
+        "secret_scanning_push_protection": {
+          "status": "enabled"
+        },
+        "dependabot_security_updates": {
+          "status": "enabled"
+        },
+        "secret_scanning_non_provider_patterns": {
+          "status": "disabled"
+        },
+        "secret_scanning_validity_checks": {
+          "status": "disabled"
+        }
+      },
+      "rulesets": [
+        {
+          "name": "Reviewed changes and CI",
+          "enforcement": "active",
+          "bypass_actors": [
+            {
+              "actor_id": 5,
+              "actor_type": "RepositoryRole",
+              "bypass_mode": "always"
+            }
+          ],
+          "conditions": {
+            "ref_name": {
+              "exclude": [],
+              "include": [
+                "~DEFAULT_BRANCH"
+              ]
+            }
+          },
+          "rules": [
+            {
+              "type": "required_status_checks",
+              "parameters": {
+                "strict_required_status_checks_policy": true,
+                "do_not_enforce_on_create": false,
+                "required_status_checks": [
+                  {
+                    "context": "ci",
+                    "integration_id": 15368
+                  },
+                  {
+                    "context": "dependency-review",
+                    "integration_id": 15368
+                  }
+                ]
+              }
+            },
+            {
+              "type": "pull_request",
+              "parameters": {
+                "required_approving_review_count": 0,
+                "dismiss_stale_reviews_on_push": true,
+                "required_reviewers": [],
+                "require_code_owner_review": false,
+                "require_last_push_approval": false,
+                "required_review_thread_resolution": true,
+                "require_extra_approval_for_unattributed_changes": true,
+                "allowed_merge_methods": [
+                  "squash"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Signed linear history",
+          "enforcement": "active",
+          "bypass_actors": [],
+          "conditions": {
+            "ref_name": {
+              "exclude": [],
+              "include": [
+                "~DEFAULT_BRANCH"
+              ]
+            }
+          },
+          "rules": [
+            {
+              "type": "deletion"
+            },
+            {
+              "type": "non_fast_forward"
+            },
+            {
+              "type": "required_signatures"
+            },
+            {
+              "type": "required_linear_history"
+            }
+          ]
+        }
+      ]
+    },
+    "open_codeql_alerts": 0,
+    "open_dependabot_alerts": 0,
+    "private_readback_sha256": "b21a5306c87fe7c8781d18e460004c8e0c4a3f7d609e437d03526bfa9c3f4e7b"
+  },
+  "user_confirmed_settings": {
+    "two_factor_authentication": "Enabled, according to the maintainer's prior confirmation; not independently verified through the API.",
+    "copilot_autofix": "Off, according to the maintainer's prior confirmation; not independently verified through the API."
+  },
+  "limits": [
+    "Point-in-time observations; repository settings and open alert counts can change.",
+    "A successful Scorecard workflow is not a perfect score or complete security assurance.",
+    "A single maintainer can bypass the separate pull-request/check ruleset; required human approval count is zero. Administrators can change settings.",
+    "Historical receipts remain unchanged. Private capture hashes identify provenance but do not publish or reproduce the entire private workspace.",
+    "No independent human review, historical priority, physical validation or formal executable verification follows from these checks."
+  ]
+}

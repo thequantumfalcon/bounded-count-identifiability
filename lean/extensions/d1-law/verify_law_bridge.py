@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.util
 import json
 import os
 import re
@@ -22,200 +23,20 @@ from pathlib import Path
 EXTENSION = Path(__file__).resolve().parent
 PROJECT = EXTENSION.parents[1]
 REPOSITORY = PROJECT.parent
-CORE = (
-    "CountSeriesCore",
-    "CountLawEncoding",
-    "CountIdentification",
-    "CountPoissonChannel",
-    "CountObservedIdentification",
-    "CountSharpness",
+# Load the policy from this checkout, including disposable acceptance-test trees.
+# A unique module object avoids reusing a helper imported from another checkout.
+_policy_spec = importlib.util.spec_from_file_location(
+    "bounded_count_proof_audit", PROJECT / "proof_audit.py"
 )
-CORE_ROOTS = {
-    "CountSeriesCore": (
-        "CountSeriesCore.derivative_logOf_mul",
-        "CountSeriesCore.tilt_jet_of_log_coefficients",
-        "CountSeriesCore.bounded_nonnegative_series_identified",
-    ),
-    "CountLawEncoding": (
-        "BoundedCountLaw.factorialPGF_constant",
-        "BoundedCountLaw.factorialPGF_coeff_nonneg",
-        "BoundedCountLaw.factorialPGF_coeff_above",
-        "BoundedCountLaw.factorialPGF_injective_on_support",
-    ),
-    "CountIdentification": ("BoundedCountLaw.higher_factorial_cumulants_identify",),
-    "CountPoissonChannel": (
-        "CountPoissonChannel.derivative_logOf_channel",
-        "CountPoissonChannel.higher_factorialCumulant_channel",
-        "CountPoissonChannel.first_factorialCumulant_channel",
-        "CountPoissonChannel.bounded_sources_identified_under_unknown_factors",
-    ),
-    "CountObservedIdentification": (
-        "BoundedCountLaw.first_law_cumulant_eq_mean",
-        "BoundedCountLaw.observed_higher_cumulants_identify_source",
-        "BoundedCountLaw.observed_cumulants_identify_source_and_background",
-    ),
-    "CountSharpness": (
-        "CountSharpness.truncatedExp_higher_cumulants_zero",
-        "CountSharpness.truncatedExp_top_cumulant",
-        "CountSharpness.alternatingExpSum_pos",
-        "CountSharpness.sharpLaw_isBoundedLaw",
-        "CountSharpness.sharpLaw_higher_cumulants_zero",
-        "CountSharpness.sharpLaw_top_cumulant",
-        "CountSharpness.cutoff_is_sharp",
-        "CountSharpness.lower_observed_cumulants_match",
-    ),
-}
-ROOTS = {
-    "CountD1Stability": (
-        "squared_parameter_error_le",
-        "parameter_error_le_sqrt",
-        "parameter_error_from_cumulant",
-        "background_error_le",
-        "bounded_observation_error",
-    ),
-    "CountD1LawBridge": (
-        "sharpLaw_one_eq_bernoulliMass",
-        "bernoulliMass_isBoundedLaw",
-        "bernoulli_second_cumulant",
-        "bernoulli_parameter_stability",
-        "observed_bernoulli_cumulants",
-        "observed_bernoulli_stability",
-    ),
-}
-RESEARCH_ROOTS = {
-    "CountProbabilityBridge": (
-        "boundedPMF_mass",
-        "boundedMeasure_isProbability",
-        "boundedMeasure_singleton",
-        "integral_boundedMeasure",
-        "factorialPGF_eval_eq_expectation",
-        "factorialPGF_coeff_eq_binomial_expectation",
-        "higher_factorial_cumulants_identify_measures",
-    ),
-    "CountD1VarianceCoverage": (
-        "factorial_square_identity",
-        "first_variance_identity",
-        "second_variance_identity",
-        "first_variance_ceiling",
-        "second_variance_ceiling",
-        "variance_ratio_radius",
-        "zero_variance_deterministic",
-        "simultaneous_chebyshev",
-        "conditional_moment_coverage",
-    ),
-    "CountD1BackgroundUncertainty": (
-        "perturbation_difference_le",
-        "square_difference_le",
-        "parameter_error_le",
-        "bounded_observation_error",
-        "equal_cumulant_witness",
-    ),
-    "CountFiniteSampleMean": (
-        "sampleMean_memLp",
-        "sampleMean_unbiased",
-        "sampleMean_variance",
-        "sampleMean_variance_ceiling",
-        "two_sample_means_coverage",
-    ),
-    "CountConfidenceZeroAndTransforms": (
-        "pairwise_indepFun_measurable_transform",
-        "pairwise_indepFun_factorial",
-        "nonnegative_ceiling_tail",
-        "simultaneous_nonnegative_ceiling_coverage",
-        "two_sample_means_coverage_nonnegative",
-        "factorial_sample_means_coverage",
-    ),
-    "PoissonMGFV1": (
-        "poisson_exp_integrable",
-        "poisson_exp_integral",
-    ),
-    "CountPoissonObservation": (
-        "bounded_exp_integrable",
-        "bounded_exp_integral",
-        "observed_exp_integrable",
-        "observed_exp_integral",
-        "observed_factorialPGF_integrable",
-        "observed_factorialPGF_integral",
-        "independentPairMeasure_isProbability",
-        "independentPairMeasure_hasLaws",
-        "independentPairMeasure_factorialPGF",
-    ),
-    "CountTaylorJetFoundation": (
-        "coeff_jet0",
-        "derivative_jet0",
-        "jet0_congr_eventuallyEq",
-    ),
-    "CountTaylorJetProduct": ("jet0_mul",),
-    "CountAnalyticCumulantBridge": (
-        "polynomial_contDiff",
-        "iteratedDeriv_polynomial",
-        "jet0_polynomial",
-        "jet0_log_polynomial",
-        "factorialCumulant_polynomial_eq_iteratedDeriv_log",
-        "factorialCumulant_channel_eq_iteratedDeriv_log",
-        "lawFactorialCumulant_eq_iteratedDeriv_log",
-        "observedFactorialCumulant_eq_iteratedDeriv_log",
-        "lawFactorialCumulant_eq_iteratedDeriv_log_expectation",
-        "observedFactorialCumulant_eq_iteratedDeriv_log_expectation",
-        "independentPairMeasure_cumulant_eq_iteratedDeriv_log_expectation",
-        "observed_log_derivatives_identify_source",
-        "observed_log_derivatives_identify_source_and_background",
-    ),
-    "CountConfidenceProjection": (
-        "feasible_iff_mean",
-        "feasible_iff_polynomialBounds",
-        "feasible_iff_closed_bounds",
-        "exists_feasible_iff",
-        "empty_of_reversed_mean",
-        "empty_of_reversed_second",
-        "empty_of_sq_upper_lt_lower",
-        "feasible_zero_iff",
-        "feasible_zero_clipped_iff",
-        "exists_feasible_zero_clipped_iff",
-        "model_ranges",
-        "feasible_clip_iff",
-        "empty_of_negative_ceiling",
-        "exists_feasible_positive_iff",
-        "projection_positive",
-        "projection_zero",
-    ),
-    "PoissonFactorialMomentsV1": (
-        "poisson_descFactorial_integrable",
-        "poisson_descFactorial_integral",
-        "poisson_memLp",
-        "observed_pow_integrable",
-        "observed_memLp",
-        "observed_factorial_two_memLp",
-        "fin_two_poisson_descFactorial",
-        "bernoulli_poisson_descFactorial",
-    ),
-    "BernoulliPoissonStatisticsV1": (
-        "count_memLp",
-        "factorial_two_memLp",
-        "first_four_factorial_moments",
-        "means_and_variances",
-        "sample_means_coverage",
-        "projected_region_coverage",
-    ),
-}
-DIRECTORIES = {
-    "CountD1Stability": "d1",
-    "CountD1LawBridge": "d1-law",
-    "CountProbabilityBridge": "probability",
-    "CountD1VarianceCoverage": "finite-sample",
-    "CountD1BackgroundUncertainty": "background-uncertainty",
-    "CountFiniteSampleMean": "sample-mean",
-    "CountConfidenceZeroAndTransforms": "confidence-zero",
-    "PoissonMGFV1": "poisson-mgf",
-    "CountPoissonObservation": "poisson-observation",
-    "CountTaylorJetFoundation": "taylor-jet",
-    "CountTaylorJetProduct": "taylor-product",
-    "CountAnalyticCumulantBridge": "analytic-cumulant",
-    "CountConfidenceProjection": "confidence-projection",
-    "PoissonFactorialMomentsV1": "poisson-factorial-moments",
-    "BernoulliPoissonStatisticsV1": "bernoulli-poisson-statistics",
-}
-ALLOWED_AXIOMS = {"propext", "Classical.choice", "Quot.sound"}
+assert _policy_spec is not None and _policy_spec.loader is not None
+AUDIT = importlib.util.module_from_spec(_policy_spec)
+_policy_spec.loader.exec_module(AUDIT)
+CORE = AUDIT.CORE
+CORE_ROOTS = AUDIT.CORE_ROOTS
+ROOTS = AUDIT.ROOTS
+RESEARCH_ROOTS = AUDIT.RESEARCH_ROOTS
+DIRECTORIES = AUDIT.DIRECTORIES
+ALLOWED_AXIOMS = AUDIT.ALLOWED_AXIOMS
 
 
 def digest(path: Path) -> str:
@@ -227,7 +48,7 @@ def write_json(path: Path, value: object) -> None:
 
 
 def full_roots(module: str) -> list[str]:
-    return [module + "." + name for name in (ROOTS | RESEARCH_ROOTS)[module]]
+    return AUDIT.full_roots(module)
 
 
 def selected_roots(suite: str) -> dict[str, tuple[str, ...]]:
@@ -240,6 +61,7 @@ def source_inputs(suite: str = "law") -> dict[str, Path]:
     paths = {
         "verifier": Path(__file__).resolve(),
         "core_verifier": PROJECT / "verify.py",
+        "proof_audit": PROJECT / "proof_audit.py",
         "core_manifest": PROJECT / "source_manifest.json",
         "dependency_lock": PROJECT / "lake-manifest.json",
         "lake_config": PROJECT / "lakefile.toml",
@@ -273,10 +95,7 @@ def check_sources(inputs: dict[str, Path], suite: str = "law") -> None:
             ) or source.stat().st_size != entry.get("bytes"):
                 raise ValueError("Source hash or size differs from its manifest")
             code = source.read_text(encoding="utf-8")
-            if re.search(r"\b(sorry|admit|sorryAx|native_decide|axiom)\b", code):
-                raise ValueError("Source contains a prohibited proof admission")
-            if re.search(r"\bset_option\s+debug\.skipKernelTC\s+true\b", code):
-                raise ValueError("Source requests a kernel bypass")
+            AUDIT.validate_source(code)
             if module in roots and manifest.get("theorem_roots") != full_roots(module):
                 raise ValueError(
                     "Extension theorem roots differ from the expected list"
@@ -347,7 +166,10 @@ def check_core_receipt(
     receipt = json.loads(receipt_file.read_text(encoding="utf-8"))
     rows = receipt.get("modules", [])
     passed = (
-        receipt.get("status") == "PASS"
+        receipt.get("schema_version") == 2
+        and receipt.get("status") == "PASS"
+        and receipt.get("axiom_audit_method") == "separate-generated-import-query"
+        and receipt.get("proof_audit_sha256") == before["proof_audit"]
         and re.search(r"\bversion 4\.35\.0\b", str(receipt.get("compiler_version", "")))
         and receipt.get("compiler_sha256") == before["compiler"]
         and receipt.get("source_manifest_sha256") == before["core_manifest"]
@@ -363,6 +185,14 @@ def check_core_receipt(
             return False, bound_files
         expected_roots = list(CORE_ROOTS[module])
         axioms = row.get("printed_axiom_lists", {})
+        try:
+            audit_files = AUDIT.validate_audit_record(
+                receipt_dir, module, expected_roots, row.get("audit", {})
+            )
+        except (OSError, ValueError, KeyError, TypeError):
+            return False, bound_files
+        for name, path in audit_files.items():
+            bound_files[module + "/audit/" + name] = digest(path)
         passed = passed and (
             row.get("status") == "PASS"
             and row.get("exit_code") == 0
@@ -371,9 +201,9 @@ def check_core_receipt(
             and row.get("source_unchanged") is True
             and row.get("printed_axioms_checked") is True
             and row.get("no_error_or_warning_diagnostics") is True
+            and axioms == row["audit"]["printed_axiom_lists"]
             and list(axioms) == expected_roots
             and bool(expected_roots)
-            and all(set(items) <= ALLOWED_AXIOMS for items in axioms.values())
         )
         for kind, path in (
             ("olean", build_dir / (module + ".olean")),
@@ -486,27 +316,35 @@ def main() -> int:
             target = output / (module + ".olean")
             command = [str(lean), "--trust=0", "-o", str(target), source.name]
             code, timed_out, stdout, stderr = execute(command, output, env, module, 240)
-            printed = [
-                {
-                    "theorem": theorem,
-                    "axioms": [x.strip() for x in raw.split(",") if x.strip()],
-                }
-                for theorem, raw in re.findall(
-                    r"'([^']+)' depends on axioms: \[([^]]*)\]", stdout
+            object_hash = digest(target) if target.is_file() else None
+            # The compiled source may emit arbitrary diagnostic messages. Only
+            # a separate, generated import query may supply axiom evidence.
+            audit = (
+                AUDIT.run_axiom_audit(
+                    lean, module, full_roots(module), output, env, sanitize
                 )
+                if code == 0
+                and not timed_out
+                and target.is_file()
+                and target.stat().st_size > 0
+                else None
+            )
+            printed = [
+                {"theorem": theorem, "axioms": axioms}
+                for theorem, axioms in (
+                    audit.get("printed_axiom_lists", {}) if audit else {}
+                ).items()
             ]
             checks = {
                 "exit_zero": code == 0,
                 "not_timed_out": not timed_out,
-                "exact_roots": [x["theorem"] for x in printed] == full_roots(module),
-                "standard_axioms": all(
-                    len(x["axioms"]) == 3 and set(x["axioms"]) == ALLOWED_AXIOMS
-                    for x in printed
-                ),
+                "separate_axiom_audit": audit is not None and audit["status"] == "PASS",
                 "no_diagnostics": not re.search(
                     r"\b(error|warning):|sorryAx", stdout + stderr
                 ),
                 "fresh_nonempty_olean": target.is_file() and target.stat().st_size > 0,
+                "olean_unchanged_during_audit": target.is_file()
+                and digest(target) == object_hash,
                 "source_snapshot_unchanged": digest(source) == before[module],
             }
             records.append(
@@ -515,10 +353,11 @@ def main() -> int:
                     "status": "PASS" if all(checks.values()) else "FAIL",
                     "checks": checks,
                     "printed_axiom_lists": printed,
+                    "audit": audit,
                     "source_sha256": before[module],
                     "exit_code": code,
                     "timed_out": timed_out,
-                    "olean_sha256": digest(target) if target.is_file() else None,
+                    "olean_sha256": object_hash,
                     "stdout_sha256": digest(output / (module + ".stdout.txt")),
                     "stderr_sha256": digest(output / (module + ".stderr.txt")),
                 }
@@ -531,8 +370,19 @@ def main() -> int:
         source_manifests_valid = True
     except (OSError, ValueError, KeyError, TypeError):
         source_manifests_valid = False
+    audit_bindings_valid = True
+    for record in records:
+        try:
+            if not isinstance(record["audit"], dict):
+                raise ValueError("Compilation did not produce an axiom audit")
+            AUDIT.validate_audit_record(
+                output, record["module"], full_roots(record["module"]), record["audit"]
+            )
+        except (OSError, ValueError, KeyError, TypeError):
+            audit_bindings_valid = False
     checks = {
         "source_manifests_valid": source_manifests_valid,
+        "separate_axiom_audit_evidence_unchanged": audit_bindings_valid,
         "fresh_core_verified": core_ok,
         "core_artifacts_and_receipts_unchanged": core_still_ok
         and core_files == core_after,
@@ -561,7 +411,8 @@ def main() -> int:
     }
     passed = all(checks.values())
     summary = {
-        "schema_version": 1,
+        "schema_version": 2,
+        "axiom_audit_method": "separate-generated-import-query",
         "status": "PASS" if passed else "FAIL",
         "created_utc": datetime.now(timezone.utc).isoformat(),
         "verification_mode": args.mode,

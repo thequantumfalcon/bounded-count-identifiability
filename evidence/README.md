@@ -1,10 +1,31 @@
 # Verification record and trust limits
 
+Start with the [dated verification index](verification-index-2026-10-21.json).
+It links the completed 21-module, 124-root milestone at commit `68e644a`, its
+hosted receipts and a fresh repository-settings readback. CodeQL was configured
+and both open CodeQL and Dependabot alert counts were zero at that readback.
+The maintainer's earlier confirmations of account 2FA and Copilot Autofix are
+listed separately; the API capture did not verify them. Settings and alerts can
+change, and a successful Scorecard workflow does not mean a perfect score.
+
+The index records a completed earlier milestone, not the later repair commit
+that contains it. It cannot certify its own future commit hash. For that commit,
+inspect its [Actions runs](https://github.com/thequantumfalcon/bounded-count-identifiability/actions)
+and uploaded receipts. The original records below remain unchanged.
+
+The [red-team follow-up](../docs/red-team-followup.md) documents a confirmed
+weakness in the older verifier: compilation output could forge an allowed
+axiom message, and core theorem coverage was incomplete. Those historical
+receipts do not prove resistance to that attack. The repair separates the
+generated axiom query from proof compilation and checks an exact root registry;
+stored-proof replay adds a different check. Neither is a hostile-code sandbox.
+
 The portable public entry point is the pinned [Lean project](../lean/README.md).
 Its [local receipt](../lean/verification/local-existing-cache-formatted/result.json)
 records fresh compilation of all six modules with `--trust=0`, against existing
 dependency artifacts. Source, verifier, lock and output hashes bind that run
-to the published files. Selected theorem lists contain only `propext`,
+to their historical bytes, including the earlier verifier. Selected theorem
+lists reported only `propext`,
 `Classical.choice` and `Quot.sound`. Checking establishes encoded statements
 relative to the trusted implementation and axioms.
 
@@ -88,9 +109,12 @@ Python supplies finite exact-arithmetic comparisons. A fresh local
 fixtures, 3,375 exact membership comparisons and 1,038 checks of witnesses
 against the original constraints. Its source hash and limitations are recorded.
 The initial launcher lacked the runtime's Singular environment; the recorded
-environment run passed, and both local attempts are retained. Sage is not run
-in hosted CI. These programs are not formally verified and could share modeling
-mistakes. See [reproduction commands](../docs/reproduction.md).
+environment run passed, and both local attempts are retained. This particular
+record is local and predates the hosted Sage job. That job has its own
+`sage-ci-receipt` artifact, binding the source and container image to its output;
+inspect the result for the commit being reviewed. These programs are not
+formally verified and could share modeling mistakes. See
+[reproduction commands](../docs/reproduction.md).
 
 CI results belong to the exact commit checked. Historical receipts must not be
 presented as results for changed proof bytes. Proof changes require new checks,

@@ -7,6 +7,7 @@ All mutations affect disposable copies of the extension and its configuration.
 from __future__ import annotations
 
 import contextlib
+import hashlib
 import importlib.util
 import io
 import json
@@ -26,6 +27,7 @@ INPUTS = (
     "lean/lake-manifest.json",
     "lean/lakefile.toml",
     "lean/lean-toolchain",
+    "lean/proof_audit.py",
 )
 EXPECTED_ROOTS = (
     "CountD1Stability.squared_parameter_error_le",
@@ -46,7 +48,7 @@ class StabilityVerifierTests(unittest.TestCase):
                 target = root / relative
                 target.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(REPOSITORY / relative, target)
-            source, verifier, manifest, lock, config, toolchain = (
+            source, verifier, manifest, lock, config, toolchain, policy = (
                 root / relative for relative in INPUTS
             )
             compiler = root / "mock-compiler.bin"
@@ -63,6 +65,14 @@ class StabilityVerifierTests(unittest.TestCase):
             elif variant == "reused_run":
                 output.mkdir(parents=True)
                 (output / "sentinel").write_bytes(b"keep")
+            elif variant == "source_admission":
+                source.write_bytes(source.read_bytes() + b"\nrun_cmd pure ()\n")
+                data = json.loads(manifest.read_text(encoding="utf-8"))
+                data["sources"][source.name] = {
+                    "sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
+                    "bytes": source.stat().st_size,
+                }
+                manifest.write_text(json.dumps(data), encoding="utf-8")
 
             spec = importlib.util.spec_from_file_location("stability_fixture", verifier)
             module = importlib.util.module_from_spec(spec)
@@ -75,15 +85,27 @@ class StabilityVerifierTests(unittest.TestCase):
             elif variant == "unexpected_root":
                 roots[-1] = "Unrelated.theorem"
             axioms = "propext, Classical.choice, Quot.sound"
-            if variant == "unexpected_axiom":
+            if variant in {"unexpected_axiom", "forged_compile_message"}:
                 axioms += ", Untrusted.custom"
             elif variant == "duplicate_axiom":
                 axioms += ", propext"
-            elif variant == "missing_axiom":
+            elif variant == "subset_axioms":
                 axioms = "propext, Quot.sound"
             stdout = "\n".join(
                 f"'{theorem}' depends on axioms: [{axioms}]" for theorem in roots
             ).encode()
+            if variant == "zero_axioms":
+                stdout = "\n".join(
+                    f"'{theorem}' does not depend on any axioms" for theorem in roots
+                ).encode()
+            audit_stdout = stdout
+            if variant == "forged_compile_message":
+                stdout = "\n".join(
+                    f"'{theorem}' depends on axioms: [propext, Classical.choice, Quot.sound]"
+                    for theorem in roots
+                ).encode()
+            elif variant == "empty_compile_output":
+                stdout = b""
             if variant == "warning":
                 stdout += b"\nwarning: fixture warning\n"
 
@@ -93,6 +115,32 @@ class StabilityVerifierTests(unittest.TestCase):
                         command, 0, b"Lean (version 4.35.0, fixture)", b""
                     )
                 self.assertIn("--trust=0", command)
+                if "-o" not in command:
+                    query = output / "CountD1Stability.audit.lean"
+                    self.assertEqual(command[-1], query.name)
+                    self.assertEqual(Path(kwargs["cwd"]), output)
+                    self.assertEqual(
+                        query.read_text(encoding="utf-8"),
+                        module.AUDIT.audit_source(module.MODULE, EXPECTED_ROOTS),
+                    )
+                    if variant == "artifact_changed_in_audit":
+                        (output / "CountD1Stability.olean").write_bytes(b"changed")
+                    elif variant == "query_changed_in_audit":
+                        query.write_bytes(b"-- changed")
+                    elif variant == "logs_changed_in_audit":
+                        (output / "CountD1Stability.stdout.txt").write_bytes(b"changed")
+                    elif variant == "snapshot_changed_in_audit":
+                        (output / source.name).write_bytes(b"changed")
+                    if variant == "audit_timeout":
+                        raise subprocess.TimeoutExpired(
+                            command, 240, output=audit_stdout
+                        )
+                    return subprocess.CompletedProcess(
+                        command,
+                        1 if variant == "audit_nonzero" else 0,
+                        audit_stdout,
+                        b"unexpected" if variant == "audit_stderr" else b"",
+                    )
                 self.assertEqual(command[-1], source.name)
                 target = Path(command[command.index("-o") + 1])
                 self.assertEqual(target, output / "CountD1Stability.olean")
@@ -105,6 +153,7 @@ class StabilityVerifierTests(unittest.TestCase):
                     "lock_changed": lock,
                     "config_changed": config,
                     "toolchain_changed": toolchain,
+                    "policy_changed": policy,
                 }.get(variant)
                 if changed is not None:
                     changed.write_bytes(changed.read_bytes() + b"\n")
@@ -151,10 +200,19 @@ class StabilityVerifierTests(unittest.TestCase):
             )
             if variant == "reused_run":
                 self.assertEqual((output / "sentinel").read_bytes(), b"keep")
-            if variant == "positive":
+            if variant in {
+                "positive",
+                "subset_axioms",
+                "zero_axioms",
+                "empty_compile_output",
+            }:
                 self.assertEqual(code, 0)
                 self.assertEqual(receipt["status"], "PASS")
                 self.assertTrue(all(receipt["checks"].values()))
+                self.assertEqual(receipt["schema_version"], 2)
+                self.assertEqual(
+                    receipt["axiom_audit_method"], "separate-generated-import-query"
+                )
             else:
                 self.assertNotEqual(code, 0)
                 if receipt is not None:
@@ -165,7 +223,7 @@ class StabilityVerifierTests(unittest.TestCase):
         self.run_case("positive")
 
     def test_source_identity_and_schema(self):
-        for variant in ("source_tamper", "schema"):
+        for variant in ("source_tamper", "schema", "source_admission"):
             with self.subTest(variant=variant):
                 self.run_case(variant)
 
@@ -173,13 +231,22 @@ class StabilityVerifierTests(unittest.TestCase):
         for variant in ("missing_root", "duplicate_root", "unexpected_root"):
             with self.subTest(variant=variant):
                 receipt = self.run_case(variant)
-                self.assertFalse(receipt["checks"]["exact_five_unique_printed_roots"])
+                self.assertFalse(receipt["checks"]["separate_axiom_audit"])
 
     def test_exact_axiom_records_required(self):
-        for variant in ("missing_axiom", "duplicate_axiom", "unexpected_axiom"):
+        for variant in (
+            "duplicate_axiom",
+            "unexpected_axiom",
+            "forged_compile_message",
+        ):
             with self.subTest(variant=variant):
                 receipt = self.run_case(variant)
-                self.assertFalse(receipt["checks"]["printed_axioms_allowed"])
+                self.assertFalse(receipt["checks"]["separate_axiom_audit"])
+
+    def test_allowed_axiom_subsets_and_empty_compilation_output(self):
+        for variant in ("subset_axioms", "zero_axioms", "empty_compile_output"):
+            with self.subTest(variant=variant):
+                self.run_case(variant)
 
     def test_success_requires_fresh_nonempty_output(self):
         for variant in ("no_output", "empty_output"):
@@ -188,12 +255,37 @@ class StabilityVerifierTests(unittest.TestCase):
                 self.assertFalse(receipt["checks"]["fresh_nonempty_olean"])
 
     def test_input_mutations_fail_even_with_mock_success(self):
-        for name in ("source", "manifest", "verifier", "lock", "config", "toolchain"):
+        for name in (
+            "source",
+            "manifest",
+            "verifier",
+            "lock",
+            "config",
+            "toolchain",
+            "policy",
+        ):
             with self.subTest(input=name):
                 self.run_case(name + "_changed")
 
     def test_bad_process_results_fail(self):
-        for variant in ("nonzero", "timeout", "warning"):
+        for variant in (
+            "nonzero",
+            "timeout",
+            "warning",
+            "audit_nonzero",
+            "audit_timeout",
+            "audit_stderr",
+        ):
+            with self.subTest(variant=variant):
+                self.run_case(variant)
+
+    def test_audit_cannot_mutate_bound_inputs_and_outputs(self):
+        for variant in (
+            "artifact_changed_in_audit",
+            "query_changed_in_audit",
+            "logs_changed_in_audit",
+            "snapshot_changed_in_audit",
+        ):
             with self.subTest(variant=variant):
                 self.run_case(variant)
 

@@ -90,6 +90,44 @@ For $B=0$, the projection is $[a,c]$ if the clipped intervals are nonempty and $
 
 Unbiased factorial-cumulant estimators also have established literature; [Müller (2004), Appendix B, equations (37) and (39)](https://groups.spa.umn.edu/2-photon/publications/JM04BJ.pdf) gives the second-order estimator and its exact finite-sample variance. The prototype above fits factorial moments, rather than treating a plug-in cumulant estimate as unbiased.
 
+### Population-centered scale diagnostic
+
+The conservative confidence formula can produce wide intervals even at large
+sample sizes. For the fixed illustrative parameters $p=0.3$, $b=0.5$, $B=1$ and
+$\alpha=0.05$, center the moment box at the population values
+$m_1=0.8$, $m_2=0.55$ and use the stated radii. This deterministic calculation
+gives the following projected widths; decimals are rounded for display.
+
+| Windows $N$ | Projected interval for $p$ | Width |
+| --- | --- | --- |
+| 10,000 | [0, 0.690265] | 0.690265 |
+| 100,000 | [0, 0.459489] | 0.459489 |
+| 1,000,000 | [0.227823, 0.358045] | 0.130222 |
+| 10,000,000 | [0.279181, 0.319481] | 0.040300 |
+| 100,000,000 | [0.293574, 0.306293] | 0.012718 |
+
+[Reproduce the table](../examples/d1_confidence_scale.py) with
+`python examples/d1_confidence_scale.py`. It uses standard-library rational
+arithmetic and outward square-root enclosures, and emits exact rational bounds
+alongside display decimals. For these nested population-centered boxes, width
+first falls to at most $0.1$ at $N=1,662,466$; the script bounds widths at both
+that integer and the preceding one.
+
+These are not expected or best-case sample widths, a universal sample-size
+minimum, or a lower bound for other procedures. Exactly population-centered
+empirical moments need not be attainable at every integer $N$; actual sample
+intervals vary with the observations. For example, with $p=0.3$, $b=B=0$ and
+the same error level, the population-centered width is exactly $0.1$ at
+$N=4,000$. The table motivates sharper statistical analysis without claiming
+that this conservative method is practically efficient.
+
+The separate [Sage projection example](../examples/d1_projection_sage.py) is
+executed by the required `sage` CI job with a digest-pinned SageMath 10.8 image.
+It checks seven boundary fixtures, 3,375 exact membership comparisons and
+1,038 original-constraint witnesses, and uploads a `sage-ci-receipt` artifact.
+Those finite execution controls supplement the projection theorem; they do
+not formally verify Sage or the executable program.
+
 ## Two assumption controls
 
 A count $Y$ equal to $0$ or $2$ with probability $1/2$ each has mean $1$ and factorial cumulants $(\kappa_2,\kappa_3)=(0,-1)$. A Poisson count of mean $1$ has $(0,0)$. Thus the mean and second factorial cumulant can fit the $D=1$ observation model even when the true distribution is outside it.

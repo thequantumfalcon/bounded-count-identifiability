@@ -36,9 +36,36 @@ python verify.py --run external-check
 
 The checked-in `lean-toolchain` selects Lean 4.35.0. `lakefile.toml` pins mathlib to commit `56a005855ea17e0b0958f73ec801ae140b0a1679`; `lake-manifest.json` records the eight transitive dependency revisions as well. Preserve the lock file to reproduce these versions. The first command fetches the pinned dependencies and the upstream mathlib compilation cache. This recipe requires network access and therefore is **not** a build of every dependency from source.
 
-The `BoundedCount` Lake library explicitly includes all six modules and passes `--trust=0` to their Lean invocations. The Python command independently recompiles those six project modules into a new local output directory, verifies their source hashes, checks the printed axiom lists, and writes `verification/external-check/result.json`. It resolves Lean through `lake env`; a separate bare `lean` command on the caller's path is unnecessary. Use a new `--run` name for each run, because existing evidence is never overwritten.
+The `BoundedCount` Lake library explicitly includes all six modules and passes
+`--trust=0` to their Lean invocations. The Python command recompiles those six
+project modules into fresh output and verifies their source hashes. A generated
+import-only query in a separate Lean process audits the pinned theorem roots;
+messages emitted during proof compilation cannot supply that audit. Exact
+unique root coverage and an allowed-axiom subset are required. The receipt is
+`verification/external-check/result.json`. The verifier resolves Lean through
+`lake env`; a separate bare `lean` command on the caller's path is unnecessary.
+Use a new `--run` name for each run, because existing evidence is never overwritten.
+
+The shared [audit policy](proof_audit.py) supplies the complete registry of 124
+roots across the research suite, the allowed axioms and defensive source checks.
+Valid roots need not use all three allowed axioms. The separate
+[stored-proof replay](replay.py) consumes a completed research run; see
+[the reproduction commands](../docs/reproduction.md#formal-proof). It uses the
+pinned Lean kernel and trusts the imported upstream dependency artifacts.
+This adds a check of saved proof terms, not an independent kernel or sandbox.
 
 ## What has been checked here
+
+The [dated verification index](../evidence/verification-index-2026-10-21.json)
+links a later completed hosted milestone with all 21 modules and 124 theorem
+roots, plus a separate point-in-time settings readback. It does not substitute
+for the Actions result and receipt of the exact commit under review.
+
+The following two committed receipts describe the original six-module verifier.
+The [red-team follow-up](../docs/red-team-followup.md) records its confirmed
+output-forgery and root-coverage weaknesses. Its successful historical runs
+are retained as records of those executions, not upgraded to evidence of the
+repaired audit or later proof replay.
 
 The committed receipt at `verification/local-existing-cache-formatted/result.json` records a fresh compilation of the staged project sources against previously installed Lean/mathlib dependency artifacts. No compiled artifact from the original project was supplied as an input. The receipt records source hashes, compiler identity, successful exits, output hashes, and printed axiom lists. The only axioms in those lists are Lean's standard `propext`, `Classical.choice`, and `Quot.sound`.
 

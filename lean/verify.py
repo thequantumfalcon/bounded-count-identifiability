@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.util
 import json
 import os
 import re
@@ -20,15 +21,13 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-MODULES = (
-    "CountSeriesCore",
-    "CountLawEncoding",
-    "CountIdentification",
-    "CountPoissonChannel",
-    "CountObservedIdentification",
-    "CountSharpness",
+_policy_spec = importlib.util.spec_from_file_location(
+    "core_proof_audit", ROOT / "proof_audit.py"
 )
-ALLOWED_AXIOMS = {"propext", "Classical.choice", "Quot.sound"}
+assert _policy_spec is not None and _policy_spec.loader is not None
+AUDIT = importlib.util.module_from_spec(_policy_spec)
+_policy_spec.loader.exec_module(AUDIT)
+MODULES = AUDIT.CORE
 
 
 def digest(path: Path) -> str:
@@ -40,7 +39,22 @@ def write_json(path: Path, value: object) -> None:
 
 
 def main() -> int:
-    verifier_before = digest(Path(__file__))
+    inputs = {
+        "verifier": Path(__file__).resolve(),
+        "proof_audit": ROOT / "proof_audit.py",
+        "source_manifest": ROOT / "source_manifest.json",
+        "dependency_lock": ROOT / "lake-manifest.json",
+        "lake_config": ROOT / "lakefile.toml",
+        "toolchain": ROOT / "lean-toolchain",
+        **{module: ROOT / (module + ".lean") for module in MODULES},
+    }
+    before = {name: digest(path) for name, path in inputs.items()}
+    verifier_before = before["verifier"]
+    if (
+        inputs["toolchain"].read_text(encoding="utf-8").strip()
+        != "leanprover/lean4:v4.35.0"
+    ):
+        raise ValueError("Expected pinned Lean toolchain")
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--mode", choices=("lake", "existing-cache"), default="lake")
     parser.add_argument("--run", default="lake-check")
@@ -100,15 +114,22 @@ def main() -> int:
             "Run name already exists; choose a new --run to preserve evidence"
         )
     manifest = json.loads((ROOT / "source_manifest.json").read_text(encoding="utf-8"))
+    if manifest.get("schema_version") != 1 or set(manifest.get("sources", {})) != {
+        module + ".lean" for module in MODULES
+    }:
+        raise ValueError("Unexpected core source manifest")
     for module in MODULES:
         name = f"{module}.lean"
         if digest(ROOT / name) != manifest["sources"][name]["sha256"]:
             raise ValueError(f"Frozen source hash mismatch: {name}")
         source = (ROOT / name).read_text(encoding="utf-8")
-        if re.search(
-            r"\b(sorry|admit|native_decide)\b|^\s*axiom\s", source, re.MULTILINE
-        ):
-            raise ValueError(f"Admission or axiom declaration found: {name}")
+        if (ROOT / name).stat().st_size != manifest["sources"][name]["bytes"]:
+            raise ValueError("Core source size differs from its manifest")
+        AUDIT.validate_source(source)
+    if any(digest(path) != before[name] for name, path in inputs.items()):
+        raise ValueError("Proof inputs changed during environment discovery")
+    inputs["compiler"] = lean
+    before["compiler"] = digest(lean)
     receipt_dir.mkdir(parents=True)
     build_dir.mkdir(parents=True)
     env = os.environ.copy()
@@ -169,22 +190,29 @@ def main() -> int:
         stderr_path = receipt_dir / f"{module}.stderr.txt"
         stdout_path.write_text(stdout, encoding="utf-8")
         stderr_path.write_text(stderr, encoding="utf-8")
-        axiom_lists = {}
-        for theorem, raw in re.findall(
-            r"'([^']+)' depends on axioms: \[([^]]*)\]", stdout
-        ):
-            axioms = [item.strip() for item in raw.split(",") if item.strip()]
-            axiom_lists[theorem] = axioms
-        source_unchanged = digest(source) == manifest["sources"][source.name]["sha256"]
-        axiom_check = bool(axiom_lists) and all(
-            set(items) <= ALLOWED_AXIOMS for items in axiom_lists.values()
+        compiled_hash = (
+            digest(target) if target.is_file() and target.stat().st_size > 0 else None
         )
+        audit = (
+            AUDIT.run_axiom_audit(
+                lean, module, AUDIT.full_roots(module), receipt_dir, env, sanitize
+            )
+            if result.returncode == 0 and target.is_file() and target.stat().st_size > 0
+            else None
+        )
+        axiom_lists = audit["printed_axiom_lists"] if audit else {}
+        axiom_check = audit is not None and audit["status"] == "PASS"
+        source_unchanged = digest(source) == before[module]
         no_diagnostics = not re.search(r"\b(error|warning):|sorryAx", stdout + stderr)
         passed = (
             result.returncode == 0
+            and not timed_out
             and source_unchanged
             and axiom_check
             and no_diagnostics
+            and compiled_hash is not None
+            and target.is_file()
+            and digest(target) == compiled_hash
         )
         records.append(
             {
@@ -201,29 +229,59 @@ def main() -> int:
                 "exit_code": result.returncode,
                 "timed_out": timed_out,
                 "status": "PASS" if passed else "FAIL",
+                "audit": audit,
                 "printed_axiom_lists": axiom_lists,
                 "printed_axioms_checked": axiom_check,
                 "no_error_or_warning_diagnostics": no_diagnostics,
                 "stdout_sha256": digest(stdout_path),
                 "stderr_sha256": digest(stderr_path),
-                "olean_sha256": digest(target) if target.is_file() else None,
+                "olean_sha256": compiled_hash,
             }
         )
         print(f"{module}: {'PASS' if passed else 'FAIL'}", flush=True)
         if not passed:
             break
-    verifier_unchanged = digest(Path(__file__)) == verifier_before
+    unchanged = {
+        name: path.is_file() and digest(path) == before[name]
+        for name, path in inputs.items()
+    }
+    verifier_unchanged = unchanged["verifier"]
+    evidence_valid = True
+    for row in records:
+        module = row["module"]
+        try:
+            AUDIT.validate_audit_record(
+                receipt_dir, module, AUDIT.full_roots(module), row["audit"] or {}
+            )
+            for kind, path in (
+                ("olean", build_dir / (module + ".olean")),
+                ("stdout", receipt_dir / (module + ".stdout.txt")),
+                ("stderr", receipt_dir / (module + ".stderr.txt")),
+            ):
+                if not path.is_file() or digest(path) != row[kind + "_sha256"]:
+                    raise ValueError("Core artifact/log changed")
+        except (OSError, ValueError, TypeError, KeyError):
+            evidence_valid = False
     passed = (
-        verifier_unchanged
+        all(unchanged.values())
+        and evidence_valid
         and len(records) == len(MODULES)
         and all(row["status"] == "PASS" for row in records)
     )
     summary = {
+        "schema_version": 2,
+        "axiom_audit_method": "separate-generated-import-query",
+        "proof_audit_sha256": before["proof_audit"],
+        "input_sha256": before,
+        "checks": {
+            **{k + "_unchanged": v for k, v in unchanged.items()},
+            "evidence_unchanged_and_valid": evidence_valid,
+        },
         "status": "PASS" if passed else "FAIL",
         "created_utc": datetime.now(timezone.utc).isoformat(),
         "verification_mode": args.mode,
         "compiler_version": version,
-        "compiler_sha256": digest(lean),
+        "compiler_sha256": before["compiler"],
         "dependency_library_count": len(libraries),
         "project_artifacts_recompiled_in_dependency_order": True,
         "uses_preexisting_dependency_artifacts": True,
@@ -234,7 +292,7 @@ def main() -> int:
         "verifier_sha256": verifier_before,
         "verifier_unchanged": verifier_unchanged,
         "modules": records,
-        "scope": "Fresh elaboration and compilation of the six project sources with Lean --trust=0; dependencies use existing compiled libraries. Printed axiom lists are checked. This is not a clean rebuild of Lean or mathlib, nor an additional independent proof-kernel check.",
+        "scope": "Fresh elaboration and compilation of the six project sources with Lean --trust=0; dependencies use existing compiled libraries. A separate generated import-only query checks the complete registered roots and permitted axiom subsets; source compilation output is diagnostic only. This is not a clean rebuild of Lean or mathlib, nor an additional independent proof-kernel check.",
     }
     write_json(receipt_dir / "result.json", summary)
     print(f"Overall: {summary['status']}; receipt: verification/{args.run}/result.json")
@@ -242,4 +300,14 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    try:
+        raise SystemExit(main())
+    except (
+        OSError,
+        ValueError,
+        KeyError,
+        TypeError,
+        subprocess.SubprocessError,
+    ) as error:
+        print(f"Core verification failed ({type(error).__name__})")
+        raise SystemExit(1) from None

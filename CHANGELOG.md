@@ -20,6 +20,14 @@ The Python API is experimental; no stable release has been published.
 
 ### Added
 
+- A red-team follow-up covering the verifier defects, evidence indexing, Sage
+  execution and parameter-specific confidence-width diagnostics. Historical
+  receipts remain unchanged and are explicitly scoped to their original checks.
+- A dated index of the completed 21-module hosted milestone and a fresh read-only
+  repository-settings snapshot, separating API evidence from maintainer
+  confirmations about account 2FA and Copilot Autofix.
+- A digest-pinned hosted Sage projection job and an exact rational diagnostic
+  for the sample sizes of a specified population-centered moment-box example.
 - All-order analytic/formal cumulant equivalence, including actual expectation
   derivatives and source/background identification stated in those terms.
 - Actual Poisson and Bernoulli-plus-Poisson factorial moments, quadratic-statistic
@@ -63,6 +71,13 @@ The Python API is experimental; no stable release has been published.
 
 ### Fixed
 
+- Separate generated import-only axiom queries from proof compilation output,
+  so a proof file's messages cannot supply its axiom audit. Require exact unique
+  root coverage and an allowed-axiom subset across core and extension checks;
+  retain diagnostics and source, object and query bindings.
+- Add stored-proof replay as a complementary check through the pinned Lean
+  kernel. This does not constitute an independent kernel or replace axiom
+  auditing, statement review or upstream-dependency trust.
 - Capture verifier inputs before environment resolution and recheck their
   manifests afterward and before success. This rejects source, manifest or
   configuration changes during a slow toolchain lookup.

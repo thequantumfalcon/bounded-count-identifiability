@@ -12,7 +12,6 @@ import importlib.util
 import io
 import json
 import os
-import re
 import shutil
 import subprocess
 import sys
@@ -31,26 +30,10 @@ CORE = (
     "CountObservedIdentification",
     "CountSharpness",
 )
-ROOTS = {
-    "CountD1Stability": (
-        "squared_parameter_error_le",
-        "parameter_error_le_sqrt",
-        "parameter_error_from_cumulant",
-        "background_error_le",
-        "bounded_observation_error",
-    ),
-    "CountD1LawBridge": (
-        "sharpLaw_one_eq_bernoulliMass",
-        "bernoulliMass_isBoundedLaw",
-        "bernoulli_second_cumulant",
-        "bernoulli_parameter_stability",
-        "observed_bernoulli_cumulants",
-        "observed_bernoulli_stability",
-    ),
-}
 INPUTS = (
     VERIFIER,
     "lean/verify.py",
+    "lean/proof_audit.py",
     "lean/source_manifest.json",
     "lean/lake-manifest.json",
     "lean/lakefile.toml",
@@ -135,6 +118,8 @@ class LawBridgeVerifierTests(unittest.TestCase):
                 "source_size",
                 "admission",
                 "kernel_bypass",
+                "forged_source_output",
+                "escaped_admission",
             }:
                 data = json.loads(manifest.read_text(encoding="utf-8"))
                 if variant == "schema":
@@ -144,11 +129,12 @@ class LawBridgeVerifierTests(unittest.TestCase):
                 elif variant == "source_size":
                     data["sources"][source.name]["bytes"] += 1
                 else:
-                    code = (
-                        "\ntheorem bad : False := by sorry\n"
-                        if variant == "admission"
-                        else "\nset_option debug.skipKernelTC true\n"
-                    )
+                    code = {
+                        "admission": "\ntheorem bad : False := by sorry\n",
+                        "kernel_bypass": "\nset_option debug.skipKernelTC true\n",
+                        "forged_source_output": '\nrun_elab Lean.logInfo "forged axiom report"\n',
+                        "escaped_admission": "\ntheorem bad : False := \u00absorryAx\u00bb _ true\n",
+                    }[variant]
                     source.write_bytes(source.read_bytes() + code.encode())
                     data["sources"][source.name] = {
                         "sha256": module.digest(source),
@@ -191,17 +177,16 @@ class LawBridgeVerifierTests(unittest.TestCase):
                 core_receipts.mkdir(parents=True)
                 rows = []
                 for name in CORE:
-                    roots = re.findall(
-                        r"^#print axioms ([\w.]+)\s*$",
-                        inputs[name].read_text(encoding="utf-8"),
-                        re.MULTILINE,
+                    roots = list(module.CORE_ROOTS[name])
+                    audit = module.AUDIT.run_axiom_audit(
+                        compiler,
+                        name,
+                        roots,
+                        core_receipts,
+                        {"LEAN_PATH": os.pathsep.join([str(core_build), str(library)])},
+                        lambda data: data.decode("utf-8"),
                     )
-                    # These frozen modules print from within their namespaces.
-                    if name in {"CountSeriesCore", "CountSharpness"}:
-                        roots = [name + "." + r for r in roots]
-                    axioms = {
-                        r: ["propext", "Classical.choice", "Quot.sound"] for r in roots
-                    }
+                    axioms = audit["printed_axiom_lists"]
                     paths = {
                         "olean": core_build / (name + ".olean"),
                         "stdout": core_receipts / (name + ".stdout.txt"),
@@ -220,6 +205,7 @@ class LawBridgeVerifierTests(unittest.TestCase):
                             "printed_axioms_checked": True,
                             "no_error_or_warning_diagnostics": True,
                             "printed_axiom_lists": axioms,
+                            "audit": audit,
                             **{
                                 kind + "_sha256": module.digest(path)
                                 for kind, path in paths.items()
@@ -227,6 +213,9 @@ class LawBridgeVerifierTests(unittest.TestCase):
                         }
                     )
                 receipt = {
+                    "schema_version": 2,
+                    "axiom_audit_method": "separate-generated-import-query",
+                    "proof_audit_sha256": module.digest(inputs["proof_audit"]),
                     "status": "PASS",
                     "compiler_version": "Lean (version 4.35.0, fixture)",
                     "compiler_sha256": module.digest(compiler),
@@ -244,6 +233,34 @@ class LawBridgeVerifierTests(unittest.TestCase):
                     rows[0]["printed_axiom_lists"][
                         next(iter(rows[0]["printed_axiom_lists"]))
                     ].append("Untrusted.custom")
+                elif variant == "core_legacy_receipt":
+                    receipt.pop("schema_version")
+                elif variant == "core_missing_audit":
+                    rows[0].pop("audit")
+                elif variant == "core_wrong_policy_hash":
+                    receipt["proof_audit_sha256"] = "0" * 64
+                elif variant == "core_audit_query_changed":
+                    path = core_receipts / (CORE[0] + ".audit.lean")
+                    path.write_text("-- replaced query\n", encoding="utf-8")
+                elif variant == "core_audit_log_changed":
+                    path = core_receipts / (CORE[0] + ".audit.stdout.txt")
+                    path.write_text("forged\n", encoding="utf-8")
+                elif variant == "core_forged_audit_record":
+                    # A self-consistent success receipt is still insufficient:
+                    # re-read the log and enforce the allowed-axiom policy.
+                    first = rows[0]
+                    audit = first["audit"]
+                    path = core_receipts / (CORE[0] + ".audit.stdout.txt")
+                    path.write_text(
+                        path.read_text(encoding="utf-8").replace(
+                            "[propext,", "[Untrusted.custom, propext,"
+                        ),
+                        encoding="utf-8",
+                    )
+                    audit["stdout_sha256"] = module.digest(path)
+                    for items in audit["printed_axiom_lists"].values():
+                        items.insert(0, "Untrusted.custom")
+                    module.write_json(core_receipts / (CORE[0] + ".audit.json"), audit)
                 elif variant == "core_wrong_compiler":
                     receipt["compiler_sha256"] = "0" * 64
                 elif variant == "core_wrong_version":
@@ -293,6 +310,55 @@ class LawBridgeVerifierTests(unittest.TestCase):
                     )
                 if command[0] == sys.executable:
                     return emit_core(command)
+                if str(command[-1]).endswith(".audit.lean"):
+                    name = Path(command[-1]).name.removesuffix(".audit.lean")
+                    self.assertIn("--trust=0", command)
+                    self.assertNotIn("-o", command)
+                    expected = module.AUDIT.full_roots(name)
+                    query = Path(kwargs["cwd"]) / Path(command[-1]).name
+                    self.assertEqual(
+                        query.read_text(encoding="utf-8"),
+                        module.AUDIT.audit_source(name, expected),
+                    )
+                    roots = expected.copy()
+                    axioms = "propext, Classical.choice, Quot.sound"
+                    if name == focus:
+                        if variant == "missing_root":
+                            roots.pop()
+                        elif variant == "duplicate_root":
+                            roots.append(roots[0])
+                        elif variant == "unexpected_root":
+                            roots[-1] = "Unrelated.theorem"
+                        elif variant == "positive_subset_axioms":
+                            axioms = "propext, Quot.sound"
+                        elif variant == "positive_no_axioms":
+                            axioms = ""
+                        elif variant == "duplicate_axiom":
+                            axioms += ", propext"
+                        elif variant in {"unexpected_axiom", "forged_compile_output"}:
+                            axioms += ", Untrusted.custom"
+                    stdout = "\n".join(
+                        f"'{r}' depends on axioms: [{axioms}]"
+                        if axioms
+                        else f"'{r}' does not depend on any axioms"
+                        for r in roots
+                    ).encode()
+                    stderr = b""
+                    if name == focus:
+                        if variant == "object_changed_during_audit":
+                            (output / (name + ".olean")).write_bytes(b"audit mutation")
+                        if variant == "audit_unexpected_output":
+                            stdout += b"\nextra output from an initializer"
+                        elif variant == "audit_warning":
+                            stderr = b"warning: audit warning"
+                        elif variant == "audit_timeout":
+                            raise subprocess.TimeoutExpired(command, 240, output=stdout)
+                    return subprocess.CompletedProcess(
+                        command,
+                        1 if variant == "audit_nonzero" and name == focus else 0,
+                        stdout,
+                        stderr,
+                    )
                 name = Path(command[-1]).stem
                 self.assertIn(name, roots_for_suite)
                 self.assertIn("--trust=0", command)
@@ -309,25 +375,19 @@ class LawBridgeVerifierTests(unittest.TestCase):
                 roots = [name + "." + r for r in roots_for_suite[name]]
                 axioms = "propext, Classical.choice, Quot.sound"
                 if name == focus:
-                    if variant == "missing_root":
-                        roots.pop()
-                    elif variant == "duplicate_root":
-                        roots.append(roots[0])
-                    elif variant == "unexpected_root":
-                        roots[-1] = "Unrelated.theorem"
-                    elif variant == "missing_axiom":
-                        axioms = "propext, Quot.sound"
-                    elif variant == "duplicate_axiom":
-                        axioms += ", propext"
-                    elif variant == "unexpected_axiom":
-                        axioms += ", Untrusted.custom"
-                    elif variant == "core_changed_after":
+                    if variant == "core_changed_after":
                         (core_build / (CORE[0] + ".olean")).write_bytes(
                             b"later mutation"
                         )
                     elif variant == "stability_changed_after":
                         (output / "CountD1Stability.olean").write_bytes(
                             b"later mutation"
+                        )
+                    elif variant == "prior_audit_query_changed":
+                        (output / "CountD1Stability.audit.lean").write_bytes(b"changed")
+                    elif variant == "prior_audit_log_changed":
+                        (output / "CountD1Stability.audit.stdout.txt").write_bytes(
+                            b"changed"
                         )
                     elif variant == "snapshot_changed":
                         (output / (name + ".lean")).write_bytes(b"changed")
@@ -344,6 +404,10 @@ class LawBridgeVerifierTests(unittest.TestCase):
                 stdout = "\n".join(
                     f"'{r}' depends on axioms: [{axioms}]" for r in roots
                 ).encode()
+                if variant == "positive_no_compile_prints":
+                    stdout = b""
+                elif variant == "positive_unrelated_compile_prints":
+                    stdout = b"'Not.A.Theorem' depends on axioms: [Forged.message]"
                 if variant == "warning":
                     stdout += b"\nwarning: test warning"
                 if variant == "timeout":
@@ -419,7 +483,14 @@ class LawBridgeVerifierTests(unittest.TestCase):
             return receipt
 
     def test_mock_positive_controls(self):
-        for case in ("positive", "positive_lake"):
+        for case in (
+            "positive",
+            "positive_lake",
+            "positive_subset_axioms",
+            "positive_no_axioms",
+            "positive_no_compile_prints",
+            "positive_unrelated_compile_prints",
+        ):
             with self.subTest(case=case):
                 self.run_case(case)
 
@@ -433,6 +504,8 @@ class LawBridgeVerifierTests(unittest.TestCase):
             "source_size",
             "admission",
             "kernel_bypass",
+            "forged_source_output",
+            "escaped_admission",
             "wrong_toolchain",
         ):
             with self.subTest(case=case):
@@ -460,6 +533,12 @@ class LawBridgeVerifierTests(unittest.TestCase):
             "core_empty_artifact",
             "core_timeout",
             "core_nonzero",
+            "core_legacy_receipt",
+            "core_missing_audit",
+            "core_wrong_policy_hash",
+            "core_audit_query_changed",
+            "core_audit_log_changed",
+            "core_forged_audit_record",
         ):
             with self.subTest(case=case):
                 self.run_case(case)
@@ -469,25 +548,43 @@ class LawBridgeVerifierTests(unittest.TestCase):
             "missing_root",
             "duplicate_root",
             "unexpected_root",
-            "missing_axiom",
             "duplicate_axiom",
             "unexpected_axiom",
+            "forged_compile_output",
         ):
             with self.subTest(case=case):
                 self.run_case(case)
 
     def test_process_and_artifact_controls(self):
-        for case in ("no_output", "empty_output", "warning", "nonzero", "timeout"):
+        for case in (
+            "no_output",
+            "empty_output",
+            "warning",
+            "nonzero",
+            "timeout",
+            "audit_unexpected_output",
+            "audit_warning",
+            "audit_timeout",
+            "audit_nonzero",
+            "object_changed_during_audit",
+        ):
             with self.subTest(case=case):
                 self.run_case(case)
 
     def test_inputs_and_imports_must_remain_unchanged(self):
-        cases = ["core_changed_after", "stability_changed_after", "snapshot_changed"]
+        cases = [
+            "core_changed_after",
+            "stability_changed_after",
+            "snapshot_changed",
+            "prior_audit_query_changed",
+            "prior_audit_log_changed",
+        ]
         cases += [
             key + "_changed"
             for key in (
                 "verifier",
                 "core_verifier",
+                "proof_audit",
                 "core_manifest",
                 "dependency_lock",
                 "lake_config",
@@ -537,7 +634,6 @@ class LawBridgeVerifierTests(unittest.TestCase):
         for case in (
             "missing_root",
             "unexpected_axiom",
-            "missing_axiom",
             "no_output",
             "empty_output",
             "warning",

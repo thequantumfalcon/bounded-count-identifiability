@@ -234,7 +234,12 @@ python lean/extensions/d1-law/verify_law_bridge.py --suite research --run extern
 
 This suite recompiles all six core modules and fifteen extensions in dependency
 order with `--trust=0`, checks source manifests, exact printed theorem lists,
-standard axioms, diagnostics and output bindings. Use a new run name each time.
+standard axioms, diagnostics and output bindings. The axiom lists come from a
+generated import-only query in a separate Lean process, with exact unique root
+coverage; messages from proof compilation cannot supply that audit. Use a new
+run name each time. See the [red-team follow-up](red-team-followup.md) for the
+older gate's output-forgery defect and the distinction between axiom auditing
+and stored-proof replay.
 It reuses upstream compiled dependencies; it does not rebuild every trusted
 component from source. Configuration is not evidence of a successful hosted
 run: inspect the Actions results for the exact commit being reviewed.

@@ -50,15 +50,18 @@ the proofs, examples or developer utilities. Coverage is not mathematical
 correctness. Tests include a separate formal-logarithm computation, finite-law
 transformations and the known sharpness family.
 
-CI exercises Python on Linux and Windows and compiles Lean on Linux. Inspect
+CI exercises Python on Linux and Windows, compiles Lean on Linux, and includes
+a separate exact Sage projection job. Inspect
 the actual commit's Actions results: configuration alone is not a successful
 run. No package has been published to PyPI.
 
 ## Formal proof
 
 Follow [lean/README.md](../lean/README.md) to build all six modules with pinned
-dependencies. Its verifier recompiles into fresh output, checks source hashes
-and printed axiom lists, and records a uniquely named run. Upstream compiled
+dependencies. Its verifier recompiles into fresh output, checks source hashes,
+and runs a generated import-only axiom query in a separate Lean process against
+an exact theorem-root registry. Compilation messages are not accepted as axiom
+audit evidence. Each run has a unique name. Upstream compiled
 mathlib caches are used; this is not a source rebuild of every trusted component.
 
 The [D=1 stability extension](../lean/extensions/d1/README.md) uses the same pinned
@@ -69,8 +72,8 @@ root after the Lean build, run:
 python lean/extensions/d1/verify_stability.py --run external-check
 ```
 
-This compiles the extension freshly with `--trust=0`, checks all five requested
-axiom lists and saves a receipt under `build/stability/external-check/`.
+This compiles the extension freshly with `--trust=0`, separately audits all five
+requested theorem roots and saves a receipt under `build/stability/external-check/`.
 Use a new run name each time. `python tools/tasks.py formal` checks both the core
 and the extension; the extension does not become part of the frozen core receipt.
 
@@ -83,7 +86,7 @@ python lean/extensions/d1-law/verify_law_bridge.py --run external-check
 
 It freshly compiles the six core modules, the unchanged stability source and
 the Bernoulli connection in dependency order. It validates the core receipt
-and imported artifact hashes and checks all six new printed axiom lists.
+and imported artifact hashes and separately audits all six new theorem roots.
 `python tools/tasks.py formal` includes this check as well. See its extension
 guide for output locations and the offline existing-cache mode.
 
@@ -95,8 +98,25 @@ python lean/extensions/d1-law/verify_law_bridge.py --suite research --run extern
 ```
 
 It freshly checks the six core modules and all fifteen extensions. Their source
-manifests and theorem-root lists are checked separately. The dependency cache
+manifests and theorem-root lists are checked separately. A valid axiom list may
+use any subset of `propext`, `Classical.choice` and `Quot.sound`, including no
+axioms; additional axioms, missing roots and duplicate roots are rejected.
+The dependency cache
 is reused, and the offline mode requires those compiled library modules.
+
+After that research run succeeds, replay its stored project proof declarations:
+
+```sh
+python lean/replay.py --proof-run external-research --run external-research
+```
+
+The replay reuses the project artifacts recorded by the named research run and
+the pinned Lean kernel. Imported upstream dependency artifacts remain trusted;
+this is neither an independent implementation nor a from-source rebuild of
+every dependency. It complements the axiom audit and does not replace it.
+Hosted CI uses the corresponding `ci-check` run. A failed or missing receipt is
+not a successful replay. The [shared audit policy](../lean/proof_audit.py) pins
+the requested root registry and the defensive source-admission checks.
 
 The committed local receipt used existing dependency artifacts and says so.
 The separate initial hosted run also passed after fresh dependency retrieval;
@@ -104,6 +124,10 @@ its Linux receipt is preserved in the verification record.
 Git attributes preserve its referenced proof bytes. See
 [the verification record](../evidence/README.md) for extra development checker
 runs and their reproducibility limits.
+
+Earlier committed receipts used the former output-based audit. The
+[red-team follow-up](red-team-followup.md) explains its confirmed defect and why
+those records cannot establish that the repaired gate passed.
 
 ## Optional exact Sage projection
 
@@ -119,3 +143,19 @@ boundaries, exact rational membership comparisons and feasible witnesses.
 Output is JSON; `--help` describes inputs. It does not construct empirical
 confidence intervals or collect data. The separate conditional coverage
 argument is in [claims.md](claims.md).
+
+The hosted `sage` job runs the projection checks in the official SageMath 10.8
+Linux image pinned by digest, with a read-only repository mount and networking
+disabled during execution. Its `sage-ci-receipt` artifact records the output,
+source hash and image metadata. Check the job for the exact commit rather than
+inferring success from the workflow file. Local Sage evidence is retained
+separately in the [verification record](../evidence/README.md).
+
+The separate standard-library scale example uses exact rational outward bounds:
+
+```sh
+python examples/d1_confidence_scale.py
+```
+
+It is a diagnostic centered at population moments, not a simulated or measured
+experiment. See the [parameter-specific interpretation](claims.md#population-centered-scale-diagnostic).

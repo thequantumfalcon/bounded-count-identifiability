@@ -28,7 +28,7 @@ python lean/extensions/d1-law/verify_law_bridge.py --run local-check
 ```
 
 The verifier resolves Lean and dependency paths through `lake env`, excludes
-Lake's cached project library, and invokes the unchanged core verifier to
+Lake's cached project library, and invokes the core verifier to
 compile all six core sources afresh. It checks the new core receipt, theorem
 root lists, source bindings and artifact hashes before compiling D=1 stability
 and the law bridge in order with `--trust=0`. The extensions import the fresh
@@ -55,8 +55,10 @@ project proof artifacts. This mode performs no installation or downloads.
 - `CountD1LawBridge.observed_bernoulli_cumulants`
 - `CountD1LawBridge.observed_bernoulli_stability`
 
-The extension requires exactly those six printed roots and exactly the standard
-axioms `propext`, `Classical.choice`, and `Quot.sound` for each. Input changes,
+The extension requires exactly those six roots in a separately generated import
+query; compilation messages cannot supply the axiom evidence. Each root may use
+any subset of `propext`, `Classical.choice` and `Quot.sound`, including no axioms.
+Input changes,
 nonzero exits, timeouts, diagnostics, missing outputs, or changed core artifacts
 fail verification. The ordinary Python tests mock compiler execution to test
 these acceptance gates; real Lean runs separately in formal CI.

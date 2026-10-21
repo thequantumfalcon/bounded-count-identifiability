@@ -61,6 +61,8 @@ assumptions or experimental usefulness.
 - Inspect the [probability, sampling and uncertainty extensions](docs/probability-extensions.md)
   and their explicit remaining assumptions.
 - Review the [verification record](evidence/README.md) and its stated trust limits.
+- Read the [red-team follow-up](docs/red-team-followup.md) for the verifier defects,
+  their repairs and the limits of the numerical confidence prototype.
 - Read the [originality review](docs/originality-review.md) and
   [focused reviewer request](docs/reviewer-request.md).
 
@@ -68,6 +70,12 @@ The emitted source count and unknown detection efficiency are not separately
 identified. Random-rate background, source/background dependence, detector
 saturation, support leakage and dependent windows require different analysis.
 No detector or laboratory experiment has been validated by this repository.
+
+The supplied red-team review exposed a real weakness in the earlier axiom-audit
+tooling. The [follow-up](docs/red-team-followup.md) distinguishes that defect
+from the mathematical statements and explains the separate audit and proof
+replay checks. Historical green runs remain historical; use the Actions results
+and receipts for the exact commit you inspect.
 
 ## What comes next
 

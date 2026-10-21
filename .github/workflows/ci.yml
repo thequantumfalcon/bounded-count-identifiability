@@ -84,6 +84,43 @@ jobs:
       - run: python tools/tasks.py build
       - run: python tools/tasks.py artifacts
 
+  sage:
+    name: sage
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      # Official SageMath 10.8, linux/amd64 manifest (not a mutable tag).
+      SAGE_IMAGE: sagemath/sagemath:10.8@sha256:fb96c7fb10d672f3be0d088399db3aeac52650416d1bb71f74f26429ea35778f
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Pull pinned SageMath runtime
+        run: docker pull "$SAGE_IMAGE"
+      - name: Run exact projection boundary, membership and witness controls
+        run: |
+          mkdir -p build/sage
+          docker image inspect "$SAGE_IMAGE" > build/sage/image-inspect.json
+          sha256sum examples/d1_projection_sage.py > build/sage/source.sha256
+          docker run --rm --network none --cap-drop ALL --security-opt no-new-privileges \
+            --mount "type=bind,source=$GITHUB_WORKSPACE,target=/work,readonly" \
+            --workdir /work --env PYTHONDONTWRITEBYTECODE=1 "$SAGE_IMAGE" \
+            sage -python examples/d1_projection_sage.py --self-test \
+            > build/sage/projection-sage.json
+          python3 -c "import json; from pathlib import Path; r=json.loads(Path('build/sage/projection-sage.json').read_text()); assert r['sage_version']=='10.8'; assert r['self_tests']=={'boundary_fixtures':7,'exact_membership_comparisons':3375,'original_constraint_witness_checks':1038}, r"
+      - name: Reproduce the population-centered scale diagnostic
+        run: |
+          sha256sum examples/d1_confidence_scale.py > build/sage/scale-source.sha256
+          python3 examples/d1_confidence_scale.py > build/sage/confidence-scale.json
+      - name: Preserve exact execution receipt
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: sage-ci-receipt
+          path: build/sage/
+          if-no-files-found: warn
+          retention-days: 14
+
   formal:
     name: formal
     runs-on: ubuntu-24.04
@@ -112,12 +149,14 @@ jobs:
       - name: Build all six proof modules
         working-directory: lean
         run: lake build
-      - name: Fresh module compilation and printed axiom checks
+      - name: Fresh module compilation and separate axiom audits
         run: python lean/verify.py --run ci-check
       - name: Compile the D=1 stability extension and check its axioms
         run: python lean/extensions/d1/verify_stability.py --run ci-check
       - name: Fresh core and research extension verification
         run: python lean/extensions/d1-law/verify_law_bridge.py --suite research --run ci-check
+      - name: Replay all project declarations with the bundled Lean kernel
+        run: python lean/replay.py --proof-run ci-check --run ci-check
       - name: Preserve proof-check receipt
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
@@ -127,16 +166,20 @@ jobs:
             lean/verification/ci-check/
             build/stability/ci-check/*.json
             build/stability/ci-check/*.txt
+            build/stability/ci-check/*.audit.lean
             lean/verification/d1-law-research-ci-check/
             build/research/ci-check/*.json
             build/research/ci-check/*.txt
+            build/research/ci-check/*.audit.lean
+            build/replay/ci-check/*.json
+            build/replay/ci-check/*.txt
           if-no-files-found: warn
           retention-days: 14
 
   ci:
     name: ci
     if: always()
-    needs: [quality, python, formal]
+    needs: [quality, python, sage, formal]
     runs-on: ubuntu-24.04
     timeout-minutes: 2
     steps:

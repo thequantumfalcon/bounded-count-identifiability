@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -26,198 +27,27 @@ import tomllib
 from urllib.parse import unquote, urlsplit
 
 PERSONA = "The Quantum Falcon"
-MODULES = {
-    "CountSeriesCore.lean",
-    "CountLawEncoding.lean",
-    "CountIdentification.lean",
-    "CountPoissonChannel.lean",
-    "CountObservedIdentification.lean",
-    "CountSharpness.lean",
-}
+_policy_spec = importlib.util.spec_from_file_location(
+    "repository_proof_audit",
+    Path(__file__).resolve().parents[1] / "lean/proof_audit.py",
+)
+assert _policy_spec is not None and _policy_spec.loader is not None
+AUDIT = importlib.util.module_from_spec(_policy_spec)
+# The checker must not create a cache file inside the source artifact it audits.
+_bytecode_disabled = sys.dont_write_bytecode
+try:
+    sys.dont_write_bytecode = True
+    _policy_spec.loader.exec_module(AUDIT)
+finally:
+    sys.dont_write_bytecode = _bytecode_disabled
+MODULES = {module + ".lean" for module in AUDIT.CORE}
 D1_DIRECTORY = "lean/extensions/d1"
 D1_SOURCE = "CountD1Stability.lean"
-D1_ROOTS = [
-    "CountD1Stability.squared_parameter_error_le",
-    "CountD1Stability.parameter_error_le_sqrt",
-    "CountD1Stability.parameter_error_from_cumulant",
-    "CountD1Stability.background_error_le",
-    "CountD1Stability.bounded_observation_error",
-]
 LAW_DIRECTORY = "lean/extensions/d1-law"
 LAW_SOURCE = "CountD1LawBridge.lean"
-LAW_ROOTS = [
-    "CountD1LawBridge.sharpLaw_one_eq_bernoulliMass",
-    "CountD1LawBridge.bernoulliMass_isBoundedLaw",
-    "CountD1LawBridge.bernoulli_second_cumulant",
-    "CountD1LawBridge.bernoulli_parameter_stability",
-    "CountD1LawBridge.observed_bernoulli_cumulants",
-    "CountD1LawBridge.observed_bernoulli_stability",
-]
-RESEARCH_EXTENSIONS = {
-    "probability": (
-        "CountProbabilityBridge",
-        (
-            "boundedPMF_mass",
-            "boundedMeasure_isProbability",
-            "boundedMeasure_singleton",
-            "integral_boundedMeasure",
-            "factorialPGF_eval_eq_expectation",
-            "factorialPGF_coeff_eq_binomial_expectation",
-            "higher_factorial_cumulants_identify_measures",
-        ),
-    ),
-    "finite-sample": (
-        "CountD1VarianceCoverage",
-        (
-            "factorial_square_identity",
-            "first_variance_identity",
-            "second_variance_identity",
-            "first_variance_ceiling",
-            "second_variance_ceiling",
-            "variance_ratio_radius",
-            "zero_variance_deterministic",
-            "simultaneous_chebyshev",
-            "conditional_moment_coverage",
-        ),
-    ),
-    "background-uncertainty": (
-        "CountD1BackgroundUncertainty",
-        (
-            "perturbation_difference_le",
-            "square_difference_le",
-            "parameter_error_le",
-            "bounded_observation_error",
-            "equal_cumulant_witness",
-        ),
-    ),
-    "sample-mean": (
-        "CountFiniteSampleMean",
-        (
-            "sampleMean_memLp",
-            "sampleMean_unbiased",
-            "sampleMean_variance",
-            "sampleMean_variance_ceiling",
-            "two_sample_means_coverage",
-        ),
-    ),
-    "confidence-zero": (
-        "CountConfidenceZeroAndTransforms",
-        (
-            "pairwise_indepFun_measurable_transform",
-            "pairwise_indepFun_factorial",
-            "nonnegative_ceiling_tail",
-            "simultaneous_nonnegative_ceiling_coverage",
-            "two_sample_means_coverage_nonnegative",
-            "factorial_sample_means_coverage",
-        ),
-    ),
-    "poisson-mgf": (
-        "PoissonMGFV1",
-        (
-            "poisson_exp_integrable",
-            "poisson_exp_integral",
-        ),
-    ),
-    "poisson-observation": (
-        "CountPoissonObservation",
-        (
-            "bounded_exp_integrable",
-            "bounded_exp_integral",
-            "observed_exp_integrable",
-            "observed_exp_integral",
-            "observed_factorialPGF_integrable",
-            "observed_factorialPGF_integral",
-            "independentPairMeasure_isProbability",
-            "independentPairMeasure_hasLaws",
-            "independentPairMeasure_factorialPGF",
-        ),
-    ),
-    "taylor-jet": (
-        "CountTaylorJetFoundation",
-        (
-            "coeff_jet0",
-            "derivative_jet0",
-            "jet0_congr_eventuallyEq",
-        ),
-    ),
-    "taylor-product": (
-        "CountTaylorJetProduct",
-        ("jet0_mul",),
-    ),
-    "analytic-cumulant": (
-        "CountAnalyticCumulantBridge",
-        (
-            "polynomial_contDiff",
-            "iteratedDeriv_polynomial",
-            "jet0_polynomial",
-            "jet0_log_polynomial",
-            "factorialCumulant_polynomial_eq_iteratedDeriv_log",
-            "factorialCumulant_channel_eq_iteratedDeriv_log",
-            "lawFactorialCumulant_eq_iteratedDeriv_log",
-            "observedFactorialCumulant_eq_iteratedDeriv_log",
-            "lawFactorialCumulant_eq_iteratedDeriv_log_expectation",
-            "observedFactorialCumulant_eq_iteratedDeriv_log_expectation",
-            "independentPairMeasure_cumulant_eq_iteratedDeriv_log_expectation",
-            "observed_log_derivatives_identify_source",
-            "observed_log_derivatives_identify_source_and_background",
-        ),
-    ),
-    "confidence-projection": (
-        "CountConfidenceProjection",
-        (
-            "feasible_iff_mean",
-            "feasible_iff_polynomialBounds",
-            "feasible_iff_closed_bounds",
-            "exists_feasible_iff",
-            "empty_of_reversed_mean",
-            "empty_of_reversed_second",
-            "empty_of_sq_upper_lt_lower",
-            "feasible_zero_iff",
-            "feasible_zero_clipped_iff",
-            "exists_feasible_zero_clipped_iff",
-            "model_ranges",
-            "feasible_clip_iff",
-            "empty_of_negative_ceiling",
-            "exists_feasible_positive_iff",
-            "projection_positive",
-            "projection_zero",
-        ),
-    ),
-    "poisson-factorial-moments": (
-        "PoissonFactorialMomentsV1",
-        (
-            "poisson_descFactorial_integrable",
-            "poisson_descFactorial_integral",
-            "poisson_memLp",
-            "observed_pow_integrable",
-            "observed_memLp",
-            "observed_factorial_two_memLp",
-            "fin_two_poisson_descFactorial",
-            "bernoulli_poisson_descFactorial",
-        ),
-    ),
-    "bernoulli-poisson-statistics": (
-        "BernoulliPoissonStatisticsV1",
-        (
-            "count_memLp",
-            "factorial_two_memLp",
-            "first_four_factorial_moments",
-            "means_and_variances",
-            "sample_means_coverage",
-            "projected_region_coverage",
-        ),
-    ),
-}
 EXTENSIONS = [
-    (D1_DIRECTORY, D1_SOURCE, D1_ROOTS),
-    (LAW_DIRECTORY, LAW_SOURCE, LAW_ROOTS),
-] + [
-    (
-        "lean/extensions/" + directory,
-        module + ".lean",
-        [module + "." + r for r in roots],
-    )
-    for directory, (module, roots) in RESEARCH_EXTENSIONS.items()
+    ("lean/extensions/" + directory, module + ".lean", AUDIT.full_roots(module))
+    for module, directory in AUDIT.DIRECTORIES.items()
 ]
 LAKE_PACKAGES = {
     "mathlib",
@@ -261,6 +91,8 @@ COMMON_REQUIRED = (
         "tools/check_repository.py",
         "lean/README.md",
         "lean/verify.py",
+        "lean/proof_audit.py",
+        "lean/replay.py",
         "lean/lean-toolchain",
         "lean/lakefile.toml",
         "lean/lake-manifest.json",
@@ -332,45 +164,7 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def strip_lean_comments_and_strings(text: str) -> str:
-    """Small lexical filter including nested Lean block comments."""
-    output = []
-    index = depth = 0
-    while index < len(text):
-        pair = text[index : index + 2]
-        if depth:
-            if pair == "/-":
-                depth += 1
-                index += 2
-            elif pair == "-/":
-                depth -= 1
-                index += 2
-            else:
-                output.append("\n" if text[index] == "\n" else " ")
-                index += 1
-        elif pair == "/-":
-            depth = 1
-            output.append(" ")
-            index += 2
-        elif pair == "--":
-            end = text.find("\n", index)
-            index = len(text) if end < 0 else end
-            output.append(" ")
-        elif text[index] == '"':
-            index += 1
-            while index < len(text):
-                if text[index] == "\\":
-                    index += 2
-                elif text[index] == '"':
-                    index += 1
-                    break
-                else:
-                    index += 1
-            output.append(" ")
-        else:
-            output.append(text[index])
-            index += 1
-    return "".join(output)
+strip_lean_comments_and_strings = AUDIT.strip_lean_comments_and_strings
 
 
 def prose_without_code(text: str) -> str:
@@ -692,11 +486,10 @@ def audit(root: Path, mode: str, private_tokens: list[str]) -> dict:
             "sha256"
         ].lower() or path.stat().st_size != entry.get("bytes"):
             fail(f"lean/{name}: source hash or byte count differs from the manifest")
-        code = strip_lean_comments_and_strings(path.read_text(encoding="utf-8"))
-        if LEAN_ADMISSIONS.search(code):
-            fail(f"lean/{name}: forbidden proof-admission/axiom/native-decide token")
-        if re.search(r"\bset_option\s+debug\.skipKernelTC\s+true\b", code):
-            fail(f"lean/{name}: kernel-check skipping option")
+        try:
+            AUDIT.validate_source(path.read_text(encoding="utf-8"))
+        except ValueError:
+            fail(f"lean/{name}: forbidden proof admission or metaprogramming command")
 
     for directory, source, roots in EXTENSIONS:
         extension = load_json(f"{directory}/source_manifest.json")
@@ -719,13 +512,12 @@ def audit(root: Path, mode: str, private_tokens: list[str]) -> dict:
             or extension_path.stat().st_size != entry.get("bytes")
         ):
             fail(f"{directory}/{source}: source binding differs from manifest")
-        code = strip_lean_comments_and_strings(
-            extension_path.read_text(encoding="utf-8")
-        )
-        if LEAN_ADMISSIONS.search(code):
-            fail(f"{directory}/{source}: forbidden proof-admission token")
-        if re.search(r"\bset_option\s+debug\.skipKernelTC\s+true\b", code):
-            fail(f"{directory}/{source}: kernel-check skipping option")
+        try:
+            AUDIT.validate_source(extension_path.read_text(encoding="utf-8"))
+        except ValueError:
+            fail(
+                f"{directory}/{source}: forbidden proof admission or metaprogramming command"
+            )
 
     lake = load_json("lean/lake-manifest.json")
     packages = lake.get("packages", [])

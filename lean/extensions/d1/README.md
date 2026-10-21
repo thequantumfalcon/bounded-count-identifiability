@@ -53,9 +53,11 @@ python lean/extensions/d1/verify_stability.py --run external-check
 
 The verifier uses `lake env` from the core Lean project and compiles this source
 freshly with `--trust=0`. It checks the source binding, successful compilation,
-nonempty compiled output, all five printed axiom lists and unchanged inputs.
-Each list must contain only the standard `propext`, `Classical.choice` and
-`Quot.sound` axioms. Results and logs are saved under
+nonempty compiled output and unchanged inputs; a separately generated import
+query audits exactly the five theorem roots, so compilation messages cannot
+supply the axiom evidence. Each list may contain any subset of the standard
+`propext`, `Classical.choice` and `Quot.sound` axioms, including no axioms.
+Results and logs are saved under
 `build/stability/external-check/`; choose a new run name for every check.
 
 The public CI formal job invokes this verifier after the six-module core check.
