@@ -1,0 +1,170 @@
+{
+  "recorded_utc": "2026-10-21T06:09:11.126636+00:00",
+  "scope": "Historical observed CI results and a point-in-time repository-settings readback; not scientific completeness or a security guarantee.",
+  "repository": "https://github.com/thequantumfalcon/bounded-count-identifiability",
+  "checked_commit": "d72022752b4a7bf6349b5a14256cc6e06770e03e",
+  "ci": {
+    "url": "https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39552914288",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "name": "quality",
+        "conclusion": "success",
+        "url": "https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39552914288/job/119065941276"
+      },
+      {
+        "name": "formal",
+        "conclusion": "success",
+        "url": "https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39552914288/job/119065941460"
+      },
+      {
+        "name": "python (ubuntu-24.04, 3.11)",
+        "conclusion": "success",
+        "url": "https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39552914288/job/119065941504"
+      },
+      {
+        "name": "python (ubuntu-24.04, 3.13)",
+        "conclusion": "success",
+        "url": "https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39552914288/job/119065941549"
+      },
+      {
+        "name": "python (windows-2025, 3.13)",
+        "conclusion": "success",
+        "url": "https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39552914288/job/119065941581"
+      },
+      {
+        "name": "ci",
+        "conclusion": "success",
+        "url": "https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39552914288/job/119066509343"
+      }
+    ]
+  },
+  "formal_receipt": {
+    "file": "lean/verification/github-initial-d720227/result.json",
+    "sha256": "3723c6885fbbfb8c770af36f810b0e886ddc5970cbf9b518f7f8faf545422a9c",
+    "scope": "Fresh Ubuntu 24.04 runner; dependency retrieval and upstream compiled mathlib cache; project build plus fresh six-module recompilation. Not a from-source build of all dependencies."
+  },
+  "settings": {
+    "actions": {
+      "enabled": true,
+      "allowed_actions": "selected",
+      "selected_actions_url": "https://api.github.com/repositories/1427944450/actions/permissions/selected-actions",
+      "sha_pinning_required": true
+    },
+    "workflow_permissions": {
+      "default_workflow_permissions": "read",
+      "can_approve_pull_request_reviews": false
+    },
+    "fork_workflow_approval": {
+      "approval_policy": "all_external_contributors"
+    },
+    "security_and_analysis": {
+      "secret_scanning": {
+        "status": "enabled"
+      },
+      "secret_scanning_push_protection": {
+        "status": "enabled"
+      },
+      "dependabot_security_updates": {
+        "status": "enabled"
+      },
+      "secret_scanning_non_provider_patterns": {
+        "status": "disabled"
+      },
+      "secret_scanning_validity_checks": {
+        "status": "disabled"
+      }
+    },
+    "private_vulnerability_reporting": {
+      "enabled": true
+    },
+    "codeql_state": "not-configured",
+    "rulesets": [
+      {
+        "name": "Reviewed changes and CI",
+        "enforcement": "active",
+        "bypass_actors": [
+          {
+            "actor_id": 5,
+            "actor_type": "RepositoryRole",
+            "bypass_mode": "always"
+          }
+        ],
+        "conditions": {
+          "ref_name": {
+            "exclude": [],
+            "include": [
+              "~DEFAULT_BRANCH"
+            ]
+          }
+        },
+        "rules": [
+          {
+            "type": "required_status_checks",
+            "parameters": {
+              "strict_required_status_checks_policy": true,
+              "do_not_enforce_on_create": false,
+              "required_status_checks": [
+                {
+                  "context": "ci",
+                  "integration_id": 15368
+                }
+              ]
+            }
+          },
+          {
+            "type": "pull_request",
+            "parameters": {
+              "required_approving_review_count": 0,
+              "dismiss_stale_reviews_on_push": true,
+              "required_reviewers": [],
+              "require_code_owner_review": false,
+              "require_last_push_approval": false,
+              "required_review_thread_resolution": true,
+              "require_extra_approval_for_unattributed_changes": true,
+              "allowed_merge_methods": [
+                "squash"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Signed linear history",
+        "enforcement": "active",
+        "bypass_actors": [],
+        "conditions": {
+          "ref_name": {
+            "exclude": [],
+            "include": [
+              "~DEFAULT_BRANCH"
+            ]
+          }
+        },
+        "rules": [
+          {
+            "type": "deletion"
+          },
+          {
+            "type": "non_fast_forward"
+          },
+          {
+            "type": "required_signatures"
+          },
+          {
+            "type": "required_linear_history"
+          }
+        ]
+      }
+    ]
+  },
+  "community_profile_health_percentage": 100,
+  "limits": [
+    "The community-profile percentage is a documentation checklist, not scientific or security confidence.",
+    "Single maintainer; required human approval count is zero. An administrator can bypass the separate PR/check ruleset and can change settings.",
+    "History ruleset has no bypass actors; no claim that administrators cannot change it.",
+    "CodeQL is deferred until the desired Autofix-off setting is established and verified.",
+    "Account two-factor authentication is unverified; no separate private maintainer conduct-reporting channel exists.",
+    "Scorecard findings about age, review, fuzzing, SAST and best-practices badges are not concealed or converted into mathematical claims."
+  ]
+}

@@ -1,0 +1,6 @@
+'CountPoissonChannel.derivative_logOf_channel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CountPoissonChannel.higher_factorialCumulant_channel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CountPoissonChannel.first_factorialCumulant_channel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CountPoissonChannel.bounded_sources_identified_under_unknown_factors' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

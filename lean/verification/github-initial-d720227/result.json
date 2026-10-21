@@ -1,0 +1,266 @@
+{
+  "status": "PASS",
+  "created_utc": "2026-10-21T06:03:26.019700+00:00",
+  "verification_mode": "lake",
+  "compiler_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+  "compiler_sha256": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+  "dependency_library_count": 10,
+  "project_artifacts_recompiled_in_dependency_order": true,
+  "uses_preexisting_dependency_artifacts": true,
+  "clean_network_dependency_build_claimed": false,
+  "independent_kernel_recheck_claimed": false,
+  "source_manifest_sha256": "5e0eab63a1b50889bb70511beec01cfe34d8bb20169bfc3ee835e3912d25fb27",
+  "dependency_lock_sha256": "6e9ffc81bbf9ca3f550b23770d638e6bd0f0aee51d1e9983444726307b4aef52",
+  "verifier_sha256": "130b54c547d777da5b53aac30cb5c289746a0ca5e61abb8a6d17fb9da58de9f1",
+  "verifier_unchanged": true,
+  "modules": [
+    {
+      "module": "CountSeriesCore",
+      "source_sha256": "54ae55d89aa3458138f85f1ba22859dc51a52829bf0888045bd03a74d3589e5e",
+      "source_unchanged": true,
+      "command": [
+        "lean",
+        "--trust=0",
+        "-o",
+        "<fresh-build>/CountSeriesCore.olean",
+        "CountSeriesCore.lean"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "status": "PASS",
+      "printed_axiom_lists": {
+        "CountSeriesCore.derivative_logOf_mul": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CountSeriesCore.tilt_jet_of_log_coefficients": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CountSeriesCore.bounded_nonnegative_series_identified": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "printed_axioms_checked": true,
+      "no_error_or_warning_diagnostics": true,
+      "stdout_sha256": "ab5bdfc394dc8a882ae922db2d16d42c6c4e10d55772eba55167527c6032709e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "f219b23133a0f0c9442257ba4ff6137fc75e8b3d7ef2dd50c0ca03d2bc8824b0"
+    },
+    {
+      "module": "CountLawEncoding",
+      "source_sha256": "a938365e56aada63951f493334e9227a1e054010a4782a9182b1206c44713c9f",
+      "source_unchanged": true,
+      "command": [
+        "lean",
+        "--trust=0",
+        "-o",
+        "<fresh-build>/CountLawEncoding.olean",
+        "CountLawEncoding.lean"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "status": "PASS",
+      "printed_axiom_lists": {
+        "BoundedCountLaw.factorialPGF_constant": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BoundedCountLaw.factorialPGF_coeff_nonneg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BoundedCountLaw.factorialPGF_coeff_above": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BoundedCountLaw.factorialPGF_injective_on_support": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "printed_axioms_checked": true,
+      "no_error_or_warning_diagnostics": true,
+      "stdout_sha256": "2c6b773f3b8612d898a52ba52279a6a1c33dc5c1cd3953c122f2d8fc7ffe51c1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "6eb8137a4bae9b78a2b20cbc32f6b008c38be23307ce911b52be477cc114e044"
+    },
+    {
+      "module": "CountIdentification",
+      "source_sha256": "fd1bb4c2d795d40a982d23b7cd0129daac222dbcb4d897f85f9523162de568f6",
+      "source_unchanged": true,
+      "command": [
+        "lean",
+        "--trust=0",
+        "-o",
+        "<fresh-build>/CountIdentification.olean",
+        "CountIdentification.lean"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "status": "PASS",
+      "printed_axiom_lists": {
+        "BoundedCountLaw.higher_factorial_cumulants_identify": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "printed_axioms_checked": true,
+      "no_error_or_warning_diagnostics": true,
+      "stdout_sha256": "e3525cf884b479ca6edcd4294e6a1e9451cd156537e4926ae17bac0a0bc19272",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "f47cc3e5782eab95d55c013188bd7be9578ae3f4809cf55dd19b33d34d096cfc"
+    },
+    {
+      "module": "CountPoissonChannel",
+      "source_sha256": "0dab5adcf4579e2516f1e632a39df5ca46e8bd55470105a956904d31ef4a6781",
+      "source_unchanged": true,
+      "command": [
+        "lean",
+        "--trust=0",
+        "-o",
+        "<fresh-build>/CountPoissonChannel.olean",
+        "CountPoissonChannel.lean"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "status": "PASS",
+      "printed_axiom_lists": {
+        "CountPoissonChannel.derivative_logOf_channel": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CountPoissonChannel.higher_factorialCumulant_channel": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CountPoissonChannel.first_factorialCumulant_channel": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CountPoissonChannel.bounded_sources_identified_under_unknown_factors": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "printed_axioms_checked": true,
+      "no_error_or_warning_diagnostics": true,
+      "stdout_sha256": "7a79553bc5c4561630af189250ee23d571f4a4af03ac3aee763ebb90c7c5f92e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "3b00a447735a351136407bea2dfc32cdd28f439883184dd3a5d61314b7859917"
+    },
+    {
+      "module": "CountObservedIdentification",
+      "source_sha256": "00949745e2a083b4d4dc49a60c7a16f87d42ef7fb2c52531cfaa78cd8aa04123",
+      "source_unchanged": true,
+      "command": [
+        "lean",
+        "--trust=0",
+        "-o",
+        "<fresh-build>/CountObservedIdentification.olean",
+        "CountObservedIdentification.lean"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "status": "PASS",
+      "printed_axiom_lists": {
+        "BoundedCountLaw.first_law_cumulant_eq_mean": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BoundedCountLaw.observed_higher_cumulants_identify_source": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "BoundedCountLaw.observed_cumulants_identify_source_and_background": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "printed_axioms_checked": true,
+      "no_error_or_warning_diagnostics": true,
+      "stdout_sha256": "8ad965d77c8b5c20f5cc2ec5d71209ae86bd9c864a2e40b5386aa07c402ed9c2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "54d06dde2b130c23d6c9649f59bffb2889ecf601ae67732a8004189d209ae052"
+    },
+    {
+      "module": "CountSharpness",
+      "source_sha256": "d8d79b39fcddc5513629f69ace55d6c900a3e9ca587ceefb33b4d22a360da726",
+      "source_unchanged": true,
+      "command": [
+        "lean",
+        "--trust=0",
+        "-o",
+        "<fresh-build>/CountSharpness.olean",
+        "CountSharpness.lean"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "status": "PASS",
+      "printed_axiom_lists": {
+        "CountSharpness.truncatedExp_higher_cumulants_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CountSharpness.truncatedExp_top_cumulant": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CountSharpness.alternatingExpSum_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CountSharpness.sharpLaw_isBoundedLaw": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CountSharpness.sharpLaw_higher_cumulants_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CountSharpness.sharpLaw_top_cumulant": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CountSharpness.cutoff_is_sharp": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CountSharpness.lower_observed_cumulants_match": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "printed_axioms_checked": true,
+      "no_error_or_warning_diagnostics": true,
+      "stdout_sha256": "4d372507976d627593f28f2ec7c84fba8890904b1ac14e71802f13a69e42d1af",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "0f8fa38d156d63bf1c543521b6d751f9594948402aa2168d6b03e51c65148bb1"
+    }
+  ],
+  "scope": "Fresh elaboration and compilation of the six project sources with Lean --trust=0; dependencies use existing compiled libraries. Printed axiom lists are checked. This is not a clean rebuild of Lean or mathlib, nor an additional independent proof-kernel check."
+}

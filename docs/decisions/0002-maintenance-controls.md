@@ -4,7 +4,8 @@ This is a single-maintainer research project. Its checks protect reproducibility
 and reviewability; they do not establish complete security or scientific truth.
 
 - Python has no runtime dependencies. Development dependencies are version- and
-  hash-locked. Lean/mathlib and all transitive package revisions are pinned.
+  hash-locked in `requirements-dev.txt`, a format Dependabot recognizes.
+  Lean/mathlib and all transitive package revisions are pinned.
 - Actions use full commit hashes. Downloaded scanner and Elan binaries have
   fixed versions and verified SHA256 digests. Toolchains, upstream dependency
   caches, hosted runner images and their providers remain trusted inputs.

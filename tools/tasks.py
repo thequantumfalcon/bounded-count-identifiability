@@ -27,7 +27,7 @@ def setup() -> None:
         "install",
         "--require-hashes",
         "-r",
-        "requirements-dev.lock",
+        "requirements-dev.txt",
     )
     run(PYTHON, "-m", "pip", "install", "--no-build-isolation", "--no-deps", ".")
 

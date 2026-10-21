@@ -54,7 +54,7 @@ COMMON_REQUIRED = {
     "CHANGELOG.md",
     "pyproject.toml",
     "MANIFEST.in",
-    "requirements-dev.lock",
+    "requirements-dev.txt",
     "Makefile",
     "ruff.toml",
     ".coveragerc",
@@ -429,7 +429,7 @@ def audit(root: Path, mode: str, private_tokens: list[str]) -> dict:
             fail("pyproject.toml: expected MIT SPDX license and LICENSE.txt")
         if project.get("readme") != "README.md" or project.get("dependencies") != []:
             fail("pyproject.toml: expected README.md and no runtime dependencies")
-        lock = parse_hashed_lock(read("requirements-dev.lock"))
+        lock = parse_hashed_lock(read("requirements-dev.txt"))
         build_system = metadata.get("build-system", {})
         build_requirements = build_system.get("requires", [])
         if (

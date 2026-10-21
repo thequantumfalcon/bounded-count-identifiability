@@ -1,0 +1,8 @@
+'CountSharpness.truncatedExp_higher_cumulants_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CountSharpness.truncatedExp_top_cumulant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CountSharpness.alternatingExpSum_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CountSharpness.sharpLaw_isBoundedLaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CountSharpness.sharpLaw_higher_cumulants_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CountSharpness.sharpLaw_top_cumulant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CountSharpness.cutoff_is_sharp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CountSharpness.lower_observed_cumulants_match' depends on axioms: [propext, Classical.choice, Quot.sound]

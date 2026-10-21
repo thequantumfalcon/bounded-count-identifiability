@@ -8,6 +8,14 @@ to the published files. Selected theorem lists contain only `propext`,
 `Classical.choice` and `Quot.sound`. Checking establishes encoded statements
 relative to the trusted implementation and axioms.
 
+The separate [initial hosted CI run](https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39552914288)
+passed on a fresh Linux runner, including dependency retrieval, the six-module
+build and fresh recompilation. Its [Linux receipt](../lean/verification/github-initial-d720227/result.json)
+is preserved alongside the logs. Python package and artifact checks also passed
+on Linux (3.11 and 3.13) and Windows (3.13). See the
+[hosted validation record](hosted-validation.json) for the checked commit and
+repository-setting boundaries.
+
 [Development checker results](development-kernel-checks.json) summarize earlier
 checks of selected dependency-closed exports. This is a sanitized extraction of
 development evidence, not a new run. Large exports, checker installations and

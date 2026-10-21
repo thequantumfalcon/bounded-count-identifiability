@@ -62,6 +62,8 @@ and printed axiom lists, and records a uniquely named run. Upstream compiled
 mathlib caches are used; this is not a source rebuild of every trusted component.
 
 The committed local receipt used existing dependency artifacts and says so.
+The separate initial hosted run also passed after fresh dependency retrieval;
+its Linux receipt is preserved in the verification record.
 Git attributes preserve its referenced proof bytes. See
 [the verification record](../evidence/README.md) for extra development checker
 runs and their reproducibility limits.

@@ -1,0 +1,3 @@
+'CountSeriesCore.derivative_logOf_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CountSeriesCore.tilt_jet_of_log_coefficients' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CountSeriesCore.bounded_nonnegative_series_identified' depends on axioms: [propext, Classical.choice, Quot.sound]

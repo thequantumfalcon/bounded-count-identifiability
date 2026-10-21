@@ -1,5 +1,6 @@
 include README.md LICENSE.txt NOTICE.md PROVENANCE.md CITATION.cff CHANGELOG.md
-include Makefile requirements-dev.lock ruff.toml .coveragerc
+include Makefile requirements-dev.txt ruff.toml .coveragerc
+exclude requirements-dev.lock
 recursive-include docs *.md
 recursive-include .github *.md *.yml
 exclude .github/CODE_OF_CONDUCT.md
