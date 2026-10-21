@@ -13,6 +13,14 @@ recompiles the six core modules, the stability module and the new connection,
 then checks the imported artifacts and the six new theorem roots. It has a
 separate manifest and leaves historical core receipts unchanged.
 
+The [research extensions](../docs/probability-extensions.md) add actual finite
+probability measures and expectation identities, conditional confidence bounds,
+sample-mean variance formulas and a bounded second-cumulant perturbation theorem.
+From the repository root, `python lean/extensions/d1-law/verify_law_bridge.py
+--suite research --run external-research` checks all twelve project modules
+freshly. Each new extension has its own manifest; the historical receipts still
+refer only to their original sources and checks.
+
 ## Reproduce from a fresh checkout
 
 Install Lean's Elan toolchain manager, Git, and Python 3.10 or later. From this directory, run:
@@ -65,9 +73,11 @@ The core results concern exact cumulants. The separate D=1 extension bounds
 parameter error given specified observation errors in an algebraic model.
 The finite-law connection lifts that bound to the core Bernoulli cumulants,
 including the endpoint laws, and to the formal observation channel.
-Neither supplies finite-sample coverage, a physical model's validity, or
-uniqueness of a source before unknown thinning. Additional proof checks and
-scientific or statistical analyses belong in separate evidence records.
+The research extensions supply conditional sampling bounds and a canonical
+finite probability-space encoding. Independent Poisson addition, analytic
+cumulant derivatives, distributional moment calculations and full confidence
+projection correctness remain separate obligations. No extension establishes a
+physical model's validity or uniqueness of a source before unknown thinning.
 
 The sharpness family is established prior work: see [Afendras and Papadatos, Eq. (3.1) and Lemma 3.1](https://arxiv.org/pdf/1411.1165), PDF page 7, for the generalized matching / quasi-Poisson family and its matched factorial moments. No originality claim is made for that family or the lower-bound implication. Priority of any broader theorem must be assessed separately from successful formal verification.
 

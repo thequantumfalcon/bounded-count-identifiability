@@ -61,13 +61,23 @@ INPUTS = (
     "lean/extensions/d1-law/source_manifest.json",
     *("lean/" + name + ".lean" for name in CORE),
 )
+RESEARCH_INPUTS = tuple(
+    f"lean/extensions/{directory}/{filename}"
+    for directory, name in (
+        ("probability", "CountProbabilityBridge"),
+        ("finite-sample", "CountD1VarianceCoverage"),
+        ("background-uncertainty", "CountD1BackgroundUncertainty"),
+        ("sample-mean", "CountFiniteSampleMean"),
+    )
+    for filename in (name + ".lean", "source_manifest.json")
+)
 
 
 class LawBridgeVerifierTests(unittest.TestCase):
-    def run_case(self, variant):
+    def run_case(self, variant, suite="law"):
         with tempfile.TemporaryDirectory(prefix="law-bridge-test-") as temporary:
             root = Path(temporary).resolve()
-            for relative in INPUTS:
+            for relative in INPUTS + (RESEARCH_INPUTS if suite == "research" else ()):
                 target = root / relative
                 target.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(REPOSITORY / relative, target)
@@ -77,17 +87,25 @@ class LawBridgeVerifierTests(unittest.TestCase):
             )
             module = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(module)
-            inputs = module.source_inputs()
+            inputs = module.source_inputs(suite)
+            roots_for_suite = module.selected_roots(suite)
+            focus = "CountD1LawBridge" if suite == "law" else "CountFiniteSampleMean"
             compiler = root / "mock-compiler.bin"
             compiler.write_bytes(b"never executed")
             library = root / "library"
             library.mkdir()
-            output = root / "build/law-bridge/test"
-            core_build = root / "lean/.verification/d1-law-test"
-            core_receipts = root / "lean/verification/d1-law-test"
-            source = inputs["CountD1LawBridge"]
-            manifest = inputs["CountD1LawBridge_manifest"]
-            if variant in {
+            core_run = "d1-law-test" if suite == "law" else "d1-law-research-test"
+            output = root / (
+                "build/law-bridge/test" if suite == "law" else "build/research/test"
+            )
+            core_build = root / "lean/.verification" / core_run
+            core_receipts = root / "lean/verification" / core_run
+            source = inputs[focus]
+            manifest = inputs[focus + "_manifest"]
+            if variant.startswith("tamper_"):
+                changed = inputs[variant.removeprefix("tamper_")]
+                changed.write_bytes(changed.read_bytes() + b"\n")
+            elif variant in {
                 "source_tamper",
                 "core_source_tamper",
                 "stability_source_tamper",
@@ -141,15 +159,18 @@ class LawBridgeVerifierTests(unittest.TestCase):
                 name = {
                     "shadow_core": CORE[0],
                     "shadow_stability": "CountD1Stability",
-                    "shadow_bridge": "CountD1LawBridge",
-                    "lake_shadow": "CountD1LawBridge",
+                    "shadow_bridge": focus,
+                    "lake_shadow": focus,
                 }[variant]
+                (library / (name + ".olean")).write_bytes(b"stale")
+            elif variant.startswith("shadow_"):
+                name = variant.removeprefix("shadow_")
                 (library / (name + ".olean")).write_bytes(b"stale")
 
             def emit_core(command):
                 self.assertEqual(command[1], str(inputs["core_verifier"]))
                 self.assertEqual(command[command.index("--mode") + 1], "existing-cache")
-                self.assertEqual(command[command.index("--run") + 1], "d1-law-test")
+                self.assertEqual(command[command.index("--run") + 1], core_run)
                 self.assertIn(str(library), command)
                 if variant == "core_timeout":
                     raise subprocess.TimeoutExpired(command, 1500)
@@ -227,6 +248,20 @@ class LawBridgeVerifierTests(unittest.TestCase):
 
             def fake_run(command, **kwargs):
                 if command[0] == "lake":
+                    if variant.startswith("lake_probe_"):
+                        changed = (
+                            inputs["lake_config"]
+                            if variant == "lake_probe_config_changed"
+                            else source
+                        )
+                        changed.write_bytes(changed.read_bytes() + b"\n")
+                        if variant == "lake_probe_source_manifest_changed":
+                            data = json.loads(manifest.read_text(encoding="utf-8"))
+                            data["sources"][source.name] = {
+                                "sha256": module.digest(source),
+                                "bytes": source.stat().st_size,
+                            }
+                            manifest.write_text(json.dumps(data), encoding="utf-8")
                     cache = root / "lean/.lake/build/lib/lean"
                     cache.mkdir(parents=True)
                     (cache / (CORE[0] + ".olean")).write_bytes(b"ignored project cache")
@@ -246,7 +281,7 @@ class LawBridgeVerifierTests(unittest.TestCase):
                 if command[0] == sys.executable:
                     return emit_core(command)
                 name = Path(command[-1]).stem
-                self.assertIn(name, ROOTS)
+                self.assertIn(name, roots_for_suite)
                 self.assertIn("--trust=0", command)
                 self.assertEqual(kwargs["cwd"], output)
                 self.assertEqual(
@@ -254,13 +289,13 @@ class LawBridgeVerifierTests(unittest.TestCase):
                     [str(output), str(core_build), str(library)],
                 )
                 target = Path(command[command.index("-o") + 1])
-                if variant != "no_output" or name != "CountD1LawBridge":
+                if variant != "no_output" or name != focus:
                     target.write_bytes(
                         b"" if variant == "empty_output" else b"mock artifact"
                     )
-                roots = [name + "." + r for r in ROOTS[name]]
+                roots = [name + "." + r for r in roots_for_suite[name]]
                 axioms = "propext, Classical.choice, Quot.sound"
-                if name == "CountD1LawBridge":
+                if name == focus:
                     if variant == "missing_root":
                         roots.pop()
                     elif variant == "duplicate_root":
@@ -283,7 +318,13 @@ class LawBridgeVerifierTests(unittest.TestCase):
                         )
                     elif variant == "snapshot_changed":
                         (output / (name + ".lean")).write_bytes(b"changed")
-                    elif variant.endswith("_changed"):
+                    elif variant == "manifest_drift_after_compile":
+                        data = json.loads(manifest.read_text(encoding="utf-8"))
+                        data["sources"][source.name]["sha256"] = "0" * 64
+                        manifest.write_text(json.dumps(data), encoding="utf-8")
+                    elif variant.endswith("_changed") and not variant.startswith(
+                        "lake_probe_"
+                    ):
                         key = variant.removesuffix("_changed")
                         changed = compiler if key == "compiler" else inputs[key]
                         changed.write_bytes(changed.read_bytes() + b"\n")
@@ -303,7 +344,12 @@ class LawBridgeVerifierTests(unittest.TestCase):
                 "--run",
                 "../escape" if variant == "path_escape" else "test",
             ]
-            if variant not in {"positive_lake", "lake_shadow"}:
+            if suite != "law":
+                argv.extend(["--suite", suite])
+            if variant not in {
+                "positive_lake",
+                "lake_shadow",
+            } and not variant.startswith("lake_probe_"):
                 argv.extend(
                     [
                         "--mode",
@@ -344,10 +390,19 @@ class LawBridgeVerifierTests(unittest.TestCase):
                 self.assertEqual(code, 0)
                 self.assertEqual(receipt["status"], "PASS")
                 self.assertTrue(all(receipt["checks"].values()))
+                self.assertEqual(receipt["suite"], suite)
+                self.assertEqual(
+                    [r["module"] for r in receipt["modules"]], list(roots_for_suite)
+                )
             else:
                 self.assertNotEqual(code, 0)
                 if receipt is not None:
                     self.assertEqual(receipt["status"], "FAIL")
+                if variant.startswith("lake_probe_"):
+                    self.assertFalse(output.exists())
+                    self.assertFalse(core_build.exists())
+                if variant == "manifest_drift_after_compile":
+                    self.assertFalse(receipt["checks"]["source_manifests_valid"])
             return receipt
 
     def test_mock_positive_controls(self):
@@ -433,6 +488,68 @@ class LawBridgeVerifierTests(unittest.TestCase):
         for case in cases:
             with self.subTest(case=case):
                 self.run_case(case)
+
+    def test_research_suite_acceptance_and_new_source_bindings(self):
+        for case in (
+            "positive",
+            "positive_lake",
+            "schema",
+            "manifest_roots",
+            "source_size",
+            "admission",
+            "kernel_bypass",
+        ):
+            with self.subTest(case=case):
+                self.run_case(case, "research")
+        for name in (
+            "CountProbabilityBridge",
+            "CountD1VarianceCoverage",
+            "CountD1BackgroundUncertainty",
+            "CountFiniteSampleMean",
+        ):
+            for prefix in ("tamper_", "shadow_"):
+                with self.subTest(module=name, prefix=prefix):
+                    self.run_case(prefix + name, "research")
+
+    def test_research_suite_rejects_incomplete_or_changed_proofs(self):
+        for case in (
+            "missing_root",
+            "unexpected_axiom",
+            "missing_axiom",
+            "no_output",
+            "empty_output",
+            "warning",
+            "nonzero",
+            "timeout",
+            "core_missing_module",
+            "core_changed_after",
+            "stability_changed_after",
+            "snapshot_changed",
+            "CountProbabilityBridge_changed",
+            "CountD1VarianceCoverage_changed",
+            "CountD1BackgroundUncertainty_changed",
+            "CountFiniteSampleMean_changed",
+            "reused_run",
+            "reused_core_run",
+            "path_escape",
+        ):
+            with self.subTest(case=case):
+                self.run_case(case, "research")
+
+    def test_environment_resolution_cannot_rebaseline_changed_inputs(self):
+        for suite in ("law", "research"):
+            for case in (
+                "lake_probe_source_changed",
+                "lake_probe_source_manifest_changed",
+                "lake_probe_config_changed",
+            ):
+                with self.subTest(suite=suite, case=case):
+                    self.run_case(case, suite)
+
+    def test_manifest_binding_rechecked_after_compilation(self):
+        for suite in ("law", "research"):
+            with self.subTest(suite=suite):
+                self.run_case("manifest_drift_after_compile", suite)
 
 
 if __name__ == "__main__":

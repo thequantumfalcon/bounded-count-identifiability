@@ -87,6 +87,17 @@ and imported artifact hashes and checks all six new printed axiom lists.
 `python tools/tasks.py formal` includes this check as well. See its extension
 guide for output locations and the offline existing-cache mode.
 
+The [probability, sampling and uncertainty suite](probability-extensions.md)
+uses the same verifier with `--suite research`:
+
+```sh
+python lean/extensions/d1-law/verify_law_bridge.py --suite research --run external-research
+```
+
+It freshly checks the six core modules and all six extensions. Their source
+manifests and theorem-root lists are checked separately. The dependency cache
+is reused, and the offline mode requires those compiled library modules.
+
 The committed local receipt used existing dependency artifacts and says so.
 The separate initial hosted run also passed after fresh dependency retrieval;
 its Linux receipt is preserved in the verification record.

@@ -39,6 +39,16 @@ retains the axiom-printing diagnostic. Those historical extra checkers do not
 run in CI; the public verifier separately recompiles the core and both
 extensions. Neither form of checking supplies external human review.
 
+The [research extensions](../docs/probability-extensions.md) have a separate
+portable suite that recompiles all twelve project modules. Its receipts belong
+to their exact sources and verifier. The
+[background-uncertainty checker record](background-uncertainty-kernel-check.json)
+binds that source to an additional local Lean4Lean execution accepting five
+roots and 10,498 declarations. Lean4Lean shares implementation ancestry with
+Lean; the exporter, dependencies and runtime remain trusted. That run included
+no fresh invalid-export rejection test, and it does not run in CI. No additional
+kernel check is claimed here for the other three new extensions.
+
 Python supplies finite exact-arithmetic comparisons; Sage performs a narrow
 algebraic projection check. These programs are not formally verified and could
 share modeling mistakes. See [reproduction commands](../docs/reproduction.md).

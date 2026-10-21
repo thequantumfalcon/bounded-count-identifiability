@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "description": "Exact-byte source binding for the sample-mean extension; theorem scope is stated in the source and claim map.",
+  "sources": {
+    "CountFiniteSampleMean.lean": {
+      "sha256": "c75e0337323bc7fdd06651a249ae95fc2418693fab3f6b488c48781a65d4f42e",
+      "bytes": 4303
+    }
+  },
+  "theorem_roots": [
+    "CountFiniteSampleMean.sampleMean_memLp",
+    "CountFiniteSampleMean.sampleMean_unbiased",
+    "CountFiniteSampleMean.sampleMean_variance",
+    "CountFiniteSampleMean.sampleMean_variance_ceiling",
+    "CountFiniteSampleMean.two_sample_means_coverage"
+  ]
+}

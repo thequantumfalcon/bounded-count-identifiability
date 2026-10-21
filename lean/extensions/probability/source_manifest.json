@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "description": "Exact-byte source binding for the probability extension; theorem scope is stated in the source and claim map.",
+  "sources": {
+    "CountProbabilityBridge.lean": {
+      "sha256": "bca20a6a7ce778a3b0e91bf20e6b9980b65bf18cddae1ef628510b0baf02662a",
+      "bytes": 3744
+    }
+  },
+  "theorem_roots": [
+    "CountProbabilityBridge.boundedPMF_mass",
+    "CountProbabilityBridge.boundedMeasure_isProbability",
+    "CountProbabilityBridge.boundedMeasure_singleton",
+    "CountProbabilityBridge.integral_boundedMeasure",
+    "CountProbabilityBridge.factorialPGF_eval_eq_expectation",
+    "CountProbabilityBridge.factorialPGF_coeff_eq_binomial_expectation",
+    "CountProbabilityBridge.higher_factorial_cumulants_identify_measures"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "record_type": "Sanitized historical local execution; not a public CI execution",
+  "source": "lean/extensions/background-uncertainty/CountD1BackgroundUncertainty.lean",
+  "raw_summary_sha256": "a89caddc719362a952ba688c2de92714478c46dd56d05896b8243aab9018229b",
+  "status": "PASS",
+  "source_sha256": "f64f5fa708d57ab47a3df1df1fc829fd5ccf0196797aaefe2e8cd2eb1e92818e",
+  "trial_02_receipt_sha256": "56e373211c55c3ba9796e31c0b1be26900c705f2c981b3ee017df85b22fc0273",
+  "olean_sha256": "d4ba7001e3117198b5a807d60900331281ce3aa63fa868c8ca7415374155293e",
+  "export_sha256": "ad0390643fcdbfe4b87fe4947877f84e04b2053440659d8348a862d276982b68",
+  "export_bytes": 43586565,
+  "roots": [
+    "CountD1BackgroundUncertainty.perturbation_difference_le",
+    "CountD1BackgroundUncertainty.square_difference_le",
+    "CountD1BackgroundUncertainty.parameter_error_le",
+    "CountD1BackgroundUncertainty.bounded_observation_error",
+    "CountD1BackgroundUncertainty.equal_cumulant_witness"
+  ],
+  "export_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "forbidden_names": [],
+  "export_exit_code": 0,
+  "lean4lean_exit_code": 0,
+  "lean4lean_timed_out": false,
+  "lean4lean_output": "checked 10498 declarations\n",
+  "frozen_inputs_and_artifacts_unchanged": true,
+  "limitations": [
+    "Lean4Lean derives from the Lean kernel and may share bugs; limited implementation independence.",
+    "Shared exporter, compiled dependencies, runtime and host remain trusted.",
+    "No fresh invalid-export rejection control in this bounded pass.",
+    "Checks algebraic proof terms, not probability construction, finite-data coverage, novelty or physical validity."
+  ],
+  "tool_sha256": {
+    "leanexport.exe": "bda24bb3fafaf299ba472f944942d6293294b76559fafc9f166badd7c0f981b3",
+    "lean4lean.exe": "2463006ea615a6f69c80689142cf7cb0a8724fc7819c57ad2b395e99eb6a9f3c"
+  },
+  "reproduction_limits": "Large export and tool installations remain local. Use the portable research suite for a fresh source compilation. This record is not self-contained reproduction of the extra checker run."
+}

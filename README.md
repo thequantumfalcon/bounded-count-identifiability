@@ -38,7 +38,10 @@ they do not replace it.
 | Algebraic cancellation of fixed Poisson background | Lean formal generating series | Probability-space interpretation is not separately formalized |
 | Order `D+1` is necessary in general | Valid probability-law construction in Lean | Known family; no construction-originality claim |
 | Deterministic `D=1` inverse-error bounds | Separate Lean stability extension | Algebraic model; observation-error bounds must be justified separately |
-| Connection of those bounds to Bernoulli laws, including `p=0` and `p=1` | Separate Lean finite-law extension | Core formal cumulants and exponential-factor channel; probability-space and sampling bridges remain open |
+| Connection of those bounds to Bernoulli laws, including `p=0` and `p=1` | Separate Lean finite-law extension | Core formal cumulants and exponential-factor channel; independent Poisson addition remains a separate bridge |
+| Finite masses define actual probability measures and generating-function expectations | Lean probability extension | Canonical finite probability space; analytic logarithm derivatives remain separate |
+| Conditional two-moment confidence bounds | Lean variance and sample-mean extensions | Explicit moment, square-integrability and within-family pairwise-independence assumptions; distributional moments and projection correctness remain separate |
+| `D=1` stability under bounded second-cumulant perturbations | Lean uncertainty extension | Algebraic bound; the mixed-Poisson interpretation is written, not formalized |
 | Exact rational reproductions | Python examples and tests | Finite calculations are not universal proofs |
 | A `D=1` confidence-set projection | Written elimination proof and optional Sage calculation | Conditional IID model; no general-dimensional solver |
 
@@ -55,6 +58,8 @@ assumptions or experimental usefulness.
 - Inspect the six core source modules in [lean/](lean/) and the separate
   [D=1 stability](lean/extensions/d1/README.md) and
   [finite-law connection](lean/extensions/d1-law/README.md) extensions.
+- Inspect the [probability, sampling and uncertainty extensions](docs/probability-extensions.md)
+  and their explicit remaining assumptions.
 - Review the [verification record](evidence/README.md) and its stated trust limits.
 - Read the [originality review](docs/originality-review.md) and
   [focused reviewer request](docs/reviewer-request.md).
@@ -66,9 +71,10 @@ No detector or laboratory experiment has been validated by this repository.
 
 ## What comes next
 
-The immediate proof targets are the probability-space Poisson bridge, general
-stability bounds and the finite-sample coverage argument. The `D=1` algebraic
-stability bound and its connection to the finite Bernoulli law are formalized.
+The immediate proof targets are independent Poisson addition, analytic cumulant
+derivatives, distributional factorial moments and confidence-set projection.
+The finite probability-space encoding, conditional sampling bounds and a `D=1`
+background-uncertainty bound are formalized in separate extensions.
 Broader exact solvers,
 better statistical bounds, literature-priority checks and physical calibration
 are separate tasks. See the [proof roadmap](docs/roadmap.md).

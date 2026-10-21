@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "description": "Exact-byte source binding for the finite-sample extension; theorem scope is stated in the source and claim map.",
+  "sources": {
+    "CountD1VarianceCoverage.lean": {
+      "sha256": "155a242dd9bbf09d49089a76e84216e4dbb0c8e9d8b5a509cbffa47f8e630faf",
+      "bytes": 5705
+    }
+  },
+  "theorem_roots": [
+    "CountD1VarianceCoverage.factorial_square_identity",
+    "CountD1VarianceCoverage.first_variance_identity",
+    "CountD1VarianceCoverage.second_variance_identity",
+    "CountD1VarianceCoverage.first_variance_ceiling",
+    "CountD1VarianceCoverage.second_variance_ceiling",
+    "CountD1VarianceCoverage.variance_ratio_radius",
+    "CountD1VarianceCoverage.zero_variance_deterministic",
+    "CountD1VarianceCoverage.simultaneous_chebyshev",
+    "CountD1VarianceCoverage.conditional_moment_coverage"
+  ]
+}

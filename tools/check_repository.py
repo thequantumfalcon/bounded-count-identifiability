@@ -53,6 +53,65 @@ LAW_ROOTS = [
     "CountD1LawBridge.observed_bernoulli_cumulants",
     "CountD1LawBridge.observed_bernoulli_stability",
 ]
+RESEARCH_EXTENSIONS = {
+    "probability": (
+        "CountProbabilityBridge",
+        (
+            "boundedPMF_mass",
+            "boundedMeasure_isProbability",
+            "boundedMeasure_singleton",
+            "integral_boundedMeasure",
+            "factorialPGF_eval_eq_expectation",
+            "factorialPGF_coeff_eq_binomial_expectation",
+            "higher_factorial_cumulants_identify_measures",
+        ),
+    ),
+    "finite-sample": (
+        "CountD1VarianceCoverage",
+        (
+            "factorial_square_identity",
+            "first_variance_identity",
+            "second_variance_identity",
+            "first_variance_ceiling",
+            "second_variance_ceiling",
+            "variance_ratio_radius",
+            "zero_variance_deterministic",
+            "simultaneous_chebyshev",
+            "conditional_moment_coverage",
+        ),
+    ),
+    "background-uncertainty": (
+        "CountD1BackgroundUncertainty",
+        (
+            "perturbation_difference_le",
+            "square_difference_le",
+            "parameter_error_le",
+            "bounded_observation_error",
+            "equal_cumulant_witness",
+        ),
+    ),
+    "sample-mean": (
+        "CountFiniteSampleMean",
+        (
+            "sampleMean_memLp",
+            "sampleMean_unbiased",
+            "sampleMean_variance",
+            "sampleMean_variance_ceiling",
+            "two_sample_means_coverage",
+        ),
+    ),
+}
+EXTENSIONS = [
+    (D1_DIRECTORY, D1_SOURCE, D1_ROOTS),
+    (LAW_DIRECTORY, LAW_SOURCE, LAW_ROOTS),
+] + [
+    (
+        "lean/extensions/" + directory,
+        module + ".lean",
+        [module + "." + r for r in roots],
+    )
+    for directory, (module, roots) in RESEARCH_EXTENSIONS.items()
+]
 LAKE_PACKAGES = {
     "mathlib",
     "plausible",
@@ -64,52 +123,60 @@ LAKE_PACKAGES = {
     "batteries",
     "Cli",
 }
-COMMON_REQUIRED = {
-    "README.md",
-    "LICENSE.txt",
-    "NOTICE.md",
-    "PROVENANCE.md",
-    "CITATION.cff",
-    "CHANGELOG.md",
-    "pyproject.toml",
-    "MANIFEST.in",
-    "requirements-dev.txt",
-    "Makefile",
-    "ruff.toml",
-    ".coveragerc",
-    "docs/theorem.md",
-    "docs/claims.md",
-    "docs/roadmap.md",
-    "docs/references.md",
-    "docs/reproduction.md",
-    "evidence/README.md",
-    "src/bounded_counts/__init__.py",
-    "src/bounded_counts/core.py",
-    "src/bounded_counts/__main__.py",
-    "tests/test_exact_counts.py",
-    "tests/test_stability_verifier.py",
-    "tests/test_law_bridge_verifier.py",
-    "examples/d1_projection_sage.py",
-    "tools/tasks.py",
-    "tools/check_repository.py",
-    "lean/README.md",
-    "lean/verify.py",
-    "lean/lean-toolchain",
-    "lean/lakefile.toml",
-    "lean/lake-manifest.json",
-    "lean/source_manifest.json",
-    "lean/third_party/provenance.json",
-    f"{D1_DIRECTORY}/README.md",
-    f"{D1_DIRECTORY}/{D1_SOURCE}",
-    f"{D1_DIRECTORY}/source_manifest.json",
-    f"{D1_DIRECTORY}/verify_stability.py",
-    "evidence/d1-stability-kernel-checks.json",
-    "evidence/d1-law-kernel-checks.json",
-    f"{LAW_DIRECTORY}/README.md",
-    f"{LAW_DIRECTORY}/{LAW_SOURCE}",
-    f"{LAW_DIRECTORY}/source_manifest.json",
-    f"{LAW_DIRECTORY}/verify_law_bridge.py",
-} | {"lean/" + name for name in MODULES}
+COMMON_REQUIRED = (
+    {
+        "README.md",
+        "LICENSE.txt",
+        "NOTICE.md",
+        "PROVENANCE.md",
+        "CITATION.cff",
+        "CHANGELOG.md",
+        "pyproject.toml",
+        "MANIFEST.in",
+        "requirements-dev.txt",
+        "Makefile",
+        "ruff.toml",
+        ".coveragerc",
+        "docs/theorem.md",
+        "docs/claims.md",
+        "docs/roadmap.md",
+        "docs/references.md",
+        "docs/reproduction.md",
+        "evidence/README.md",
+        "src/bounded_counts/__init__.py",
+        "src/bounded_counts/core.py",
+        "src/bounded_counts/__main__.py",
+        "tests/test_exact_counts.py",
+        "tests/test_stability_verifier.py",
+        "tests/test_law_bridge_verifier.py",
+        "examples/d1_projection_sage.py",
+        "tools/tasks.py",
+        "tools/check_repository.py",
+        "lean/README.md",
+        "lean/verify.py",
+        "lean/lean-toolchain",
+        "lean/lakefile.toml",
+        "lean/lake-manifest.json",
+        "lean/source_manifest.json",
+        "lean/third_party/provenance.json",
+        f"{D1_DIRECTORY}/README.md",
+        f"{D1_DIRECTORY}/{D1_SOURCE}",
+        f"{D1_DIRECTORY}/source_manifest.json",
+        f"{D1_DIRECTORY}/verify_stability.py",
+        "evidence/d1-stability-kernel-checks.json",
+        "evidence/d1-law-kernel-checks.json",
+        f"{LAW_DIRECTORY}/README.md",
+        f"{LAW_DIRECTORY}/{LAW_SOURCE}",
+        f"{LAW_DIRECTORY}/source_manifest.json",
+        f"{LAW_DIRECTORY}/verify_law_bridge.py",
+    }
+    | {"lean/" + name for name in MODULES}
+    | {
+        f"{directory}/{name}"
+        for directory, source, _ in EXTENSIONS
+        for name in (source, "source_manifest.json")
+    }
+)
 REPOSITORY_REQUIRED = {
     ".gitignore",
     ".gitattributes",
@@ -423,7 +490,7 @@ def audit(root: Path, mode: str, private_tokens: list[str]) -> dict:
             fail(f"build metadata included in repository files: {name}")
         if path.suffix == ".lean" and name not in (
             {"lean/" + module for module in MODULES}
-            | {f"{D1_DIRECTORY}/{D1_SOURCE}", f"{LAW_DIRECTORY}/{LAW_SOURCE}"}
+            | {f"{directory}/{source}" for directory, source, _ in EXTENSIONS}
         ):
             fail(f"Lean source is outside the core and extension manifests: {name}")
         raw = path.read_bytes()
@@ -524,10 +591,7 @@ def audit(root: Path, mode: str, private_tokens: list[str]) -> dict:
         if re.search(r"\bset_option\s+debug\.skipKernelTC\s+true\b", code):
             fail(f"lean/{name}: kernel-check skipping option")
 
-    for directory, source, roots in (
-        (D1_DIRECTORY, D1_SOURCE, D1_ROOTS),
-        (LAW_DIRECTORY, LAW_SOURCE, LAW_ROOTS),
-    ):
+    for directory, source, roots in EXTENSIONS:
         extension = load_json(f"{directory}/source_manifest.json")
         extension_sources = extension.get("sources", {})
         if (

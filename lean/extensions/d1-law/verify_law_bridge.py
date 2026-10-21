@@ -1,7 +1,8 @@
-"""Freshly compile the core, D=1 stability, and their finite-law connection.
+"""Freshly compile the core and a selected suite of proof extensions.
 
 Run from the repository root after retrieving the pinned dependency cache:
     python lean/extensions/d1-law/verify_law_bridge.py --run ci-check
+Add --suite research to include probability, conditional coverage and robustness.
 No existing project proof artifacts are imported. Dependency caches are reused.
 """
 
@@ -81,6 +82,50 @@ ROOTS = {
         "observed_bernoulli_stability",
     ),
 }
+RESEARCH_ROOTS = {
+    "CountProbabilityBridge": (
+        "boundedPMF_mass",
+        "boundedMeasure_isProbability",
+        "boundedMeasure_singleton",
+        "integral_boundedMeasure",
+        "factorialPGF_eval_eq_expectation",
+        "factorialPGF_coeff_eq_binomial_expectation",
+        "higher_factorial_cumulants_identify_measures",
+    ),
+    "CountD1VarianceCoverage": (
+        "factorial_square_identity",
+        "first_variance_identity",
+        "second_variance_identity",
+        "first_variance_ceiling",
+        "second_variance_ceiling",
+        "variance_ratio_radius",
+        "zero_variance_deterministic",
+        "simultaneous_chebyshev",
+        "conditional_moment_coverage",
+    ),
+    "CountD1BackgroundUncertainty": (
+        "perturbation_difference_le",
+        "square_difference_le",
+        "parameter_error_le",
+        "bounded_observation_error",
+        "equal_cumulant_witness",
+    ),
+    "CountFiniteSampleMean": (
+        "sampleMean_memLp",
+        "sampleMean_unbiased",
+        "sampleMean_variance",
+        "sampleMean_variance_ceiling",
+        "two_sample_means_coverage",
+    ),
+}
+DIRECTORIES = {
+    "CountD1Stability": "d1",
+    "CountD1LawBridge": "d1-law",
+    "CountProbabilityBridge": "probability",
+    "CountD1VarianceCoverage": "finite-sample",
+    "CountD1BackgroundUncertainty": "background-uncertainty",
+    "CountFiniteSampleMean": "sample-mean",
+}
 ALLOWED_AXIOMS = {"propext", "Classical.choice", "Quot.sound"}
 
 
@@ -93,10 +138,16 @@ def write_json(path: Path, value: object) -> None:
 
 
 def full_roots(module: str) -> list[str]:
-    return [module + "." + name for name in ROOTS[module]]
+    return [module + "." + name for name in (ROOTS | RESEARCH_ROOTS)[module]]
 
 
-def source_inputs() -> dict[str, Path]:
+def selected_roots(suite: str) -> dict[str, tuple[str, ...]]:
+    if suite not in {"law", "research"}:
+        raise ValueError("Unknown extension suite")
+    return ROOTS if suite == "law" else ROOTS | RESEARCH_ROOTS
+
+
+def source_inputs(suite: str = "law") -> dict[str, Path]:
     paths = {
         "verifier": Path(__file__).resolve(),
         "core_verifier": PROJECT / "verify.py",
@@ -107,18 +158,17 @@ def source_inputs() -> dict[str, Path]:
     }
     for module in CORE:
         paths[module] = PROJECT / (module + ".lean")
-    for module, directory in (
-        ("CountD1Stability", EXTENSION.parent / "d1"),
-        ("CountD1LawBridge", EXTENSION),
-    ):
+    for module in selected_roots(suite):
+        directory = EXTENSION.parent / DIRECTORIES[module]
         paths[module] = directory / (module + ".lean")
         paths[module + "_manifest"] = directory / "source_manifest.json"
     return paths
 
 
-def check_sources(inputs: dict[str, Path]) -> None:
+def check_sources(inputs: dict[str, Path], suite: str = "law") -> None:
+    roots = selected_roots(suite)
     groups = [(inputs["core_manifest"], CORE)] + [
-        (inputs[module + "_manifest"], (module,)) for module in ROOTS
+        (inputs[module + "_manifest"], (module,)) for module in roots
     ]
     for manifest_file, modules in groups:
         manifest = json.loads(manifest_file.read_text(encoding="utf-8"))
@@ -138,7 +188,7 @@ def check_sources(inputs: dict[str, Path]) -> None:
                 raise ValueError("Source contains a prohibited proof admission")
             if re.search(r"\bset_option\s+debug\.skipKernelTC\s+true\b", code):
                 raise ValueError("Source requests a kernel bypass")
-            if module in ROOTS and manifest.get("theorem_roots") != full_roots(module):
+            if module in roots and manifest.get("theorem_roots") != full_roots(module):
                 raise ValueError(
                     "Extension theorem roots differ from the expected list"
                 )
@@ -188,8 +238,9 @@ def resolve_environment(args: argparse.Namespace) -> tuple[Path, list[Path]]:
         ]
     if not lean.is_file() or not libraries or any(not p.is_dir() for p in libraries):
         raise ValueError("Compiler or dependency library is missing")
-    for library in [PROJECT, EXTENSION, EXTENSION.parent / "d1", *libraries]:
-        for module in (*CORE, *ROOTS):
+    source_directories = [EXTENSION.parent / name for name in DIRECTORIES.values()]
+    for library in [PROJECT, *source_directories, *libraries]:
+        for module in (*CORE, *ROOTS, *RESEARCH_ROOTS):
             if any(
                 (library / (module + suffix)).exists()
                 for suffix in (".olean", ".ilean")
@@ -251,24 +302,36 @@ def check_core_receipt(
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--mode", choices=("lake", "existing-cache"), default="lake")
+    parser.add_argument("--suite", choices=("law", "research"), default="law")
     parser.add_argument("--run", default="lake-check")
     parser.add_argument("--lean-executable")
     parser.add_argument("--library", action="append", default=[])
     args = parser.parse_args()
     if not re.fullmatch(r"[a-zA-Z0-9_-]{1,64}", args.run):
         parser.error("--run requires 1 to 64 letters, digits, underscores or hyphens")
-    core_run = "d1-law-" + args.run
-    output = (REPOSITORY / "build/law-bridge" / args.run).resolve()
+    roots = selected_roots(args.suite)
+    core_run = ("d1-law-" if args.suite == "law" else "d1-law-research-") + args.run
+    output_name = "law-bridge" if args.suite == "law" else "research"
+    output = (REPOSITORY / "build" / output_name / args.run).resolve()
     core_receipts = (PROJECT / "verification" / core_run).resolve()
     core_build = (PROJECT / ".verification" / core_run).resolve()
     for path in (output, core_receipts, core_build):
         if not path.is_relative_to(REPOSITORY) or path.exists():
             raise ValueError("Every output must be fresh and inside the repository")
-    inputs = source_inputs()
-    check_sources(inputs)
+    inputs = source_inputs(args.suite)
+    # Environment discovery may invoke Lake. Preserve the source/config baseline
+    # before that subprocess so changes cannot silently become the new baseline.
+    before = {name: digest(path) for name, path in inputs.items()}
+    check_sources(inputs, args.suite)
     lean, libraries = resolve_environment(args)
     inputs["compiler"] = lean
-    before = {name: digest(path) for name, path in inputs.items()}
+    before["compiler"] = digest(lean)
+    check_sources(inputs, args.suite)
+    if any(
+        not path.is_file() or digest(path) != before[name]
+        for name, path in inputs.items()
+    ):
+        raise ValueError("Proof inputs changed during environment discovery")
     output.mkdir(parents=True)
     replacements = [
         (str(REPOSITORY), "<repository>"),
@@ -328,7 +391,7 @@ def main() -> int:
     records = []
     env["LEAN_PATH"] = os.pathsep.join(str(p) for p in (output, core_build, *libraries))
     if core_ok:
-        for module in ROOTS:
+        for module in roots:
             source = output / (module + ".lean")
             source.write_bytes(inputs[module].read_bytes())
             target = output / (module + ".olean")
@@ -374,12 +437,21 @@ def main() -> int:
             if not all(checks.values()):
                 break
     core_still_ok, core_after = check_core_receipt(core_receipts, core_build, before)
+    try:
+        check_sources(inputs, args.suite)
+        source_manifests_valid = True
+    except (OSError, ValueError, KeyError, TypeError):
+        source_manifests_valid = False
     checks = {
+        "source_manifests_valid": source_manifests_valid,
         "fresh_core_verified": core_ok,
         "core_artifacts_and_receipts_unchanged": core_still_ok
         and core_files == core_after,
-        "both_extensions_verified": len(records) == 2
-        and all(r["status"] == "PASS" for r in records),
+        (
+            "both_extensions_verified"
+            if args.suite == "law"
+            else "all_extensions_verified"
+        ): len(records) == len(roots) and all(r["status"] == "PASS" for r in records),
         "extension_artifacts_and_snapshots_unchanged": all(
             digest(output / (r["module"] + ".lean")) == before[r["module"]]
             and all(
@@ -404,6 +476,7 @@ def main() -> int:
         "status": "PASS" if passed else "FAIL",
         "created_utc": datetime.now(timezone.utc).isoformat(),
         "verification_mode": args.mode,
+        "suite": args.suite,
         "input_sha256": before,
         "checks": checks,
         "core_receipt_directory": "lean/verification/" + core_run,
@@ -413,11 +486,15 @@ def main() -> int:
         "project_artifacts_recompiled_in_dependency_order": True,
         "clean_dependency_rebuild_claimed": False,
         "independent_kernel_recheck_claimed": False,
-        "scope": "Fresh trust=0 compilation of the six core modules, D=1 stability and the finite Bernoulli-law bridge. Existing mathlib/Lean dependency caches are reused. No measure-theoretic independence, analytic-log equivalence, finite-sample coverage or physical validation is established.",
+        "scope": (
+            "Fresh trust=0 compilation of the six core modules, D=1 stability and the finite Bernoulli-law bridge. Existing mathlib/Lean dependency caches are reused. No measure-theoretic independence, analytic-log equivalence, finite-sample coverage or physical validation is established."
+            if args.suite == "law"
+            else "Fresh trust=0 compilation of six core and six extension modules: finite-law encoding, probability expectations, conditional two-moment coverage, finite-sample means and algebraic background perturbation bounds. Existing mathlib/Lean dependency caches are reused. No Poisson probability construction, analytic-log equivalence, verified confidence projection, physical validity or originality is established."
+        ),
     }
     write_json(output / "result.json", summary)
     print(
-        f"D=1 law bridge: {summary['status']}; build/law-bridge/{args.run}/result.json"
+        f"{args.suite} proof suite: {summary['status']}; build/{output_name}/{args.run}/result.json"
     )
     return 0 if passed else 1
 

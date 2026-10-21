@@ -20,6 +20,10 @@ The Python API is experimental; no stable release has been published.
 
 ### Added
 
+- Actual finite probability measures and expectation identities, conditional
+  Chebyshev coverage, finite-sample mean variance bounds, and a D=1
+  background-uncertainty inequality in separate Lean extensions. A research
+  verification suite recompiles their project dependencies from source.
 - A separately verified D=1 Bernoulli-law connection, including endpoint laws,
   the core formal cumulant definitions and the formal observed stability bound.
   Its portable verifier freshly checks all imported project modules.
@@ -35,3 +39,9 @@ The Python API is experimental; no stable release has been published.
 - A portable optional Sage confidence-projection example for support `{0, 1}`.
 - Research provenance, prior-art attribution and a prioritized proof roadmap.
 - Reproduction and repository-integrity checks.
+
+### Fixed
+
+- Capture verifier inputs before environment resolution and recheck their
+  manifests afterward and before success. This rejects source, manifest or
+  configuration changes during a slow toolchain lookup.

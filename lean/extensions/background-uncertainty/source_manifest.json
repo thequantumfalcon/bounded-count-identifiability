@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "description": "Exact-byte source binding for the background-uncertainty extension; theorem scope is stated in the source and claim map.",
+  "sources": {
+    "CountD1BackgroundUncertainty.lean": {
+      "sha256": "f64f5fa708d57ab47a3df1df1fc829fd5ccf0196797aaefe2e8cd2eb1e92818e",
+      "bytes": 3051
+    }
+  },
+  "theorem_roots": [
+    "CountD1BackgroundUncertainty.perturbation_difference_le",
+    "CountD1BackgroundUncertainty.square_difference_le",
+    "CountD1BackgroundUncertainty.parameter_error_le",
+    "CountD1BackgroundUncertainty.bounded_observation_error",
+    "CountD1BackgroundUncertainty.equal_cumulant_witness"
+  ]
+}
