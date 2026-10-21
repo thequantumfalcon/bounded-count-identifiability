@@ -1,0 +1,17 @@
+# Optional: install pre-commit separately, then `pre-commit run --all-files`.
+# Uses the same environment and checks as CI; no remote hook code is fetched.
+repos:
+  - repo: local
+    hooks:
+      - id: project-lint
+        name: Ruff and repository evidence checks
+        entry: python tools/tasks.py lint
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: secret-scan
+        name: Gitleaks scan (requires local gitleaks)
+        entry: gitleaks git --pre-commit --staged --redact --no-banner .
+        language: system
+        pass_filenames: false
+        always_run: true

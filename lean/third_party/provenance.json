@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "upstream_mathlib_manifest_sha256": "a7190d6c08899259e731c0d98b94fb540feb172f0dc7754be2a097ceae253f3d",
+  "mathlib_revision_checked_against_local_detached_HEAD": true,
+  "provenance_scope": "Pinned versions and copied license texts inspected from the local source distribution. Upstream dependencies themselves are not vendored.",
+  "packages": [
+    {
+      "name": "mathlib",
+      "revision": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+      "url": "https://github.com/leanprover-community/mathlib4.git",
+      "license": "Apache-2.0",
+      "license_file": "third_party/licenses/mathlib-LICENSE.txt",
+      "license_sha256": "e03ba41d7fab20700769fe4118bab50d800cb74f990353a05d2f5fff1c228363",
+      "local_detached_HEAD_matches_revision": true
+    },
+    {
+      "name": "plausible",
+      "revision": "dfa4f38190d07c37e315953e08b90fe2d95b3c24",
+      "url": "https://github.com/leanprover-community/plausible",
+      "license": "Apache-2.0",
+      "license_file": "third_party/licenses/plausible-LICENSE.txt",
+      "license_sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+      "local_detached_HEAD_matches_revision": true
+    },
+    {
+      "name": "LeanSearchClient",
+      "revision": "d6b4c7be5be75ec4917c873ac50c756dc1436372",
+      "url": "https://github.com/leanprover-community/LeanSearchClient",
+      "license": "Apache-2.0",
+      "license_file": "third_party/licenses/LeanSearchClient-LICENSE.txt",
+      "license_sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+      "local_detached_HEAD_matches_revision": true
+    },
+    {
+      "name": "importGraph",
+      "revision": "a41f0e9a4dea23188ea9cc1c41ac9f8bbafe0b93",
+      "url": "https://github.com/leanprover-community/import-graph",
+      "license": "Apache-2.0",
+      "license_file": "third_party/licenses/importGraph-LICENSE.txt",
+      "license_sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+      "local_detached_HEAD_matches_revision": true
+    },
+    {
+      "name": "proofwidgets",
+      "revision": "df72b022e558978a1c50264cfc4d7fec86fa8e04",
+      "url": "https://github.com/leanprover-community/ProofWidgets4",
+      "license": "Apache-2.0",
+      "license_file": "third_party/licenses/proofwidgets-LICENSE.txt",
+      "license_sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+      "local_detached_HEAD_matches_revision": true
+    },
+    {
+      "name": "aesop",
+      "revision": "4a174c490d8707121c4a9290800489f105d85e07",
+      "url": "https://github.com/leanprover-community/aesop",
+      "license": "Apache-2.0",
+      "license_file": "third_party/licenses/aesop-LICENSE.txt",
+      "license_sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+      "local_detached_HEAD_matches_revision": true
+    },
+    {
+      "name": "Qq",
+      "revision": "dce0ad79c486cb1fb504af04f953c3466b0c6db8",
+      "url": "https://github.com/leanprover-community/quote4",
+      "license": "Apache-2.0",
+      "license_file": "third_party/licenses/Qq-LICENSE.txt",
+      "license_sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+      "local_detached_HEAD_matches_revision": true
+    },
+    {
+      "name": "batteries",
+      "revision": "66e469188fe07963e5cf666c7d4433f45b8131c5",
+      "url": "https://github.com/leanprover-community/batteries",
+      "license": "Apache-2.0",
+      "license_file": "third_party/licenses/batteries-LICENSE.txt",
+      "license_sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+      "local_detached_HEAD_matches_revision": true
+    },
+    {
+      "name": "Cli",
+      "revision": "c24fe6078c630e89b489bffe59b3e20ac30d12c8",
+      "url": "https://github.com/leanprover/lean4-cli",
+      "license": "MIT",
+      "license_file": "third_party/licenses/Cli-LICENSE.txt",
+      "license_sha256": "48b9d91732f2ff7e5e74150d9d3a6454ff8cec17ca8be0eb28b745f9ee4f3ffe",
+      "local_detached_HEAD_matches_revision": true
+    }
+  ],
+  "toolchain": {
+    "name": "Lean",
+    "version": "4.35.0",
+    "url": "https://github.com/leanprover/lean4/releases/tag/v4.35.0",
+    "license": "Apache-2.0",
+    "license_file": "third_party/licenses/Lean-LICENSE.txt",
+    "license_sha256": "e872b4a399a9cd078babf679143a42d6277bc1ee152b6e286ea95b4cee8e227f",
+    "bundled_component_notices_file": "third_party/licenses/Lean-bundled-LICENSES.txt",
+    "bundled_component_notices_sha256": "2f02145691108c355892384323bd5cbd2e4ac523c904fe9f15fbcc3ad551af8c"
+  }
+}

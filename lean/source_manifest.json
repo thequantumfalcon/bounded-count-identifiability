@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "description": "Exact-byte copies of finalized proof sources. Hashes also bind the portable verification run.",
+  "sources": {
+    "CountSeriesCore.lean": {
+      "sha256": "54ae55d89aa3458138f85f1ba22859dc51a52829bf0888045bd03a74d3589e5e",
+      "bytes": 7933
+    },
+    "CountLawEncoding.lean": {
+      "sha256": "a938365e56aada63951f493334e9227a1e054010a4782a9182b1206c44713c9f",
+      "bytes": 2818
+    },
+    "CountIdentification.lean": {
+      "sha256": "fd1bb4c2d795d40a982d23b7cd0129daac222dbcb4d897f85f9523162de568f6",
+      "bytes": 2146
+    },
+    "CountPoissonChannel.lean": {
+      "sha256": "0dab5adcf4579e2516f1e632a39df5ca46e8bd55470105a956904d31ef4a6781",
+      "bytes": 3302
+    },
+    "CountObservedIdentification.lean": {
+      "sha256": "00949745e2a083b4d4dc49a60c7a16f87d42ef7fb2c52531cfaa78cd8aa04123",
+      "bytes": 3257
+    },
+    "CountSharpness.lean": {
+      "sha256": "d8d79b39fcddc5513629f69ace55d6c900a3e9ca587ceefb33b4d22a360da726",
+      "bytes": 16210
+    }
+  }
+}

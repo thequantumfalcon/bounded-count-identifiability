@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "method": "Installed Lake 4.35 parsed and translated lakefile.toml without loading or fetching dependency packages. Python additionally checked explicit six roots, --trust=0, and lock revision structure.",
+  "lake_command": [
+    "lake",
+    "translate-config",
+    "lean",
+    "<temporary-output>"
+  ],
+  "lake_exit_code": 0,
+  "network_or_git_command_used": false,
+  "lakefile_sha256": "331693faa93196b49243838b1303c133e1fb2e967a952ba0b103894b1b8fd636",
+  "lake_manifest_sha256": "6e9ffc81bbf9ca3f550b23770d638e6bd0f0aee51d1e9983444726307b4aef52",
+  "normalized_configuration": "lake-configuration.lean.txt",
+  "normalized_configuration_sha256": "3a45411fdab79d2785778b305543d2315be38f08da0581ecc1a79c420eea796d",
+  "lock_package_count": 9,
+  "project_module_count": 6,
+  "full_lake_dependency_build_tested": false
+}

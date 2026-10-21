@@ -1,0 +1,11 @@
+# Preserve every file whose bytes are bound by the verification records.
+*.lean -text
+verify.py -text
+source_manifest.json -text
+lake-manifest.json -text
+lakefile.toml -text
+lean-toolchain -text
+verification/** -text
+# Keep upstream notices verbatim, including their original blank lines.
+third_party/** -text -whitespace
+third_party/licenses/* -text -whitespace

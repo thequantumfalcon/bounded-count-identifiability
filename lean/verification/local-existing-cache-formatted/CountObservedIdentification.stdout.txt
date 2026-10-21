@@ -1,0 +1,5 @@
+'BoundedCountLaw.first_law_cumulant_eq_mean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BoundedCountLaw.observed_higher_cumulants_identify_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BoundedCountLaw.observed_cumulants_identify_source_and_background' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

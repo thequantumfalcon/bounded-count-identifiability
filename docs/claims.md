@@ -1,0 +1,78 @@
+# Claims and evidence
+
+The central result is the [bounded-count identification theorem](theorem.md). This table separates its mathematical scope from numerical checks and possible applications.
+
+| Claim | Evidence | Boundary |
+| --- | --- | --- |
+| Orders $2,\ldots,D+1$ identify any law on a known $0,\ldots,D$. | Universal proof in [theorem.md](theorem.md); [CountIdentification.lean](../lean/CountIdentification.lean). | Exact population cumulants and the stated support bound. |
+| Independent fixed Poisson background preserves the identifying orders; adding the mean identifies its rate. | Generating-function proof; [CountPoissonChannel.lean](../lean/CountPoissonChannel.lean) and [CountObservedIdentification.lean](../lean/CountObservedIdentification.lean). | Lean checks the exponential-factor model; its independent-addition probability construction is not formalized. |
+| The general maximum order $D+1$ cannot be lowered. | Valid-law construction and matching cumulants in [CountSharpness.lean](../lean/CountSharpness.lean). | Uses an established generalized matching distribution; the comparison law is a point mass. |
+| Exact arithmetic reproduces population cumulants and the known-family collision. | [Population calculation code](../src/bounded_counts/) and [examples](../examples/). | Finite exact cases supplement the universal proof. The software is not formally verified. |
+| A Bernoulli source admits an exact algebraic projection of a two-moment confidence region. | Formula and conditional coverage argument below. | Known background ceiling and IID windows. No general-$D$ confidence-region solver is claimed. |
+| Finite-moment compatibility and zero covariance do not certify the observation model. | Explicit counterexamples below and the [calibration obligations](roadmap.md). | Constructed probability models are not measurements or an assessment of a particular instrument. |
+| The sharpness family and Poisson-cancellation method are established. | [Primary references and access notes](references.md). | Priority of the general sufficient-order theorem remains unresolved. |
+
+The [formal verification guide](../lean/README.md) documents the six-module build, pinned dependencies, published compiler receipts and reproduction limits. Additional development checks accepted selected dependency-closed exports using several checker binaries. The selected results use `propext`, `Classical.choice` and `Quot.sound`; no `sorryAx` was found in those exports. Several checkers share ancestry and dependencies. These checks help detect errors but do not amount to external human peer review. Implementations also share mathematical specifications and parts of their development process; see [research provenance](../PROVENANCE.md).
+
+## D=1 confidence prototype
+
+For $X\sim\operatorname{Bernoulli}(p)$ and independent $Z\sim\operatorname{Poisson}(b)$, with $0\leq p\leq1$ and $0\leq b\leq B$,
+
+$$
+m_1=p+b,
+\qquad m_2=\mathbb E[Y(Y-1)]=(p+b)^2-p^2.
+$$
+
+The two empirical factorial moments are unbiased. For a preselected $N\geq1$ IID windows, a valid fixed $B\geq0$, and preselected $0<\alpha<1$, use
+
+$$
+W_1=B+\tfrac14,\qquad W_2=4B^3+10B^2+4B,
+\qquad \rho_r=\sqrt{\frac{2W_r}{N\alpha}}.
+$$
+
+Indeed,
+
+$$
+\operatorname{Var}(Y)=b+p(1-p)\leq W_1,
+$$
+
+$$
+\operatorname{Var}(Y(Y-1))=4b^3+(12p+2-4p^2)b^2+4pb\leq W_2.
+$$
+
+The second variance identity follows from $m_r=b^r+rp b^{r-1}$ for $r\geq1$ and $\mathbb E[(Y(Y-1))^2]=m_4+4m_3+2m_2$. Its bound uses $12p+2-4p^2\leq10$ on $[0,1]$ and $b\leq B$. Chebyshev's inequality and a union bound give simultaneous coverage at least $1-\alpha$ for the moment intervals $[\widehat m_r-\rho_r,\widehat m_r+\rho_r]$. A zero variance ceiling makes that moment deterministic. The proof does not require the two estimators to be independent; it does require the window assumptions.
+
+Clip these intervals to the model ranges, obtaining $[a,c]\subseteq[0,1+B]$ and $[d,e]\subseteq[0,B^2+2B]$. If either is empty, the feasible region is empty. For $B>0$, also reject $c^2<d$; otherwise the exact projection onto $p$ is $[L,U]$ when $L\leq U$, where
+
+$$
+L=\max\left(0,a-B,\sqrt{\max(0,a^2-e)},\frac{d-B^2}{2B}\right),
+\qquad U=\min\left(1,c,\sqrt{c^2-d}\right).
+$$
+
+This follows by eliminating the mean $m=p+b$ from
+
+$$
+\max(a,p,\sqrt{d+p^2})\leq m\leq\min(c,p+B,\sqrt{e+p^2}).
+$$
+
+For $B=0$, the projection is $[a,c]$ if the clipped intervals are nonempty and $d=0$; otherwise it is empty. Empty results must not be silently replaced by a point estimate. Algebraic endpoint decisions require exact arithmetic; displayed decimals alone are not certificates. This confidence argument is not Lean-verified. Synthetic behavior does not prove coverage or practical superiority.
+
+Unbiased factorial-cumulant estimators also have established literature; [Müller (2004), Appendix B, equations (37) and (39)](https://groups.spa.umn.edu/2-photon/publications/JM04BJ.pdf) gives the second-order estimator and its exact finite-sample variance. The prototype above fits factorial moments, rather than treating a plug-in cumulant estimate as unbiased.
+
+## Two assumption controls
+
+A count $Y$ equal to $0$ or $2$ with probability $1/2$ each has mean $1$ and factorial cumulants $(\kappa_2,\kappa_3)=(0,-1)$. A Poisson count of mean $1$ has $(0,0)$. Thus the mean and second factorial cumulant can fit the $D=1$ observation model even when the true distribution is outside it.
+
+Even a Poisson background marginal and zero covariance are insufficient. Let $Z\sim\operatorname{Poisson}(1)$ and specify $\Pr(X=1\mid Z)$ as $5/8,1/4,3/4,1/2$ for $Z=0,1,2,\geq3$, respectively. Then $X\sim\operatorname{Bernoulli}(1/2)$ and $\operatorname{Cov}(X,Z)=0$, but the conditional probabilities show dependence. Direct summation gives
+
+$$
+\mathbb E[(1+t)^{X+Z}]=(1+t/2)e^t+\frac{t^3}{8e}.
+$$
+
+The extra term changes the third factorial cumulant by $3/(4e)$ while preserving the first two. The independent-addition formula therefore fails despite the correct marginals and zero covariance.
+
+## Claims not made
+
+The project establishes no laboratory validation, new particle interpretation, efficient acquisition protocol, optimal estimator or unconditional finite-data guarantee. It does not identify an emitted source separately from an unknown detection efficiency. A compatible finite list of moments cannot certify the entire noise model. Zero covariance cannot certify independence, and observing no source-support violation cannot prove its probability is exactly zero.
+
+The known-family attribution corrects an earlier omission during development. The distribution was recognized as existing prior art before release. The literature search was targeted and incomplete; failure to locate an exact statement of the sufficient-order theorem is not evidence of originality.

@@ -1,0 +1,23 @@
+name: Mathematical correction or prior art
+description: Report a precise proof issue, counterexample or missing attribution.
+title: "[math] "
+body:
+  - type: input
+    id: revision
+    attributes:
+      label: Commit and claim
+      description: Identify the revision, file and theorem or statement.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Argument or source
+      description: Include assumptions, a minimal counterexample or a precise primary citation.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Consequence and remaining uncertainty
+      description: State exactly what the evidence changes and what it does not establish.

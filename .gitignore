@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+build/
+dist/
+.coverage
+coverage.xml
+htmlcov/
+.ruff_cache/
+.lake/
+*.olean
+*.ilean
+*.trace
+verification-output/

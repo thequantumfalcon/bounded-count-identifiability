@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools==80.9.0", "wheel==0.45.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bounded-count-identifiability"
+version = "0.1.0.dev0"
+description = "Exact arithmetic examples for bounded counts with independent Poisson background"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE.txt"]
+authors = [{name = "The Quantum Falcon"}]
+dependencies = []
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Scientific/Engineering :: Mathematics",
+]
+
+[project.scripts]
+bounded-counts = "bounded_counts.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,4 @@
+'BoundedCountLaw.factorialPGF_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BoundedCountLaw.factorialPGF_coeff_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BoundedCountLaw.factorialPGF_coeff_above' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BoundedCountLaw.factorialPGF_injective_on_support' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,14 @@
+import Lake
+
+open System Lake DSL
+
+package bounded_count where version := v!"0.1.0"
+
+require "leanprover-community" / mathlib from git
+  "https://github.com/leanprover-community/mathlib4.git"@"56a005855ea17e0b0958f73ec801ae140b0a1679"
+
+@[default_target] lean_lib BoundedCount where
+  roots :=
+  #[`CountSeriesCore, `CountLawEncoding, `CountIdentification, `CountPoissonChannel, `CountObservedIdentification,
+    `CountSharpness]
+  moreLeanArgs := #["--trust=0"]

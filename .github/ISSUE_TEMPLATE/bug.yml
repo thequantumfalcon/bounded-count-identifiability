@@ -1,0 +1,24 @@
+name: Reproducibility or software defect
+description: Report a reproducible discrepancy in the shipped code or build.
+title: "[bug] "
+body:
+  - type: input
+    id: revision
+    attributes:
+      label: Revision and environment
+      description: Commit, operating system, Python/Lean/Sage versions as relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Minimal commands and inputs
+      description: Use small synthetic inputs; omit secrets and personal data.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Expected and observed results
+    validations:
+      required: true

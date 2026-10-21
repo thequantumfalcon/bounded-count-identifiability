@@ -1,0 +1,139 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: quality
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.11'
+      - name: Install locked development tools and package
+        run: python tools/tasks.py setup
+      - name: Source, manifest and documentation checks
+        run: python tools/tasks.py lint
+      - name: Workflow security review
+        run: zizmor --offline --pedantic .github/workflows
+      - name: Install checksum-verified repository scanners
+        working-directory: ${{ runner.temp }}
+        run: |
+          curl --fail --location --proto '=https' --tlsv1.2 --output gitleaks.tar.gz \
+            https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz
+          echo '551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb  gitleaks.tar.gz' | sha256sum --check
+          tar -xzf gitleaks.tar.gz gitleaks
+          curl --fail --location --proto '=https' --tlsv1.2 --output actionlint.tar.gz \
+            https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_linux_amd64.tar.gz
+          echo '8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8  actionlint.tar.gz' | sha256sum --check
+          tar -xzf actionlint.tar.gz actionlint
+      - name: Validate workflows and scan full Git history
+        env:
+          TOOL_DIRECTORY: ${{ runner.temp }}
+        run: |
+          "$TOOL_DIRECTORY/actionlint" -color -shellcheck= -pyflakes=
+          "$TOOL_DIRECTORY/gitleaks" git --redact --no-banner .
+      - name: Check pull request title
+        if: github.event_name == 'pull_request'
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: >-
+          python -c "import os,re;
+          assert re.match(r'^(feat|fix|docs|test|build|ci|chore|refactor|perf|revert)(\([^\r\n]+\))?!?: .+', os.environ['PR_TITLE']),
+          'Use a Conventional Commit title, e.g. docs: clarify the support assumption'"
+
+  python:
+    name: python (${{ matrix.os }}, ${{ matrix.python }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            python: '3.11'
+          - os: ubuntu-24.04
+            python: '3.13'
+          - os: windows-2025
+            python: '3.13'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python tools/tasks.py setup
+      - run: python tools/tasks.py test
+      - run: python tools/tasks.py build
+      - run: python tools/tasks.py artifacts
+
+  formal:
+    name: formal
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      LEAN_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.11'
+      - name: Install checksum-verified Elan 4.2.4
+        working-directory: ${{ runner.temp }}
+        run: |
+          curl --fail --location --proto '=https' --tlsv1.2 --output elan.tar.gz \
+            https://github.com/leanprover/elan/releases/download/v4.2.4/elan-x86_64-unknown-linux-gnu.tar.gz
+          echo '42b94d4244e8353142c456ec0e4ca6528fd898a6c604d4059f494e706e431f63  elan.tar.gz' | sha256sum --check
+          tar -xzf elan.tar.gz elan-init
+          ./elan-init -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Retrieve pinned dependencies and upstream mathlib cache
+        working-directory: lean
+        run: lake exe cache get
+      - name: Build all six proof modules
+        working-directory: lean
+        run: lake build
+      - name: Fresh module compilation and printed axiom checks
+        run: python lean/verify.py --run ci-check
+      - name: Preserve proof-check receipt
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: lean-ci-receipt
+          path: lean/verification/ci-check/
+          if-no-files-found: warn
+          retention-days: 14
+
+  ci:
+    name: ci
+    if: always()
+    needs: [quality, python, formal]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - name: Require every component to pass
+        env:
+          RESULTS: ${{ toJSON(needs) }}
+        run: >-
+          python3 -c "import json,os;
+          results=json.loads(os.environ['RESULTS']);
+          assert all(job['result']=='success' for job in results.values()), results"

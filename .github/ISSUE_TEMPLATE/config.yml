@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions
+    url: https://github.com/thequantumfalcon/bounded-count-identifiability/discussions
+    about: Ask research and usage questions.
+  - name: Private security report
+    url: https://github.com/thequantumfalcon/bounded-count-identifiability/security/advisories/new
+    about: Report exploitable software vulnerabilities privately.

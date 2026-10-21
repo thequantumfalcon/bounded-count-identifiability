@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "ruff_version": "ruff 0.16.2",
+  "verify_py_sha256": "130b54c547d777da5b53aac30cb5c289746a0ca5e61abb8a6d17fb9da58de9f1",
+  "checks": [
+    {
+      "command": [
+        "python",
+        "-m",
+        "ruff",
+        "check",
+        "verify.py"
+      ],
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "verify.py"
+      ],
+      "exit_code": 0,
+      "stdout": "1 file already formatted\n",
+      "stderr": ""
+    }
+  ]
+}

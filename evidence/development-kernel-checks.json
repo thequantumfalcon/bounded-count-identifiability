@@ -1,0 +1,369 @@
+{
+  "schema_version": 1,
+  "record_type": "historical-development-kernel-checks",
+  "status": "selected_exports_accepted",
+  "historical_check_date_utc": "2026-10-21",
+  "digest_reverification_utc": "2026-10-21T05:48:14.231744+00:00",
+  "description": "Selected-field summary of retained local development receipts; this publication step rechecked hashes and receipt consistency but did not rerun the checkers.",
+  "published_sources": [
+    {
+      "source": "lean/CountLawEncoding.lean",
+      "source_sha256": "a938365e56aada63951f493334e9227a1e054010a4782a9182b1206c44713c9f",
+      "historical_olean_sha256": "6eb8137a4bae9b78a2b20cbc32f6b008c38be23307ce911b52be477cc114e044",
+      "published_source_matches_historical_input": true
+    },
+    {
+      "source": "lean/CountSeriesCore.lean",
+      "source_sha256": "54ae55d89aa3458138f85f1ba22859dc51a52829bf0888045bd03a74d3589e5e",
+      "historical_olean_sha256": "f219b23133a0f0c9442257ba4ff6137fc75e8b3d7ef2dd50c0ca03d2bc8824b0",
+      "published_source_matches_historical_input": true
+    },
+    {
+      "source": "lean/CountPoissonChannel.lean",
+      "source_sha256": "0dab5adcf4579e2516f1e632a39df5ca46e8bd55470105a956904d31ef4a6781",
+      "historical_olean_sha256": "3b00a447735a351136407bea2dfc32cdd28f439883184dd3a5d61314b7859917",
+      "published_source_matches_historical_input": true
+    },
+    {
+      "source": "lean/CountIdentification.lean",
+      "source_sha256": "fd1bb4c2d795d40a982d23b7cd0129daac222dbcb4d897f85f9523162de568f6",
+      "historical_olean_sha256": "f47cc3e5782eab95d55c013188bd7be9578ae3f4809cf55dd19b33d34d096cfc",
+      "published_source_matches_historical_input": true
+    },
+    {
+      "source": "lean/CountObservedIdentification.lean",
+      "source_sha256": "00949745e2a083b4d4dc49a60c7a16f87d42ef7fb2c52531cfaa78cd8aa04123",
+      "historical_olean_sha256": "54d06dde2b130c23d6c9649f59bffb2889ecf601ae67732a8004189d209ae052",
+      "published_source_matches_historical_input": true
+    },
+    {
+      "source": "lean/CountSharpness.lean",
+      "source_sha256": "d8d79b39fcddc5513629f69ace55d6c900a3e9ca587ceefb33b4d22a360da726",
+      "historical_olean_sha256": "0f8fa38d156d63bf1c543521b6d751f9594948402aa2168d6b03e51c65148bb1",
+      "published_source_matches_historical_input": true
+    }
+  ],
+  "trials": [
+    {
+      "id": "bounded-law-identification",
+      "selected_theorem_roots": [
+        "BoundedCountLaw.higher_factorial_cumulants_identify",
+        "BoundedCountLaw.first_law_cumulant_eq_mean",
+        "BoundedCountLaw.observed_higher_cumulants_identify_source",
+        "BoundedCountLaw.observed_cumulants_identify_source_and_background"
+      ],
+      "export_sha256": "2b0fb06800e82d33c55ad69c06878ce38841ba6f503fd62433aedf15829d3673",
+      "export_bytes": 80809356,
+      "export_format_version": "3.1.0",
+      "exporter_name": "lean4export",
+      "exporter_version": "3.1.0",
+      "lean_version": "4.35.0",
+      "lean_revision": "eb6cafb7290e8bd5f2937522d8d804f58f02bafc",
+      "recorded_dependency_manifest_sha256": "a7190d6c08899259e731c0d98b94fb540feb172f0dc7754be2a097ceae253f3d",
+      "source_and_olean_snapshots_verified": 10,
+      "all_snapshot_digests_reverified": true,
+      "all_selected_roots_present_as_theorems": true,
+      "declared_axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "forbidden_names_found": [],
+      "forbidden_name_scope": [
+        "sorryAx",
+        "Lean.trustCompiler"
+      ],
+      "compile_and_export": {
+        "compile": {
+          "exit_code": 0,
+          "timed_out": false,
+          "executable_sha256": "ec7a472d1c12a09b0c0c718f7427c2be527b3f5f07810fdbe076c2507c7a91ea",
+          "trust_option": "--trust=0"
+        },
+        "export": {
+          "exit_code": 0,
+          "timed_out": false,
+          "executable_sha256": "bda24bb3fafaf299ba472f944942d6293294b76559fafc9f166badd7c0f981b3"
+        }
+      },
+      "checker_results": [
+        {
+          "checker": "leanchecker",
+          "executable_sha256": "9ef6baeb28d5e28897d5ed6dddd60ff81e511d97374013ece435dff38e9e0137",
+          "mode_flags": [
+            "--silent",
+            "--from-export"
+          ],
+          "status": "accepted",
+          "exit_code": 0,
+          "timed_out": false,
+          "stderr_bytes": 0,
+          "explicit_typechecker_error_count": null,
+          "reported_declarations_checked": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "historical_receipt_sha256": "25ee8933ec0feec05f01cc225d817d3c305df6d951b2a4e5580dfd224c6919ea"
+        },
+        {
+          "checker": "leanchecker-paranoid",
+          "executable_sha256": "3430a114fcb94d1697555bed88f252a1479d936aff26f36fd2dd1f098144ec9c",
+          "mode_flags": [
+            "--silent",
+            "--from-export"
+          ],
+          "status": "accepted",
+          "exit_code": 0,
+          "timed_out": false,
+          "stderr_bytes": 0,
+          "explicit_typechecker_error_count": null,
+          "reported_declarations_checked": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "historical_receipt_sha256": "06137204a35f50c672a2cda5ac97857a1889e324b652be93c90a02159a5d4990"
+        },
+        {
+          "checker": "Lean4Lean",
+          "executable_sha256": "2463006ea615a6f69c80689142cf7cb0a8724fc7819c57ad2b395e99eb6a9f3c",
+          "mode_flags": [
+            "--import"
+          ],
+          "status": "accepted",
+          "exit_code": 0,
+          "timed_out": false,
+          "stderr_bytes": 0,
+          "explicit_typechecker_error_count": null,
+          "reported_declarations_checked": 16422,
+          "stdout_sha256": "7f65d5341c31e035fb1d0c64e39ee077efbfceb75eb462bce3e2fb242bc46486",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "historical_receipt_sha256": "6ecfb2b509e4974a7899189dc5e16831d61c6b4e54c74e757ec765746ea34a26"
+        },
+        {
+          "checker": "nanoda",
+          "executable_sha256": "de57d9dd7f647eb57398bc3dab4dcaa1d64f961f3f49964d5455fbddc73b35a8",
+          "mode_flags": [],
+          "status": "accepted",
+          "exit_code": 0,
+          "timed_out": false,
+          "stderr_bytes": 0,
+          "explicit_typechecker_error_count": 0,
+          "reported_declarations_checked": 17588,
+          "stdout_sha256": "248bd6c9913d6035de62491ba01c94c13788c3f63b47a992de1d2f869646033a",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "historical_receipt_sha256": "06256824f4a5e93d168b0df205be42ccb4f92baadc2c2b1dd35a02dde8bf040b",
+          "pretty_printer_error_count": 1,
+          "pretty_printer_diagnostic": "Unable to print axioms",
+          "unpermitted_axiom_hard_error": true,
+          "unsafe_permit_all_axioms": false
+        },
+        {
+          "checker": "con-leche",
+          "executable_sha256": "4b7ba57f7e4f50afb21374a4f8f980fe0c8d347fde91a1f70e0462749014baa0",
+          "mode_flags": [
+            "--verified",
+            "--jobs=2"
+          ],
+          "status": "accepted",
+          "exit_code": 0,
+          "timed_out": false,
+          "stderr_bytes": 0,
+          "explicit_typechecker_error_count": null,
+          "reported_declarations_checked": 16425,
+          "stdout_sha256": "c18b86fe00372953293de366614b042603a1dcdfc744da3ee76e801380768e16",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "historical_receipt_sha256": "07825b3218333fe2f792670499ad3a0c685ace0f76a36411d233b0157e60bdcf"
+        },
+        {
+          "checker": "con-ron",
+          "executable_sha256": "4e351dd1d556da22efb44c17be30e3ff3900780730ce642ee007d1416d332d40",
+          "mode_flags": [
+            "--verified",
+            "--jobs=2"
+          ],
+          "status": "accepted",
+          "exit_code": 0,
+          "timed_out": false,
+          "stderr_bytes": 0,
+          "explicit_typechecker_error_count": null,
+          "reported_declarations_checked": 16425,
+          "stdout_sha256": "3bbcbdbbd13382e401c3d49bc3b19f5dd4f6d56f9005925d314d29e930216f5b",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "historical_receipt_sha256": "1b5300618dc366dcf13cf0561c8652ac628de1b9ffd88f2559ff60df0b682bc0"
+        }
+      ],
+      "historical_scope_inspection_sha256": "6ea5cd2e7df45e49303766665cb33f26b587ec9323b1ff80fee1deee9fb974b0",
+      "historical_summary_sha256": "865704ce0fc613d26298c69fb4a703f7fa5eb3e7f2d2668b576aa3d7f13ab407"
+    },
+    {
+      "id": "order-sharpness",
+      "selected_theorem_roots": [
+        "CountSharpness.sharpLaw_isBoundedLaw",
+        "CountSharpness.sharpLaw_higher_cumulants_zero",
+        "CountSharpness.sharpLaw_top_cumulant",
+        "CountSharpness.cutoff_is_sharp",
+        "CountSharpness.lower_observed_cumulants_match"
+      ],
+      "export_sha256": "fa13aae3626094abf594e828ec6cb9bf519a112de077f1456d7b11173689ac89",
+      "export_bytes": 85090294,
+      "export_format_version": "3.1.0",
+      "exporter_name": "lean4export",
+      "exporter_version": "3.1.0",
+      "lean_version": "4.35.0",
+      "lean_revision": "eb6cafb7290e8bd5f2937522d8d804f58f02bafc",
+      "recorded_dependency_manifest_sha256": "a7190d6c08899259e731c0d98b94fb540feb172f0dc7754be2a097ceae253f3d",
+      "source_and_olean_snapshots_verified": 12,
+      "all_snapshot_digests_reverified": true,
+      "all_selected_roots_present_as_theorems": true,
+      "declared_axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "forbidden_names_found": [],
+      "forbidden_name_scope": [
+        "sorryAx",
+        "Lean.trustCompiler"
+      ],
+      "compile_and_export": {
+        "compile": {
+          "exit_code": 0,
+          "timed_out": false,
+          "executable_sha256": "ec7a472d1c12a09b0c0c718f7427c2be527b3f5f07810fdbe076c2507c7a91ea",
+          "trust_option": "--trust=0"
+        },
+        "export": {
+          "exit_code": 0,
+          "timed_out": false,
+          "executable_sha256": "bda24bb3fafaf299ba472f944942d6293294b76559fafc9f166badd7c0f981b3"
+        }
+      },
+      "checker_results": [
+        {
+          "checker": "leanchecker",
+          "executable_sha256": "9ef6baeb28d5e28897d5ed6dddd60ff81e511d97374013ece435dff38e9e0137",
+          "mode_flags": [
+            "--silent",
+            "--from-export"
+          ],
+          "status": "accepted",
+          "exit_code": 0,
+          "timed_out": false,
+          "stderr_bytes": 0,
+          "explicit_typechecker_error_count": null,
+          "reported_declarations_checked": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "historical_receipt_sha256": "d90fabf712e67b398c39eaf8da3d14663ae449f67a1b14fd64241aa8bb98f264"
+        },
+        {
+          "checker": "leanchecker-paranoid",
+          "executable_sha256": "3430a114fcb94d1697555bed88f252a1479d936aff26f36fd2dd1f098144ec9c",
+          "mode_flags": [
+            "--silent",
+            "--from-export"
+          ],
+          "status": "accepted",
+          "exit_code": 0,
+          "timed_out": false,
+          "stderr_bytes": 0,
+          "explicit_typechecker_error_count": null,
+          "reported_declarations_checked": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "historical_receipt_sha256": "45fc310b67c88fa4b090aaaa36dc508b7c23038582a207409a561edeb098e13d"
+        },
+        {
+          "checker": "Lean4Lean",
+          "executable_sha256": "2463006ea615a6f69c80689142cf7cb0a8724fc7819c57ad2b395e99eb6a9f3c",
+          "mode_flags": [
+            "--import"
+          ],
+          "status": "accepted",
+          "exit_code": 0,
+          "timed_out": false,
+          "stderr_bytes": 0,
+          "explicit_typechecker_error_count": null,
+          "reported_declarations_checked": 17073,
+          "stdout_sha256": "182318ae6676f2f77384b5dcfc6b055cd8b63ac586bbd3afc807c78f8c43e1e8",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "historical_receipt_sha256": "57ad8cfa3c426d5d2a86593c338797f81a580fb44723da92b8aa30c162a8f5c9"
+        },
+        {
+          "checker": "nanoda",
+          "executable_sha256": "de57d9dd7f647eb57398bc3dab4dcaa1d64f961f3f49964d5455fbddc73b35a8",
+          "mode_flags": [],
+          "status": "accepted",
+          "exit_code": 0,
+          "timed_out": false,
+          "stderr_bytes": 0,
+          "explicit_typechecker_error_count": 0,
+          "reported_declarations_checked": 18248,
+          "stdout_sha256": "3ca00f352036579b4235ab222bf955d340433688dfa468f2b7128d20aef314df",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "historical_receipt_sha256": "b7f05ee0f87bebeb1e15434d7c9ca8f6ed8632a5bcc854cd212b9dd2d066195c",
+          "pretty_printer_error_count": 1,
+          "pretty_printer_diagnostic": "Unable to print axioms",
+          "unpermitted_axiom_hard_error": true,
+          "unsafe_permit_all_axioms": false
+        },
+        {
+          "checker": "con-leche",
+          "executable_sha256": "4b7ba57f7e4f50afb21374a4f8f980fe0c8d347fde91a1f70e0462749014baa0",
+          "mode_flags": [
+            "--verified",
+            "--jobs=2"
+          ],
+          "status": "accepted",
+          "exit_code": 0,
+          "timed_out": false,
+          "stderr_bytes": 0,
+          "explicit_typechecker_error_count": null,
+          "reported_declarations_checked": 17076,
+          "stdout_sha256": "11961518fb60f35bb5c447ee7f9943e936597d89708d99f22fb7766ed59dfe6b",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "historical_receipt_sha256": "f84174e2ae554382c3a41d6c4e69adbf5d6dd29e9391d89953928d7c8d59905e"
+        },
+        {
+          "checker": "con-ron",
+          "executable_sha256": "4e351dd1d556da22efb44c17be30e3ff3900780730ce642ee007d1416d332d40",
+          "mode_flags": [
+            "--verified",
+            "--jobs=2"
+          ],
+          "status": "accepted",
+          "exit_code": 0,
+          "timed_out": false,
+          "stderr_bytes": 0,
+          "explicit_typechecker_error_count": null,
+          "reported_declarations_checked": 17076,
+          "stdout_sha256": "5e02503fcf7aa6fbc62726e69d264ef0e3ec738310bd59d15f333c4307819dc9",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "historical_receipt_sha256": "5f0ba2f4b17b07dd00698fb8e520106a47768048f00f85670d0dd3b8f8873963"
+        }
+      ],
+      "historical_scope_inspection_sha256": "33af4bbbd0fd5ffa8d102e58fa1e66ec5ad20c5ea9eddca7be87617c2206008a",
+      "historical_summary_sha256": "1e4e60bdefb6cc55447e8a87ffed1a9ecf3e2acbb511a5c9cbd175e0f2c51b08"
+    }
+  ],
+  "error_count_convention": "Null means the checker did not print a structured typechecker error count. It is not an inferred zero. Acceptance combines exit status, inspected output and the separately verified export scope.",
+  "axiom_caveat": "The exports declare propext, Classical.choice and Quot.sound. A separate streaming inspection found the selected theorem records and no sorryAx or Lean.trustCompiler names. That inspection checks names and scope, not proof validity. Nanoda reported zero typechecker errors but one axiom pretty-printer error in each trial; the warning is retained above.",
+  "independence_limits": [
+    "These are six checker invocations, not six wholly independent implementations or external human review.",
+    "The ordinary and paranoid Lean checkers share ancestry; Lean4Lean derives from the Lean kernel; con-leche and con-ron are related.",
+    "The checks share the mathematical specification, development process, source inputs, export pipeline and imported libraries; compiler, runtimes and operating environment remain trusted to varying degrees."
+  ],
+  "reproduction_limits": [
+    "This repository does not bundle the large historical exports, original machine-specific receipts, checker executables or a portable second-kernel runner.",
+    "This is a sanitized historical report, not a fully reproducible bundled additional-kernel pipeline or a new checker run.",
+    "The historical runs used existing local dependency caches. They do not certify a fresh network checkout or hostile-project sandbox isolation.",
+    "Use the public Lean build instructions and current compiler receipts for the reproduction procedure shipped with this repository."
+  ],
+  "mathematical_scope_limits": [
+    "Encoded finite-law algebra, formal factorial cumulants, an exponential background factor and the order-sharpness construction.",
+    "No separately formalized probability-space independent-Poisson bridge or analytic real-logarithm Taylor bridge is established by these checks.",
+    "No finite-sample coverage theorem, numerical solver correctness, physical calibration, practical sample efficiency, external human review or originality is established by kernel acceptance."
+  ],
+  "historical_binding_record_sha256": {
+    "identification": "dcb32d45e5fe94857a83a49d96b5c0928d00db0e8372f5b7d5605aa9adf314be",
+    "sharpness": "2164ba42e724410e67d0e56efcce97bc64f35b47ea1a672a45d25118995aa49d"
+  }
+}
