@@ -20,6 +20,9 @@ The Python API is experimental; no stable release has been published.
 
 ### Added
 
+- A separately verified D=1 algebraic stability extension, with five checked
+  theorem roots, a portable compilation check and scoped additional-kernel
+  evidence. General-dimensional stability and finite-sample coverage remain open.
 - Written bounded-count identification proof and explicit assumption boundaries.
 - Six Lean source modules covering identification, exponential-factor invariance
   and universal order sharpness.

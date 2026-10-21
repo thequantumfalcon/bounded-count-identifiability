@@ -2,6 +2,12 @@
 
 The [core theorem and sharpness](theorem.md) already have universal arguments and formal implementations. The next steps should strengthen specific remaining claims rather than treat more computation as a substitute for missing assumptions.
 
+The [D=1 deterministic stability bound](../lean/extensions/d1/README.md) is also
+formalized: justified errors $\varepsilon$ in the algebraic second cumulant and
+$\delta$ in the mean imply parameter error at most $\sqrt{\varepsilon}$ and
+background error at most $\delta+\sqrt{\varepsilon}$. This does not supply those
+error guarantees from data or complete the inference procedure below.
+
 | Priority | Work | Completion criterion |
 | --- | --- | --- |
 | 1 | Connect the formal series to conventional probability and analysis. | Formalize the finite-law random variable, the analytic logarithm derivatives, and independent Poisson addition with nonnegative rate. The resulting theorem should use the ordinary probabilistic definitions without leaving those bridges implicit. |

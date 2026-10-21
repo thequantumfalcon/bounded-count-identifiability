@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "record_type": "historical-development-kernel-checks",
+  "status": "selected_exports_accepted",
+  "historical_check_date_utc": "2026-10-21",
+  "digest_reverification_utc": "2026-10-21T06:36:32.403631+00:00",
+  "description": "Selected-field summary of retained D=1 stability development receipts. This preparation rechecked file digests and receipt consistency; it did not rerun the compiler, checkers or public CI.",
+  "published_sources": [
+    {
+      "source": "lean/extensions/d1/CountD1Stability.lean",
+      "source_sha256": "e974c9cb3d642ce84ee93d3dc23e22f384068e3dce647dd8e415efda08b18768",
+      "historical_olean_sha256": "e865c4a47cd089c54b2a7b551f3e29541b91c303dd8fd56cef07d0b40881edd3",
+      "retained_source_and_export_copy_match": true,
+      "published_source_matches_historical_input": true,
+      "source_path_status": "public source present and hash checked"
+    }
+  ],
+  "trials": [
+    {
+      "id": "d1-algebraic-inverse-stability",
+      "selected_theorem_roots": [
+        "CountD1Stability.squared_parameter_error_le",
+        "CountD1Stability.parameter_error_le_sqrt",
+        "CountD1Stability.parameter_error_from_cumulant",
+        "CountD1Stability.background_error_le",
+        "CountD1Stability.bounded_observation_error"
+      ],
+      "export_sha256": "3cc177d52234c554eee15dcee64a03cca06b437b01307a937940292d7c7bf543",
+      "export_bytes": 43496701,
+      "export_format_version": "3.1.0",
+      "exporter_name": "lean4export",
+      "exporter_version": "3.1.0",
+      "lean_version": "4.35.0",
+      "lean_revision": "eb6cafb7290e8bd5f2937522d8d804f58f02bafc",
+      "recorded_dependency_manifest_sha256": "a7190d6c08899259e731c0d98b94fb540feb172f0dc7754be2a097ceae253f3d",
+      "source_and_olean_snapshots_verified": 2,
+      "frozen_input_bindings_verified": 6,
+      "all_snapshot_digests_reverified": true,
+      "all_selected_roots_present_as_theorems": true,
+      "declared_axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "forbidden_names_found": [],
+      "forbidden_name_scope": [
+        "sorryAx",
+        "Lean.trustCompiler",
+        "Lean.ofReduceBool",
+        "Lean.ofReduceNat"
+      ],
+      "compile_and_export": {
+        "compile": {
+          "exit_code": 0,
+          "timed_out": false,
+          "executable_sha256": "ec7a472d1c12a09b0c0c718f7427c2be527b3f5f07810fdbe076c2507c7a91ea",
+          "stdout_sha256": "58dd96042b4dcf9576b197b460caf1e63479093c1eb4cdc0b289f03b8c0dc86e",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0,
+          "historical_receipt_sha256": "660fc2b6e9bfacac308a739e6b25c56ce3fb235276018ebc981855f45cacbb0d",
+          "trust_option": "--trust=0",
+          "printed_theorem_axioms": {
+            "CountD1Stability.squared_parameter_error_le": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CountD1Stability.parameter_error_le_sqrt": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CountD1Stability.parameter_error_from_cumulant": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CountD1Stability.background_error_le": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CountD1Stability.bounded_observation_error": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ]
+          }
+        },
+        "export": {
+          "exit_code": 0,
+          "timed_out": false,
+          "executable_sha256": "bda24bb3fafaf299ba472f944942d6293294b76559fafc9f166badd7c0f981b3",
+          "stdout_sha256": "3cc177d52234c554eee15dcee64a03cca06b437b01307a937940292d7c7bf543",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0,
+          "historical_receipt_sha256": "c3f75ab3cec1b44bd6c57f1688e39788b00b101aeca247913c1152321bf5f7e1"
+        }
+      },
+      "checker_results": [
+        {
+          "exit_code": 0,
+          "timed_out": false,
+          "executable_sha256": "9ef6baeb28d5e28897d5ed6dddd60ff81e511d97374013ece435dff38e9e0137",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0,
+          "historical_receipt_sha256": "c8356329a5625faeb4c9dba41f01b6ce9b928da2fe13bb19abd3abe22f997512",
+          "checker": "leanchecker",
+          "mode_flags": [
+            "--silent",
+            "--from-export"
+          ],
+          "status": "accepted",
+          "stdout_text": "",
+          "reported_declarations_checked": null,
+          "explicit_typechecker_error_count": null
+        },
+        {
+          "exit_code": 0,
+          "timed_out": false,
+          "executable_sha256": "3430a114fcb94d1697555bed88f252a1479d936aff26f36fd2dd1f098144ec9c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0,
+          "historical_receipt_sha256": "be3b08cbf631b50e39957a0c1995244f7ee60c2be5ac3cf3f6bfa63c0f4df718",
+          "checker": "leanchecker-paranoid",
+          "mode_flags": [
+            "--silent",
+            "--from-export"
+          ],
+          "status": "accepted",
+          "stdout_text": "",
+          "reported_declarations_checked": null,
+          "explicit_typechecker_error_count": null
+        },
+        {
+          "exit_code": 0,
+          "timed_out": false,
+          "executable_sha256": "2463006ea615a6f69c80689142cf7cb0a8724fc7819c57ad2b395e99eb6a9f3c",
+          "stdout_sha256": "10198e9ffc4b852473c6387d56500c59b36140917da33f7bf23d3a19b8222d6a",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0,
+          "historical_receipt_sha256": "6ef35bfc2602e42476beaaa91dd4aae56c5e4bf5bcfcd5c51904ffe820970412",
+          "checker": "Lean4Lean",
+          "mode_flags": [
+            "--import"
+          ],
+          "status": "accepted",
+          "stdout_text": "checked 10486 declarations\n",
+          "reported_declarations_checked": 10486,
+          "explicit_typechecker_error_count": null
+        },
+        {
+          "exit_code": 0,
+          "timed_out": false,
+          "executable_sha256": "de57d9dd7f647eb57398bc3dab4dcaa1d64f961f3f49964d5455fbddc73b35a8",
+          "stdout_sha256": "790e3b181b84f42249507f6649c176f20026b265de0dfc6aa032e8907c88b17d",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0,
+          "historical_receipt_sha256": "7a9a273d6a2c08cfbd03664fd0bce6b4862a0567dcde64b5a3f4e3df7f447d45",
+          "checker": "nanoda",
+          "mode_flags": [],
+          "status": "accepted",
+          "stdout_text": "Checked 11387 declarations with no typechecker errors, 1 pretty printer errors: [\n    \"Unable to print axioms\",\n]\n",
+          "reported_declarations_checked": 11387,
+          "explicit_typechecker_error_count": 0,
+          "pretty_printer_error_count": 1,
+          "pretty_printer_diagnostic": "Unable to print axioms",
+          "unpermitted_axiom_hard_error": true,
+          "unsafe_permit_all_axioms": false
+        },
+        {
+          "exit_code": 0,
+          "timed_out": false,
+          "executable_sha256": "4b7ba57f7e4f50afb21374a4f8f980fe0c8d347fde91a1f70e0462749014baa0",
+          "stdout_sha256": "e15437fb73919e37edb623b17d491155c3beddd1393304bcb1402160c2c532d3",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0,
+          "historical_receipt_sha256": "0bb103d1926e80e8971d17bf61eb7d5a631f93d79e6f1bfd5f5da34a3dde6a39",
+          "checker": "con-leche",
+          "mode_flags": [
+            "--verified",
+            "--jobs=2"
+          ],
+          "status": "accepted",
+          "stdout_text": "con-leche: accepted 10489 declarations (--verified)\n",
+          "reported_declarations_checked": 10489,
+          "explicit_typechecker_error_count": null
+        },
+        {
+          "exit_code": 0,
+          "timed_out": false,
+          "executable_sha256": "4e351dd1d556da22efb44c17be30e3ff3900780730ce642ee007d1416d332d40",
+          "stdout_sha256": "6ffb686afce228fd82907355f50a662310b241c1329af7893b471def5f8e79de",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0,
+          "historical_receipt_sha256": "715be3e277d88c736f988f4600b089ed1796124346c9ed32e7b76e6a83cdee81",
+          "checker": "con-ron",
+          "mode_flags": [
+            "--verified",
+            "--jobs=2"
+          ],
+          "status": "accepted",
+          "stdout_text": "con-ron: accepted 10489 declarations (--verified)\n",
+          "reported_declarations_checked": 10489,
+          "explicit_typechecker_error_count": null
+        }
+      ],
+      "historical_scope_inspection_sha256": "510d3c9010153a95df6b3d4ce583b61665e2bdefe67b6400918a5f5b73c49386",
+      "historical_compiler_axiom_inspection_sha256": "e83d2625cb7be87425479130e08cbddec6bc4f94b41165054c535bcba065b73f",
+      "historical_summary_sha256": "5d7e7904b891ab85235ec38b5c456f860af5e37a67b9eb0e43282530baccfbdb",
+      "historical_metadata_sha256": "54d376a51708c836134ad8731bd99069297896e9f1a8ef995a636b6efda68eeb"
+    }
+  ],
+  "historical_manifest": {
+    "sha256": "e47b8a29b3115c8c2e37bc44baf3df9e0f9228c04ca80cb15da9c92fec4ed368",
+    "listed_files_verified": 44,
+    "listed_bytes_verified": 43703403,
+    "all_listed_file_digests_and_sizes_match": true,
+    "unlisted_files_excluding_manifest": 0,
+    "scope": "The retained manifest covers the local evidence packet, including its export. The manifest and raw packet are not bundled here. A matching manifest binds files but does not establish mathematical truth or independent authentication."
+  },
+  "historical_binding_record_sha256": "451921791c1fe3c5d15e9fc11f416c2a04c42d1a44de99036a6c69772b980bd0",
+  "historical_corrected_compiler_receipt_sha256": "2e0c2bd499bba942ca420ce9353780e359ef7315bda299d621446cd8af408bdd",
+  "error_count_convention": "Null means the checker did not print a structured typechecker error count. Empty stderr or exit zero is not converted into an invented numerical error count. Native declaration counts use different conventions.",
+  "axiom_caveat": "The export inspection lists only propext, Classical.choice and Quot.sound, and finds the five selected theorem records. Name/format inspection establishes declared scope, not proof validity. Nanoda reports zero typechecker errors and one axiom pretty-printer error; its diagnostic is preserved above. The kernel processes provide the separate proof-term checking evidence.",
+  "independence_limits": [
+    "Six checker invocations are not six wholly independent implementations, six independent mathematical reviews, or external human review.",
+    "The two Lean kernel variants share ancestry; Lean4Lean derives from the Lean kernel; con-leche and con-ron are related.",
+    "The specification, development process, export pipeline and imported libraries are shared. Compiler, exporter, executable implementations, runtimes and operating environment remain trusted to varying degrees."
+  ],
+  "reproduction_limits": [
+    "Large exports, raw machine-specific receipts and checker installations are not bundled in this public record; it is not a portable additional-kernel pipeline.",
+    "The historical runs used existing dependency artifacts and existing checker binaries. No fresh dependency or checker source rebuild is claimed.",
+    "This preparation step reran no compiler, kernel checker or CI workflow. Historical acceptance does not establish the result of a subsequent public CI run.",
+    "Public extension compilation and any current CI status must be assessed from their separate source verifier, receipts and exact commit. These six extra checkers are not asserted to run in public CI.",
+    "No new intentionally invalid export was run for this D=1 packet. No adversarial-project sandbox validation is claimed."
+  ],
+  "mathematical_scope_limits": [
+    "For nonnegative real p,q, the module proves the square-root inverse bound for the algebraic definition secondCumulant(p)=-p^2 and propagates it to backgroundFromMean(mu,p)=mu-p.",
+    "Bounds epsilon and delta on the model cumulant difference and mean difference are premises, not conclusions about measured or estimated data.",
+    "The module does not formalize the bridge to Bernoulli probability laws, independent Poisson addition or the core formal-logarithm definitions. Physical parameters additionally require p,q at most one and nonnegative backgrounds.",
+    "No general-D stability, finite-sample confidence coverage, projection-program correctness, arbitrary-estimator admissibility, physical calibration, originality or optimality is established by these checks."
+  ]
+}

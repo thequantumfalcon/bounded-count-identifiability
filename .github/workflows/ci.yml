@@ -114,12 +114,17 @@ jobs:
         run: lake build
       - name: Fresh module compilation and printed axiom checks
         run: python lean/verify.py --run ci-check
+      - name: Compile the D=1 stability extension and check its axioms
+        run: python lean/extensions/d1/verify_stability.py --run ci-check
       - name: Preserve proof-check receipt
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: lean-ci-receipt
-          path: lean/verification/ci-check/
+          path: |
+            lean/verification/ci-check/
+            build/stability/ci-check/*.json
+            build/stability/ci-check/*.txt
           if-no-files-found: warn
           retention-days: 14
 

@@ -61,6 +61,19 @@ dependencies. Its verifier recompiles into fresh output, checks source hashes
 and printed axiom lists, and records a uniquely named run. Upstream compiled
 mathlib caches are used; this is not a source rebuild of every trusted component.
 
+The [D=1 stability extension](../lean/extensions/d1/README.md) uses the same pinned
+dependencies but a separate source manifest and verifier. From the repository
+root after the Lean build, run:
+
+```sh
+python lean/extensions/d1/verify_stability.py --run external-check
+```
+
+This compiles the extension freshly with `--trust=0`, checks all five requested
+axiom lists and saves a receipt under `build/stability/external-check/`.
+Use a new run name each time. `python tools/tasks.py formal` checks both the core
+and the extension; the extension does not become part of the frozen core receipt.
+
 The committed local receipt used existing dependency artifacts and says so.
 The separate initial hosted run also passed after fresh dependency retrieval;
 its Linux receipt is preserved in the verification record.

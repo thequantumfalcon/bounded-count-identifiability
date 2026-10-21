@@ -8,11 +8,29 @@ The central result is the [bounded-count identification theorem](theorem.md). Th
 | Independent fixed Poisson background preserves the identifying orders; adding the mean identifies its rate. | Generating-function proof; [CountPoissonChannel.lean](../lean/CountPoissonChannel.lean) and [CountObservedIdentification.lean](../lean/CountObservedIdentification.lean). | Lean checks the exponential-factor model; its independent-addition probability construction is not formalized. |
 | The general maximum order $D+1$ cannot be lowered. | Valid-law construction and matching cumulants in [CountSharpness.lean](../lean/CountSharpness.lean). | Uses an established generalized matching distribution; the comparison law is a point mass. |
 | Exact arithmetic reproduces population cumulants and the known-family collision. | [Population calculation code](../src/bounded_counts/) and [examples](../examples/). | Finite exact cases supplement the universal proof. The software is not formally verified. |
+| For nonnegative parameters in the algebraic $D=1$ model, second-cumulant error at most $\varepsilon$ gives parameter error at most $\sqrt{\varepsilon}$; mean error at most $\delta$ additionally gives background error at most $\delta+\sqrt{\varepsilon}$. | [CountD1Stability.lean](../lean/extensions/d1/CountD1Stability.lean), separately compiled with explicit axiom checks. | Defines $\kappa_2(p)=-p^2$ and $b(\mu,p)=\mu-p$ algebraically. The probability bridge and data-error guarantees are separate. |
 | A Bernoulli source admits an exact algebraic projection of a two-moment confidence region. | Formula and conditional coverage argument below. | Known background ceiling and IID windows. No general-$D$ confidence-region solver is claimed. |
 | Finite-moment compatibility and zero covariance do not certify the observation model. | Explicit counterexamples below and the [calibration obligations](roadmap.md). | Constructed probability models are not measurements or an assessment of a particular instrument. |
 | The sharpness family and Poisson-cancellation method are established. | [Primary references and access notes](references.md). | Priority of the general sufficient-order theorem remains unresolved. |
 
 The [formal verification guide](../lean/README.md) documents the six-module build, pinned dependencies, published compiler receipts and reproduction limits. Additional development checks accepted selected dependency-closed exports using several checker binaries. The selected results use `propext`, `Classical.choice` and `Quot.sound`; no `sorryAx` was found in those exports. Several checkers share ancestry and dependencies. These checks help detect errors but do not amount to external human peer review. Implementations also share mathematical specifications and parts of their development process; see [research provenance](../PROVENANCE.md).
+
+## D=1 deterministic stability
+
+For any $p,q\geq0$,
+
+$$
+|p-q|^2\leq|p^2-q^2|,
+\qquad |p-q|\leq\sqrt{|p^2-q^2|}.
+$$
+
+The first inequality follows from $|p-q|\leq p+q$ and
+$|p^2-q^2|=|p-q|(p+q)$. Taking square roots and then applying the triangle
+inequality proves the parameter and background bounds in the table. The
+[separate extension guide](../lean/extensions/d1/README.md) specifies all five
+checked theorem roots and reproduction commands. This elementary result carries
+no originality claim. It does not establish confidence levels, admissibility of
+an arbitrary estimate, or stability for general $D$.
 
 ## D=1 confidence prototype
 

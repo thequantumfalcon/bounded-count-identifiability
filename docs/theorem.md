@@ -102,7 +102,7 @@ The claim concerns the full class of laws supported on $0,\ldots,D$. It does not
 
 ## What the formal proof covers
 
-The six Lean modules encode the following chain:
+The six core Lean modules encode the following chain:
 
 | Module | Encoded statement |
 | --- | --- |
@@ -114,5 +114,10 @@ The six Lean modules encode the following chain:
 | [CountSharpness.lean](../lean/CountSharpness.lean) | Validity, distinctness, cumulants and the universal lower-order counterexample. |
 
 The checked definitions use mathlib's formal logarithm. The probability-space construction of independent Poisson addition and the analytic real-logarithm/Taylor bridge are not separately formalized. The algebraic channel accepts real parameters; the probability interpretation requires nonnegative background rates.
+
+A [separate D=1 extension](../lean/extensions/d1/README.md) proves deterministic
+inverse-error bounds for the algebraic formulas $\kappa_2(p)=-p^2$ and
+$b=\mu-p$. It does not change the six core modules or close either interpretation
+bridge. Finite-sample coverage and general-$D$ stability remain separate tasks.
 
 Formal acceptance does not verify a detector, prove a useful finite sample size or establish mathematical priority. The calculation software and confidence-region argument have their own scope; see [claims](claims.md), the [formal reproduction guide](../lean/README.md) and the [next proof obligations](roadmap.md).

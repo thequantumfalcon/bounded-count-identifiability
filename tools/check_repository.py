@@ -34,6 +34,15 @@ MODULES = {
     "CountObservedIdentification.lean",
     "CountSharpness.lean",
 }
+D1_DIRECTORY = "lean/extensions/d1"
+D1_SOURCE = "CountD1Stability.lean"
+D1_ROOTS = [
+    "CountD1Stability.squared_parameter_error_le",
+    "CountD1Stability.parameter_error_le_sqrt",
+    "CountD1Stability.parameter_error_from_cumulant",
+    "CountD1Stability.background_error_le",
+    "CountD1Stability.bounded_observation_error",
+]
 LAKE_PACKAGES = {
     "mathlib",
     "plausible",
@@ -68,6 +77,7 @@ COMMON_REQUIRED = {
     "src/bounded_counts/core.py",
     "src/bounded_counts/__main__.py",
     "tests/test_exact_counts.py",
+    "tests/test_stability_verifier.py",
     "examples/d1_projection_sage.py",
     "tools/tasks.py",
     "tools/check_repository.py",
@@ -78,6 +88,11 @@ COMMON_REQUIRED = {
     "lean/lake-manifest.json",
     "lean/source_manifest.json",
     "lean/third_party/provenance.json",
+    f"{D1_DIRECTORY}/README.md",
+    f"{D1_DIRECTORY}/{D1_SOURCE}",
+    f"{D1_DIRECTORY}/source_manifest.json",
+    f"{D1_DIRECTORY}/verify_stability.py",
+    "evidence/d1-stability-kernel-checks.json",
 } | {"lean/" + name for name in MODULES}
 REPOSITORY_REQUIRED = {
     ".gitignore",
@@ -339,7 +354,12 @@ def inventory_files(root: Path, mode: str) -> tuple[list[Path], str]:
 def audit(root: Path, mode: str, private_tokens: list[str]) -> dict:
     root = root.resolve()
     errors = []
-    counts = {"markdown_links": 0, "lean_sources": 0, "workflow_uses": 0}
+    counts = {
+        "markdown_links": 0,
+        "lean_sources": 0,
+        "lean_extension_sources": 0,
+        "workflow_uses": 0,
+    }
 
     def fail(message):
         errors.append(message)
@@ -385,9 +405,9 @@ def audit(root: Path, mode: str, private_tokens: list[str]) -> dict:
             part.endswith(".egg-info") for part in path.relative_to(root).parts
         ):
             fail(f"build metadata included in repository files: {name}")
-        if path.suffix == ".lean" and name not in {
-            "lean/" + module for module in MODULES
-        }:
+        if path.suffix == ".lean" and name not in (
+            {"lean/" + module for module in MODULES} | {f"{D1_DIRECTORY}/{D1_SOURCE}"}
+        ):
             fail(f"Lean source is outside the six-module manifest: {name}")
         raw = path.read_bytes()
         if b"\x00" in raw:
@@ -486,6 +506,33 @@ def audit(root: Path, mode: str, private_tokens: list[str]) -> dict:
             fail(f"lean/{name}: forbidden proof-admission/axiom/native-decide token")
         if re.search(r"\bset_option\s+debug\.skipKernelTC\s+true\b", code):
             fail(f"lean/{name}: kernel-check skipping option")
+
+    extension = load_json(f"{D1_DIRECTORY}/source_manifest.json")
+    extension_sources = extension.get("sources", {})
+    if (
+        extension.get("schema_version") != 1
+        or set(extension_sources) != {D1_SOURCE}
+        or extension.get("theorem_roots") != D1_ROOTS
+    ):
+        fail(f"{D1_DIRECTORY}/source_manifest.json: unexpected source set or roots")
+    extension_path = root / D1_DIRECTORY / D1_SOURCE
+    if extension_path.is_file():
+        counts["lean_extension_sources"] += 1
+        entry = extension_sources.get(D1_SOURCE, {})
+        if (
+            not isinstance(entry, dict)
+            or not HEX64.fullmatch(str(entry.get("sha256", "")))
+            or sha256(extension_path) != entry["sha256"].lower()
+            or extension_path.stat().st_size != entry.get("bytes")
+        ):
+            fail(f"{D1_DIRECTORY}/{D1_SOURCE}: source binding differs from manifest")
+        code = strip_lean_comments_and_strings(
+            extension_path.read_text(encoding="utf-8")
+        )
+        if LEAN_ADMISSIONS.search(code):
+            fail(f"{D1_DIRECTORY}/{D1_SOURCE}: forbidden proof-admission token")
+        if re.search(r"\bset_option\s+debug\.skipKernelTC\s+true\b", code):
+            fail(f"{D1_DIRECTORY}/{D1_SOURCE}: kernel-check skipping option")
 
     lake = load_json("lean/lake-manifest.json")
     packages = lake.get("packages", [])

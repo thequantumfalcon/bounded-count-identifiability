@@ -37,6 +37,7 @@ they do not replace it.
 | Bounded-law identification from orders `2, ..., D+1` | Written argument and Lean | Known exact support; population cumulants |
 | Algebraic cancellation of fixed Poisson background | Lean formal generating series | Probability-space interpretation is not separately formalized |
 | Order `D+1` is necessary in general | Valid probability-law construction in Lean | Known family; no construction-originality claim |
+| Deterministic `D=1` inverse-error bounds | Separate Lean stability extension | Algebraic model; observation-error bounds must be justified separately |
 | Exact rational reproductions | Python examples and tests | Finite calculations are not universal proofs |
 | A `D=1` confidence-set projection | Written elimination proof and optional Sage calculation | Conditional IID model; no general-dimensional solver |
 
@@ -50,7 +51,8 @@ assumptions or experimental usefulness.
 - Read the [theorem and proof](docs/theorem.md).
 - Follow the [reproduction instructions](docs/reproduction.md) for Python,
   the pinned Lean/mathlib project and the optional Sage calculation.
-- Inspect the six source modules in [lean/](lean/).
+- Inspect the six core source modules in [lean/](lean/) and the separate
+  [D=1 stability extension](lean/extensions/d1/README.md).
 - Review the [verification record](evidence/README.md) and its stated trust limits.
 
 The emitted source count and unknown detection efficiency are not separately
@@ -60,8 +62,9 @@ No detector or laboratory experiment has been validated by this repository.
 
 ## What comes next
 
-The immediate proof targets are the probability-space Poisson bridge, formal
-stability bounds and the finite-sample coverage argument. Broader exact solvers,
+The immediate proof targets are the probability-space Poisson bridge, general
+stability bounds and the finite-sample coverage argument. The `D=1` algebraic
+stability bound is now formalized. Broader exact solvers,
 better statistical bounds, literature-priority checks and physical calibration
 are separate tasks. See the [proof roadmap](docs/roadmap.md).
 

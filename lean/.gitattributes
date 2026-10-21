@@ -1,6 +1,7 @@
 # Preserve every file whose bytes are bound by the verification records.
 *.lean -text
 verify.py -text
+extensions/d1/verify_stability.py -text
 source_manifest.json -text
 lake-manifest.json -text
 lakefile.toml -text

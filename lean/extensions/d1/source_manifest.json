@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "description": "Separate exact-byte source binding for the D=1 algebraic stability extension; does not alter the six-module core manifest.",
+  "sources": {
+    "CountD1Stability.lean": {
+      "sha256": "e974c9cb3d642ce84ee93d3dc23e22f384068e3dce647dd8e415efda08b18768",
+      "bytes": 3407
+    }
+  },
+  "theorem_roots": [
+    "CountD1Stability.squared_parameter_error_le",
+    "CountD1Stability.parameter_error_le_sqrt",
+    "CountD1Stability.parameter_error_from_cumulant",
+    "CountD1Stability.background_error_le",
+    "CountD1Stability.bounded_observation_error"
+  ]
+}

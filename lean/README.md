@@ -2,6 +2,11 @@
 
 This Lean project contains six proof modules for identification of a count law supported on `{0, ..., D}` from factorial cumulants of orders `2, ..., D+1`. It also proves the algebraic cancellation of an unknown fixed Poisson factor and the necessity, in general, of reaching order `D+1`.
 
+The separate [D=1 extension](extensions/d1/README.md) proves deterministic
+inverse-error bounds. It shares the pinned toolchain and dependencies, but has
+its own manifest, verifier and receipts. The commands below reproduce the six
+core modules; follow the extension guide for its additional check.
+
 ## Reproduce from a fresh checkout
 
 Install Lean's Elan toolchain manager, Git, and Python 3.10 or later. From this directory, run:
@@ -50,7 +55,11 @@ CountSharpness.lower_observed_cumulants_match
 
 The source law assumes nonnegative masses, total mass one, and a known finite support bound `D`. Cumulants are defined algebraically as `r!` times the coefficient of a formal logarithmic series. The formal Poisson channel is multiplication by `exp(b*t)`. Its interpretation as addition of an independent Poisson random variable with a fixed nonnegative rate requires the usual probabilistic generating-function argument; no measure-theoretic construction of independent random variables or analytic `Real.log` bridge is included here.
 
-The results concern exact cumulants. They do not prove robustness to estimated cumulants, finite-sample performance, a physical model's validity, or uniqueness of a source before unknown thinning. Additional independent proof checks and scientific or statistical analyses belong in separate evidence records.
+The core results concern exact cumulants. The separate D=1 extension bounds
+parameter error given specified observation errors in an algebraic model.
+Neither supplies finite-sample coverage, a physical model's validity, or
+uniqueness of a source before unknown thinning. Additional proof checks and
+scientific or statistical analyses belong in separate evidence records.
 
 The sharpness family is established prior work: see [Afendras and Papadatos, Eq. (3.1) and Lemma 3.1](https://arxiv.org/pdf/1411.1165), PDF page 7, for the generalized matching / quasi-Poisson family and its matched factorial moments. No originality claim is made for that family or the lower-bound implication. Priority of any broader theorem must be assessed separately from successful formal verification.
 

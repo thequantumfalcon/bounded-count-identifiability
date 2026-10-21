@@ -25,6 +25,13 @@ checks do not imply independent human review or independent specifications.
 One checker's axiom-report printer warning is distinguished from its zero
 type-checking errors in the record.
 
+The separately published [D=1 stability extension](../lean/extensions/d1/README.md)
+has its own source manifest and portable compilation check. Its
+[additional kernel-check record](d1-stability-kernel-checks.json) summarizes six
+local executions on the same dependency-closed export, including Lean4Lean.
+That historical record does not mean the six checkers run in public CI. It
+preserves the same independence limits and nanoda's axiom-printing diagnostic.
+
 Python supplies finite exact-arithmetic comparisons; Sage performs a narrow
 algebraic projection check. These programs are not formally verified and could
 share modeling mistakes. See [reproduction commands](../docs/reproduction.md).
