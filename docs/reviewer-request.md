@@ -9,7 +9,7 @@ material was developed.
 ## Statement to inspect
 
 Let $D\geq1$ be a known integer and let $X,X'$ be arbitrary probability laws
-supported on $\{0,\ldots,D\}$. Write
+supported on $\lbrace0,\ldots,D\rbrace$. Write
 
 $$
 P(t)=\mathbb E(1+t)^X,\qquad

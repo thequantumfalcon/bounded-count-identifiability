@@ -1,6 +1,6 @@
 # Bounded counts from higher factorial cumulants
 
-A probability law supported on the known set $\{0,\ldots,D\}$ is uniquely determined by its factorial cumulants of orders $2,\ldots,D+1$. The source mean need not be supplied. This gives identification under independent, unknown, fixed-rate Poisson background. The maximum order $D+1$ is sharp for the general class.
+A probability law supported on the known set $\lbrace0,\ldots,D\rbrace$ is uniquely determined by its factorial cumulants of orders $2,\ldots,D+1$. The source mean need not be supplied. This gives identification under independent, unknown, fixed-rate Poisson background. The maximum order $D+1$ is sharp for the general class.
 
 These are exact population statements. The known sharpness distribution is attributed below. Priority for the general sufficient-order theorem remains unresolved; this project does not claim an original discovery.
 

@@ -129,3 +129,32 @@ The separate `flint-ci-receipt` records exact finite calculations with a differe
 arithmetic implementation. The `atheris-ci-receipt` records bounded
 coverage-guided software tests and their deliberate-fault control. Neither
 artifact is an external mathematical review or a physical measurement.
+
+The finite-mixture sampling extension adds eight further roots for actual
+square integrability, total variance, conservative variance ceilings and
+simultaneous moment coverage. They are included in the current 23-module,
+140-root research suite and its CI compilation, separate axiom audits and
+kernel replay. Earlier 21- and 22-module receipts retain their original scope.
+The expanded FLINT calculation checks total-variance identities and ceilings,
+rejects applying the fixed-rate ceilings to mixtures, and checks the arithmetic
+of the written shared-rate dependence counterexample. These finite controls
+do not certify a sampler or measured independence.
+
+The [local synthetic execution record](count-stress-check.json) binds its
+reported parameters, results and raw-data hashes to the public script. The
+separate `count-stress-ci-receipt` artifact retains the synthetic experiment's
+executed source, protocol, raw counts and analysis for 14 days. The
+[experiment guide](../docs/stress-test.md) explains the known-law variance
+benchmark, deterministic controls and retention limits. Statistical inclusion
+and separation are reported outcomes, not CI acceptance criteria, empirical
+coverage-rate estimates or physical measurements.
+
+A separate [local additional-checker record](finite-mixture-sampling-kernel-check.json)
+binds the eight finite-mixture sampling roots to fresh compilation, a separate
+axiom audit and Lean4Lean acceptance of 34,903 declarations. The existing
+wrong-type control exited 1 with an explicit kernel type-mismatch diagnosis;
+error-printer panics and a fallback printer remain, so its diagnostics were not
+clean. Twenty-two project dependencies were reused as receipt-bound objects.
+Lean4Lean shares Lean kernel ancestry; this local record offers limited
+implementation independence and is not a CI run, outside mathematical review
+or validation of the model's physical assumptions.

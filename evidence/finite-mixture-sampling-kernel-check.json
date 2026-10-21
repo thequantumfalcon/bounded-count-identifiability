@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "record_type": "Sanitized historical local execution; not a public CI execution",
+  "checked_utc": "2026-10-21T20:42:12.309011+00:00",
+  "status": "PASS",
+  "source": "lean/extensions/finite-mixture-sampling/CountFiniteMixedPoissonSampling.lean",
+  "source_sha256": "b879950d3b79a7f9890e515fe659b9cf2a34b83826fa2a6700e6a340b5e81df9",
+  "source_manifest_sha256": "90720e6aa71b4de972f645554067d10161a8bf5726c2550e74ee77518314730e",
+  "audit_policy_sha256": "28a1856c5f7eb061140bdcfa6e0a17de38968715be2b9b4000308961076bc04e",
+  "raw_summary_sha256": "1f3a031c24397ff349941c71d5516eb62a9cf0f3b05aa17802db107d404c74a1",
+  "fresh_compile": {
+    "exit_code": 0,
+    "timed_out": false,
+    "elapsed_seconds": 19.906,
+    "diagnostics_empty": true,
+    "object_sha256": "04bf58e97746ec36dedca7d5489cca41fcbec35c8453bac57735e5531c9420eb",
+    "receipt_sha256": "ad4ade4435a47c751454cf52a4b289617a4a65091d7a0b78d78e199a003731cd"
+  },
+  "separate_axiom_audit": {
+    "status": "PASS",
+    "receipt_sha256": "25fcc1ddabb7f83d006eb527dccb7ead28beeae96280774c39b1d66220f98fb6",
+    "query_sha256": "9ce653cd82036da04b3e6120c8377d0d39513308ae462fc161d8eebda209ead6",
+    "stdout_sha256": "fbeb60206aec11ccc153c7de7db38977f6cf8542cc361211ef0afb07e7ae7bf9",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "roots": [
+    "CountFiniteMixedPoissonSampling.finite_sum_memLp",
+    "CountFiniteMixedPoissonSampling.finite_total_variance",
+    "CountFiniteMixedPoissonSampling.count_memLp",
+    "CountFiniteMixedPoissonSampling.factorial_two_memLp",
+    "CountFiniteMixedPoissonSampling.mixture_means",
+    "CountFiniteMixedPoissonSampling.count_variance_ceiling",
+    "CountFiniteMixedPoissonSampling.factorial_variance_ceiling",
+    "CountFiniteMixedPoissonSampling.sample_means_coverage"
+  ],
+  "export_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "forbidden_names": [],
+  "export_sha256": "2ed8b91f456f77a35244dec8dcc22a0c49bb9532d96d6705c8d7d6b38382209c",
+  "export_bytes": 198416768,
+  "export_exit_code": 0,
+  "lean4lean": {
+    "exit_code": 0,
+    "timed_out": false,
+    "elapsed_seconds": 46.188,
+    "output": "checked 34903 declarations\n",
+    "stderr_empty": true,
+    "receipt_sha256": "fb425f4951a8a0a9015adf0c8d39d7a060f2e094b16406a3354d8924d73a644e"
+  },
+  "negative_control": {
+    "fixture_sha256": "d767b9cc9d187484f69665b1071f384aff613a145665b847dc172b624cca3c04",
+    "mutation": "One existing coefficient theorem's claimed type changed to False; its proof expression was unchanged.",
+    "theorem": "CountCoefficientAudit.two_zero_coefficients_force_zero_shift",
+    "exit_code": 1,
+    "timed_out": false,
+    "abort_on_panic": false,
+    "semantic_diagnosis": "Kernel declaration type mismatch; expected type False.",
+    "diagnostic_limitation": "Two environment-extension panic messages from error printing and a raw-printer fallback remain. This is diagnosed semantic rejection with a reporting bug, not clean diagnostic output.",
+    "stderr_sha256": "d993c93e74af7593fd1938484bb8ffa1623baee9c7a1abc89553c1b569b3e207",
+    "receipt_sha256": "c67eaf14dabfa086be732687f5f1e67e47c7ae8f44bb39acfa7ebaa6fb0352be",
+    "scope": "Control from an earlier coefficient theorem, not a mutation of a new sampling theorem or exhaustive checker testing."
+  },
+  "frozen_inputs_and_artifacts_unchanged": true,
+  "receipt_bound_reused_project_modules": 22,
+  "tool_sha256": {
+    "lean.exe": "ec7a472d1c12a09b0c0c718f7427c2be527b3f5f07810fdbe076c2507c7a91ea",
+    "leanexport.exe": "bda24bb3fafaf299ba472f944942d6293294b76559fafc9f166badd7c0f981b3",
+    "lean4lean.exe": "2463006ea615a6f69c80689142cf7cb0a8724fc7819c57ad2b395e99eb6a9f3c"
+  },
+  "limitations": [
+    "Lean4Lean derives from the Lean kernel and may share bugs; limited implementation independence.",
+    "Shared compiler/exporter, compiled dependencies, standard runtime, source interpretation and host remain trusted.",
+    "Fresh compilation of one new source; 22 prior project modules were reused as receipt-bound imports. This is not a fresh whole-toolchain build.",
+    "The theorem assumes a common finite-mixture law, bounded component rates and unconditional pairwise independence of observed windows.",
+    "No validation of those assumptions from data, general mixing theorem, mixture parameter projection, executable implementation verification, independent human review, originality claim or physical validation."
+  ],
+  "reproduction_limits": "Large export, detailed local records and tool installations remain local. This sanitized record is not a self-contained reproduction of the additional-checker run. Use the committed research suite for fresh compilation, separate axiom audits and bundled-kernel replay."
+}

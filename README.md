@@ -42,6 +42,7 @@ they do not replace it.
 | Finite masses define actual probability measures and generating-function expectations | Lean probability and analytic extensions | Known finite support; all-order logarithm derivatives agree with formal cumulants |
 | Conditional two-moment confidence bounds | Lean derives actual moments, integrability, variances and sample coverage | Bernoulli source, fixed independent Poisson background, known ceiling and pairwise-independent observed windows |
 | `D=1` stability under bounded second-cumulant perturbations | Lean algebraic bound and actual finite-mixture probability construction | Finite mixtures of fixed-rate components; a supplied rate range bounds rate variance. Calibration and general mixing laws remain open |
+| Moment error bounds for finite random-rate mixtures | Actual variance ceilings and simultaneous sampling bound in Lean | Common finite-mixture laws, supplied rate ceiling and unconditional pairwise independence across observed windows; no mixed-rate parameter projection or physical validation |
 | Exact rational reproductions | Python examples and tests | Finite calculations are not universal proofs |
 | A `D=1` confidence-set projection | Lean interval elimination, clipping and empty-set proofs; optional Sage calculation | The executable Sage program is not formally verified; no general-dimensional solver |
 
@@ -61,6 +62,8 @@ assumptions or experimental usefulness.
 - Inspect the [probability, sampling and uncertainty extensions](docs/probability-extensions.md)
   and their explicit remaining assumptions.
 - Review the [verification record](evidence/README.md) and its stated trust limits.
+- Run the [synthetic count experiment](docs/stress-test.md), including its
+  frozen design, saved-data checks and explicit ideal-model limitations.
 - Read the [red-team follow-up](docs/red-team-followup.md) for the verifier defects,
   their repairs and the limits of the numerical confidence prototype.
 - Read the [originality review](docs/originality-review.md) and

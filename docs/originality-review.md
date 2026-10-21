@@ -5,7 +5,7 @@ theorem remains unresolved.** A targeted search is not proof of novelty, and no
 independent human literature review is claimed.
 
 The exact question is whether every probability law on a known
-$\{0,\ldots,D\}$ is determined by factorial cumulants
+$\lbrace0,\ldots,D\rbrace$ is determined by factorial cumulants
 $\kappa_2,\ldots,\kappa_{D+1}$, without supplying $\kappa_1$. The
 [theorem and proof](theorem.md) compare arbitrary admissible laws. Results that
 assume the mean, a factorization into Bernoulli laws, or knowledge of the entire

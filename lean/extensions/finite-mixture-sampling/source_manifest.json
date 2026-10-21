@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "description": "Exact-byte source binding for finite-mixture population variance and conditional sample-moment coverage; scope and assumptions are stated in the source and extension guide.",
+  "sources": {
+    "CountFiniteMixedPoissonSampling.lean": {
+      "sha256": "b879950d3b79a7f9890e515fe659b9cf2a34b83826fa2a6700e6a340b5e81df9",
+      "bytes": 11047
+    }
+  },
+  "theorem_roots": [
+    "CountFiniteMixedPoissonSampling.finite_sum_memLp",
+    "CountFiniteMixedPoissonSampling.finite_total_variance",
+    "CountFiniteMixedPoissonSampling.count_memLp",
+    "CountFiniteMixedPoissonSampling.factorial_two_memLp",
+    "CountFiniteMixedPoissonSampling.mixture_means",
+    "CountFiniteMixedPoissonSampling.count_variance_ceiling",
+    "CountFiniteMixedPoissonSampling.factorial_variance_ceiling",
+    "CountFiniteMixedPoissonSampling.sample_means_coverage"
+  ]
+}
