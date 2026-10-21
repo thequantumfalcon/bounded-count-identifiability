@@ -56,13 +56,47 @@ against an integer-partition cumulant calculation, plus exact transformation
 identities. `python tools/tasks.py fuzz` fixes the seed and runs 1,000 generated
 cases after the saved corpus. Installed wheel and rebuilt-source checks also run
 a smaller 100-case sample. These finite checks can expose software defects;
-they are neither universal proofs nor coverage-guided fuzzing. CI requires the
-fuzz job in addition to the existing checks.
+they are not universal proofs.
+
+The required Linux fuzz job also runs Atheris coverage-guided generation using
+the same exact oracles, then checks an injected API fault and genuine replay.
+To reproduce that extra check on Linux x86_64 with CPython 3.12, 3.13 or 3.14:
+
+```sh
+python -m pip install --require-hashes --only-binary=:all: --no-deps -r fuzz/requirements.txt
+python fuzz/run_atheris.py --output build/atheris-local --seconds 60
+```
+
+Choose a fresh output directory. The receipt preserves source hashes, engine
+statistics, corpus inputs and process logs. Read the [fuzz guide](../fuzz/README.md)
+for resource bounds, replay commands and interpretation. Coverage-guided input
+generation still shares the existing oracle and is a finite software check.
 
 CI exercises Python on Linux and Windows, compiles Lean on Linux, and includes
-a separate exact Sage projection job. Inspect
+separate exact Sage projection and FLINT finite-mixture jobs. Inspect
 the actual commit's Actions results: configuration alone is not a successful
 run. No package has been published to PyPI.
+
+## Separate finite-mixture calculation
+
+The [FLINT reproduction](../examples/finite_mixture_flint.py) constructs
+truncated generating series and their formal logarithms using exact FLINT
+rationals. It does not import the package's cumulant implementation. Run it in
+a separate environment supported by the hash-pinned wheel file:
+
+```sh
+python -m pip install --require-hashes --only-binary=:all: --no-deps -r examples/requirements-flint.txt
+python examples/finite_mixture_flint.py
+```
+
+Its finite fixtures check moments, the mean and second-cumulant identities,
+the rate-range variance bound, endpoint equality and the two-statistic ambiguity
+example. Deliberately incorrect formulas must fail the checks. The output records
+versions, source hash and execution counts; CI preserves it as `flint-ci-receipt`.
+This adds arithmetic and implementation diversity within the same research
+campaign. It neither verifies the executable generally nor supplies independent
+human review, physical calibration or an originality result. These formulas
+are rational, so exact arithmetic suffices without approximate ball enclosures.
 
 ## Formal proof
 
@@ -106,7 +140,7 @@ uses the same verifier with `--suite research`:
 python lean/extensions/d1-law/verify_law_bridge.py --suite research --run external-research
 ```
 
-It freshly checks the six core modules and all fifteen extensions. Their source
+It freshly checks the six core modules and all sixteen extensions. Their source
 manifests and theorem-root lists are checked separately. A valid axiom list may
 use any subset of `propext`, `Classical.choice` and `Quot.sound`, including no
 axioms; additional axioms, missing roots and duplicate roots are rejected.

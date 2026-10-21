@@ -192,6 +192,16 @@ RESEARCH_ROOTS = {
         "sample_means_coverage",
         "projected_region_coverage",
     ),
+    "CountFiniteMixedPoisson": (
+        "mixture_isProbability",
+        "mixture_factorial",
+        "rateVariance_nonneg",
+        "rateVariance_eq",
+        "mixture_mean",
+        "mixture_second",
+        "rateVariance_le_range",
+        "mixture_stability",
+    ),
 }
 
 DIRECTORIES = {
@@ -210,6 +220,7 @@ DIRECTORIES = {
     "CountConfidenceProjection": "confidence-projection",
     "PoissonFactorialMomentsV1": "poisson-factorial-moments",
     "BernoulliPoissonStatisticsV1": "bernoulli-poisson-statistics",
+    "CountFiniteMixedPoisson": "finite-mixture",
 }
 
 ALLOWED_AXIOMS = {"propext", "Classical.choice", "Quot.sound"}

@@ -41,7 +41,7 @@ they do not replace it.
 | Connection of those bounds to Bernoulli laws, including `p=0` and `p=1` | Lean finite-law and analytic extensions | Population cumulants; errors still need justification from data |
 | Finite masses define actual probability measures and generating-function expectations | Lean probability and analytic extensions | Known finite support; all-order logarithm derivatives agree with formal cumulants |
 | Conditional two-moment confidence bounds | Lean derives actual moments, integrability, variances and sample coverage | Bernoulli source, fixed independent Poisson background, known ceiling and pairwise-independent observed windows |
-| `D=1` stability under bounded second-cumulant perturbations | Lean uncertainty extension | Algebraic bound; the mixed-Poisson interpretation is written, not formalized |
+| `D=1` stability under bounded second-cumulant perturbations | Lean algebraic bound and actual finite-mixture probability construction | Finite mixtures of fixed-rate components; a supplied rate range bounds rate variance. Calibration and general mixing laws remain open |
 | Exact rational reproductions | Python examples and tests | Finite calculations are not universal proofs |
 | A `D=1` confidence-set projection | Lean interval elimination, clipping and empty-set proofs; optional Sage calculation | The executable Sage program is not formally verified; no general-dimensional solver |
 
@@ -81,8 +81,8 @@ and receipts for the exact commit you inspect.
 
 The formal extensions now cover the analytic cumulant connection, actual
 distributional factorial moments and exact confidence-set projection. Further
-work includes verification of the executable confidence software, a probability
-model for uncertain background rates, broader exact solvers and sharper
+work includes verification of the executable confidence software, extension
+beyond finite background-rate mixtures, broader exact solvers and sharper
 statistical bounds. Outside mathematical review, literature-priority checks
 and physical calibration still require their own evidence. See the
 [proof roadmap](docs/roadmap.md).

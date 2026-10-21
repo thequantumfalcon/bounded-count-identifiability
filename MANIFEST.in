@@ -5,10 +5,10 @@ recursive-include docs *.md
 recursive-include .github *.md *.yml
 exclude .github/CODE_OF_CONDUCT.md
 recursive-include evidence *.md *.json
-recursive-include examples *.py
+recursive-include examples *.py *.txt
 recursive-include tools *.py
 recursive-include tests *.py
-recursive-include fuzz *.py *.json *.md
+recursive-include fuzz *.py *.json *.md *.txt
 recursive-include lean *.lean *.toml *.json *.txt *.md *.py .gitattributes lean-toolchain
 prune lean/.lake
 prune lean/.verification

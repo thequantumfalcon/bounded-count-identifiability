@@ -206,8 +206,27 @@ $$
 \operatorname{Var}(X+Z)-\mathbb E[X+Z]=-p^2+\operatorname{Var}\Lambda.
 $$
 
-Thus a justified bound `Var(Λ) ≤ η` supplies the perturbation allowance. This
-probability-mixture calculation is not formalized by the algebraic module.
+Thus a justified bound `Var(Λ) ≤ η` supplies the perturbation allowance. The
+arbitrary-mixing interpretation remains a written argument. A separate
+[finite-mixture extension](../lean/extensions/finite-mixture/README.md) now
+constructs a normalized finite sum of actual Bernoulli–Poisson product measures
+with one common source parameter. It derives integrability and every positive
+factorial moment, then proves the mean and second-cumulant identities using
+the centered weighted rate variance. Zero weights, zero or repeated rates and
+both Bernoulli endpoints are allowed.
+
+If every component rate lies in a supplied interval `[L,U]`, the extension also
+proves `v ≤ (U-L)²/4`. This is the established bounded-range variance inequality,
+not a new inequality or a calibration inferred from observations. Applying the
+existing stability theorem to two such actual mixture laws gives the displayed
+source and mean-background error bounds. Both models must satisfy their stated
+variance allowance. The module defines the second factorial cumulant by
+`E[S(S-1)] - E[S]²`; it does not formalize logarithm derivatives of a mixture
+generating function or a separate latent-index random variable.
+
+The fixed-rate confidence theorem above cannot automatically be used with
+random-rate backgrounds: its variance ceilings and sampling assumptions need
+fresh justification for that model.
 The second factorial cumulant here means variance minus mean; a finite second
 moment alone need not give an analytic moment generating function near zero.
 The standard mixed-Poisson factorial-moment identity appears in
@@ -232,7 +251,7 @@ After fetching the pinned dependencies as described in the
 python lean/extensions/d1-law/verify_law_bridge.py --suite research --run external-research
 ```
 
-This suite recompiles all six core modules and fifteen extensions in dependency
+This suite recompiles all six core modules and sixteen extensions in dependency
 order with `--trust=0`, checks source manifests, exact printed theorem lists,
 standard axioms, diagnostics and output bindings. The axiom lists come from a
 generated import-only query in a separate Lean process, with exact unique root

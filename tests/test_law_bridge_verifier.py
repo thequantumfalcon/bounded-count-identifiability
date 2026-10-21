@@ -60,6 +60,7 @@ RESEARCH_INPUTS = tuple(
         ("analytic-cumulant", "CountAnalyticCumulantBridge"),
         ("confidence-projection", "CountConfidenceProjection"),
         ("poisson-factorial-moments", "PoissonFactorialMomentsV1"),
+        ("finite-mixture", "CountFiniteMixedPoisson"),
     )
     for filename in (name + ".lean", "source_manifest.json")
 )
@@ -625,6 +626,7 @@ class LawBridgeVerifierTests(unittest.TestCase):
             "CountAnalyticCumulantBridge",
             "CountConfidenceProjection",
             "PoissonFactorialMomentsV1",
+            "CountFiniteMixedPoisson",
         ):
             for prefix in ("tamper_", "shadow_"):
                 with self.subTest(module=name, prefix=prefix):
@@ -656,6 +658,7 @@ class LawBridgeVerifierTests(unittest.TestCase):
             "CountAnalyticCumulantBridge_changed",
             "CountConfidenceProjection_changed",
             "PoissonFactorialMomentsV1_changed",
+            "CountFiniteMixedPoisson_changed",
             "reused_run",
             "reused_core_run",
             "path_escape",

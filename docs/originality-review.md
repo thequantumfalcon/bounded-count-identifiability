@@ -72,6 +72,19 @@ arXiv text was available. No claim of a complete audit of that paper is made.
 
 ## What the search establishes
 
+A further comparison is Stegmann and König's
+[*Inverse counting statistics based on generalized factorial cumulants*,
+arXiv:1611.02043v2](https://arxiv.org/pdf/1611.02043v2), sections 2–3,
+equations (8)–(13), PDF pages 6–9. Their inputs are scaled long-time cumulants
+of counted transitions in a finite-state stochastic system. A linear system
+reconstructs its generator's characteristic polynomial when the required
+uniqueness holds; they explicitly discuss failures of that uniqueness. Our
+comparison is that a finite state space is not a bounded count per observation
+window, and those inputs include lower orders. This establishes relevant prior
+inverse-counting methodology, without supplying the arbitrary bounded-law,
+missing-mean theorem here. It also cautions against presenting reconstruction
+from factorial cumulants as a new general idea.
+
 This follow-up searched for bounded and finite-support factorial-cumulant
 identification, unknown Poisson addition, shifted-Poisson recovery, missing-first
 power sums and polynomial logarithmic derivatives. It inspected the primary

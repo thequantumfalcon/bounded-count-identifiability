@@ -25,12 +25,26 @@ The Python API is experimental; no stable release has been published.
 
 ### Added
 
+- An actual finite-mixture Bernoulli–Poisson probability construction in Lean,
+  including all positive factorial moments, the second-cumulant interpretation,
+  a conditional rate-range variance bound and the resulting pairwise stability.
+  This does not validate calibration or extend fixed-rate sampling guarantees.
+- A separate Python-FLINT reproduction of finite-mixture generating series,
+  factorial moments, second cumulants and range bounds, including deliberate
+  wrong-formula controls. Exact finite agreement supplements the universal proof.
+- A hash-pinned Atheris coverage-guided runner, required in CI, with bounded
+  inputs, time and memory, a deliberate-fault detection control, genuine-API
+  replay and source-bound execution receipts.
+- Removal of the remaining administrator PR-rule bypass, preserving the locally
+  signed single-commit PR and exact-commit fast-forward procedure.
+- A primary-source comparison with existing generalized-factorial-cumulant
+  inverse counting statistics; originality remains unresolved.
 - Bounded, seeded differential fuzz checks against a separate exact
   integer-partition cumulant oracle, with a saved corpus and fault-detection
   controls. CI and installed-artifact checks exercise the runner; this is finite
   software testing, not formal verification or coverage-guided fuzzing.
 - Required CI and dependency review for the exact signed commit promoted to
-  main, including administrator pushes; the local PR-rule exception remains.
+  main, including administrator pushes.
 - An explicit assessment of remaining Scorecard and scientific obligations.
 
 - A red-team follow-up covering the verifier defects, evidence indexing, Sage

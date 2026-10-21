@@ -1,0 +1,8 @@
+# Optional exact reproduction dependency; not a library runtime requirement.
+# Official Python-FLINT 0.9.0 wheels: CPython 3.10+ abi3 Windows x86_64
+# (tested locally with 3.11), and CPython 3.13 Linux x86_64.
+# Metadata: https://pypi.org/project/python-flint/0.9.0/#files
+# Install with --require-hashes --only-binary=:all: --no-deps.
+python-flint==0.9.0 \
+    --hash=sha256:8f1059536b7393e48b1444894c3b54ce1b961e4aa4a356e19217b26690f20db0 \
+    --hash=sha256:2a0d8db1fab69104afdc7a9763a690337a1cecafbf476b310f5bcd8ccc97b29b

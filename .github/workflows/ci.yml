@@ -94,10 +94,50 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
-          python-version: '3.11'
+          python-version: '3.13'
       - run: python tools/tasks.py setup
       - name: Bounded differential fuzz checks against an exact partition oracle
         run: python tools/tasks.py fuzz
+      - name: Install hash-pinned coverage-guided fuzzing engine
+        run: >-
+          python -m pip install --require-hashes --only-binary=:all: --no-deps -r fuzz/requirements.txt
+      - name: Coverage-guided checks with a deliberate-fault detection control
+        run: python fuzz/run_atheris.py --output build/atheris-ci --seconds 60
+      - name: Preserve fuzz inputs and execution receipt
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: atheris-ci-receipt
+          path: build/atheris-ci/
+          if-no-files-found: warn
+          retention-days: 14
+
+  flint:
+    name: flint
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+      - name: Install hash-pinned exact arithmetic dependency
+        run: >-
+          python -m pip install --require-hashes --only-binary=:all: --no-deps -r examples/requirements-flint.txt
+      - name: Check finite-mixture identities and rejection controls independently
+        run: |
+          mkdir -p build/flint
+          python examples/finite_mixture_flint.py > build/flint/result.json
+      - name: Preserve exact-arithmetic execution receipt
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: flint-ci-receipt
+          path: build/flint/
+          if-no-files-found: warn
+          retention-days: 14
 
   sage:
     name: sage
@@ -194,7 +234,7 @@ jobs:
   ci:
     name: ci
     if: always()
-    needs: [quality, python, fuzz, sage, formal]
+    needs: [quality, python, fuzz, flint, sage, formal]
     runs-on: ubuntu-24.04
     timeout-minutes: 2
     steps:

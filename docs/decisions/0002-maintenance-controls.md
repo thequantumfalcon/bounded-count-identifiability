@@ -15,12 +15,16 @@ dependencies. A version-update pull request is not itself a vulnerability report
 
 Publication uses a locally signed commit under the maintainer's public persona.
 That exact commit must pass the pull request checks before `main` advances to it.
+Create one final signed commit atop current `main` on the PR branch before
+validation, then advance `main` by a local fast-forward to that same commit.
 Any subsequent squash, amendment or source change creates a different commit
 that needs its own checks. The non-bypassable rules require signed linear
 history, prevent deletion and force pushes, and require `ci` and
-`dependency-review` from GitHub Actions. A separate pull-request ruleset retains
-the administrator exception needed for the local merge policy. This exception
-does not bypass the other ruleset.
+`dependency-review` from GitHub Actions. The pull-request ruleset also has no
+administrator bypass. PR 16's single-commit promotion passed every applicable
+rule without using the former exception; the exception was then removed.
+If `main` advances during review, rebuild the final commit and repeat checks.
+Do not restore a bypass to avoid a rejected push.
 
 Repository settings are hosted state; verify them in GitHub rather than
 inferring enforcement from this document. Administrators can still change the
@@ -53,10 +57,10 @@ maintainer channel and distinguishes GitHub's platform-abuse reporting.
 | --- | --- |
 | Branch protection | Enforce checks even for administrators. Independent approval requirements remain disabled while there is only one maintainer. |
 | Code review | Automated checks and maintainer review are not independent approval. A second person's review cannot be manufactured. |
-| Fuzzing | Run bounded, seeded differential checks against a separately implemented exact-arithmetic oracle. These are finite software tests, not coverage-guided fuzzing or proof; Scorecard may not recognize this runner. |
-| SAST history | Run CodeQL on current changes. Historical commits without analyses remain historical; do not rewrite history to hide them. |
+| Fuzzing | Run bounded, seeded differential checks and Atheris coverage-guided mutation against the exact-arithmetic oracle. Check engine detection of a deliberately faulty API and replay the captured input against the genuine API. These finite tests do not prove software correctness. See the [fuzzing guide](../../fuzz/README.md). |
+| SAST history | Run CodeQL on current changes. PR 3 has no historical scan; PR 4 has successful setup analyses that Scorecard does not recognize as its required SAST-app check. Preserve that distinction and the original history. |
 | Maintenance history | Repository age and sustained maintenance require elapsed time and actual work. |
-| Best-practices badge | Do not claim a badge before its criteria have been assessed and awarded. |
+| Best-practices badge | The program is a public self-certification, not independent security review. Assess all criteria, including human developer-knowledge attestations, before submitting a passing claim. Registration alone would not establish those facts. |
 
 Inspect the exact commit's Actions results and the actual Scorecard report.
 The configured workflow alone is not evidence that it ran or passed. The

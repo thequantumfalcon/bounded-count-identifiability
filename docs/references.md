@@ -47,6 +47,14 @@ compares their assumptions with this project's finite-order statement.
 
 ## What remains unresolved
 
+**Philipp Stegmann and Jürgen König.** *Inverse counting statistics based on
+generalized factorial cumulants.* arXiv:1611.02043v2 (2017).
+[Primary preprint](https://arxiv.org/pdf/1611.02043v2).
+Sections 2–3, equations (8)–(13), were inspected. The
+[originality review](originality-review.md#what-the-search-establishes)
+compares the long-time stochastic-generator reconstruction with the bounded
+count-law statement and records the paper's uniqueness limitation.
+
 The [follow-up originality review](originality-review.md) examines
 Melánová, Sturmfels and Winter's *Recovery from Power Sums*, Proposition 24,
 and explains its implication for the Poisson-binomial subclass. That overlap

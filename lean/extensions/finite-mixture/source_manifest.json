@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "description": "Exact-byte binding for the finite-mixture actual-law extension; scope and remaining assumptions are stated in its README and claim map.",
+  "sources": {
+    "CountFiniteMixedPoisson.lean": {
+      "sha256": "adb2d79477f9d595da666a1bb988f44ac816273637c06349e4507f6fa6418945",
+      "bytes": 7619
+    }
+  },
+  "theorem_roots": [
+    "CountFiniteMixedPoisson.mixture_isProbability",
+    "CountFiniteMixedPoisson.mixture_factorial",
+    "CountFiniteMixedPoisson.rateVariance_nonneg",
+    "CountFiniteMixedPoisson.rateVariance_eq",
+    "CountFiniteMixedPoisson.mixture_mean",
+    "CountFiniteMixedPoisson.mixture_second",
+    "CountFiniteMixedPoisson.rateVariance_le_range",
+    "CountFiniteMixedPoisson.mixture_stability"
+  ]
+}

@@ -61,7 +61,7 @@ run in CI; the public verifier separately recompiles the core and both
 extensions. Neither form of checking supplies external human review.
 
 The [research extensions](../docs/probability-extensions.md) have a separate
-portable suite that recompiles all twenty-one project modules. Its receipts belong
+portable suite that recompiles all twenty-two project modules. Its receipts belong
 to their exact sources and verifier. The
 [background-uncertainty checker record](background-uncertainty-kernel-check.json)
 binds that source to an additional local Lean4Lean execution accepting five
@@ -121,3 +121,11 @@ presented as results for changed proof bytes. Proof changes require new checks,
 not merely updated hashes. No item proves novelty, physical assumptions,
 practical sample size, external peer review or universal software security.
 Unresolved obligations remain in the [roadmap](../docs/roadmap.md).
+
+The finite-mixture extension adds eight registered roots to the research suite.
+Its fresh compilation, separate axiom audit and bundled-kernel replay are part
+of the current CI, not retroactively part of the earlier 21-module receipts.
+The separate `flint-ci-receipt` records exact finite calculations with a different
+arithmetic implementation. The `atheris-ci-receipt` records bounded
+coverage-guided software tests and their deliberate-fault control. Neither
+artifact is an external mathematical review or a physical measurement.
