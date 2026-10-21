@@ -164,6 +164,16 @@ def formal() -> None:
         "--run",
         "local-check",
     )
+    run(
+        PYTHON,
+        "lean/check_certificates.py",
+        "--suite",
+        "counts",
+        "--proof-run",
+        "local-check",
+        "--run",
+        "local-check",
+    )
 
 
 def release() -> None:

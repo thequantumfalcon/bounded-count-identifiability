@@ -46,6 +46,7 @@ they do not replace it.
 | Exact rational reproductions | Python examples and tests | Finite calculations are not universal proofs |
 | A `D=1` confidence-set projection | Lean interval elimination, clipping and empty-set proofs; optional Sage calculation | The executable Sage program is not formally verified; no general-dimensional solver |
 | Exact rational confidence decisions | Computable Lean tests proved equivalent to real point/pair feasibility and global nonemptiness; kernel-checked query certificates | Rational inputs; frontend and full Sage program remain outside formal verification |
+| Encoded counts to rational confidence boxes | Lean aggregation identities, outward-radius checks and conditional pair/projected/empty-decision coverage; concrete record certificates | Sampling assumptions remain explicit; acquisition, parsing and full Sage execution are not verified |
 
 The [claim-to-evidence map](docs/claims.md) separates formal proofs, written
 arguments, software checks and unresolved questions. Formal kernel checking
@@ -66,6 +67,7 @@ assumptions or experimental usefulness.
 - Run the [synthetic count experiment](docs/stress-test.md), including its
   frozen design, saved-data checks and explicit ideal-model limitations.
 - Check a rational box with the [verified decision functions and query certificates](lean/extensions/confidence-executable/README.md).
+- Check a small count record with the [count-to-box certificates and coverage connection](lean/extensions/counts-confidence/README.md).
 - Read the [red-team follow-up](docs/red-team-followup.md) for the verifier defects,
   their repairs and the limits of the numerical confidence prototype.
 - Read the [originality review](docs/originality-review.md) and
@@ -86,7 +88,7 @@ and receipts for the exact commit you inspect.
 
 The formal extensions now cover the analytic cumulant connection, actual
 distributional factorial moments and exact confidence-set projection. Further
-work includes verification beyond the exact rational decision functions, extension
+work includes verification of acquisition/parsing and algebraic endpoint output, extension
 beyond finite background-rate mixtures, broader exact solvers and sharper
 statistical bounds. Outside mathematical review, literature-priority checks
 and physical calibration still require their own evidence. See the

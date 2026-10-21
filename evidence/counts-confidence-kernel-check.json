@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "record_type": "Sanitized historical local execution; not a public CI execution",
+  "checked_utc": "2026-10-21T22:59:55.625603+00:00",
+  "status": "PASS",
+  "source": "lean/extensions/counts-confidence/CountCountsConfidence.lean",
+  "source_sha256": "4c2f87bc061822f9f71d6002097cc265d68e62ac23b1661da29700e69357d2b0",
+  "source_manifest_sha256": "bac0c4b52d03c67d7ce274ce1e607cfb01862046fbf2e4eb8da67ae619296943",
+  "audit_policy_sha256": "88fdd143bbd507ac656c4eaa8e80fdd3efd19ad67e4673a33a9588a20775375a",
+  "raw_summary_sha256": "1081584a17018e47a1c91ee5864e6e64e2216517fa067b338c393ad5bed5200a",
+  "fresh_compile": {
+    "exit_code": 0,
+    "timed_out": false,
+    "elapsed_seconds": 21.734,
+    "diagnostics_empty": true,
+    "object_sha256": "fa64127b1f21498e3fdf66cc05b03380d24dce373ce479607e852726423cbc00",
+    "receipt_sha256": "e4afa5e5e473881cbedb14d5bdcc9eee2772652fbaa1bd595c9edb0aff1fc0e3"
+  },
+  "separate_axiom_audit": {
+    "status": "PASS",
+    "receipt_sha256": "906105e70d929a85fd5b9d4cadab33015231586b48230891714b7a594f9460ca",
+    "query_sha256": "792bb3508dea2992ebcf6892730727c999f1b0c4ba5687d961761298c429b21a",
+    "stdout_sha256": "22776e917aab05324a65eef2822d0c5c75a8da2f3c171a489458921e82c79380",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "roots": [
+    "CountCountsConfidence.firstMean_cast",
+    "CountCountsConfidence.secondMean_cast",
+    "CountCountsConfidence.checkRadii_eq_true_iff",
+    "CountCountsConfidence.checkRadii_eq_false_iff",
+    "CountCountsConfidence.sqrt_radius_le",
+    "CountCountsConfidence.checkRadii_encloses",
+    "CountCountsConfidence.pairFeasible_of_errors",
+    "CountCountsConfidence.rational_pair_coverage",
+    "CountCountsConfidence.rational_projected_coverage",
+    "CountCountsConfidence.nonempty_decision_coverage"
+  ],
+  "export_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "forbidden_names": [],
+  "export_sha256": "f957f49e6e0e690c19cd1a3ab8943d3f11a3e3894e1af3da5352833eeeaf0f77",
+  "export_bytes": 198320626,
+  "export_exit_code": 0,
+  "lean4lean": {
+    "exit_code": 0,
+    "timed_out": false,
+    "elapsed_seconds": 57.188,
+    "output": "checked 34779 declarations\n",
+    "stderr_empty": true,
+    "receipt_sha256": "cb79681d2860b13b9d06f325dd82db75fc95f0c520163ad73246692b634601c4"
+  },
+  "negative_control": {
+    "fixture_sha256": "d767b9cc9d187484f69665b1071f384aff613a145665b847dc172b624cca3c04",
+    "mutation": "One earlier coefficient theorem's claimed type changed to False; its proof expression was unchanged.",
+    "theorem": "CountCoefficientAudit.two_zero_coefficients_force_zero_shift",
+    "exit_code": 1,
+    "timed_out": false,
+    "abort_on_panic": false,
+    "semantic_diagnosis": "Kernel declaration type mismatch; expected type False.",
+    "diagnostic_limitation": "Two environment-extension panic messages from error printing and raw-printer fallback remain. This is diagnosed semantic rejection with a reporting bug, not clean diagnostic output.",
+    "stderr_sha256": "d993c93e74af7593fd1938484bb8ffa1623baee9c7a1abc89553c1b569b3e207",
+    "receipt_sha256": "116a48c652905c5e29e419bfab369c4be24f063286f9628e609e4f3b505d9a7b",
+    "scope": "Earlier coefficient control, not a mutation of a new executable theorem, parser test or exhaustive checker test."
+  },
+  "frozen_inputs_and_artifacts_unchanged": true,
+  "receipt_bound_reused_project_modules": 24,
+  "tool_sha256": {
+    "lean.exe": "ec7a472d1c12a09b0c0c718f7427c2be527b3f5f07810fdbe076c2507c7a91ea",
+    "leanexport.exe": "bda24bb3fafaf299ba472f944942d6293294b76559fafc9f166badd7c0f981b3",
+    "lean4lean.exe": "2463006ea615a6f69c80689142cf7cb0a8724fc7819c57ad2b395e99eb6a9f3c"
+  },
+  "limitations": [
+    "Lean4Lean derives from the Lean kernel and may share bugs; limited implementation independence.",
+    "Shared compiler/exporter, compiled dependencies, standard runtime, source interpretation and host remain trusted.",
+    "Fresh compilation of one new source; 24 prior project modules were reused as receipt-bound imports. This is not a fresh whole-toolchain build.",
+    "Checks ten universal count-aggregation, radius, and conditional confidence roots, including false-empty decision coverage for real generating parameters; does not independently execute or verify the Python frontend.",
+    "No full Sage execution, parser/serialization or compiled-machine verification, unconditional data-to-box guarantee or calibrated model, physical validation, originality or outside human review is established."
+  ],
+  "reproduction_limits": "Large export, detailed local records and tool installations remain local. This sanitized record is not a self-contained reproduction of the additional-checker run. Use the committed research suite for fresh compilation, separate axiom audits and bundled-kernel replay."
+}

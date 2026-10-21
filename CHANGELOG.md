@@ -28,6 +28,10 @@ The Python API is experimental; no stable release has been published.
 
 ### Added
 
+- Natural-count aggregation, exact outward-radius checks and conditional pair,
+  projected-source and empty-decision coverage in ten new Lean roots. Small
+  explicit records receive kernel-checked mean/radius/endpoint certificates,
+  with isolated wrong-calculation controls and source-snapshot binding.
 - Exact rational point, pair and global-nonempty decisions with universal Lean
   equivalence proofs, including irrational feasible witnesses. Concrete query
   certificates and deliberate incorrect answers are checked by the kernel.

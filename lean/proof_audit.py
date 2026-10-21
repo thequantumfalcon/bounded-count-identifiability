@@ -222,6 +222,18 @@ RESEARCH_ROOTS = {
         "checkNonempty_eq_false_iff",
         "checkSource_implies_checkNonempty",
     ),
+    "CountCountsConfidence": (
+        "firstMean_cast",
+        "secondMean_cast",
+        "checkRadii_eq_true_iff",
+        "checkRadii_eq_false_iff",
+        "sqrt_radius_le",
+        "checkRadii_encloses",
+        "pairFeasible_of_errors",
+        "rational_pair_coverage",
+        "rational_projected_coverage",
+        "nonempty_decision_coverage",
+    ),
 }
 
 DIRECTORIES = {
@@ -243,6 +255,7 @@ DIRECTORIES = {
     "CountFiniteMixedPoisson": "finite-mixture",
     "CountFiniteMixedPoissonSampling": "finite-mixture-sampling",
     "CountConfidenceExecutable": "confidence-executable",
+    "CountCountsConfidence": "counts-confidence",
 }
 
 ALLOWED_AXIOMS = {"propext", "Classical.choice", "Quot.sound"}

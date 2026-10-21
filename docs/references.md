@@ -52,6 +52,20 @@ The inspected NIST record describes multi-order correlations of time-tagged even
 
 ## Aggregate recovery
 
+**Laura T. Knoll and colleagues.** *Photon Statistics Modal Reconstruction by
+Detected and Undetected Light.* Advanced Quantum Technologies **6**, 2300062
+(2023), DOI 10.1002/qute.202300062.
+[Publisher full text](https://advanced.onlinelibrary.wiley.com/doi/10.1002/qute.202300062);
+[public data deposit](https://zenodo.org/records/7495159).
+
+Equations (7)–(15) model photon-number components, detector response and modal
+reconstruction. The inspected deposit has one spreadsheet of aggregate expected
+and reconstructed means for 15 configurations; it has no raw time-ordered
+counts. This establishes related experimental methodology, not validation of our
+confidence procedure or priority of the finite-order theorem. The
+[calibration note](calibration.md#photon-counts-and-detector-clicks) explains
+why clicks and additive photon counts need separate treatment.
+
 **Nic Fishman, Gokul Gowri, Tanush Kumar, Jiaqi Lu, Valentin de Bortoli,
 Jonathan S. Gootenberg and Omar Abudayyeh.** *Count Bridges enable Modeling and
 Deconvolving Transcriptomic Data.* arXiv:2603.04730v1 (2026).

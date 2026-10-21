@@ -143,7 +143,7 @@ uses the same verifier with `--suite research`:
 python lean/extensions/d1-law/verify_law_bridge.py --suite research --run external-research
 ```
 
-It freshly checks the six core modules and all eighteen extensions. Their source
+It freshly checks the six core modules and all nineteen extensions. Their source
 manifests and theorem-root lists are checked separately. A valid axiom list may
 use any subset of `propext`, `Classical.choice` and `Quot.sound`, including no
 axioms; additional axioms, missing roots and duplicate roots are rejected.
@@ -166,6 +166,18 @@ python lean/check_certificates.py --proof-run external-research --run external-r
 This checks the stated rational queries against the source-bound compiled
 research objects, with separate axiom audits and deliberately incorrect-answer
 controls. It does not verify the entire Sage or Python runtime.
+
+The [count-to-box guide](../lean/extensions/counts-confidence/README.md) adds
+explicit-record aggregation, outward radii and endpoint certificates:
+
+```sh
+python lean/check_certificates.py --suite counts --proof-run external-research --run external-research
+```
+
+This suite checks six valid synthetic records and five isolated incorrect
+calculations. Its universal coverage theorem retains the original observation
+laws and independence assumptions; a record certificate cannot test those
+assumptions. The proposer is limited to 64 explicit counts per certificate.
 
 The replay reuses the project artifacts recorded by the named research run and
 the pinned Lean kernel. Imported upstream dependency artifacts remain trusted;

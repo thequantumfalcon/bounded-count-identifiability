@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "description": "Exact-byte binding of natural-count aggregation, rational outward radii and model-conditional pair/projected/empty-decision coverage. Parsing, acquisition and the complete Sage runtime remain outside formal verification.",
+  "sources": {
+    "CountCountsConfidence.lean": {
+      "sha256": "4c2f87bc061822f9f71d6002097cc265d68e62ac23b1661da29700e69357d2b0",
+      "bytes": 8680
+    }
+  },
+  "theorem_roots": [
+    "CountCountsConfidence.firstMean_cast",
+    "CountCountsConfidence.secondMean_cast",
+    "CountCountsConfidence.checkRadii_eq_true_iff",
+    "CountCountsConfidence.checkRadii_eq_false_iff",
+    "CountCountsConfidence.sqrt_radius_le",
+    "CountCountsConfidence.checkRadii_encloses",
+    "CountCountsConfidence.pairFeasible_of_errors",
+    "CountCountsConfidence.rational_pair_coverage",
+    "CountCountsConfidence.rational_projected_coverage",
+    "CountCountsConfidence.nonempty_decision_coverage"
+  ]
+}

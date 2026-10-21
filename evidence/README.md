@@ -132,8 +132,8 @@ artifact is an external mathematical review or a physical measurement.
 
 The finite-mixture sampling extension adds eight further roots for actual
 square integrability, total variance, conservative variance ceilings and
-simultaneous moment coverage. They are included in the current 24-module,
-148-root research suite and its CI compilation, separate axiom audits and
+simultaneous moment coverage. They are included in the current 25-module,
+158-root research suite and its CI compilation, separate axiom audits and
 kernel replay. Earlier 21- and 22-module receipts retain their original scope.
 The expanded FLINT calculation checks total-variance identities and ceilings,
 rejects applying the fixed-rate ceilings to mixtures, and checks the arithmetic
@@ -171,5 +171,20 @@ and Lean4Lean acceptance of 10,613 declarations. The earlier wrong-type
 control was explicitly rejected; its known error-printer panics and fallback
 remain disclosed. The run reused 21 source-bound project objects and the
 upstream runtime. It checks the decision theorems, not the Python frontend,
+Sage execution or model calibration. Lean4Lean's shared kernel ancestry and
+the common exporter limit implementation independence.
+
+The count-confidence extension adds ten roots for natural-count aggregation,
+outward rational radii and conditional coverage, including the probability of
+an empty Boolean verdict. Its concrete count suite checks six correct records
+and five isolated wrong calculations. See the
+[count-to-box guide](../lean/extensions/counts-confidence/README.md).
+
+The [local count-confidence checker record](counts-confidence-kernel-check.json)
+binds all ten universal roots to fresh compilation, a separate axiom audit
+and Lean4Lean acceptance of 34,779 declarations. The earlier wrong-type
+control was explicitly rejected; its known error-printer panics and fallback
+remain disclosed. The run reused 24 source-bound project objects and the
+upstream runtime. It checks the count-confidence theorems, not the Python frontend,
 Sage execution or model calibration. Lean4Lean's shared kernel ancestry and
 the common exporter limit implementation independence.

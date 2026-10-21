@@ -81,6 +81,31 @@ Physical rate limits, restrictions on rare components or a different target
 are necessary. The fixed-rate calibration construction does not supply the
 component ceiling assumed by the finite-mixture theorem.
 
+## Photon counts and detector clicks
+
+Established optical reconstruction work already combines single-photon source
+models with Poisson and thermal backgrounds. [Knoll et al. (2023)](https://advanced.onlinelibrary.wiley.com/doi/10.1002/qute.202300062),
+equations (7)–(15), model both the photon distribution and a four-branch detector
+tree before reconstructing source modes. This is related methodology, not a test
+of this repository's theorem or confidence procedure. The inspected
+[public deposit](https://zenodo.org/records/7495159) contains expected and
+reconstructed mean photon numbers for 15 configurations, without the raw
+time-ordered count windows needed for our sampling diagnostics.
+
+The observation model matters even with ideal threshold detection. If
+$Z\sim\operatorname{Poisson}(b)$ becomes the binary click
+$C=\mathbf 1_{Z\geq1}$, then $C\sim\operatorname{Bernoulli}(q)$ with
+$q=1-\exp(-b)$, and its second factorial cumulant is $-q^2$. The identical click
+law arises from a Bernoulli$(q)$ source with zero background. In particular,
+a pure Poisson input with $b=\log 2$ and a Bernoulli$(1/2)$ input give identical
+click records. Even all click moments cannot distinguish these two inputs.
+
+This elementary counterexample concerns thresholded observations; the theorem
+assumes additive counts. A binary click record, capped detector output or
+inverted response estimate needs a separate response and uncertainty argument.
+The distinction is established detector physics, not a new discovery or a
+physical measurement by this project.
+
 ## Evidence a future study must preserve
 
 Preserve raw time-ordered counts, exposures and source-off/study labels;

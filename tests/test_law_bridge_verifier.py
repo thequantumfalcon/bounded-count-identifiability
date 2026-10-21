@@ -63,6 +63,7 @@ RESEARCH_INPUTS = tuple(
         ("finite-mixture", "CountFiniteMixedPoisson"),
         ("finite-mixture-sampling", "CountFiniteMixedPoissonSampling"),
         ("confidence-executable", "CountConfidenceExecutable"),
+        ("counts-confidence", "CountCountsConfidence"),
     )
     for filename in (name + ".lean", "source_manifest.json")
 )
@@ -631,6 +632,7 @@ class LawBridgeVerifierTests(unittest.TestCase):
             "CountFiniteMixedPoisson",
             "CountFiniteMixedPoissonSampling",
             "CountConfidenceExecutable",
+            "CountCountsConfidence",
         ):
             for prefix in ("tamper_", "shadow_"):
                 with self.subTest(module=name, prefix=prefix):
@@ -665,6 +667,7 @@ class LawBridgeVerifierTests(unittest.TestCase):
             "CountFiniteMixedPoisson_changed",
             "CountFiniteMixedPoissonSampling_changed",
             "CountConfidenceExecutable_changed",
+            "CountCountsConfidence_changed",
             "reused_run",
             "reused_core_run",
             "path_escape",
