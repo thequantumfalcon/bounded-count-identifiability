@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "description": "Exact-byte source binding; assumptions and limitations are stated in the source and extension guide.",
+  "sources": {
+    "CountAnalyticCumulantBridge.lean": {
+      "bytes": 11864,
+      "sha256": "5168558c2e1dd679207cd77a61a52198d80a6baaedc6ead9fbbe8d0af8ce9e56"
+    }
+  },
+  "theorem_roots": [
+    "CountAnalyticCumulantBridge.polynomial_contDiff",
+    "CountAnalyticCumulantBridge.iteratedDeriv_polynomial",
+    "CountAnalyticCumulantBridge.jet0_polynomial",
+    "CountAnalyticCumulantBridge.jet0_log_polynomial",
+    "CountAnalyticCumulantBridge.factorialCumulant_polynomial_eq_iteratedDeriv_log",
+    "CountAnalyticCumulantBridge.factorialCumulant_channel_eq_iteratedDeriv_log",
+    "CountAnalyticCumulantBridge.lawFactorialCumulant_eq_iteratedDeriv_log",
+    "CountAnalyticCumulantBridge.observedFactorialCumulant_eq_iteratedDeriv_log",
+    "CountAnalyticCumulantBridge.lawFactorialCumulant_eq_iteratedDeriv_log_expectation",
+    "CountAnalyticCumulantBridge.observedFactorialCumulant_eq_iteratedDeriv_log_expectation",
+    "CountAnalyticCumulantBridge.independentPairMeasure_cumulant_eq_iteratedDeriv_log_expectation",
+    "CountAnalyticCumulantBridge.observed_log_derivatives_identify_source",
+    "CountAnalyticCumulantBridge.observed_log_derivatives_identify_source_and_background"
+  ]
+}

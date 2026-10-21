@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "description": "Exact-byte source binding; assumptions and limitations are stated in the source and extension guide.",
+  "sources": {
+    "CountTaylorJetProduct.lean": {
+      "bytes": 1349,
+      "sha256": "27136413ab0edebd34bc818609a0b76a77ec0a9d372a95e0f96ddeee685200dd"
+    }
+  },
+  "theorem_roots": [
+    "CountTaylorJetProduct.jet0_mul"
+  ]
+}

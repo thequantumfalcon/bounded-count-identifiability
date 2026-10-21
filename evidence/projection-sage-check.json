@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "checked_utc": "2026-10-21T11:42:55.584859+00:00",
+  "source": "examples/d1_projection_sage.py",
+  "source_sha256": "db39c22c584f9087ff50807370bb1e92dd148e3988717dd54ed9f097335ba778",
+  "sage_version": "10.8",
+  "exit_code": 0,
+  "stdout_sha256": "c134daf674ad9d85128a9ccccb44c953ee8bb96c2577c9bf4c0deb495264db3f",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "local_receipt_sha256": "133dd57a8dc90f47e5159b0baa319d246be1973b275702f1d6f2ae4a3c4f4f9d",
+  "report": {
+    "sage_version": "10.8",
+    "input_kind": "illustrative population-moment box; no measured data or confidence-level claim",
+    "background_ceiling": "1",
+    "moment_box": [
+      "1",
+      "1",
+      "1/4",
+      "3/4"
+    ],
+    "source_probability_interval": [
+      {
+        "minimal_polynomial_coefficients_low_to_high": [
+          "-1/2",
+          "1"
+        ],
+        "isolating_interval_rational": [
+          "1/2",
+          "1/2"
+        ]
+      },
+      {
+        "minimal_polynomial_coefficients_low_to_high": [
+          "-3/4",
+          "0",
+          "1"
+        ],
+        "isolating_interval_rational": [
+          "1859775393/2147483648",
+          "3719550787/4294967296"
+        ]
+      }
+    ],
+    "endpoint_background_witnesses": [
+      {
+        "minimal_polynomial_coefficients_low_to_high": [
+          "-1/2",
+          "1"
+        ],
+        "isolating_interval_rational": [
+          "1/2",
+          "1/2"
+        ]
+      },
+      {
+        "minimal_polynomial_coefficients_low_to_high": [
+          "1/4",
+          "-2",
+          "1"
+        ],
+        "isolating_interval_rational": [
+          "575416509/4294967296",
+          "287708255/2147483648"
+        ]
+      }
+    ],
+    "scope": "D=1 exact projection for a specified independent fixed-Poisson model; finite controls are not formal verification.",
+    "self_tests": {
+      "boundary_fixtures": 7,
+      "exact_membership_comparisons": 3375,
+      "original_constraint_witness_checks": 1038
+    }
+  },
+  "limits": [
+    "Finite exact boundary, membership and witness checks; not formal software verification.",
+    "Existing local Sage runtime reused; no fresh installation or fully locked Sage environment is supplied here.",
+    "The initial direct launcher failed because its environment did not expose Singular; the recorded environment run passed. Both local attempts are retained.",
+    "No measured data, physical validation, statistical optimality or outside human review is established.",
+    "This Sage execution is local; it is not run by the hosted CI workflow."
+  ]
+}

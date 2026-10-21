@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "description": "Exact-byte source binding; assumptions and limitations are stated in the source and extension guide.",
+  "sources": {
+    "PoissonFactorialMomentsV1.lean": {
+      "bytes": 10449,
+      "sha256": "7a0f4b1360aace4e4fed3807b7e56789dd47bb22d9088abf5803c6ab1f3b0513"
+    }
+  },
+  "theorem_roots": [
+    "PoissonFactorialMomentsV1.poisson_descFactorial_integrable",
+    "PoissonFactorialMomentsV1.poisson_descFactorial_integral",
+    "PoissonFactorialMomentsV1.poisson_memLp",
+    "PoissonFactorialMomentsV1.observed_pow_integrable",
+    "PoissonFactorialMomentsV1.observed_memLp",
+    "PoissonFactorialMomentsV1.observed_factorial_two_memLp",
+    "PoissonFactorialMomentsV1.fin_two_poisson_descFactorial",
+    "PoissonFactorialMomentsV1.bernoulli_poisson_descFactorial"
+  ]
+}

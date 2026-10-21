@@ -20,12 +20,24 @@ The Python API is experimental; no stable release has been published.
 
 ### Added
 
+- All-order analytic/formal cumulant equivalence, including actual expectation
+  derivatives and source/background identification stated in those terms.
+- Actual Poisson and Bernoulli-plus-Poisson factorial moments, quadratic-statistic
+  square integrability, exact variances, and projected-region coverage from
+  the probability laws and pairwise-independent observed windows.
+- Exact D=1 confidence projection in Lean, including clipping, zero ceiling,
+  square-root guards and empty sets. A fresh local Sage execution checks the
+  unchanged prototype on boundary, membership and witness cases; the program
+  itself is not formally verified.
+- A further primary-source comparison with the aggregate-recovery assumptions
+  in *Count Bridges*. Historical priority remains unresolved.
 - Actual Poisson exponential moments and the independent bounded-source
   generating identity, including a concrete product probability space and zero
-  rate. Analytic-to-formal cumulant equivalence remains a separate proof task.
+  rate, used by the subsequent analytic and moment connections.
 - Unified zero/positive-ceiling confidence bounds and preservation of pairwise
   independence under measurable transforms, including the factorial statistic.
-  Square integrability of both statistics remains an explicit assumption.
+  The generic theorem keeps square integrability explicit; the subsequent
+  Bernoulli-plus-Poisson specialization derives it from the actual laws.
 - A scoped historical record of Lean4Lean and nanoda checks for 26 probability,
   sampling and uncertainty roots, including their diagnostics and rejection control.
 - Actual finite probability measures and expectation identities, conditional
@@ -39,7 +51,8 @@ The Python API is experimental; no stable release has been published.
   review. Neither document claims that outside review or originality is established.
 - A separately verified D=1 algebraic stability extension, with five checked
   theorem roots, a portable compilation check and scoped additional-kernel
-  evidence. General-dimensional stability and finite-sample coverage remain open.
+  evidence. General-dimensional stability and constructive finite-sample
+  inference beyond D=1 remain open.
 - Written bounded-count identification proof and explicit assumption boundaries.
 - Six Lean source modules covering identification, exponential-factor invariance
   and universal order sharpness.

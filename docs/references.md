@@ -34,6 +34,17 @@ The NIST abstract describes calibration that accounts for background, dead time,
 
 The inspected NIST record describes multi-order correlations of time-tagged events under calibrated illumination. This is a physical-method reference, not evidence from an experiment performed by this project.
 
+## Aggregate recovery
+
+**Nic Fishman, Gokul Gowri, Tanush Kumar, Jiaqi Lu, Valentin de Bortoli,
+Jonathan S. Gootenberg and Omar Abudayyeh.** *Count Bridges enable Modeling and
+Deconvolving Transcriptomic Data.* arXiv:2603.04730v1 (2026).
+[Primary text, Appendix B.2](https://arxiv.org/html/2603.04730v1#A2.SS2).
+
+Definition B.8, Lemma B.9 and Theorem B.10 were inspected. The
+[originality review](originality-review.md#aggregate-recovery-from-full-generating-functions)
+compares their assumptions with this project's finite-order statement.
+
 ## What remains unresolved
 
 The [follow-up originality review](originality-review.md) examines

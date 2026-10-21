@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "description": "Exact-byte source binding; assumptions and limitations are stated in the source and extension guide.",
+  "sources": {
+    "CountConfidenceProjection.lean": {
+      "bytes": 11994,
+      "sha256": "9858b2d2de677f3c84a33365e82e2be1e7ba13a3181bd0dfca5d4986e102b6ef"
+    }
+  },
+  "theorem_roots": [
+    "CountConfidenceProjection.feasible_iff_mean",
+    "CountConfidenceProjection.feasible_iff_polynomialBounds",
+    "CountConfidenceProjection.feasible_iff_closed_bounds",
+    "CountConfidenceProjection.exists_feasible_iff",
+    "CountConfidenceProjection.empty_of_reversed_mean",
+    "CountConfidenceProjection.empty_of_reversed_second",
+    "CountConfidenceProjection.empty_of_sq_upper_lt_lower",
+    "CountConfidenceProjection.feasible_zero_iff",
+    "CountConfidenceProjection.feasible_zero_clipped_iff",
+    "CountConfidenceProjection.exists_feasible_zero_clipped_iff",
+    "CountConfidenceProjection.model_ranges",
+    "CountConfidenceProjection.feasible_clip_iff",
+    "CountConfidenceProjection.empty_of_negative_ceiling",
+    "CountConfidenceProjection.exists_feasible_positive_iff",
+    "CountConfidenceProjection.projection_positive",
+    "CountConfidenceProjection.projection_zero"
+  ]
+}

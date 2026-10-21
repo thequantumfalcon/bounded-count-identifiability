@@ -16,9 +16,11 @@ separate manifest and leaves historical core receipts unchanged.
 The [research extensions](../docs/probability-extensions.md) add actual finite
 probability measures, independent Poisson generating identities, conditional confidence bounds,
 sample-mean variance formulas, transformed-observation independence, coverage
-with zero ceilings and a bounded second-cumulant perturbation theorem.
+with zero ceilings and a bounded second-cumulant perturbation theorem. They
+also prove the all-order analytic cumulant connection, actual distributional
+moments and variances, and coverage of the exact D=1 projected region.
 From the repository root, `python lean/extensions/d1-law/verify_law_bridge.py
---suite research --run external-research` checks all fifteen project modules
+--suite research --run external-research` checks all twenty-one project modules
 freshly. Each new extension has its own manifest; the historical receipts still
 refer only to their original sources and checks.
 
@@ -68,7 +70,7 @@ CountSharpness.cutoff_is_sharp
 CountSharpness.lower_observed_cumulants_match
 ```
 
-The source law assumes nonnegative masses, total mass one, and a known finite support bound `D`. Cumulants are defined algebraically as `r!` times the coefficient of a formal logarithmic series. The formal Poisson channel is multiplication by `exp(b*t)`. The separate [probability extensions](../docs/probability-extensions.md#independent-poisson-observations) construct the independent, fixed nonnegative-rate Poisson model and prove its generating-function identity. The analytic `Real.log` derivative bridge to the formal cumulants is not yet included.
+The source law assumes nonnegative masses, total mass one, and a known finite support bound `D`. Cumulants are defined algebraically as `r!` times the coefficient of a formal logarithmic series. The formal Poisson channel is multiplication by `exp(b*t)`. The separate [probability extensions](../docs/probability-extensions.md#independent-poisson-observations) construct the independent, fixed nonnegative-rate Poisson model and prove its generating-function identity. The [analytic extension](extensions/analytic-cumulant/README.md) proves equality with `Real.log` derivatives of the actual generating expectation at every order.
 
 The core results concern exact cumulants. The separate D=1 extension bounds
 parameter error given specified observation errors in an algebraic model.
@@ -76,9 +78,11 @@ The finite-law connection lifts that bound to the core Bernoulli cumulants,
 including the endpoint laws, and to the formal observation channel.
 The research extensions supply conditional sampling bounds, a canonical
 finite probability-space encoding and independent Poisson generating identities.
-Analytic cumulant derivatives, distributional moment calculations and full
-confidence projection correctness remain separate obligations. No extension establishes a
-physical model's validity or uniqueness of a source before unknown thinning.
+The newer modules derive actual distributional moments and variances, prove
+the confidence projection including empty cases, and connect the actual sample
+model to projected-region coverage. Executable Python/Sage correctness remains
+separate. No extension establishes a physical model's validity or uniqueness
+of a source before unknown thinning.
 
 The sharpness family is established prior work: see [Afendras and Papadatos, Eq. (3.1) and Lemma 3.1](https://arxiv.org/pdf/1411.1165), PDF page 7, for the generalized matching / quasi-Poisson family and its matched factorial moments. No originality claim is made for that family or the lower-bound implication. Priority of any broader theorem must be assessed separately from successful formal verification.
 

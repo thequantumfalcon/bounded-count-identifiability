@@ -71,6 +71,12 @@ RESEARCH_INPUTS = tuple(
         ("confidence-zero", "CountConfidenceZeroAndTransforms"),
         ("poisson-mgf", "PoissonMGFV1"),
         ("poisson-observation", "CountPoissonObservation"),
+        ("bernoulli-poisson-statistics", "BernoulliPoissonStatisticsV1"),
+        ("taylor-jet", "CountTaylorJetFoundation"),
+        ("taylor-product", "CountTaylorJetProduct"),
+        ("analytic-cumulant", "CountAnalyticCumulantBridge"),
+        ("confidence-projection", "CountConfidenceProjection"),
+        ("poisson-factorial-moments", "PoissonFactorialMomentsV1"),
     )
     for filename in (name + ".lean", "source_manifest.json")
 )
@@ -516,6 +522,12 @@ class LawBridgeVerifierTests(unittest.TestCase):
             "CountConfidenceZeroAndTransforms",
             "PoissonMGFV1",
             "CountPoissonObservation",
+            "BernoulliPoissonStatisticsV1",
+            "CountTaylorJetFoundation",
+            "CountTaylorJetProduct",
+            "CountAnalyticCumulantBridge",
+            "CountConfidenceProjection",
+            "PoissonFactorialMomentsV1",
         ):
             for prefix in ("tamper_", "shadow_"):
                 with self.subTest(module=name, prefix=prefix):
@@ -542,6 +554,12 @@ class LawBridgeVerifierTests(unittest.TestCase):
             "CountConfidenceZeroAndTransforms_changed",
             "PoissonMGFV1_changed",
             "CountPoissonObservation_changed",
+            "BernoulliPoissonStatisticsV1_changed",
+            "CountTaylorJetFoundation_changed",
+            "CountTaylorJetProduct_changed",
+            "CountAnalyticCumulantBridge_changed",
+            "CountConfidenceProjection_changed",
+            "PoissonFactorialMomentsV1_changed",
             "reused_run",
             "reused_core_run",
             "path_escape",

@@ -113,18 +113,18 @@ The six core Lean modules encode the following chain:
 | [CountObservedIdentification.lean](../lean/CountObservedIdentification.lean) | Observed-cumulant source identification and recovery of the background parameter. |
 | [CountSharpness.lean](../lean/CountSharpness.lean) | Validity, distinctness, cumulants and the universal lower-order counterexample. |
 
-The core definitions use mathlib's formal logarithm. The [probability extensions](probability-extensions.md#independent-poisson-observations) now construct independent Poisson addition and prove its integrable generating identity. The analytic real-logarithm/Taylor bridge to the core cumulants remains unformalized. The algebraic channel accepts real parameters; the probability construction uses nonnegative background rates.
+The core definitions use mathlib's formal logarithm. The [probability extensions](probability-extensions.md#independent-poisson-observations) construct independent Poisson addition and prove its integrable generating identity. The [analytic connection](probability-extensions.md#analytic-cumulants) proves equality with real logarithm derivatives at every order, including derivatives of the actual generating expectation. It also states source and source/background identification directly in those analytic terms. The algebraic channel accepts real parameters; the probability construction uses nonnegative background rates.
 
 A [separate D=1 extension](../lean/extensions/d1/README.md) proves deterministic
 inverse-error bounds for the algebraic formulas $\kappa_2(p)=-p^2$ and
-$b=\mu-p$. It does not change the six core modules or close either interpretation
-bridge. Finite-sample coverage and general-$D$ stability remain separate tasks.
+$b=\mu-p$. It does not change the six core modules. The probability and analytic
+connections are supplied by other extensions; general-$D$ stability remains separate.
 
 The additional [finite-law connection](../lean/extensions/d1-law/README.md)
 proves validity of Bernoulli masses on the closed interval $p\in[0,1]$ and
 identifies their core formal cumulants as $\kappa_1=p$, $\kappa_2=-p^2$.
 It lifts the deterministic stability bounds to these definitions and to the
-formal observed channel. This connects the two formal modules; the
-measure-theoretic and analytic interpretation tasks above remain open.
+formal observed channel. The subsequent probability and analytic extensions
+connect these definitions to the actual independent-Poisson observation model.
 
 Formal acceptance does not verify a detector, prove a useful finite sample size or establish mathematical priority. The calculation software and confidence-region argument have their own scope; see [claims](claims.md), the [formal reproduction guide](../lean/README.md) and the [next proof obligations](roadmap.md).

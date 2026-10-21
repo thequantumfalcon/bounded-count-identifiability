@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "description": "Exact-byte source binding; assumptions and limitations are stated in the source and extension guide.",
+  "sources": {
+    "CountTaylorJetFoundation.lean": {
+      "bytes": 1333,
+      "sha256": "791762c2329939e4cad84c695a1d9f8ebb75049cc03fd47beb990ac697b62c49"
+    }
+  },
+  "theorem_roots": [
+    "CountTaylorJetFoundation.coeff_jet0",
+    "CountTaylorJetFoundation.derivative_jet0",
+    "CountTaylorJetFoundation.jet0_congr_eventuallyEq"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "description": "Exact-byte source binding; assumptions and limitations are stated in the source and extension guide.",
+  "sources": {
+    "BernoulliPoissonStatisticsV1.lean": {
+      "bytes": 10149,
+      "sha256": "3a2c5222c3ac3d4ebf8fe10c4e80a6a9fa329bac97dbf46bbe36fe9cdcb19f16"
+    }
+  },
+  "theorem_roots": [
+    "BernoulliPoissonStatisticsV1.count_memLp",
+    "BernoulliPoissonStatisticsV1.factorial_two_memLp",
+    "BernoulliPoissonStatisticsV1.first_four_factorial_moments",
+    "BernoulliPoissonStatisticsV1.means_and_variances",
+    "BernoulliPoissonStatisticsV1.sample_means_coverage",
+    "BernoulliPoissonStatisticsV1.projected_region_coverage"
+  ]
+}

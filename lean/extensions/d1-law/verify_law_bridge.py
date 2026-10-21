@@ -140,6 +140,63 @@ RESEARCH_ROOTS = {
         "independentPairMeasure_hasLaws",
         "independentPairMeasure_factorialPGF",
     ),
+    "CountTaylorJetFoundation": (
+        "coeff_jet0",
+        "derivative_jet0",
+        "jet0_congr_eventuallyEq",
+    ),
+    "CountTaylorJetProduct": ("jet0_mul",),
+    "CountAnalyticCumulantBridge": (
+        "polynomial_contDiff",
+        "iteratedDeriv_polynomial",
+        "jet0_polynomial",
+        "jet0_log_polynomial",
+        "factorialCumulant_polynomial_eq_iteratedDeriv_log",
+        "factorialCumulant_channel_eq_iteratedDeriv_log",
+        "lawFactorialCumulant_eq_iteratedDeriv_log",
+        "observedFactorialCumulant_eq_iteratedDeriv_log",
+        "lawFactorialCumulant_eq_iteratedDeriv_log_expectation",
+        "observedFactorialCumulant_eq_iteratedDeriv_log_expectation",
+        "independentPairMeasure_cumulant_eq_iteratedDeriv_log_expectation",
+        "observed_log_derivatives_identify_source",
+        "observed_log_derivatives_identify_source_and_background",
+    ),
+    "CountConfidenceProjection": (
+        "feasible_iff_mean",
+        "feasible_iff_polynomialBounds",
+        "feasible_iff_closed_bounds",
+        "exists_feasible_iff",
+        "empty_of_reversed_mean",
+        "empty_of_reversed_second",
+        "empty_of_sq_upper_lt_lower",
+        "feasible_zero_iff",
+        "feasible_zero_clipped_iff",
+        "exists_feasible_zero_clipped_iff",
+        "model_ranges",
+        "feasible_clip_iff",
+        "empty_of_negative_ceiling",
+        "exists_feasible_positive_iff",
+        "projection_positive",
+        "projection_zero",
+    ),
+    "PoissonFactorialMomentsV1": (
+        "poisson_descFactorial_integrable",
+        "poisson_descFactorial_integral",
+        "poisson_memLp",
+        "observed_pow_integrable",
+        "observed_memLp",
+        "observed_factorial_two_memLp",
+        "fin_two_poisson_descFactorial",
+        "bernoulli_poisson_descFactorial",
+    ),
+    "BernoulliPoissonStatisticsV1": (
+        "count_memLp",
+        "factorial_two_memLp",
+        "first_four_factorial_moments",
+        "means_and_variances",
+        "sample_means_coverage",
+        "projected_region_coverage",
+    ),
 }
 DIRECTORIES = {
     "CountD1Stability": "d1",
@@ -151,6 +208,12 @@ DIRECTORIES = {
     "CountConfidenceZeroAndTransforms": "confidence-zero",
     "PoissonMGFV1": "poisson-mgf",
     "CountPoissonObservation": "poisson-observation",
+    "CountTaylorJetFoundation": "taylor-jet",
+    "CountTaylorJetProduct": "taylor-product",
+    "CountAnalyticCumulantBridge": "analytic-cumulant",
+    "CountConfidenceProjection": "confidence-projection",
+    "PoissonFactorialMomentsV1": "poisson-factorial-moments",
+    "BernoulliPoissonStatisticsV1": "bernoulli-poisson-statistics",
 }
 ALLOWED_AXIOMS = {"propext", "Classical.choice", "Quot.sound"}
 
@@ -515,7 +578,7 @@ def main() -> int:
         "scope": (
             "Fresh trust=0 compilation of the six core modules, D=1 stability and the finite Bernoulli-law bridge. Existing mathlib/Lean dependency caches are reused. No measure-theoretic independence, analytic-log equivalence, finite-sample coverage or physical validation is established."
             if args.suite == "law"
-            else "Fresh trust=0 compilation of the six core modules and registered research extensions. The module list and source-bound theorem statements determine the checked scope. Existing mathlib/Lean dependency caches are reused. No analytic-log equivalence, verified confidence projection, physical validity or originality is established."
+            else "Fresh trust=0 compilation of the six core modules and registered research extensions. The module list and source-bound theorem statements determine the checked scope. Existing mathlib/Lean dependency caches are reused. No executable confidence-program verification, physical validity, originality or outside human review is established."
         ),
     }
     write_json(output / "result.json", summary)

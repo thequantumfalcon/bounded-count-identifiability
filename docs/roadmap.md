@@ -10,8 +10,9 @@ error guarantees from data or complete the inference procedure below.
 
 The [Bernoulli finite-law connection](../lean/extensions/d1-law/README.md) is
 also formalized, including endpoint mass validity and the connection to the
-core formal observed cumulants. The remaining probability and analytic
-interpretation work in priority 1 is broader than this finite-law connection.
+core formal observed cumulants. The analytic extension now proves their
+all-order equality with logarithm derivatives of actual generating expectations
+and states observed-source identification in those analytic terms.
 
 The [probability and sampling extensions](probability-extensions.md) additionally
 formalize actual finite probability measures, expectation identities, variance
@@ -19,9 +20,13 @@ algebra, conditional coverage and the sample-mean variance calculation under
 within-family pairwise independence. Measurable transforms preserve that
 independence, and the combined coverage theorem includes zero ceilings.
 The actual independent-Poisson generating identity, including a canonical
-product probability space, is also formalized. A bounded second-cumulant
-perturbation has a formal D=1 stability bound. The remaining tasks below exclude these
-completed pieces and retain their unproved distributional connections.
+product probability space, is also formalized. Actual Poisson and
+Bernoulli-plus-Poisson factorial moments, quadratic-transform square
+integrability, exact single-window variances, sample-mean coverage from the
+actual laws, and the exact D=1 projection formula with clipping and empty
+cases are formalized in separate extensions. A bounded second-cumulant
+perturbation has a formal D=1 stability bound. The remaining tasks below exclude
+these completed pieces.
 
 The [originality follow-up](originality-review.md) distinguishes related
 results from established priority. A [focused review request](reviewer-request.md)
@@ -30,14 +35,16 @@ preparing or publishing that request is not evidence that review has occurred.
 
 | Priority | Work | Completion criterion |
 | --- | --- | --- |
-| 1 | Complete the analytic cumulant connection. | Connect analytic logarithm derivatives at zero to the core formal cumulants, with the correct factorial normalization. The finite source expectation and independent-Poisson generating identity, with nonnegative rate and a concrete product space, are already formalized. |
-| 2 | Complete the D=1 inference procedure. | Derive the actual factorial moments of the single-window Bernoulli-plus-Poisson count and square integrability of its quadratic transform; formalize the elimination formula in [claims.md](claims.md). Transformed-observation independence and combined zero/positive-ceiling coverage are proved. Verify that software acceptance and emptiness certificates represent that region. |
-| 3 | Prove robustness to specified deviations. | Connect the formal second-cumulant perturbation bound to an actual mixed-Poisson construction and justified rate-variance control. Extend to stated tail-moment, detector-response or temporal-dependence conditions. Identify nonidentifiability when assumptions are insufficient. |
-| 4 | Extend constructive inference. | Develop a general-$D$ feasible-region solver with checkable witnesses or emptiness certificates, and formalize the global continuity estimate. State arithmetic precision, termination and complexity limits. |
-| 5 | Improve statistical efficiency. | Compare justified confidence procedures on identical, saved synthetic data; then derive sharper concentration or likelihood guarantees. Keep coverage, computation time and interval width separate. Do not infer optimality from a favorable simulation. |
-| 6 | Broaden prior-art and external review. | Obtain independent scrutiny of the exact theorem, proof, formal statement and references. Search older and differently named results. Attribute the established sharpness construction throughout. No originality conclusion follows from an unsuccessful search. |
+| 1 | Verify the executable D=1 inference procedure. | Connect executable acceptance, witnesses and emptiness certificates to the formally defined region. The analytic cumulant connection, actual factorial moments, quadratic-transform square integrability and interval elimination are proved; they do not verify Python/Sage execution or its arithmetic library. |
+| 2 | Prove robustness to specified deviations. | Connect the formal second-cumulant perturbation bound to an actual mixed-Poisson construction and justified rate-variance control. Extend to stated tail-moment, detector-response or temporal-dependence conditions. Identify nonidentifiability when assumptions are insufficient. |
+| 3 | Extend constructive inference. | Develop a general-$D$ feasible-region solver with checkable witnesses or emptiness certificates, and formalize the global continuity estimate. State arithmetic precision, termination and complexity limits. |
+| 4 | Improve statistical efficiency. | Compare justified confidence procedures on identical, saved synthetic data; then derive sharper concentration or likelihood guarantees. Keep coverage, computation time and interval width separate. Do not infer optimality from a favorable simulation. |
+| 5 | Broaden prior-art and external review. | Obtain independent scrutiny of the exact theorem, proof, formal statement and references. Search older and differently named results. Attribute the established sharpness construction throughout. No originality conclusion follows from an unsuccessful search. |
 
-Formal work can proceed locally on these statements. The remaining analytic cumulant bridge would close a specification gap; it would not itself establish detector assumptions. Source review, a reproducible build and additional checkers improve confidence, but cannot provide external human review on their own.
+Formal work can proceed locally on these statements. The completed analytic
+cumulant connection closes a specification gap; it does not establish detector
+assumptions. Source review, a reproducible build and additional checkers improve
+confidence, but cannot provide external human review on their own.
 
 ## A physical study needs its own evidence
 
@@ -49,7 +56,7 @@ The target must first be specified as the bounded count immediately before backg
 | A common fixed Poisson background parameter. | Interleaved source-off records at matched settings, preserved temporal order, and predefined drift and distribution checks. | A matching mean and variance, or a finite set of matching cumulants, cannot establish the full distribution. |
 | Source–background independence within a window. | Labeled component measurements or calibrated controls that vary background independently while holding the source fixed. | Zero covariance alone is insufficient; totals alone do not reveal a unique physical decomposition. |
 | An additive detector response. | Pulse-delay and rate sweeps, dark records and checks for dead time, saturation and afterpulsing. | Correcting an average count need not correct higher moments. |
-| IID windows for the current confidence procedure. | Time-ordered records, predefined windows and lag/block diagnostics, with a justified memory bound or an explicit dependent-data model. | Pairwise independence or small pair correlations do not imply joint independence. |
+| Pairwise-independent observed windows with common marginal laws for the current confidence theorem; IID windows suffice. | Time-ordered records, predefined windows and lag/block diagnostics, with a justified sampling model or an explicit dependent-data analysis. | Small pair correlations do not establish pairwise independence; pairwise independence does not imply joint independence. |
 
 Detector calibration has its own established methods. [Ware and colleagues](https://www.nist.gov/publications/calibrating-photon-counting-detectors-high-accuracy-background-and-deadtime-issues-0) treat background and dead-time coupling; [Wayne and colleagues](https://www.nist.gov/publications/simple-autocorrelation-method-thoroughly-characterizing-single-photon-detectors) use correlations of time-tagged detections to characterize detector behavior. These references motivate a study; they do not validate an instrument for this project.
 

@@ -40,7 +40,7 @@ run in CI; the public verifier separately recompiles the core and both
 extensions. Neither form of checking supplies external human review.
 
 The [research extensions](../docs/probability-extensions.md) have a separate
-portable suite that recompiles all fifteen project modules. Its receipts belong
+portable suite that recompiles all twenty-one project modules. Its receipts belong
 to their exact sources and verifier. The
 [background-uncertainty checker record](background-uncertainty-kernel-check.json)
 binds that source to an additional local Lean4Lean execution accepting five
@@ -72,9 +72,25 @@ through abnormal exits; this was not a mutation of the new Poisson proofs.
 The same shared-component and reproduction limits apply. These extra checks
 do not run in hosted CI or supply outside human review.
 
-Python supplies finite exact-arithmetic comparisons; Sage performs a narrow
-algebraic projection check. These programs are not formally verified and could
-share modeling mistakes. See [reproduction commands](../docs/reproduction.md).
+A further [analytic, moment and projection checker record](analytic-moments-projection-kernel-checks.json)
+covers the 47 roots in the six new modules. Lean4Lean accepted 41,902
+declarations; nanoda checked 43,749 with no typechecker errors and the retained
+axiom-printing diagnostic. Both reran the earlier wrong-type control and
+exited abnormally, so this is not evidence of clean semantic rejection or
+exhaustive checker testing. The record binds the exact public sources and
+documents a historical, noncompiler documentation input excluded from the
+new import check. All compiler and proof inputs remained bound. The shared
+exporter, implementation ancestry, dependencies and host limit independence;
+these additional checkers do not run in CI or constitute outside human review.
+
+Python supplies finite exact-arithmetic comparisons. A fresh local
+[Sage 10.8 projection check](projection-sage-check.json) passed seven boundary
+fixtures, 3,375 exact membership comparisons and 1,038 checks of witnesses
+against the original constraints. Its source hash and limitations are recorded.
+The initial launcher lacked the runtime's Singular environment; the recorded
+environment run passed, and both local attempts are retained. Sage is not run
+in hosted CI. These programs are not formally verified and could share modeling
+mistakes. See [reproduction commands](../docs/reproduction.md).
 
 CI results belong to the exact commit checked. Historical receipts must not be
 presented as results for changed proof bytes. Proof changes require new checks,

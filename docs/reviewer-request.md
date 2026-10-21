@@ -70,7 +70,9 @@ also passed additional proof checkers, with shared dependencies and ancestry.
 These are development checks, not outside peer review. The
 [probability extensions](probability-extensions.md#independent-poisson-observations)
 construct independent Poisson addition and prove its generating identity. The
-analytic logarithm/Taylor bridge to the core formal cumulants remains open.
+[analytic connection](probability-extensions.md#analytic-cumulants) proves its
+all-order logarithm-derivative interpretation and states identification in
+terms of those derivatives.
 Physical validation, finite-sample
 performance and mathematical priority are separate questions.
 

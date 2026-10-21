@@ -20,10 +20,10 @@ P(t)=\mathbb E[(1+t)^X],\qquad
 $$
 
 The first identity holds for every real `t` because the count is bounded. The
-core identification theorem then identifies these actual measures. Its
-cumulants still use the core formal-log definition. The equivalence with
-analytic logarithm derivatives remains a separate formalization obligation.
-The independent Poisson generating identity is formalized below.
+core identification theorem then identifies these actual measures. The
+analytic extension below proves that the core formal cumulants agree with
+logarithm derivatives of this expectation. The independent Poisson generating
+identity is also formalized below.
 
 ## Independent Poisson observations
 
@@ -52,12 +52,62 @@ The module also constructs the product of the finite source measure and the
 Poisson measure, proves its probability normalization, both projection laws
 and independence, and specializes the integrable generating identity to that
 space. Degree zero, zero masses and zero rate are included. These eleven roots
-close the probability-level generating-function construction. They do not yet
-equate analytic logarithm derivatives with the core formal cumulants, derive
-the required single-window factorial moments, or validate a physical model.
+close the probability-level generating-function construction. The analytic
+connection is supplied by the following extension. Neither result validates
+a physical model.
 The identities and product construction carry no novelty claim.
 Independence here is between the source and background in one observation;
 independence across repeated observation windows is a separate assumption.
+
+## Analytic cumulants
+
+[CountAnalyticCumulantBridge.lean](../lean/extensions/analytic-cumulant/CountAnalyticCumulantBridge.lean)
+proves, for every normalized real polynomial `P` and every natural order `n`,
+
+$$
+n![t^n]\log P(t)=\left.\frac{d^n}{dt^n}\log(P(t))\right|_{t=0},
+$$
+
+where the left logarithm is the core formal power series and the right is the
+real function. The supporting Taylor-jet modules define coefficients as
+`iteratedDeriv n f 0 / n!`, prove locality and differentiation, and prove the
+product identity under explicit analytic-order `ContDiffAt` assumptions. In
+the pinned mathlib, its bare top order is stronger than the embedded smooth
+order; this is not a product theorem stated for arbitrary smooth functions.
+The polynomial and local logarithm satisfy the required premises. The polynomial-log
+proof matches a local differential identity with the formal-log identity;
+it does not assume that every smooth function equals its Taylor series.
+
+The extension handles the exponential channel and connects the cumulants to
+the actual bounded-law and bounded-source-plus-Poisson expectations. For the
+observed model it uses equality of functions near zero, where `t > -1`, rather
+than an unproved exchange of differentiation and integration. All orders,
+including zero and one, are covered. Source identification and identification
+of the source together with the background are then stated directly in terms
+of these analytic expectation derivatives, on possibly different probability
+spaces with the required marginal laws and independence.
+
+## Distributional factorial moments
+
+[PoissonFactorialMomentsV1.lean](../lean/extensions/poisson-factorial-moments/PoissonFactorialMomentsV1.lean)
+proves integrability and the factorial moments of the actual Poisson measure
+by summing its probability masses. For every natural order `k`,
+`E[(Y)_k] = b^k`, where `(Y)_k` is the descending factorial. Rate zero is included.
+
+For an independent Bernoulli source of parameter `p` and Poisson background
+of rate `b`, it then proves, for every `k >= 1`,
+
+$$
+\mathbb E[(X+Y)_k]=b^k+kp\,b^{k-1}.
+$$
+
+Both endpoint Bernoulli laws are allowed. This identity is derived from the
+marginal probability laws and independence, rather than assumed as a moment
+premise. For every bounded source plus independent Poisson background, the
+extension also establishes every natural-power moment's integrability, every
+finite `Lp` membership of the count, and square integrability of its quadratic
+factorial statistic. The last conclusion is stronger than square integrability
+of the count alone and discharges that specific sampling prerequisite.
 
 ## Conditional confidence bounds
 
@@ -88,13 +138,50 @@ own transformed value. The factorial sample-mean theorem explicitly assumes
 square integrability of both statistics; square integrability of `Yᵢ` alone
 does not establish it for the quadratic transform.
 
-These results do not yet derive the actual Bernoulli-plus-Poisson factorial
-moments from a probability construction. The variance identities alone are
-polynomial equalities. A complete confidence procedure must still connect
-those distributional moments and verify the projection formula and
-implementation. The written IID model is a
-sufficient sampling assumption; small empirical correlations do not establish
-the required independence.
+[BernoulliPoissonStatisticsV1.lean](../lean/extensions/bernoulli-poisson-statistics/BernoulliPoissonStatisticsV1.lean)
+now supplies those premises from the actual Bernoulli-plus-Poisson probability
+model. It proves the first four factorial moments and both variances. Writing
+`S=X+Y` for one observation,
+
+$$
+\operatorname{Var}(S)=b+p(1-p),\qquad
+\operatorname{Var}(S(S-1))=4b^3+(12p+2-4p^2)b^2+4pb.
+$$
+
+With `0 <= b <= B`, the existing ceilings `B+1/4` and
+`4B^3+10B^2+4B` give simultaneous sample-mean coverage. The specialized theorem
+assumes actual marginal laws and within-window independence, then derives the
+moments, square integrability and variance bounds. It does not assume those
+conclusions. Across windows, pairwise independence of the observed-count
+family suffices; joint IID sampling is a stronger sufficient condition. The
+parameter endpoints and zero rate are included, with a nonempty finite sample
+and positive error level. Small empirical correlations do not establish the
+required independence. Executable confidence software remains outside these
+formal proofs.
+
+The same module's `projected_region_coverage` theorem bounds the probability
+that the true `p` is absent from the exact feasible region by `α`. It uses the
+true background rate as a witness whenever both moment intervals contain
+their population values. Together with the projection and clipping equalities
+below, this connects the actual sampling model to the stated confidence set.
+
+## Exact confidence projection
+
+[CountConfidenceProjection.lean](../lean/extensions/confidence-projection/CountConfidenceProjection.lean)
+defines feasibility by the original constraints on `p`, background `b`, mean
+`p+b`, and second factorial moment `(p+b)^2-p^2`. It proves the
+[closed interval formula](claims.md#d1-confidence-prototype), including
+zero background ceiling, reversed bounds, the square-root domain guard and
+an empty final interval. Clipping to the model ranges preserves the feasible
+set, including when the clipped box is empty. The proof explicitly constructs
+the intermediate mean used to eliminate the background.
+
+This is a theorem about real sets. The optional Sage program implements the
+same formula using exact algebraic arithmetic, but its execution, input policy,
+witness helper and arithmetic library have not been formally verified.
+Negative ceilings and reversed raw intervals raise input errors in that program;
+the mathematical feasible set is empty. A projection of a specified box only
+becomes a confidence procedure when that box has a justified coverage bound.
 
 ## Background-rate uncertainty
 
@@ -145,7 +232,7 @@ After fetching the pinned dependencies as described in the
 python lean/extensions/d1-law/verify_law_bridge.py --suite research --run external-research
 ```
 
-This suite recompiles all six core modules and the nine extensions in dependency
+This suite recompiles all six core modules and fifteen extensions in dependency
 order with `--trust=0`, checks source manifests, exact printed theorem lists,
 standard axioms, diagnostics and output bindings. Use a new run name each time.
 It reuses upstream compiled dependencies; it does not rebuild every trusted

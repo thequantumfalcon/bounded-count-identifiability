@@ -54,6 +54,22 @@ as $(1+p_1t)(1+p_2t)$ with real Bernoulli parameters. Thus this application
 does not by itself settle the general theorem's priority. The wider
 power-sum literature is a concrete citation trail for further review.
 
+## Aggregate recovery from full generating functions
+
+Fishman and coauthors' [*Count Bridges*, arXiv:2603.04730v1](https://arxiv.org/html/2603.04730v1),
+Appendix B.2, gives another relevant comparison. Theorem B.10 recovers component
+parameters as a multiset, up to permutation, from the full aggregate law under
+conditional independence and an
+explicit additive-identifiability assumption (Definition B.8). Lemma B.9 gives
+finite linear independence of the analytic signatures as a sufficient condition.
+Our comparison is that these statements do not supply the universal finite
+`D+1` cutoff for arbitrary bounded laws while omitting the first factorial
+cumulant. They provide related context, without resolving priority here.
+
+This comparison concerns the inspected arXiv version, not search excerpts from
+other versions. The OpenReview page presented an access challenge; the primary
+arXiv text was available. No claim of a complete audit of that paper is made.
+
 ## What the search establishes
 
 This follow-up searched for bounded and finite-support factorial-cumulant
