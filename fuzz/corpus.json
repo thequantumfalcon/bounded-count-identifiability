@@ -1,0 +1,10 @@
+[
+  {"name": "empty-zero-law", "hex": ""},
+  {"name": "degree-zero-order-eight", "hex": "0008ff0f0000000000"},
+  {"name": "bernoulli-half", "hex": "01080101010202010101"},
+  {"name": "maximum-support-order-and-background", "hex": "0808ff00ff0f0203ffffffffffffffffff"},
+  {"name": "point-mass-at-eight", "hex": "0808000000000000000000000000000001"},
+  {"name": "all-zero-weights-repair", "hex": "08080000010f0702000000000000000000"},
+  {"name": "matching-strength-one", "hex": "080803020f0e0100010203040506070809"},
+  {"name": "trailing-zero-support", "hex": "0807000300000201010200000000000000"}
+]

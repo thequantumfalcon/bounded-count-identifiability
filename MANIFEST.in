@@ -8,6 +8,7 @@ recursive-include evidence *.md *.json
 recursive-include examples *.py
 recursive-include tools *.py
 recursive-include tests *.py
+recursive-include fuzz *.py *.json *.md
 recursive-include lean *.lean *.toml *.json *.txt *.md *.py .gitattributes lean-toolchain
 prune lean/.lake
 prune lean/.verification

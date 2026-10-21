@@ -58,6 +58,10 @@ def build() -> None:
     run(PYTHON, "-m", "build", "--no-isolation")
 
 
+def fuzz() -> None:
+    run(PYTHON, "fuzz/exact_counts.py", "--seed", "20261021", "--iterations", "1000")
+
+
 def test_wheel(wheel: Path, destination: Path, tests: Path = ROOT / "tests") -> None:
     venv.EnvBuilder(with_pip=True).create(destination)
     executable = destination / (
@@ -73,6 +77,16 @@ def test_wheel(wheel: Path, destination: Path, tests: Path = ROOT / "tests") -> 
         'print("Installed package:", bounded_counts.__file__)',
     )
     run(executable, "-I", "-B", "-m", "unittest", "discover", "-s", tests, "-v")
+    run(
+        executable,
+        "-I",
+        "-B",
+        tests.parent / "fuzz/exact_counts.py",
+        "--seed",
+        "20261021",
+        "--iterations",
+        "100",
+    )
     run(
         executable,
         "-I",
@@ -147,6 +161,7 @@ def formal() -> None:
 def release() -> None:
     lint()
     test()
+    fuzz()
     build()
     artifacts()
     print("Release checks passed. No package, tag or release was published.")
@@ -155,7 +170,16 @@ def release() -> None:
 def main() -> None:
     commands = {
         name: globals()[name]
-        for name in ("setup", "lint", "test", "build", "artifacts", "formal", "release")
+        for name in (
+            "setup",
+            "lint",
+            "test",
+            "fuzz",
+            "build",
+            "artifacts",
+            "formal",
+            "release",
+        )
     }
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -163,7 +187,7 @@ def main() -> None:
     )
     command = parser.parse_args().command
     if command == "help":
-        print("Commands: setup, lint, test, build, artifacts, formal, release")
+        print("Commands: setup, lint, test, fuzz, build, artifacts, formal, release")
         print("Use a virtual environment; release runs local checks only.")
     else:
         commands[command]()

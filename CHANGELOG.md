@@ -6,6 +6,11 @@ The Python API is experimental; no stable release has been published.
 
 ## [Unreleased]
 
+- Reviewed and updated development tools: build 1.6.1, pyproject-hooks 1.3.3,
+  coverage 7.16.2, Ruff 0.17.0 and zizmor 1.30.1. Download hashes were checked
+  against the corresponding PyPI release files; compatibility, security-hardening
+  and formatting changes were assessed before installed-artifact testing.
+
 - Updated build inputs to setuptools 84.2.1 and wheel 0.48.0 after the initial
   dependency scan identified
   [GHSA-h35f-9h28-mq5c](https://github.com/pypa/setuptools/security/advisories/GHSA-h35f-9h28-mq5c)
@@ -19,6 +24,14 @@ The Python API is experimental; no stable release has been published.
   locked development packages, not just the build-system requirements.
 
 ### Added
+
+- Bounded, seeded differential fuzz checks against a separate exact
+  integer-partition cumulant oracle, with a saved corpus and fault-detection
+  controls. CI and installed-artifact checks exercise the runner; this is finite
+  software testing, not formal verification or coverage-guided fuzzing.
+- Required CI and dependency review for the exact signed commit promoted to
+  main, including administrator pushes; the local PR-rule exception remains.
+- An explicit assessment of remaining Scorecard and scientific obligations.
 
 - A red-team follow-up covering the verifier defects, evidence indexing, Sage
   execution and parameter-specific confidence-width diagnostics. Historical

@@ -35,6 +35,7 @@ artifact checker requires its safe tar extraction API):
 python tools/tasks.py setup
 python tools/tasks.py lint
 python tools/tasks.py test
+python tools/tasks.py fuzz
 python tools/tasks.py build
 python tools/tasks.py artifacts
 ```
@@ -49,6 +50,14 @@ The 95% statement-and-branch coverage gate applies to the Python package, not
 the proofs, examples or developer utilities. Coverage is not mathematical
 correctness. Tests include a separate formal-logarithm computation, finite-law
 transformations and the known sharpness family.
+
+The [bounded fuzz runner](../fuzz/README.md) adds seeded differential checks
+against an integer-partition cumulant calculation, plus exact transformation
+identities. `python tools/tasks.py fuzz` fixes the seed and runs 1,000 generated
+cases after the saved corpus. Installed wheel and rebuilt-source checks also run
+a smaller 100-case sample. These finite checks can expose software defects;
+they are neither universal proofs nor coverage-guided fuzzing. CI requires the
+fuzz job in addition to the existing checks.
 
 CI exercises Python on Linux and Windows, compiles Lean on Linux, and includes
 a separate exact Sage projection job. Inspect

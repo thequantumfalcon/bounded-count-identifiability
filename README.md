@@ -100,5 +100,8 @@ See [contribution guidance](.github/CONTRIBUTING.md),
 [security reporting](.github/SECURITY.md) and [CITATION.cff](CITATION.cff).
 
 The Python API is experimental (`0.1.0.dev0`); compatibility is not yet promised.
+The [maintenance policy](docs/decisions/0002-maintenance-controls.md) explains
+required checks, dependency updates and unresolved Scorecard recommendations.
+Green CI is not a perfect security score or evidence of independent review.
 Original code and documentation are provided under the [MIT license](LICENSE.txt).
 Third-party material retains its stated license; see [notices](NOTICE.md).
