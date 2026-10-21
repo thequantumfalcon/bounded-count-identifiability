@@ -68,6 +68,9 @@ RESEARCH_INPUTS = tuple(
         ("finite-sample", "CountD1VarianceCoverage"),
         ("background-uncertainty", "CountD1BackgroundUncertainty"),
         ("sample-mean", "CountFiniteSampleMean"),
+        ("confidence-zero", "CountConfidenceZeroAndTransforms"),
+        ("poisson-mgf", "PoissonMGFV1"),
+        ("poisson-observation", "CountPoissonObservation"),
     )
     for filename in (name + ".lean", "source_manifest.json")
 )
@@ -89,7 +92,11 @@ class LawBridgeVerifierTests(unittest.TestCase):
             spec.loader.exec_module(module)
             inputs = module.source_inputs(suite)
             roots_for_suite = module.selected_roots(suite)
-            focus = "CountD1LawBridge" if suite == "law" else "CountFiniteSampleMean"
+            focus = (
+                "CountD1LawBridge"
+                if suite == "law"
+                else next(reversed(roots_for_suite))
+            )
             compiler = root / "mock-compiler.bin"
             compiler.write_bytes(b"never executed")
             library = root / "library"
@@ -506,6 +513,9 @@ class LawBridgeVerifierTests(unittest.TestCase):
             "CountD1VarianceCoverage",
             "CountD1BackgroundUncertainty",
             "CountFiniteSampleMean",
+            "CountConfidenceZeroAndTransforms",
+            "PoissonMGFV1",
+            "CountPoissonObservation",
         ):
             for prefix in ("tamper_", "shadow_"):
                 with self.subTest(module=name, prefix=prefix):
@@ -529,6 +539,9 @@ class LawBridgeVerifierTests(unittest.TestCase):
             "CountD1VarianceCoverage_changed",
             "CountD1BackgroundUncertainty_changed",
             "CountFiniteSampleMean_changed",
+            "CountConfidenceZeroAndTransforms_changed",
+            "PoissonMGFV1_changed",
+            "CountPoissonObservation_changed",
             "reused_run",
             "reused_core_run",
             "path_escape",

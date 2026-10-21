@@ -117,6 +117,29 @@ RESEARCH_ROOTS = {
         "sampleMean_variance_ceiling",
         "two_sample_means_coverage",
     ),
+    "CountConfidenceZeroAndTransforms": (
+        "pairwise_indepFun_measurable_transform",
+        "pairwise_indepFun_factorial",
+        "nonnegative_ceiling_tail",
+        "simultaneous_nonnegative_ceiling_coverage",
+        "two_sample_means_coverage_nonnegative",
+        "factorial_sample_means_coverage",
+    ),
+    "PoissonMGFV1": (
+        "poisson_exp_integrable",
+        "poisson_exp_integral",
+    ),
+    "CountPoissonObservation": (
+        "bounded_exp_integrable",
+        "bounded_exp_integral",
+        "observed_exp_integrable",
+        "observed_exp_integral",
+        "observed_factorialPGF_integrable",
+        "observed_factorialPGF_integral",
+        "independentPairMeasure_isProbability",
+        "independentPairMeasure_hasLaws",
+        "independentPairMeasure_factorialPGF",
+    ),
 }
 DIRECTORIES = {
     "CountD1Stability": "d1",
@@ -125,6 +148,9 @@ DIRECTORIES = {
     "CountD1VarianceCoverage": "finite-sample",
     "CountD1BackgroundUncertainty": "background-uncertainty",
     "CountFiniteSampleMean": "sample-mean",
+    "CountConfidenceZeroAndTransforms": "confidence-zero",
+    "PoissonMGFV1": "poisson-mgf",
+    "CountPoissonObservation": "poisson-observation",
 }
 ALLOWED_AXIOMS = {"propext", "Classical.choice", "Quot.sound"}
 
@@ -489,7 +515,7 @@ def main() -> int:
         "scope": (
             "Fresh trust=0 compilation of the six core modules, D=1 stability and the finite Bernoulli-law bridge. Existing mathlib/Lean dependency caches are reused. No measure-theoretic independence, analytic-log equivalence, finite-sample coverage or physical validation is established."
             if args.suite == "law"
-            else "Fresh trust=0 compilation of six core and six extension modules: finite-law encoding, probability expectations, conditional two-moment coverage, finite-sample means and algebraic background perturbation bounds. Existing mathlib/Lean dependency caches are reused. No Poisson probability construction, analytic-log equivalence, verified confidence projection, physical validity or originality is established."
+            else "Fresh trust=0 compilation of the six core modules and registered research extensions. The module list and source-bound theorem statements determine the checked scope. Existing mathlib/Lean dependency caches are reused. No analytic-log equivalence, verified confidence projection, physical validity or originality is established."
         ),
     }
     write_json(output / "result.json", summary)

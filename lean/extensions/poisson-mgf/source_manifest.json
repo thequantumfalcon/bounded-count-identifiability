@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "description": "Exact-byte source binding; assumptions and limitations are stated in the source and extension guide.",
+  "sources": {
+    "PoissonMGFV1.lean": {
+      "bytes": 2092,
+      "sha256": "44b0859bede1ac3e0f0600ae38e04cd02564217fdca6f6d23e40e276390bd03a"
+    }
+  },
+  "theorem_roots": [
+    "PoissonMGFV1.poisson_exp_integrable",
+    "PoissonMGFV1.poisson_exp_integral"
+  ]
+}

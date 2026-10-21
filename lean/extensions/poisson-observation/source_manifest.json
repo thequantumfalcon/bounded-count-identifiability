@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "description": "Exact-byte source binding; assumptions and limitations are stated in the source and extension guide.",
+  "sources": {
+    "CountPoissonObservation.lean": {
+      "bytes": 7406,
+      "sha256": "4105dd5ce205143aa1f003d7d184a638a9a6c55348718d8779c14f45b730cd7c"
+    }
+  },
+  "theorem_roots": [
+    "CountPoissonObservation.bounded_exp_integrable",
+    "CountPoissonObservation.bounded_exp_integral",
+    "CountPoissonObservation.observed_exp_integrable",
+    "CountPoissonObservation.observed_exp_integral",
+    "CountPoissonObservation.observed_factorialPGF_integrable",
+    "CountPoissonObservation.observed_factorialPGF_integral",
+    "CountPoissonObservation.independentPairMeasure_isProbability",
+    "CountPoissonObservation.independentPairMeasure_hasLaws",
+    "CountPoissonObservation.independentPairMeasure_factorialPGF"
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "prepared_utc": "2026-10-21T11:02:59.157460+00:00",
+  "record_type": "Sanitized local additional-checker evidence; not a hosted CI run",
+  "status": "PASS",
+  "sources": [
+    {
+      "source": "lean/extensions/poisson-mgf/PoissonMGFV1.lean",
+      "source_sha256": "44b0859bede1ac3e0f0600ae38e04cd02564217fdca6f6d23e40e276390bd03a",
+      "source_manifest_sha256": "651ab72e763f33555e1293ec2fffca5dced92553758348577ccef5ee2bed55c3",
+      "proof_receipt_sha256": "5bbe779c625f063a4df6c7725a1add8fc6a8d4d0b1e4e6fa1a3bf9814f61b381",
+      "olean_sha256": "cb9f4da3881fe69256748c72b2859d9b61cebe51cb9d89ffd1ca817aac9f166f"
+    },
+    {
+      "source": "lean/extensions/poisson-observation/CountPoissonObservation.lean",
+      "source_sha256": "4105dd5ce205143aa1f003d7d184a638a9a6c55348718d8779c14f45b730cd7c",
+      "source_manifest_sha256": "ceb1d3853ffb457dcf0ba8f7374af03bb13f585f628c730817e5fb5b6d99a958",
+      "proof_receipt_sha256": "e85bbdae4386a5d4bb39a4a752989c92940a338b62897b257e1afd1e2451485f",
+      "olean_sha256": "906bd34cc4e6049fba974740d720f0ee2b3bda910b7a161e9dbe8a2ddffe8577"
+    }
+  ],
+  "theorem_roots": [
+    "PoissonMGFV1.poisson_exp_integrable",
+    "PoissonMGFV1.poisson_exp_integral",
+    "CountPoissonObservation.bounded_exp_integrable",
+    "CountPoissonObservation.bounded_exp_integral",
+    "CountPoissonObservation.observed_exp_integrable",
+    "CountPoissonObservation.observed_exp_integral",
+    "CountPoissonObservation.observed_factorialPGF_integrable",
+    "CountPoissonObservation.observed_factorialPGF_integral",
+    "CountPoissonObservation.independentPairMeasure_isProbability",
+    "CountPoissonObservation.independentPairMeasure_hasLaws",
+    "CountPoissonObservation.independentPairMeasure_factorialPGF"
+  ],
+  "selected_root_count": 11,
+  "raw_summary_sha256": "51414a97ca379098780709675017a236380d22ed1e47d862269aab2a1837ab3e",
+  "prior_research_receipt_sha256": "db183bf03c57c624b5e3f692973a767f6ddffbd27ac9498fc24af42d94030a2d",
+  "wrapper_fresh_trust_zero": true,
+  "project_sources_recompiled_in_this_extra_pass": false,
+  "export_sha256": "46945a7b214a483e7b4e3693d4d0ccc0cbc6c79032e7eb9c6d61a72d838dacf3",
+  "export_bytes": 193236058,
+  "export_header": {
+    "meta": {
+      "exporter": {
+        "name": "lean4export",
+        "version": "3.1.0"
+      },
+      "format": {
+        "version": "3.1.0"
+      },
+      "lean": {
+        "githash": "eb6cafb7290e8bd5f2937522d8d804f58f02bafc",
+        "version": "4.35.0"
+      }
+    }
+  },
+  "export_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "forbidden_names_found": [],
+  "checker_runs": [
+    {
+      "checker": "lean4lean",
+      "control": "proof_export",
+      "status": "accepted",
+      "exit_code": 0,
+      "timed_out": false,
+      "executable_sha256": "2463006ea615a6f69c80689142cf7cb0a8724fc7819c57ad2b395e99eb6a9f3c",
+      "stdout_sha256": "b9d78c68bdf7d440e7905116c9fce1bb34ccab7242e22b77172014662cf54d36",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text": "checked 34256 declarations\n",
+      "raw_receipt_sha256": "b3af8cbf5ad90be9f5a3d29c16a1b6779ae3f7f800c6981b423890fc1073ffa2"
+    },
+    {
+      "checker": "nanoda",
+      "control": "proof_export",
+      "status": "accepted",
+      "exit_code": 0,
+      "timed_out": false,
+      "executable_sha256": "de57d9dd7f647eb57398bc3dab4dcaa1d64f961f3f49964d5455fbddc73b35a8",
+      "stdout_sha256": "4d5f053a9c8872976dd611809d7fd83b1eed36188008772e7779b7ba73f22b13",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text": "Checked 35999 declarations with no typechecker errors, 1 pretty printer errors: [\n    \"Unable to print axioms\",\n]\n",
+      "raw_receipt_sha256": "253da3e29be162646b29af3ed131641065af3b6945b3aaec749fe027ec385f18"
+    },
+    {
+      "checker": "lean4lean",
+      "control": "old_wrong_type_fixture",
+      "status": "nonaccepted_with_abnormal_exit",
+      "exit_code": -1073740791,
+      "timed_out": false,
+      "executable_sha256": "2463006ea615a6f69c80689142cf7cb0a8724fc7819c57ad2b395e99eb6a9f3c",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "5de42aa07f2e75fef8d5d62004da377f6f8fb31acf3107347a9fd140f9932f78",
+      "stdout_text": "",
+      "raw_receipt_sha256": "4e69000f245f411682f94d533705a3cf0c5f387319c320b5b48fa3e9a34a316e"
+    },
+    {
+      "checker": "nanoda",
+      "control": "old_wrong_type_fixture",
+      "status": "nonaccepted_with_abnormal_exit",
+      "exit_code": 101,
+      "timed_out": false,
+      "executable_sha256": "de57d9dd7f647eb57398bc3dab4dcaa1d64f961f3f49964d5455fbddc73b35a8",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "a02f76068c6fe4ab849c23f9270a9ece544faff6371c026797c981141634b507",
+      "stdout_text": "",
+      "raw_receipt_sha256": "2f4aa87965576162e03851890ce378cb2308c5c26c2f16fdb21c41c14445363e"
+    }
+  ],
+  "nanoda_diagnostic_exact": "Checked 35999 declarations with no typechecker errors, 1 pretty printer errors: [\n    \"Unable to print axioms\",\n]\n",
+  "negative_control": {
+    "positive_export_sha256": "5211f1c127121b224b08eb8dcf7ed69fcf7552f79549f7b9f6301bc8316bdaf8",
+    "negative_export_sha256": "d767b9cc9d187484f69665b1071f384aff613a145665b847dc172b624cca3c04",
+    "records_changed": 1,
+    "theorem": "CountCoefficientAudit.two_zero_coefficients_force_zero_shift",
+    "original_type_expression": 487364,
+    "invalid_type_expression": 1981,
+    "unchanged_proof_expression": 487841,
+    "purpose": "A syntactically valid record with a proof of the wrong claimed type must be rejected."
+  },
+  "negative_control_interpretation": "Abnormal nonacceptance of an old coefficient wrong-type fixture is not clean semantic reporting or comprehensive checker soundness evidence.",
+  "frozen_inputs_snapshots_and_export_unchanged": true,
+  "tool_sha256": {
+    "compile": "ec7a472d1c12a09b0c0c718f7427c2be527b3f5f07810fdbe076c2507c7a91ea",
+    "export": "bda24bb3fafaf299ba472f944942d6293294b76559fafc9f166badd7c0f981b3",
+    "lean4lean": "2463006ea615a6f69c80689142cf7cb0a8724fc7819c57ad2b395e99eb6a9f3c",
+    "nanoda": "de57d9dd7f647eb57398bc3dab4dcaa1d64f961f3f49964d5455fbddc73b35a8"
+  },
+  "limitations": [
+    "Checker diversity within one automated campaign, not independent author or human review.",
+    "Lean4Lean shares kernel lineage; exporter, host, specification and compiled libraries remain shared.",
+    "Only an import wrapper is freshly compiled here; frozen project artifacts are receipt-bound imports.",
+    "Nanoda pretty-printer diagnostics are separate from its typechecker outcome and are retained.",
+    "The old coefficient wrong-type fixture is freshly rerun, not a mutation of these eleven roots.",
+    "Abnormal exit/panic is nonacceptance, not clean semantic reporting or exhaustive soundness evidence.",
+    "No analytic/formal cumulant bridge, extra moment/L2 formula, cross-window independence, or projection theorem follows from this checker pass.",
+    "No public CI, complete trusted-toolchain reconstruction, or adversarial-project sandbox claim.",
+    "The earlier project roots were not selected again; supporting declarations occur in the dependency closure.",
+    "Large exports, raw process receipts, negative diagnostics and checker installations remain local; this record is not self-contained reproduction.",
+    "The separate public research verifier supplies fresh source compilation; these extra checkers do not run in hosted CI."
+  ],
+  "private_manifest_sha256": "fbf1736895e94d01004a4291598e45aa065da878a90e34004041c0bd9775332d"
+}

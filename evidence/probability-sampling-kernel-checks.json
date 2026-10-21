@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "record_type": "Sanitized historical local execution; not a public CI execution",
+  "status": "PASS",
+  "source_sha256": {
+    "lean/extensions/probability/CountProbabilityBridge.lean": "bca20a6a7ce778a3b0e91bf20e6b9980b65bf18cddae1ef628510b0baf02662a",
+    "lean/extensions/finite-sample/CountD1VarianceCoverage.lean": "155a242dd9bbf09d49089a76e84216e4dbb0c8e9d8b5a509cbffa47f8e630faf",
+    "lean/extensions/background-uncertainty/CountD1BackgroundUncertainty.lean": "f64f5fa708d57ab47a3df1df1fc829fd5ccf0196797aaefe2e8cd2eb1e92818e",
+    "lean/extensions/sample-mean/CountFiniteSampleMean.lean": "c75e0337323bc7fdd06651a249ae95fc2418693fab3f6b488c48781a65d4f42e"
+  },
+  "packet_manifest_sha256": "75c60809ebdb39fa4de99700f2154779ccf06a32ba4da8f315d405701c390010",
+  "raw_summary_sha256": "e8cb46f49c48462416d7d6f61f96aa0df3b57f6091d054c95ae2f77af7148aac",
+  "roots": [
+    "CountProbabilityBridge.boundedPMF_mass",
+    "CountProbabilityBridge.boundedMeasure_isProbability",
+    "CountProbabilityBridge.boundedMeasure_singleton",
+    "CountProbabilityBridge.integral_boundedMeasure",
+    "CountProbabilityBridge.factorialPGF_eval_eq_expectation",
+    "CountProbabilityBridge.factorialPGF_coeff_eq_binomial_expectation",
+    "CountProbabilityBridge.higher_factorial_cumulants_identify_measures",
+    "CountD1VarianceCoverage.factorial_square_identity",
+    "CountD1VarianceCoverage.first_variance_identity",
+    "CountD1VarianceCoverage.second_variance_identity",
+    "CountD1VarianceCoverage.first_variance_ceiling",
+    "CountD1VarianceCoverage.second_variance_ceiling",
+    "CountD1VarianceCoverage.variance_ratio_radius",
+    "CountD1VarianceCoverage.zero_variance_deterministic",
+    "CountD1VarianceCoverage.simultaneous_chebyshev",
+    "CountD1VarianceCoverage.conditional_moment_coverage",
+    "CountD1BackgroundUncertainty.perturbation_difference_le",
+    "CountD1BackgroundUncertainty.square_difference_le",
+    "CountD1BackgroundUncertainty.parameter_error_le",
+    "CountD1BackgroundUncertainty.bounded_observation_error",
+    "CountD1BackgroundUncertainty.equal_cumulant_witness",
+    "CountFiniteSampleMean.sampleMean_memLp",
+    "CountFiniteSampleMean.sampleMean_unbiased",
+    "CountFiniteSampleMean.sampleMean_variance",
+    "CountFiniteSampleMean.sampleMean_variance_ceiling",
+    "CountFiniteSampleMean.two_sample_means_coverage"
+  ],
+  "root_count": 26,
+  "export_sha256": "bc1a1b3bea1ef3ffa96e3042ab0f13103e85371565401d73f84629956f97efe4",
+  "export_bytes": 202538393,
+  "export_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "public_build_receipt_sha256": "db183bf03c57c624b5e3f692973a767f6ddffbd27ac9498fc24af42d94030a2d",
+  "core_build_receipt_sha256": "1e1aa9a4a43161fa695aa08651ff16d8ea410a3217e972bddf213ee3c7d93e2a",
+  "positive_checker_exit_codes": {
+    "lean4lean": 0,
+    "nanoda": 0
+  },
+  "negative_checker_exit_codes": {
+    "lean4lean": -1073740791,
+    "nanoda": 101
+  },
+  "positive_checks_accepted": true,
+  "negative_control_rejected": true,
+  "frozen_inputs_and_export_unchanged": true,
+  "lean4lean_output": "checked 35290 declarations\n",
+  "nanoda_output": "Checked 37053 declarations with no typechecker errors, 1 pretty printer errors: [\n    \"Unable to print axioms\",\n]\n",
+  "negative_control_semantics": {
+    "positive_export_sha256": "5211f1c127121b224b08eb8dcf7ed69fcf7552f79549f7b9f6301bc8316bdaf8",
+    "negative_export_sha256": "d767b9cc9d187484f69665b1071f384aff613a145665b847dc172b624cca3c04",
+    "records_changed": 1,
+    "theorem": "CountCoefficientAudit.two_zero_coefficients_force_zero_shift",
+    "original_type_expression": 487364,
+    "invalid_type_expression": 1981,
+    "unchanged_proof_expression": 487841,
+    "purpose": "A syntactically valid record with a proof of the wrong claimed type must be rejected."
+  },
+  "limitations": [
+    "Lean4Lean shares kernel lineage; all runs share exporter/host and compiled dependency inputs.",
+    "The negative controls may reject via panic; retain raw diagnostics and do not label all as clean semantic error reporting.",
+    "One wrong-type fixture does not establish checker correctness.",
+    "No new physical, originality, probability-channel or confidence-projection theorem is established by rechecking."
+  ],
+  "reproduction_limits": "The large export and checker installations remain local. Use the portable research suite for fresh source compilation. This record does not independently reproduce the additional checker executions.",
+  "excluded_new_modules": [
+    "CountConfidenceZeroAndTransforms",
+    "PoissonMGFV1",
+    "CountPoissonObservation"
+  ]
+}

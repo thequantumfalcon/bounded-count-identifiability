@@ -20,6 +20,14 @@ The Python API is experimental; no stable release has been published.
 
 ### Added
 
+- Actual Poisson exponential moments and the independent bounded-source
+  generating identity, including a concrete product probability space and zero
+  rate. Analytic-to-formal cumulant equivalence remains a separate proof task.
+- Unified zero/positive-ceiling confidence bounds and preservation of pairwise
+  independence under measurable transforms, including the factorial statistic.
+  Square integrability of both statistics remains an explicit assumption.
+- A scoped historical record of Lean4Lean and nanoda checks for 26 probability,
+  sampling and uncertainty roots, including their diagnostics and rejection control.
 - Actual finite probability measures and expectation identities, conditional
   Chebyshev coverage, finite-sample mean variance bounds, and a D=1
   background-uncertainty inequality in separate Lean extensions. A research

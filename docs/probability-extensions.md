@@ -22,8 +22,42 @@ $$
 The first identity holds for every real `t` because the count is bounded. The
 core identification theorem then identifies these actual measures. Its
 cumulants still use the core formal-log definition. The equivalence with
-analytic logarithm derivatives and the independent Poisson observation channel
-are separate formalization obligations.
+analytic logarithm derivatives remains a separate formalization obligation.
+The independent Poisson generating identity is formalized below.
+
+## Independent Poisson observations
+
+[PoissonMGFV1.lean](../lean/extensions/poisson-mgf/PoissonMGFV1.lean) proves that
+the actual mathlib Poisson measure has every real exponential moment, including
+rate zero, and derives its standard exponential-moment formula from the
+convergent exponential series. Integrability is established explicitly before
+identifying the Bochner integral.
+
+[CountPoissonObservation.lean](../lean/extensions/poisson-observation/CountPoissonObservation.lean)
+then takes a bounded source `X`, a Poisson count `Y` of fixed nonnegative rate
+`r`, their marginal-law statements and genuine independence. For every real
+`s`, it proves integrability and
+
+$$
+\mathbb E[e^{s(X+Y)}]=P(e^s-1)\exp(r(e^s-1)).
+$$
+
+For `t > -1`, substituting `s=log(1+t)` gives
+
+$$
+\mathbb E[(1+t)^{X+Y}]=P(t)\exp(rt).
+$$
+
+The module also constructs the product of the finite source measure and the
+Poisson measure, proves its probability normalization, both projection laws
+and independence, and specializes the integrable generating identity to that
+space. Degree zero, zero masses and zero rate are included. These eleven roots
+close the probability-level generating-function construction. They do not yet
+equate analytic logarithm derivatives with the core formal cumulants, derive
+the required single-window factorial moments, or validate a physical model.
+The identities and product construction carry no novelty claim.
+Independence here is between the source and background in one observation;
+independence across repeated observation windows is a separate assumption.
 
 ## Conditional confidence bounds
 
@@ -44,11 +78,21 @@ each family of per-window statistics, common expectations and individual
 variance bounds, then applies the two-estimator theorem. Joint independence
 of the two different moment estimates is unnecessary.
 
+[CountConfidenceZeroAndTransforms.lean](../lean/extensions/confidence-zero/CountConfidenceZeroAndTransforms.lean)
+extends coverage to nonnegative variance ceilings, including either or both
+ceilings equal to zero. Failure means a deviation strictly exceeds its radius;
+the good intervals include their endpoints. It also derives pairwise
+independence of the family `Yᵢ(Yᵢ-1)` from pairwise independence of `Yᵢ` by
+measurability of the transform. This does not make a count independent of its
+own transformed value. The factorial sample-mean theorem explicitly assumes
+square integrability of both statistics; square integrability of `Yᵢ` alone
+does not establish it for the quadratic transform.
+
 These results do not yet derive the actual Bernoulli-plus-Poisson factorial
 moments from a probability construction. The variance identities alone are
 polynomial equalities. A complete confidence procedure must still connect
-those distributional moments, handle zero and positive ceilings together, and
-verify the projection formula and implementation. The written IID model is a
+those distributional moments and verify the projection formula and
+implementation. The written IID model is a
 sufficient sampling assumption; small empirical correlations do not establish
 the required independence.
 
@@ -101,7 +145,7 @@ After fetching the pinned dependencies as described in the
 python lean/extensions/d1-law/verify_law_bridge.py --suite research --run external-research
 ```
 
-This suite recompiles all six core modules and the six extensions in dependency
+This suite recompiles all six core modules and the nine extensions in dependency
 order with `--trust=0`, checks source manifests, exact printed theorem lists,
 standard axioms, diagnostics and output bindings. Use a new run name each time.
 It reuses upstream compiled dependencies; it does not rebuild every trusted

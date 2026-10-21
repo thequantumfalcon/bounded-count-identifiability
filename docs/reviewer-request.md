@@ -67,9 +67,11 @@ the arbitrary-law claim.
 The repository supplies written proofs, exact-arithmetic examples and pinned
 [Lean reproduction commands](../lean/README.md). Selected formal results have
 also passed additional proof checkers, with shared dependencies and ancestry.
-These are development checks, not outside peer review. The probability-space
-construction of independent Poisson addition and the analytic logarithm/Taylor
-bridge are not separately formalized. Physical validation, finite-sample
+These are development checks, not outside peer review. The
+[probability extensions](probability-extensions.md#independent-poisson-observations)
+construct independent Poisson addition and prove its generating identity. The
+analytic logarithm/Taylor bridge to the core formal cumulants remains open.
+Physical validation, finite-sample
 performance and mathematical priority are separate questions.
 
 Please identify the commit examined and the scope of any feedback: informal

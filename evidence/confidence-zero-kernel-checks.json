@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "prepared_utc": "2026-10-21T10:36:52.324583+00:00",
+  "record_type": "Sanitized local additional-checker evidence; not a hosted CI run",
+  "status": "PASS",
+  "source": "lean/extensions/confidence-zero/CountConfidenceZeroAndTransforms.lean",
+  "source_sha256": "71ba9299ccecdae745a436290aedf9c1b1d841362fab494573139baab509fbb2",
+  "theorem_roots": [
+    "CountConfidenceZeroAndTransforms.pairwise_indepFun_measurable_transform",
+    "CountConfidenceZeroAndTransforms.pairwise_indepFun_factorial",
+    "CountConfidenceZeroAndTransforms.nonnegative_ceiling_tail",
+    "CountConfidenceZeroAndTransforms.simultaneous_nonnegative_ceiling_coverage",
+    "CountConfidenceZeroAndTransforms.two_sample_means_coverage_nonnegative",
+    "CountConfidenceZeroAndTransforms.factorial_sample_means_coverage"
+  ],
+  "selected_root_count": 6,
+  "private_manifest_sha256": "d2d2893cc26222956340de1d16a91d3bf6bbe8d4621ff2b2d1ece709a99ca708",
+  "raw_summary_sha256": "800ca7962af07994689bc48c44924097b38d9bf326800e9ffb6dca52c4f79c8f",
+  "confidence_proof_receipt_sha256": "735da4318aa5c442a4d7c0d792d82c4713b751a5cf7c79e0fd68f42b2c774762",
+  "olean_sha256": "dc95c5744b3ee9606e2fbe0ef21b6e5768e67f95ecfa5214fde6f8e3b2833f79",
+  "prior_research_receipt_sha256": "db183bf03c57c624b5e3f692973a767f6ddffbd27ac9498fc24af42d94030a2d",
+  "wrapper_fresh_trust_zero": true,
+  "project_sources_recompiled_in_this_extra_pass": false,
+  "export_sha256": "950be1d59151846fd5e2e4cb445a3540dfba1bec1d1e7902585f8f78af5af346",
+  "export_bytes": 187007810,
+  "export_header": {
+    "meta": {
+      "exporter": {
+        "name": "lean4export",
+        "version": "3.1.0"
+      },
+      "format": {
+        "version": "3.1.0"
+      },
+      "lean": {
+        "githash": "eb6cafb7290e8bd5f2937522d8d804f58f02bafc",
+        "version": "4.35.0"
+      }
+    }
+  },
+  "export_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "forbidden_names_found": [],
+  "checker_runs": [
+    {
+      "checker": "lean4lean",
+      "control": "proof_export",
+      "status": "accepted",
+      "exit_code": 0,
+      "timed_out": false,
+      "executable_sha256": "2463006ea615a6f69c80689142cf7cb0a8724fc7819c57ad2b395e99eb6a9f3c",
+      "stdout_sha256": "44b1c2ba81dca8428c9c89519a9918e8697f96a509b4cd02657c8dba4c948810",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text": "checked 33492 declarations\n",
+      "raw_receipt_sha256": "058bf8acdabecd402d4d09f58f1f9f18206d65873d661125e16f33b93c752af7"
+    },
+    {
+      "checker": "nanoda",
+      "control": "proof_export",
+      "status": "accepted",
+      "exit_code": 0,
+      "timed_out": false,
+      "executable_sha256": "de57d9dd7f647eb57398bc3dab4dcaa1d64f961f3f49964d5455fbddc73b35a8",
+      "stdout_sha256": "5f206d3b6d900d16c137fea6426c6483d3bc8b97c974c7a8d80763c5587841e2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text": "Checked 35233 declarations with no typechecker errors, 1 pretty printer errors: [\n    \"Unable to print axioms\",\n]\n",
+      "raw_receipt_sha256": "3b4dce72c546c390f116c1a25cba4e89a2e568ecb9b609d261e0a949e982ccca"
+    },
+    {
+      "checker": "lean4lean",
+      "control": "wrong_type_fixture",
+      "status": "rejected_with_abnormal_exit",
+      "exit_code": -1073740791,
+      "timed_out": false,
+      "executable_sha256": "2463006ea615a6f69c80689142cf7cb0a8724fc7819c57ad2b395e99eb6a9f3c",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "5de42aa07f2e75fef8d5d62004da377f6f8fb31acf3107347a9fd140f9932f78",
+      "stdout_text": "",
+      "raw_receipt_sha256": "10135358d45abff8589e4fc277a9d069f24164140206c83e8fe1c9e7c05ecda7"
+    },
+    {
+      "checker": "nanoda",
+      "control": "wrong_type_fixture",
+      "status": "rejected_with_abnormal_exit",
+      "exit_code": 101,
+      "timed_out": false,
+      "executable_sha256": "de57d9dd7f647eb57398bc3dab4dcaa1d64f961f3f49964d5455fbddc73b35a8",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "212c142746f57612b468075d8cd044c2d558b1ea498e455fc37a0a863c5967bf",
+      "stdout_text": "",
+      "raw_receipt_sha256": "11e3947f93707bf46b19cafb9ba9befb09abb2d2a7388e737188bf75e5e0dd02"
+    }
+  ],
+  "nanoda_diagnostic": "No typechecker errors; one pretty-printer error: Unable to print axioms.",
+  "negative_control": {
+    "positive_export_sha256": "5211f1c127121b224b08eb8dcf7ed69fcf7552f79549f7b9f6301bc8316bdaf8",
+    "negative_export_sha256": "d767b9cc9d187484f69665b1071f384aff613a145665b847dc172b624cca3c04",
+    "records_changed": 1,
+    "theorem": "CountCoefficientAudit.two_zero_coefficients_force_zero_shift",
+    "original_type_expression": 487364,
+    "invalid_type_expression": 1981,
+    "unchanged_proof_expression": 487841,
+    "purpose": "A syntactically valid record with a proof of the wrong claimed type must be rejected."
+  },
+  "frozen_inputs_snapshots_and_export_unchanged": true,
+  "tool_sha256": {
+    "compile": "ec7a472d1c12a09b0c0c718f7427c2be527b3f5f07810fdbe076c2507c7a91ea",
+    "export": "bda24bb3fafaf299ba472f944942d6293294b76559fafc9f166badd7c0f981b3",
+    "lean4lean": "2463006ea615a6f69c80689142cf7cb0a8724fc7819c57ad2b395e99eb6a9f3c",
+    "nanoda": "de57d9dd7f647eb57398bc3dab4dcaa1d64f961f3f49964d5455fbddc73b35a8"
+  },
+  "limitations": [
+    "Checker diversity within one research campaign, not independent author or human review.",
+    "Lean4Lean shares kernel lineage; exporter, host and cached dependency inputs remain shared.",
+    "Nanoda pretty-printer diagnostics are retained separately from its typechecker outcome.",
+    "Fresh execution of the old wrong-type fixture is not a mutation of these confidence roots; abnormal exit/panic is a rejection, not clean semantic reporting.",
+    "No Poisson moment, analytic cumulant or projection gap is closed by this checker pass.",
+    "The earlier 26 roots were not selected again; supporting declarations occur in the dependency-closed export.",
+    "Large exports, raw diagnostics and checker installations remain local; this sanitized record is not a self-contained reproduction.",
+    "The public research verifier provides fresh source compilation; these extra checkers do not run in hosted CI."
+  ]
+}

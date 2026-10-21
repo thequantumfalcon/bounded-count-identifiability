@@ -8,7 +8,8 @@ The [source manifest](source_manifest.json) lists five checked roots.
 Assumptions include a positive natural sample size, square integrability,
 pairwise independence within each family, common per-observation means, and
 per-observation variance bounds. No independence between the two estimator
-families is required. The combined coverage theorem uses positive ceilings;
-the zero-ceiling case remains separate. The distribution-specific moment
-derivation and independence of transformed observations remain open.
+families is required. This module uses positive ceilings. The subsequent
+[confidence extension](../confidence-zero/README.md) handles zero ceilings
+and proves independence within a measurably transformed family. Distribution-specific
+moments and square integrability of the quadratic transform remain separate.
 See the [extension guide](../../../docs/probability-extensions.md) for reproduction.

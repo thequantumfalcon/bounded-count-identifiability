@@ -113,7 +113,7 @@ The six core Lean modules encode the following chain:
 | [CountObservedIdentification.lean](../lean/CountObservedIdentification.lean) | Observed-cumulant source identification and recovery of the background parameter. |
 | [CountSharpness.lean](../lean/CountSharpness.lean) | Validity, distinctness, cumulants and the universal lower-order counterexample. |
 
-The checked definitions use mathlib's formal logarithm. The probability-space construction of independent Poisson addition and the analytic real-logarithm/Taylor bridge are not separately formalized. The algebraic channel accepts real parameters; the probability interpretation requires nonnegative background rates.
+The core definitions use mathlib's formal logarithm. The [probability extensions](probability-extensions.md#independent-poisson-observations) now construct independent Poisson addition and prove its integrable generating identity. The analytic real-logarithm/Taylor bridge to the core cumulants remains unformalized. The algebraic channel accepts real parameters; the probability construction uses nonnegative background rates.
 
 A [separate D=1 extension](../lean/extensions/d1/README.md) proves deterministic
 inverse-error bounds for the algebraic formulas $\kappa_2(p)=-p^2$ and

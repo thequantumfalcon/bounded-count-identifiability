@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "description": "Exact-byte source binding for nonnegative-ceiling coverage and measurable-transform independence; assumptions and limitations are stated in the source and extension guide.",
+  "sources": {
+    "CountConfidenceZeroAndTransforms.lean": {
+      "bytes": 7913,
+      "sha256": "71ba9299ccecdae745a436290aedf9c1b1d841362fab494573139baab509fbb2"
+    }
+  },
+  "theorem_roots": [
+    "CountConfidenceZeroAndTransforms.pairwise_indepFun_measurable_transform",
+    "CountConfidenceZeroAndTransforms.pairwise_indepFun_factorial",
+    "CountConfidenceZeroAndTransforms.nonnegative_ceiling_tail",
+    "CountConfidenceZeroAndTransforms.simultaneous_nonnegative_ceiling_coverage",
+    "CountConfidenceZeroAndTransforms.two_sample_means_coverage_nonnegative",
+    "CountConfidenceZeroAndTransforms.factorial_sample_means_coverage"
+  ]
+}

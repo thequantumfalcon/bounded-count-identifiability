@@ -16,8 +16,11 @@ interpretation work in priority 1 is broader than this finite-law connection.
 The [probability and sampling extensions](probability-extensions.md) additionally
 formalize actual finite probability measures, expectation identities, variance
 algebra, conditional coverage and the sample-mean variance calculation under
-within-family pairwise independence. A bounded second-cumulant perturbation
-also has a formal D=1 stability bound. The remaining tasks below exclude these
+within-family pairwise independence. Measurable transforms preserve that
+independence, and the combined coverage theorem includes zero ceilings.
+The actual independent-Poisson generating identity, including a canonical
+product probability space, is also formalized. A bounded second-cumulant
+perturbation has a formal D=1 stability bound. The remaining tasks below exclude these
 completed pieces and retain their unproved distributional connections.
 
 The [originality follow-up](originality-review.md) distinguishes related
@@ -27,14 +30,14 @@ preparing or publishing that request is not evidence that review has occurred.
 
 | Priority | Work | Completion criterion |
 | --- | --- | --- |
-| 1 | Complete the probability and analytic connections. | Prove independent Poisson addition with nonnegative rate gives the generating-function product, then connect analytic logarithm derivatives to the core formal cumulants. The finite source law and its expectation encoding are already formalized. |
-| 2 | Complete the D=1 inference procedure. | Derive the actual factorial moments of the single-window Bernoulli-plus-Poisson count and the necessary independence of transformed observations; join the zero and positive ceiling cases; formalize the elimination formula in [claims.md](claims.md). Verify that software acceptance and emptiness certificates represent that region. |
+| 1 | Complete the analytic cumulant connection. | Connect analytic logarithm derivatives at zero to the core formal cumulants, with the correct factorial normalization. The finite source expectation and independent-Poisson generating identity, with nonnegative rate and a concrete product space, are already formalized. |
+| 2 | Complete the D=1 inference procedure. | Derive the actual factorial moments of the single-window Bernoulli-plus-Poisson count and square integrability of its quadratic transform; formalize the elimination formula in [claims.md](claims.md). Transformed-observation independence and combined zero/positive-ceiling coverage are proved. Verify that software acceptance and emptiness certificates represent that region. |
 | 3 | Prove robustness to specified deviations. | Connect the formal second-cumulant perturbation bound to an actual mixed-Poisson construction and justified rate-variance control. Extend to stated tail-moment, detector-response or temporal-dependence conditions. Identify nonidentifiability when assumptions are insufficient. |
 | 4 | Extend constructive inference. | Develop a general-$D$ feasible-region solver with checkable witnesses or emptiness certificates, and formalize the global continuity estimate. State arithmetic precision, termination and complexity limits. |
 | 5 | Improve statistical efficiency. | Compare justified confidence procedures on identical, saved synthetic data; then derive sharper concentration or likelihood guarantees. Keep coverage, computation time and interval width separate. Do not infer optimality from a favorable simulation. |
 | 6 | Broaden prior-art and external review. | Obtain independent scrutiny of the exact theorem, proof, formal statement and references. Search older and differently named results. Attribute the established sharpness construction throughout. No originality conclusion follows from an unsuccessful search. |
 
-Formal work can proceed locally on these statements. A full probability bridge would close a specification gap; it would not itself establish detector assumptions. Source review, a reproducible build and additional checkers improve confidence, but cannot provide external human review on their own.
+Formal work can proceed locally on these statements. The remaining analytic cumulant bridge would close a specification gap; it would not itself establish detector assumptions. Source review, a reproducible build and additional checkers improve confidence, but cannot provide external human review on their own.
 
 ## A physical study needs its own evidence
 

@@ -40,14 +40,37 @@ run in CI; the public verifier separately recompiles the core and both
 extensions. Neither form of checking supplies external human review.
 
 The [research extensions](../docs/probability-extensions.md) have a separate
-portable suite that recompiles all twelve project modules. Its receipts belong
+portable suite that recompiles all fifteen project modules. Its receipts belong
 to their exact sources and verifier. The
 [background-uncertainty checker record](background-uncertainty-kernel-check.json)
 binds that source to an additional local Lean4Lean execution accepting five
 roots and 10,498 declarations. Lean4Lean shares implementation ancestry with
 Lean; the exporter, dependencies and runtime remain trusted. That run included
-no fresh invalid-export rejection test, and it does not run in CI. No additional
-kernel check is claimed here for the other three new extensions.
+no fresh invalid-export rejection test, and it does not run in CI.
+
+A subsequent [probability and sampling checker record](probability-sampling-kernel-checks.json)
+covers 26 roots across the four probability, variance, sample-mean and uncertainty
+extensions. Lean4Lean accepted 35,290 declarations; nanoda checked 37,053 with
+no typechecker errors and one retained axiom-printing diagnostic. Both rejected
+a wrong-type export fixture, with abnormal exits and raw diagnostics preserved
+locally. This is limited additional checking, with shared exporter, dependencies
+and host; one negative fixture does not prove checker correctness. The record
+is not a hosted CI run. A separate [confidence-zero checker record](confidence-zero-kernel-checks.json)
+covers the six newer confidence roots. Lean4Lean accepted 33,492 declarations;
+nanoda checked 35,233 with no typechecker errors and one retained error,
+"Unable to print axioms", from its pretty-printer. Both checkers rejected the
+wrong-type control via abnormal exits. This is checker diversity within the
+same campaign, with shared exporter, dependencies and host; it supplies neither
+independent human review nor hosted CI evidence.
+
+A separate [Poisson-observation checker record](poisson-observation-kernel-checks.json)
+covers the eleven new exponential-moment and independent-observation roots.
+Lean4Lean accepted 34,256 declarations; nanoda checked 35,999 with no typechecker
+errors and the retained "Unable to print axioms" pretty-printer diagnostic.
+Both checkers reran and rejected the earlier coefficient wrong-type fixture
+through abnormal exits; this was not a mutation of the new Poisson proofs.
+The same shared-component and reproduction limits apply. These extra checks
+do not run in hosted CI or supply outside human review.
 
 Python supplies finite exact-arithmetic comparisons; Sage performs a narrow
 algebraic projection check. These programs are not formally verified and could

@@ -100,6 +100,38 @@ RESEARCH_EXTENSIONS = {
             "two_sample_means_coverage",
         ),
     ),
+    "confidence-zero": (
+        "CountConfidenceZeroAndTransforms",
+        (
+            "pairwise_indepFun_measurable_transform",
+            "pairwise_indepFun_factorial",
+            "nonnegative_ceiling_tail",
+            "simultaneous_nonnegative_ceiling_coverage",
+            "two_sample_means_coverage_nonnegative",
+            "factorial_sample_means_coverage",
+        ),
+    ),
+    "poisson-mgf": (
+        "PoissonMGFV1",
+        (
+            "poisson_exp_integrable",
+            "poisson_exp_integral",
+        ),
+    ),
+    "poisson-observation": (
+        "CountPoissonObservation",
+        (
+            "bounded_exp_integrable",
+            "bounded_exp_integral",
+            "observed_exp_integrable",
+            "observed_exp_integral",
+            "observed_factorialPGF_integrable",
+            "observed_factorialPGF_integral",
+            "independentPairMeasure_isProbability",
+            "independentPairMeasure_hasLaws",
+            "independentPairMeasure_factorialPGF",
+        ),
+    ),
 }
 EXTENSIONS = [
     (D1_DIRECTORY, D1_SOURCE, D1_ROOTS),

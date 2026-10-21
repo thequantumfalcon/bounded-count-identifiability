@@ -35,10 +35,10 @@ they do not replace it.
 | Claim | Evidence | Boundary |
 | --- | --- | --- |
 | Bounded-law identification from orders `2, ..., D+1` | Written argument and Lean | Known exact support; population cumulants |
-| Algebraic cancellation of fixed Poisson background | Lean formal generating series | Probability-space interpretation is not separately formalized |
+| Cancellation of fixed Poisson background and its probability generating identity | Lean formal series plus actual independent-Poisson construction | Analytic logarithm derivatives are not yet connected to the formal cumulants |
 | Order `D+1` is necessary in general | Valid probability-law construction in Lean | Known family; no construction-originality claim |
 | Deterministic `D=1` inverse-error bounds | Separate Lean stability extension | Algebraic model; observation-error bounds must be justified separately |
-| Connection of those bounds to Bernoulli laws, including `p=0` and `p=1` | Separate Lean finite-law extension | Core formal cumulants and exponential-factor channel; independent Poisson addition remains a separate bridge |
+| Connection of those bounds to Bernoulli laws, including `p=0` and `p=1` | Separate Lean finite-law extension | Core formal cumulants and exponential-factor channel; the analytic logarithm-derivative bridge remains separate |
 | Finite masses define actual probability measures and generating-function expectations | Lean probability extension | Canonical finite probability space; analytic logarithm derivatives remain separate |
 | Conditional two-moment confidence bounds | Lean variance and sample-mean extensions | Explicit moment, square-integrability and within-family pairwise-independence assumptions; distributional moments and projection correctness remain separate |
 | `D=1` stability under bounded second-cumulant perturbations | Lean uncertainty extension | Algebraic bound; the mixed-Poisson interpretation is written, not formalized |
@@ -71,10 +71,11 @@ No detector or laboratory experiment has been validated by this repository.
 
 ## What comes next
 
-The immediate proof targets are independent Poisson addition, analytic cumulant
-derivatives, distributional factorial moments and confidence-set projection.
-The finite probability-space encoding, conditional sampling bounds and a `D=1`
-background-uncertainty bound are formalized in separate extensions.
+The immediate proof targets are analytic cumulant derivatives, distributional
+factorial moments and confidence-set projection. The finite probability-space
+encoding, independent Poisson generating identity, conditional sampling bounds
+including zero ceilings, and a `D=1` background-uncertainty bound are formalized
+in separate extensions.
 Broader exact solvers,
 better statistical bounds, literature-priority checks and physical calibration
 are separate tasks. See the [proof roadmap](docs/roadmap.md).
