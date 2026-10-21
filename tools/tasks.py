@@ -133,6 +133,7 @@ def formal() -> None:
     run("lake", "build", cwd=ROOT / "lean")
     run(PYTHON, "lean/verify.py", "--run", "local-check")
     run(PYTHON, "lean/extensions/d1/verify_stability.py", "--run", "local-check")
+    run(PYTHON, "lean/extensions/d1-law/verify_law_bridge.py", "--run", "local-check")
 
 
 def release() -> None:

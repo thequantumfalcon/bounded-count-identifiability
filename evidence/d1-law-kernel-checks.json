@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "prepared_utc": "2026-10-21T07:13:11.495623+00:00",
+  "record_type": "sanitized historical checker evidence, not a new checker run",
+  "source_path": "lean/extensions/d1-law/CountD1LawBridge.lean",
+  "source_sha256": "d986ea786773da66f74f67a5a11e41db4f5e3b16c591a958e2c4fcbf7c271ebf",
+  "theorem_roots": [
+    "CountD1LawBridge.sharpLaw_one_eq_bernoulliMass",
+    "CountD1LawBridge.bernoulliMass_isBoundedLaw",
+    "CountD1LawBridge.bernoulli_second_cumulant",
+    "CountD1LawBridge.bernoulli_parameter_stability",
+    "CountD1LawBridge.observed_bernoulli_cumulants",
+    "CountD1LawBridge.observed_bernoulli_stability"
+  ],
+  "export_sha256": "17aebee322b1b1410a3ef7dbc5bb3c7a167ed71e9831953c479a581253e3e47d",
+  "export_bytes": 90215793,
+  "export_header": {
+    "meta": {
+      "exporter": {
+        "name": "lean4export",
+        "version": "3.1.0"
+      },
+      "format": {
+        "version": "3.1.0"
+      },
+      "lean": {
+        "githash": "eb6cafb7290e8bd5f2937522d8d804f58f02bafc",
+        "version": "4.35.0"
+      }
+    }
+  },
+  "export_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "checker_runs": [
+    {
+      "checker": "leanchecker",
+      "status": "accepted",
+      "exit_code": 0,
+      "timed_out": false,
+      "executable_sha256": "9ef6baeb28d5e28897d5ed6dddd60ff81e511d97374013ece435dff38e9e0137",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text": "",
+      "stderr_bytes": 0,
+      "historical_receipt_sha256": "a7730e1123f8b6955354221290d48f5c37394880d659b7278512ce28be4fb34a"
+    },
+    {
+      "checker": "leanchecker_paranoid",
+      "status": "accepted",
+      "exit_code": 0,
+      "timed_out": false,
+      "executable_sha256": "3430a114fcb94d1697555bed88f252a1479d936aff26f36fd2dd1f098144ec9c",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text": "",
+      "stderr_bytes": 0,
+      "historical_receipt_sha256": "0a29cd521a884a69edb784cad23b32dfba9e540b0a07091c77fb371bd66aa8bf"
+    },
+    {
+      "checker": "lean4lean",
+      "status": "accepted",
+      "exit_code": 0,
+      "timed_out": false,
+      "executable_sha256": "2463006ea615a6f69c80689142cf7cb0a8724fc7819c57ad2b395e99eb6a9f3c",
+      "stdout_sha256": "5bf0751709b575bb946b51e1fa3f98a6dd4c57670f522e1292414efa78e870fe",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text": "checked 18274 declarations\n",
+      "stderr_bytes": 0,
+      "historical_receipt_sha256": "f2e75caa058a0de46d4b600796b7e14ead4688aa49fe8f582b67feea85beec45"
+    },
+    {
+      "checker": "nanoda",
+      "status": "accepted",
+      "exit_code": 0,
+      "timed_out": false,
+      "executable_sha256": "de57d9dd7f647eb57398bc3dab4dcaa1d64f961f3f49964d5455fbddc73b35a8",
+      "stdout_sha256": "05bda5a049928bc12c6039bec1d2128a191ffe1475b72b8afb91565cf611435a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text": "Checked 19495 declarations with no typechecker errors, 1 pretty printer errors: [\n    \"Unable to print axioms\",\n]\n",
+      "stderr_bytes": 0,
+      "historical_receipt_sha256": "5ab4712a0737b0ea85f441b2fbb78423c91616226d6efae63729ea27035da263"
+    },
+    {
+      "checker": "con_leche",
+      "status": "accepted",
+      "exit_code": 0,
+      "timed_out": false,
+      "executable_sha256": "4b7ba57f7e4f50afb21374a4f8f980fe0c8d347fde91a1f70e0462749014baa0",
+      "stdout_sha256": "dd8e449a4ea5bc03c92371004e63669bade9c7ea52fd9fbd99419f6bd73153e8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text": "con-leche: accepted 18277 declarations (--verified)\n",
+      "stderr_bytes": 0,
+      "historical_receipt_sha256": "0f1939b2615988255ed1dac29f96bdea3013a1fa5842753666529e84ba9da8df"
+    },
+    {
+      "checker": "con_ron",
+      "status": "accepted",
+      "exit_code": 0,
+      "timed_out": false,
+      "executable_sha256": "4e351dd1d556da22efb44c17be30e3ff3900780730ce642ee007d1416d332d40",
+      "stdout_sha256": "8f611cb780e2aec0545e61d82d3c3bba8cda8e51e9c78125ac44b04b00e01183",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_text": "con-ron: accepted 18277 declarations (--verified)\n",
+      "stderr_bytes": 0,
+      "historical_receipt_sha256": "831c2dc1486be0ac30a32a9151ac51f1d59586bd915b6b796f75ab2f96d70d57"
+    }
+  ],
+  "historical_manifest": {
+    "sha256": "ede308d7d10103267acd3b0f0e1694699f8c1c14f1e31da9d3b0949479ad1ed1",
+    "listed_files_verified": 64,
+    "listed_bytes_verified": 92166739
+  },
+  "historical_summary_sha256": "02359538e96a1eda71d3d817d6f414570f941dc40735db44e6b9b0326ce9125a",
+  "historical_compiler_receipt_sha256": "98b572ba42939ce69b4adf278a8dc65577a5c20985201a01fe3111c5ed42b01a",
+  "error_reporting": "Nanoda reports no typechecker errors and one pretty-printer error: Unable to print axioms. Its diagnostic is preserved above. Silent checkers' zero exits are not invented numerical error counts.",
+  "scope": "Finite Bernoulli masses including endpoints, core formal cumulants, and deterministic stability in the formal exponential-factor channel.",
+  "limits": [
+    "Six checker executions are not six wholly independent implementations or external human reviews. Lean variants share ancestry; Lean4Lean derives from the Lean kernel; con-leche and con-ron are related.",
+    "Specification, compiler/exporter, dependencies and operating environment are shared. Existing binaries and compiled dependencies were reused.",
+    "Large exports, machine-specific receipts and installations are not bundled. This summary is not a portable extra-checker pipeline. No new malformed-export control was run for this trial.",
+    "The public verifier and hosted CI provide separate fresh compilation evidence. These six additional checker executables do not run in public CI.",
+    "The proof does not formalize independent random variables, the analytic logarithm bridge, finite-sample coverage or general-D stability; it establishes no physical validity or originality."
+  ]
+}

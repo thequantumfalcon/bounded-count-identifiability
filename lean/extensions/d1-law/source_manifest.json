@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "description": "Exact-byte source binding for the finite Bernoulli-law connection to D=1 stability; separate from both existing source manifests.",
+  "sources": {
+    "CountD1LawBridge.lean": {
+      "sha256": "d986ea786773da66f74f67a5a11e41db4f5e3b16c591a958e2c4fcbf7c271ebf",
+      "bytes": 4828
+    }
+  },
+  "theorem_roots": [
+    "CountD1LawBridge.sharpLaw_one_eq_bernoulliMass",
+    "CountD1LawBridge.bernoulliMass_isBoundedLaw",
+    "CountD1LawBridge.bernoulli_second_cumulant",
+    "CountD1LawBridge.bernoulli_parameter_stability",
+    "CountD1LawBridge.observed_bernoulli_cumulants",
+    "CountD1LawBridge.observed_bernoulli_stability"
+  ]
+}

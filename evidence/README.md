@@ -32,6 +32,13 @@ local executions on the same dependency-closed export, including Lean4Lean.
 That historical record does not mean the six checkers run in public CI. It
 preserves the same independence limits and nanoda's axiom-printing diagnostic.
 
+The [D=1 finite-law connection](../lean/extensions/d1-law/README.md) has a
+separate portable verifier and [historical additional-checker record](d1-law-kernel-checks.json).
+The record binds the unchanged source to six earlier checker executions and
+retains the axiom-printing diagnostic. Those historical extra checkers do not
+run in CI; the public verifier separately recompiles the core and both
+extensions. Neither form of checking supplies external human review.
+
 Python supplies finite exact-arithmetic comparisons; Sage performs a narrow
 algebraic projection check. These programs are not formally verified and could
 share modeling mistakes. See [reproduction commands](../docs/reproduction.md).

@@ -20,6 +20,11 @@ The Python API is experimental; no stable release has been published.
 
 ### Added
 
+- A separately verified D=1 Bernoulli-law connection, including endpoint laws,
+  the core formal cumulant definitions and the formal observed stability bound.
+  Its portable verifier freshly checks all imported project modules.
+- A focused mathematical review request and an expanded, qualified prior-art
+  review. Neither document claims that outside review or originality is established.
 - A separately verified D=1 algebraic stability extension, with five checked
   theorem roots, a portable compilation check and scoped additional-kernel
   evidence. General-dimensional stability and finite-sample coverage remain open.

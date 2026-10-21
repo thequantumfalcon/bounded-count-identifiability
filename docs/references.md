@@ -36,6 +36,11 @@ The inspected NIST record describes multi-order correlations of time-tagged even
 
 ## What remains unresolved
 
+The [follow-up originality review](originality-review.md) examines
+Melánová, Sturmfels and Winter's *Recovery from Power Sums*, Proposition 24,
+and explains its implication for the Poisson-binomial subclass. That overlap
+does not by itself establish priority for the arbitrary bounded-law statement.
+
 No exact statement of identification of every law on $0,\ldots,D$ from factorial cumulants $2,\ldots,D+1$ was located in the inspected material. That is a report of search scope, not proof of novelty. Full-law generating-function uniqueness, moment inversion and generic polynomial-root recovery must be distinguished from the finite-order positivity argument. The known matching family already supplies the lower-order counterexample by a direct calculation.
 
 Corrections and primary references that sharpen this attribution are welcome. Mathematical correctness, historical priority, software correctness and physical validity require different evidence.

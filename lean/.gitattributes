@@ -2,6 +2,7 @@
 *.lean -text
 verify.py -text
 extensions/d1/verify_stability.py -text
+extensions/d1-law/verify_law_bridge.py -text
 source_manifest.json -text
 lake-manifest.json -text
 lakefile.toml -text

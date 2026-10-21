@@ -8,6 +8,16 @@ $\delta$ in the mean imply parameter error at most $\sqrt{\varepsilon}$ and
 background error at most $\delta+\sqrt{\varepsilon}$. This does not supply those
 error guarantees from data or complete the inference procedure below.
 
+The [Bernoulli finite-law connection](../lean/extensions/d1-law/README.md) is
+also formalized, including endpoint mass validity and the connection to the
+core formal observed cumulants. The remaining probability and analytic
+interpretation work in priority 1 is broader than this finite-law connection.
+
+The [originality follow-up](originality-review.md) distinguishes related
+results from established priority. A [focused review request](reviewer-request.md)
+gives outside mathematicians a self-contained statement and specific questions;
+preparing or publishing that request is not evidence that review has occurred.
+
 | Priority | Work | Completion criterion |
 | --- | --- | --- |
 | 1 | Connect the formal series to conventional probability and analysis. | Formalize the finite-law random variable, the analytic logarithm derivatives, and independent Poisson addition with nonnegative rate. The resulting theorem should use the ordinary probabilistic definitions without leaving those bridges implicit. |

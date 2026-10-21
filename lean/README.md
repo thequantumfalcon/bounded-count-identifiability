@@ -7,6 +7,12 @@ inverse-error bounds. It shares the pinned toolchain and dependencies, but has
 its own manifest, verifier and receipts. The commands below reproduce the six
 core modules; follow the extension guide for its additional check.
 
+The [finite-law connection](extensions/d1-law/README.md) connects these bounds
+to Bernoulli masses and the core formal cumulants. Its verifier freshly
+recompiles the six core modules, the stability module and the new connection,
+then checks the imported artifacts and the six new theorem roots. It has a
+separate manifest and leaves historical core receipts unchanged.
+
 ## Reproduce from a fresh checkout
 
 Install Lean's Elan toolchain manager, Git, and Python 3.10 or later. From this directory, run:
@@ -57,6 +63,8 @@ The source law assumes nonnegative masses, total mass one, and a known finite su
 
 The core results concern exact cumulants. The separate D=1 extension bounds
 parameter error given specified observation errors in an algebraic model.
+The finite-law connection lifts that bound to the core Bernoulli cumulants,
+including the endpoint laws, and to the formal observation channel.
 Neither supplies finite-sample coverage, a physical model's validity, or
 uniqueness of a source before unknown thinning. Additional proof checks and
 scientific or statistical analyses belong in separate evidence records.

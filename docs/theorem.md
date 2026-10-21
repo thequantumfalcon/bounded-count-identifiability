@@ -120,4 +120,11 @@ inverse-error bounds for the algebraic formulas $\kappa_2(p)=-p^2$ and
 $b=\mu-p$. It does not change the six core modules or close either interpretation
 bridge. Finite-sample coverage and general-$D$ stability remain separate tasks.
 
+The additional [finite-law connection](../lean/extensions/d1-law/README.md)
+proves validity of Bernoulli masses on the closed interval $p\in[0,1]$ and
+identifies their core formal cumulants as $\kappa_1=p$, $\kappa_2=-p^2$.
+It lifts the deterministic stability bounds to these definitions and to the
+formal observed channel. This connects the two formal modules; the
+measure-theoretic and analytic interpretation tasks above remain open.
+
 Formal acceptance does not verify a detector, prove a useful finite sample size or establish mathematical priority. The calculation software and confidence-region argument have their own scope; see [claims](claims.md), the [formal reproduction guide](../lean/README.md) and the [next proof obligations](roadmap.md).

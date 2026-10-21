@@ -11,4 +11,5 @@ recursive-include tests *.py
 recursive-include lean *.lean *.toml *.json *.txt *.md *.py .gitattributes lean-toolchain
 prune lean/.lake
 prune lean/.verification
+prune lean/verification/d1-law-*
 global-exclude __pycache__ *.py[cod] *.olean *.ilean

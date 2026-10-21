@@ -43,6 +43,16 @@ D1_ROOTS = [
     "CountD1Stability.background_error_le",
     "CountD1Stability.bounded_observation_error",
 ]
+LAW_DIRECTORY = "lean/extensions/d1-law"
+LAW_SOURCE = "CountD1LawBridge.lean"
+LAW_ROOTS = [
+    "CountD1LawBridge.sharpLaw_one_eq_bernoulliMass",
+    "CountD1LawBridge.bernoulliMass_isBoundedLaw",
+    "CountD1LawBridge.bernoulli_second_cumulant",
+    "CountD1LawBridge.bernoulli_parameter_stability",
+    "CountD1LawBridge.observed_bernoulli_cumulants",
+    "CountD1LawBridge.observed_bernoulli_stability",
+]
 LAKE_PACKAGES = {
     "mathlib",
     "plausible",
@@ -78,6 +88,7 @@ COMMON_REQUIRED = {
     "src/bounded_counts/__main__.py",
     "tests/test_exact_counts.py",
     "tests/test_stability_verifier.py",
+    "tests/test_law_bridge_verifier.py",
     "examples/d1_projection_sage.py",
     "tools/tasks.py",
     "tools/check_repository.py",
@@ -93,6 +104,11 @@ COMMON_REQUIRED = {
     f"{D1_DIRECTORY}/source_manifest.json",
     f"{D1_DIRECTORY}/verify_stability.py",
     "evidence/d1-stability-kernel-checks.json",
+    "evidence/d1-law-kernel-checks.json",
+    f"{LAW_DIRECTORY}/README.md",
+    f"{LAW_DIRECTORY}/{LAW_SOURCE}",
+    f"{LAW_DIRECTORY}/source_manifest.json",
+    f"{LAW_DIRECTORY}/verify_law_bridge.py",
 } | {"lean/" + name for name in MODULES}
 REPOSITORY_REQUIRED = {
     ".gitignore",
@@ -406,9 +422,10 @@ def audit(root: Path, mode: str, private_tokens: list[str]) -> dict:
         ):
             fail(f"build metadata included in repository files: {name}")
         if path.suffix == ".lean" and name not in (
-            {"lean/" + module for module in MODULES} | {f"{D1_DIRECTORY}/{D1_SOURCE}"}
+            {"lean/" + module for module in MODULES}
+            | {f"{D1_DIRECTORY}/{D1_SOURCE}", f"{LAW_DIRECTORY}/{LAW_SOURCE}"}
         ):
-            fail(f"Lean source is outside the six-module manifest: {name}")
+            fail(f"Lean source is outside the core and extension manifests: {name}")
         raw = path.read_bytes()
         if b"\x00" in raw:
             fail(f"unexpected binary file in this source-only artifact: {name}")
@@ -507,32 +524,37 @@ def audit(root: Path, mode: str, private_tokens: list[str]) -> dict:
         if re.search(r"\bset_option\s+debug\.skipKernelTC\s+true\b", code):
             fail(f"lean/{name}: kernel-check skipping option")
 
-    extension = load_json(f"{D1_DIRECTORY}/source_manifest.json")
-    extension_sources = extension.get("sources", {})
-    if (
-        extension.get("schema_version") != 1
-        or set(extension_sources) != {D1_SOURCE}
-        or extension.get("theorem_roots") != D1_ROOTS
+    for directory, source, roots in (
+        (D1_DIRECTORY, D1_SOURCE, D1_ROOTS),
+        (LAW_DIRECTORY, LAW_SOURCE, LAW_ROOTS),
     ):
-        fail(f"{D1_DIRECTORY}/source_manifest.json: unexpected source set or roots")
-    extension_path = root / D1_DIRECTORY / D1_SOURCE
-    if extension_path.is_file():
+        extension = load_json(f"{directory}/source_manifest.json")
+        extension_sources = extension.get("sources", {})
+        if (
+            extension.get("schema_version") != 1
+            or set(extension_sources) != {source}
+            or extension.get("theorem_roots") != roots
+        ):
+            fail(f"{directory}/source_manifest.json: unexpected source set or roots")
+        extension_path = root / directory / source
+        if not extension_path.is_file():
+            continue
         counts["lean_extension_sources"] += 1
-        entry = extension_sources.get(D1_SOURCE, {})
+        entry = extension_sources.get(source, {})
         if (
             not isinstance(entry, dict)
             or not HEX64.fullmatch(str(entry.get("sha256", "")))
             or sha256(extension_path) != entry["sha256"].lower()
             or extension_path.stat().st_size != entry.get("bytes")
         ):
-            fail(f"{D1_DIRECTORY}/{D1_SOURCE}: source binding differs from manifest")
+            fail(f"{directory}/{source}: source binding differs from manifest")
         code = strip_lean_comments_and_strings(
             extension_path.read_text(encoding="utf-8")
         )
         if LEAN_ADMISSIONS.search(code):
-            fail(f"{D1_DIRECTORY}/{D1_SOURCE}: forbidden proof-admission token")
+            fail(f"{directory}/{source}: forbidden proof-admission token")
         if re.search(r"\bset_option\s+debug\.skipKernelTC\s+true\b", code):
-            fail(f"{D1_DIRECTORY}/{D1_SOURCE}: kernel-check skipping option")
+            fail(f"{directory}/{source}: kernel-check skipping option")
 
     lake = load_json("lean/lake-manifest.json")
     packages = lake.get("packages", [])

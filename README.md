@@ -38,6 +38,7 @@ they do not replace it.
 | Algebraic cancellation of fixed Poisson background | Lean formal generating series | Probability-space interpretation is not separately formalized |
 | Order `D+1` is necessary in general | Valid probability-law construction in Lean | Known family; no construction-originality claim |
 | Deterministic `D=1` inverse-error bounds | Separate Lean stability extension | Algebraic model; observation-error bounds must be justified separately |
+| Connection of those bounds to Bernoulli laws, including `p=0` and `p=1` | Separate Lean finite-law extension | Core formal cumulants and exponential-factor channel; probability-space and sampling bridges remain open |
 | Exact rational reproductions | Python examples and tests | Finite calculations are not universal proofs |
 | A `D=1` confidence-set projection | Written elimination proof and optional Sage calculation | Conditional IID model; no general-dimensional solver |
 
@@ -52,8 +53,11 @@ assumptions or experimental usefulness.
 - Follow the [reproduction instructions](docs/reproduction.md) for Python,
   the pinned Lean/mathlib project and the optional Sage calculation.
 - Inspect the six core source modules in [lean/](lean/) and the separate
-  [D=1 stability extension](lean/extensions/d1/README.md).
+  [D=1 stability](lean/extensions/d1/README.md) and
+  [finite-law connection](lean/extensions/d1-law/README.md) extensions.
 - Review the [verification record](evidence/README.md) and its stated trust limits.
+- Read the [originality review](docs/originality-review.md) and
+  [focused reviewer request](docs/reviewer-request.md).
 
 The emitted source count and unknown detection efficiency are not separately
 identified. Random-rate background, source/background dependence, detector
@@ -64,7 +68,8 @@ No detector or laboratory experiment has been validated by this repository.
 
 The immediate proof targets are the probability-space Poisson bridge, general
 stability bounds and the finite-sample coverage argument. The `D=1` algebraic
-stability bound is now formalized. Broader exact solvers,
+stability bound and its connection to the finite Bernoulli law are formalized.
+Broader exact solvers,
 better statistical bounds, literature-priority checks and physical calibration
 are separate tasks. See the [proof roadmap](docs/roadmap.md).
 

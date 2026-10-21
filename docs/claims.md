@@ -9,6 +9,7 @@ The central result is the [bounded-count identification theorem](theorem.md). Th
 | The general maximum order $D+1$ cannot be lowered. | Valid-law construction and matching cumulants in [CountSharpness.lean](../lean/CountSharpness.lean). | Uses an established generalized matching distribution; the comparison law is a point mass. |
 | Exact arithmetic reproduces population cumulants and the known-family collision. | [Population calculation code](../src/bounded_counts/) and [examples](../examples/). | Finite exact cases supplement the universal proof. The software is not formally verified. |
 | For nonnegative parameters in the algebraic $D=1$ model, second-cumulant error at most $\varepsilon$ gives parameter error at most $\sqrt{\varepsilon}$; mean error at most $\delta$ additionally gives background error at most $\delta+\sqrt{\varepsilon}$. | [CountD1Stability.lean](../lean/extensions/d1/CountD1Stability.lean), separately compiled with explicit axiom checks. | Defines $\kappa_2(p)=-p^2$ and $b(\mu,p)=\mu-p$ algebraically. The probability bridge and data-error guarantees are separate. |
+| The $D=1$ bounds apply to the core formal cumulants of Bernoulli masses and their exponential-factor observation channel. | [CountD1LawBridge.lean](../lean/extensions/d1-law/CountD1LawBridge.lean), including mass validity at both endpoints. | $p,q\in[0,1]$; formal background parameters are real. A Poisson interpretation additionally requires nonnegative rates and the probability-space bridge. |
 | A Bernoulli source admits an exact algebraic projection of a two-moment confidence region. | Formula and conditional coverage argument below. | Known background ceiling and IID windows. No general-$D$ confidence-region solver is claimed. |
 | Finite-moment compatibility and zero covariance do not certify the observation model. | Explicit counterexamples below and the [calibration obligations](roadmap.md). | Constructed probability models are not measurements or an assessment of a particular instrument. |
 | The sharpness family and Poisson-cancellation method are established. | [Primary references and access notes](references.md). | Priority of the general sufficient-order theorem remains unresolved. |
@@ -31,6 +32,15 @@ inequality proves the parameter and background bounds in the table. The
 checked theorem roots and reproduction commands. This elementary result carries
 no originality claim. It does not establish confidence levels, admissibility of
 an arbitrary estimate, or stability for general $D$.
+
+The [finite-law extension](../lean/extensions/d1-law/README.md) now proves that
+the mass vector $(1-p,p)$ is a bounded law for every $p\in[0,1]$, including both
+endpoints. It connects the formula $-p^2$ to the core formal-log cumulant
+definition. For the formal observed channel it proves
+$\kappa_1=p+b$, $\kappa_2=-p^2$, and the joint inverse bound using those same
+definitions. This closes the finite-mass-vector connection. It does not
+construct independent random variables or turn estimated errors into
+finite-sample confidence guarantees.
 
 ## D=1 confidence prototype
 

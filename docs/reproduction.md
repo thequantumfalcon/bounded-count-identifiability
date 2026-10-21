@@ -74,6 +74,19 @@ axiom lists and saves a receipt under `build/stability/external-check/`.
 Use a new run name each time. `python tools/tasks.py formal` checks both the core
 and the extension; the extension does not become part of the frozen core receipt.
 
+The [finite-law connection](../lean/extensions/d1-law/README.md) adds a separate
+check from the repository root:
+
+```sh
+python lean/extensions/d1-law/verify_law_bridge.py --run external-check
+```
+
+It freshly compiles the six core modules, the unchanged stability source and
+the Bernoulli connection in dependency order. It validates the core receipt
+and imported artifact hashes and checks all six new printed axiom lists.
+`python tools/tasks.py formal` includes this check as well. See its extension
+guide for output locations and the offline existing-cache mode.
+
 The committed local receipt used existing dependency artifacts and says so.
 The separate initial hosted run also passed after fresh dependency retrieval;
 its Linux receipt is preserved in the verification record.

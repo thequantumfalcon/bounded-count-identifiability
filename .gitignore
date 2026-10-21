@@ -13,3 +13,4 @@ htmlcov/
 *.ilean
 *.trace
 verification-output/
+lean/verification/d1-law-*/
