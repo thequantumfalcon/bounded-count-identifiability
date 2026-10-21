@@ -156,6 +156,14 @@ def formal() -> None:
         "local-check",
     )
     run(PYTHON, "lean/replay.py", "--proof-run", "local-check", "--run", "local-check")
+    run(
+        PYTHON,
+        "lean/check_certificates.py",
+        "--proof-run",
+        "local-check",
+        "--run",
+        "local-check",
+    )
 
 
 def release() -> None:

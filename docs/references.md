@@ -12,6 +12,22 @@ The inspected preprint's equation (3.1) and Lemma 3.1, PDF page 7, give the gene
 
 The publisher metadata and abstract were inspected. The full article was not accessed; the precise formula attribution is supported by the accessible Afendras–Papadatos preprint. This distinction avoids implying a direct full-text check of Niermann's article.
 
+**Saeed Golnabi, Martin S. Levy and James J. Cochran.** *Finitizing power series
+distributions.* Statistics & Probability Letters **79**(17), 1829–1832 (2009).
+DOI 10.1016/j.spl.2009.05.007.
+[Publisher preview](https://www.sciencedirect.com/science/article/abs/pii/S0167715209001886).
+
+**James J. Cochran, Martin S. Levy and Saeed Golnabi.** *Matching the finitized
+Poisson distribution to the matching distributions.* Statistics & Probability
+Letters **83**(6), 1484–1489 (2013). DOI 10.1016/j.spl.2013.02.013.
+[Publisher preview](https://www.sciencedirect.com/science/article/abs/pii/S0167715213000564).
+
+Publisher-indexed previews were inspected; direct access was blocked and full
+text was not retrieved. The 2013 preview's equivalence section and matching-law
+formula support the additional terminology. The accessible Afendras–Papadatos
+preprint remains the full-text source for the exact formula and factorial
+moments. See the [comparison](originality-review.md#additional-terminology-finitized-poisson-laws).
+
 ## Factorial cumulants and Poisson translation
 
 **Bent Jørgensen and Célestin C. Kokonendji.** *Discrete Dispersion Models and their Tweedie Asymptotics.* arXiv:1409.7482. [Primary preprint](https://arxiv.org/pdf/1409.7482).

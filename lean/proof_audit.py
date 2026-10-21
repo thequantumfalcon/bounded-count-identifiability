@@ -212,6 +212,16 @@ RESEARCH_ROOTS = {
         "factorial_variance_ceiling",
         "sample_means_coverage",
     ),
+    "CountConfidenceExecutable": (
+        "checkPair_eq_true_iff",
+        "checkPair_eq_false_iff",
+        "checkSource_eq_true_iff",
+        "checkSource_eq_false_iff",
+        "checkPair_implies_checkSource",
+        "checkNonempty_eq_true_iff",
+        "checkNonempty_eq_false_iff",
+        "checkSource_implies_checkNonempty",
+    ),
 }
 
 DIRECTORIES = {
@@ -232,6 +242,7 @@ DIRECTORIES = {
     "BernoulliPoissonStatisticsV1": "bernoulli-poisson-statistics",
     "CountFiniteMixedPoisson": "finite-mixture",
     "CountFiniteMixedPoissonSampling": "finite-mixture-sampling",
+    "CountConfidenceExecutable": "confidence-executable",
 }
 
 ALLOWED_AXIOMS = {"propext", "Classical.choice", "Quot.sound"}

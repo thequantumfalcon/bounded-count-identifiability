@@ -28,6 +28,16 @@ The Python API is experimental; no stable release has been published.
 
 ### Added
 
+- Exact rational point, pair and global-nonempty decisions with universal Lean
+  equivalence proofs, including irrational feasible witnesses. Concrete query
+  certificates and deliberate incorrect answers are checked by the kernel.
+- Written accounting for calibration plus sampling error, and an explicit
+  obstruction to bounding arbitrary mixture-rate maxima from finite records.
+- Additional primary-source attribution under the established name
+  "finitized Poisson"; priority of the general theorem remains unresolved.
+- Native CodeQL merge protection without bypass, preserving both existing
+  rulesets and the locally signed publication procedure.
+
 - A bounded, reproducible synthetic experiment with 1.2 million saved counts,
   exact factorial-moment targets, prescribed-law uncertainty benchmarks,
   independent binary readback and deliberate-fault controls. CI requires

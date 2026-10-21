@@ -61,7 +61,7 @@ run in CI; the public verifier separately recompiles the core and both
 extensions. Neither form of checking supplies external human review.
 
 The [research extensions](../docs/probability-extensions.md) have a separate
-portable suite that recompiles all twenty-two project modules. Its receipts belong
+portable suite that recompiles all twenty-four project modules. Its receipts belong
 to their exact sources and verifier. The
 [background-uncertainty checker record](background-uncertainty-kernel-check.json)
 binds that source to an additional local Lean4Lean execution accepting five
@@ -132,8 +132,8 @@ artifact is an external mathematical review or a physical measurement.
 
 The finite-mixture sampling extension adds eight further roots for actual
 square integrability, total variance, conservative variance ceilings and
-simultaneous moment coverage. They are included in the current 23-module,
-140-root research suite and its CI compilation, separate axiom audits and
+simultaneous moment coverage. They are included in the current 24-module,
+148-root research suite and its CI compilation, separate axiom audits and
 kernel replay. Earlier 21- and 22-module receipts retain their original scope.
 The expanded FLINT calculation checks total-variance identities and ceilings,
 rejects applying the fixed-rate ceilings to mixtures, and checks the arithmetic
@@ -158,3 +158,18 @@ clean. Twenty-two project dependencies were reused as receipt-bound objects.
 Lean4Lean shares Lean kernel ancestry; this local record offers limited
 implementation independence and is not a CI run, outside mathematical review
 or validation of the model's physical assumptions.
+
+The exact rational decision extension adds eight roots for point, pair and global
+real-region decisions. Its concrete certificate runner checks 19 correct queries
+and three deliberately wrong answers, with separate axiom audits and source-bound
+receipts inside the required formal CI job. Historical receipts retain their
+original module lists. See the [query guide](../lean/extensions/confidence-executable/README.md).
+
+The [local executable-decision checker record](confidence-executable-kernel-check.json)
+binds all eight universal roots to fresh compilation, a separate axiom audit
+and Lean4Lean acceptance of 10,613 declarations. The earlier wrong-type
+control was explicitly rejected; its known error-printer panics and fallback
+remain disclosed. The run reused 21 source-bound project objects and the
+upstream runtime. It checks the decision theorems, not the Python frontend,
+Sage execution or model calibration. Lean4Lean's shared kernel ancestry and
+the common exporter limit implementation independence.

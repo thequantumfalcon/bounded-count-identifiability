@@ -317,7 +317,7 @@ After fetching the pinned dependencies as described in the
 python lean/extensions/d1-law/verify_law_bridge.py --suite research --run external-research
 ```
 
-This suite recompiles all six core modules and seventeen extensions in dependency
+This suite recompiles all six core modules and eighteen extensions in dependency
 order with `--trust=0`, checks source manifests, exact printed theorem lists,
 standard axioms, diagnostics and output bindings. The axiom lists come from a
 generated import-only query in a separate Lean process, with exact unique root

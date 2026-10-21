@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "description": "Exact-byte binding for executable rational feasibility decisions and their real-region equivalences; parser/runtime and Sage behavior remain outside the formalization.",
+  "sources": {
+    "CountConfidenceExecutable.lean": {
+      "sha256": "c199b9b8d32cac0cb5c555e2c91fd3c36e31243d3d5054f3b72346713f579c5a",
+      "bytes": 7541
+    }
+  },
+  "theorem_roots": [
+    "CountConfidenceExecutable.checkPair_eq_true_iff",
+    "CountConfidenceExecutable.checkPair_eq_false_iff",
+    "CountConfidenceExecutable.checkSource_eq_true_iff",
+    "CountConfidenceExecutable.checkSource_eq_false_iff",
+    "CountConfidenceExecutable.checkPair_implies_checkSource",
+    "CountConfidenceExecutable.checkNonempty_eq_true_iff",
+    "CountConfidenceExecutable.checkNonempty_eq_false_iff",
+    "CountConfidenceExecutable.checkSource_implies_checkNonempty"
+  ]
+}

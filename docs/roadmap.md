@@ -40,7 +40,7 @@ preparing or publishing that request is not evidence that review has occurred.
 
 | Priority | Work | Completion criterion |
 | --- | --- | --- |
-| 1 | Verify the executable D=1 inference procedure. | Connect executable acceptance, witnesses and emptiness certificates to the formally defined region. The analytic cumulant connection, actual factorial moments, quadratic-transform square integrability and interval elimination are proved; they do not verify Python/Sage execution or its arithmetic library. |
+| 1 | Extend verification beyond exact rational decisions. | The [new Lean programs](../lean/extensions/confidence-executable/README.md) now prove rational pair checks, rational-point membership and global real-region emptiness correct. Verify the remaining frontend, raw-data-to-box computation, algebraic endpoint output and full Sage execution; the arithmetic libraries and compiler/runtime remain trusted. |
 | 2 | Prove robustness to specified deviations. | Extend the actual finite-mixture construction to general mixing laws and justify the rate range or variance allowance from calibration, including its uncertainty. Extend the finite-mixture sampling bounds to more general random-rate backgrounds and justify any dependent-window analysis. Extend to stated tail-moment, detector-response or temporal-dependence conditions. Identify nonidentifiability when assumptions are insufficient. |
 | 3 | Extend constructive inference. | Develop a general-$D$ feasible-region solver with checkable witnesses or emptiness certificates, and formalize the global continuity estimate. State arithmetic precision, termination and complexity limits. |
 | 4 | Improve statistical efficiency. | Compare justified confidence procedures on identical, saved synthetic data; then derive sharper concentration or likelihood guarantees. Keep coverage, computation time and interval width separate. Do not infer optimality from a favorable simulation. |
@@ -51,7 +51,9 @@ makes the current confidence bound's conservatism explicit for one fixed
 parameter choice. It is reproducible with exact rational enclosures, but does
 not establish typical-data performance or a sample-size lower bound. The
 required Sage CI job now supplies repeatable finite boundary, membership and
-witness controls; formal verification of executable behavior remains priority 1.
+witness controls. The rational decision functions now have universal correctness
+proofs and kernel-checked concrete certificates; broader executable behavior
+remains priority 1.
 
 The [synthetic count experiment](stress-test.md) now supplies a frozen design,
 saved counts, exact targets and prescribed-law uncertainty benchmarks for three
@@ -65,6 +67,11 @@ assumptions. Source review, a reproducible build and additional checkers improve
 confidence, but cannot provide external human review on their own.
 
 ## A physical study needs its own evidence
+
+The [calibration note](calibration.md) supplies a written error-allocation
+argument for an uncertain fixed-rate ceiling and a counterexample to uniformly
+estimating arbitrary mixture-rate maxima from finite records. It does not supply
+physical measurements or a formally verified calibration estimator.
 
 The target must first be specified as the bounded count immediately before background addition. Without calibrated efficiency, this need not be the emitted count. A common background parameter is an expected count per observation window: for constant arrival intensity $\lambda$ and duration $T$, $b=\lambda T$. Realized background counts still fluctuate.
 

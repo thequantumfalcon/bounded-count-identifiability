@@ -20,7 +20,7 @@ with zero ceilings and a bounded second-cumulant perturbation theorem. They
 also prove the all-order analytic cumulant connection, actual distributional
 moments and variances, and coverage of the exact D=1 projected region.
 From the repository root, `python lean/extensions/d1-law/verify_law_bridge.py
---suite research --run external-research` checks all twenty-three project modules
+--suite research --run external-research` checks all twenty-four project modules
 freshly. Each new extension has its own manifest; the historical receipts still
 refer only to their original sources and checks.
 
@@ -46,7 +46,7 @@ unique root coverage and an allowed-axiom subset are required. The receipt is
 `lake env`; a separate bare `lean` command on the caller's path is unnecessary.
 Use a new `--run` name for each run, because existing evidence is never overwritten.
 
-The shared [audit policy](proof_audit.py) supplies the complete registry of 140
+The shared [audit policy](proof_audit.py) supplies the complete registry of 148
 roots across the research suite, the allowed axioms and defensive source checks.
 Valid roots need not use all three allowed axioms. The separate
 [stored-proof replay](replay.py) consumes a completed research run; see
@@ -107,8 +107,9 @@ The research extensions supply conditional sampling bounds, a canonical
 finite probability-space encoding and independent Poisson generating identities.
 The newer modules derive actual distributional moments and variances, prove
 the confidence projection including empty cases, and connect the actual sample
-model to projected-region coverage. Executable Python/Sage correctness remains
-separate. No extension establishes a physical model's validity or uniqueness
+model to projected-region coverage. The [exact rational decision functions](extensions/confidence-executable/README.md)
+have proved equivalences to real feasibility and emptiness. Full Python/Sage
+correctness remains separate. No extension establishes a physical model's validity or uniqueness
 of a source before unknown thinning.
 
 The sharpness family is established prior work: see [Afendras and Papadatos, Eq. (3.1) and Lemma 3.1](https://arxiv.org/pdf/1411.1165), PDF page 7, for the generalized matching / quasi-Poisson family and its matched factorial moments. No originality claim is made for that family or the lower-bound implication. Priority of any broader theorem must be assessed separately from successful formal verification.

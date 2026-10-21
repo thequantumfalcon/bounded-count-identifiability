@@ -26,6 +26,26 @@ exact formula attribution above rests on the accessible Afendras–Papadatos
 preprint. Additional references and access boundaries are in
 [references.md](references.md).
 
+## Additional terminology: finitized Poisson laws
+
+Another established name for the sharpness family is **finitized Poisson**.
+Golnabi, Levy and Cochran's
+[*Finitizing power series distributions* (2009)](https://www.sciencedirect.com/science/article/abs/pii/S0167715209001886)
+describes finite-support laws preserving Poisson moments through a specified
+order under a parameter restriction. Cochran, Levy and Golnabi's
+[*Matching the finitized Poisson distribution to the matching distributions*
+(2013)](https://www.sciencedirect.com/science/article/abs/pii/S0167715213000564)
+identifies that family with the generalized matching distributions. Its
+displayed probabilities agree with this project's sharpness family after
+substituting $n=D$ and $\lambda=h$; that substitution is our comparison.
+
+Publisher-indexed previews, including the 2013 equivalence section comparing
+equations (7) and (2), were inspected on 21 October 2026. Direct page access was
+blocked and the complete papers were not reviewed. These references strengthen
+the attribution and search terminology for the known lower-order example. They
+do not resolve priority for the arbitrary bounded-law identification theorem
+from orders $2,\ldots,D+1$ with the mean omitted.
+
 ## A closer overlap: the Poisson-binomial subclass
 
 Proposition 24 of *Recovery from Power Sums* states that any $D$ distinct

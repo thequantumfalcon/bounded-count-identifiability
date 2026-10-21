@@ -26,6 +26,14 @@ rule without using the former exception; the exception was then removed.
 If `main` advances during review, rebuild the final commit and repeat checks.
 Do not restore a bypass to avoid a rejected push.
 
+An additional native code-scanning ruleset requires CodeQL results before
+promotion to the default branch, with no bypass actors. It blocks generic
+error-level alerts and security alerts of medium severity or higher. Lower-level
+diagnostics remain visible for review. This adds enforcement of current scanning;
+it does not repair historical scan coverage or establish independent review.
+Verify both configured languages and the actual rule-suite result for each
+publication. See GitHub's [code-scanning merge protection](https://docs.github.com/en/code-security/how-tos/find-and-fix-code-vulnerabilities/manage-your-configuration/set-merge-protection).
+
 Repository settings are hosted state; verify them in GitHub rather than
 inferring enforcement from this document. Administrators can still change the
 rules themselves. See GitHub's [ruleset documentation](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository).

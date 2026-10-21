@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "record_type": "Sanitized historical local execution; not a public CI execution",
+  "checked_utc": "2026-10-21T21:51:00.564772+00:00",
+  "status": "PASS",
+  "source": "lean/extensions/confidence-executable/CountConfidenceExecutable.lean",
+  "source_sha256": "c199b9b8d32cac0cb5c555e2c91fd3c36e31243d3d5054f3b72346713f579c5a",
+  "source_manifest_sha256": "c5fca829616e817f79bcbfdd483d13b1d5747b270ffc0ccba3085dac16e06369",
+  "audit_policy_sha256": "63c1ad90975059fb941c3c33227e5a8b901850011baa42911a8920b4d5a96c25",
+  "raw_summary_sha256": "df38e1d85a96fa999e6f437beec228d087a50406ee37a8d5718b320c5b3cd714",
+  "fresh_compile": {
+    "exit_code": 0,
+    "timed_out": false,
+    "elapsed_seconds": 14.141,
+    "diagnostics_empty": true,
+    "object_sha256": "c6764d773db9068d12bbfe8d47110ee06a12befda45560549235779a8b0d0f82",
+    "receipt_sha256": "e3cc086ffc2c67ca77cdee8bfffe74252560e1479dcc4299cf272c9f86e2c896"
+  },
+  "separate_axiom_audit": {
+    "status": "PASS",
+    "receipt_sha256": "7d3f2bf6f7f25f79b068387d69c84a898209a912c65af030c8d569d4c325824a",
+    "query_sha256": "45edaf18714507fe7d1f711321f913d50e6c13dfe376b4263e4340e1799119c6",
+    "stdout_sha256": "e2736ef28dcd1bd1525ce15121fac3d98f80ef8d2bf1149f41c08fb804488232",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "roots": [
+    "CountConfidenceExecutable.checkPair_eq_true_iff",
+    "CountConfidenceExecutable.checkPair_eq_false_iff",
+    "CountConfidenceExecutable.checkSource_eq_true_iff",
+    "CountConfidenceExecutable.checkSource_eq_false_iff",
+    "CountConfidenceExecutable.checkPair_implies_checkSource",
+    "CountConfidenceExecutable.checkNonempty_eq_true_iff",
+    "CountConfidenceExecutable.checkNonempty_eq_false_iff",
+    "CountConfidenceExecutable.checkSource_implies_checkNonempty"
+  ],
+  "export_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "forbidden_names": [],
+  "export_sha256": "2591de8d8dcc48d0539ea3e7973c96543717af436bcd1080f4664190c3864c36",
+  "export_bytes": 45118701,
+  "export_exit_code": 0,
+  "lean4lean": {
+    "exit_code": 0,
+    "timed_out": false,
+    "elapsed_seconds": 9.046,
+    "output": "checked 10613 declarations\n",
+    "stderr_empty": true,
+    "receipt_sha256": "efd9620ab1c4d626203cd92c5fb8f4e4026ba982095ffcff8c0a7182f767b2be"
+  },
+  "negative_control": {
+    "fixture_sha256": "d767b9cc9d187484f69665b1071f384aff613a145665b847dc172b624cca3c04",
+    "mutation": "One earlier coefficient theorem's claimed type changed to False; its proof expression was unchanged.",
+    "theorem": "CountCoefficientAudit.two_zero_coefficients_force_zero_shift",
+    "exit_code": 1,
+    "timed_out": false,
+    "abort_on_panic": false,
+    "semantic_diagnosis": "Kernel declaration type mismatch; expected type False.",
+    "diagnostic_limitation": "Two environment-extension panic messages from error printing and raw-printer fallback remain. This is diagnosed semantic rejection with a reporting bug, not clean diagnostic output.",
+    "stderr_sha256": "d993c93e74af7593fd1938484bb8ffa1623baee9c7a1abc89553c1b569b3e207",
+    "receipt_sha256": "07f0713526d9ca376658837b83353a0b2ea40c81d8e7e5fe6577c2254ff30068",
+    "scope": "Earlier coefficient control, not a mutation of a new executable theorem, parser test or exhaustive checker test."
+  },
+  "frozen_inputs_and_artifacts_unchanged": true,
+  "receipt_bound_reused_project_modules": 21,
+  "tool_sha256": {
+    "lean.exe": "ec7a472d1c12a09b0c0c718f7427c2be527b3f5f07810fdbe076c2507c7a91ea",
+    "leanexport.exe": "bda24bb3fafaf299ba472f944942d6293294b76559fafc9f166badd7c0f981b3",
+    "lean4lean.exe": "2463006ea615a6f69c80689142cf7cb0a8724fc7819c57ad2b395e99eb6a9f3c"
+  },
+  "limitations": [
+    "Lean4Lean derives from the Lean kernel and may share bugs; limited implementation independence.",
+    "Shared compiler/exporter, compiled dependencies, standard runtime, source interpretation and host remain trusted.",
+    "Fresh compilation of one new source; 21 prior project modules were reused as receipt-bound imports. This is not a fresh whole-toolchain build.",
+    "Checks the eight universal rational-decision equivalences and implications, including global real-region nonemptiness; does not independently execute or verify the Python query frontend.",
+    "No full Sage execution, parser/serialization or compiled-machine verification, data-to-box confidence guarantee, physical validation, originality or outside human review is established."
+  ],
+  "reproduction_limits": "Large export, detailed local records and tool installations remain local. This sanitized record is not a self-contained reproduction of the additional-checker run. Use the committed research suite for fresh compilation, separate axiom audits and bundled-kernel replay."
+}

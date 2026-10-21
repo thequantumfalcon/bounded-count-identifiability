@@ -11,6 +11,7 @@ The central result is the [bounded-count identification theorem](theorem.md). Th
 | For nonnegative parameters in the algebraic $D=1$ model, second-cumulant error at most $\varepsilon$ gives parameter error at most $\sqrt{\varepsilon}$; mean error at most $\delta$ additionally gives background error at most $\delta+\sqrt{\varepsilon}$. | [CountD1Stability.lean](../lean/extensions/d1/CountD1Stability.lean), separately compiled with explicit axiom checks. | Defines $\kappa_2(p)=-p^2$ and $b(\mu,p)=\mu-p$ algebraically. The probability bridge and data-error guarantees are separate. |
 | The $D=1$ bounds apply to the cumulants of Bernoulli masses and their independent-Poisson observation channel. | [CountD1LawBridge.lean](../lean/extensions/d1-law/CountD1LawBridge.lean), including endpoint laws, and the probability/analytic extensions. | $p,q\in[0,1]$; actual background rates are nonnegative. Observation-error guarantees must be supplied separately. |
 | A Bernoulli source admits an exact algebraic projection of a two-moment confidence region. | [CountConfidenceProjection.lean](../lean/extensions/confidence-projection/CountConfidenceProjection.lean), including clipping and empty cases. | Known background ceiling; deterministic projection of a specified box. The Sage implementation is not formally verified. No general-$D$ solver is claimed. |
+| Rational-input feasibility and global emptiness are decidable by the supplied exact programs. | [Executable decision extension](../lean/extensions/confidence-executable/README.md): Boolean-to-real equivalences, plus kernel-checked concrete query certificates. | Global existence quantifies over real parameters, including irrational witnesses. Python parsing, full Sage execution and data-to-box coverage remain separate. |
 | Every encoded bounded mass vector defines an actual probability measure; its factorial generating polynomial equals the corresponding expectation. | [Probability extension](probability-extensions.md#finite-laws-and-expectations), seven Lean roots, with the subsequent analytic connection. | Canonical finite probability space; formal cumulants agree with logarithm derivatives of the expectation. |
 | Two finite sample means have simultaneous Chebyshev coverage, including zero variance ceilings. | [Sampling extensions](probability-extensions.md#conditional-confidence-bounds), with actual moments, transform square integrability and variances derived in the Bernoulli-plus-Poisson model. | Common marginal laws, source–background independence within each window, a known background ceiling and pairwise independence across observed windows. These conditions are not inferred from data. |
 | A bounded additive second-cumulant perturbation gives the $D=1$ allowance $\sqrt{\varepsilon+\eta}$. | [Uncertainty extension](probability-extensions.md#background-rate-uncertainty), plus an actual finite-mixture construction, moment identities and a conditional range-to-variance bound in Lean. | Both models satisfy the variance allowance. General mixing laws and empirical rate-range calibration remain outside the formalization. |
@@ -19,7 +20,7 @@ The central result is the [bounded-count identification theorem](theorem.md). Th
 | Finite-moment compatibility and zero covariance do not certify the observation model. | Explicit counterexamples below and the [calibration obligations](roadmap.md). | Constructed probability models are not measurements or an assessment of a particular instrument. |
 | The sharpness family and Poisson-cancellation method are established. | [Primary references and access notes](references.md). | Priority of the general sufficient-order theorem remains unresolved. |
 
-The [formal verification guide](../lean/README.md) documents the six core modules and seventeen extensions, pinned dependencies, published compiler receipts and reproduction limits. Additional development checks accepted selected dependency-closed exports using several checker binaries. The selected results use `propext`, `Classical.choice` and `Quot.sound`; no `sorryAx` was found in those exports. Several checkers share ancestry and dependencies. These checks help detect errors but do not amount to external human peer review. Implementations also share mathematical specifications and parts of their development process; see [research provenance](../PROVENANCE.md).
+The [formal verification guide](../lean/README.md) documents the six core modules and eighteen extensions, pinned dependencies, published compiler receipts and reproduction limits. Additional development checks accepted selected dependency-closed exports using several checker binaries. The selected results use `propext`, `Classical.choice` and `Quot.sound`; no `sorryAx` was found in those exports. Several checkers share ancestry and dependencies. These checks help detect errors but do not amount to external human peer review. Implementations also share mathematical specifications and parts of their development process; see [research provenance](../PROVENANCE.md).
 
 ## D=1 deterministic stability
 
@@ -131,6 +132,12 @@ Those finite execution controls supplement the projection theorem; they do
 not formally verify Sage or the executable program.
 
 ## Two assumption controls
+
+The [calibration note](calibration.md) gives a written union-bound argument for
+combining uncertainty in a fixed-rate ceiling with sampling error. It also
+shows why no rule finite on an all-zero record can uniformly bound the largest
+rate in unrestricted finite mixtures. These are conditional written arguments,
+not additional Lean theorems or measurements.
 
 A count $Y$ equal to $0$ or $2$ with probability $1/2$ each has mean $1$ and factorial cumulants $(\kappa_2,\kappa_3)=(0,-1)$. A Poisson count of mean $1$ has $(0,0)$. Thus the mean and second factorial cumulant can fit the $D=1$ observation model even when the true distribution is outside it.
 

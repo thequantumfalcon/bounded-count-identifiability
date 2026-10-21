@@ -429,7 +429,7 @@ def main() -> int:
         "scope": (
             "Fresh trust=0 compilation of the six core modules, D=1 stability and the finite Bernoulli-law bridge. Existing mathlib/Lean dependency caches are reused. No measure-theoretic independence, analytic-log equivalence, finite-sample coverage or physical validation is established."
             if args.suite == "law"
-            else "Fresh trust=0 compilation of the six core modules and registered research extensions. The module list and source-bound theorem statements determine the checked scope. Existing mathlib/Lean dependency caches are reused. No executable confidence-program verification, physical validity, originality or outside human review is established."
+            else "Fresh trust=0 compilation of the six core modules and registered research extensions. The module list and source-bound theorem statements determine the checked scope, including the rational decision definitions. Existing mathlib/Lean dependency caches are reused. No full Python/Sage verification, physical validity, originality or outside human review is established."
         ),
     }
     write_json(output / "result.json", summary)
