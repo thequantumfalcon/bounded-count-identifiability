@@ -139,6 +139,12 @@ class ReplayTests(unittest.TestCase):
                 self.assertIn(name, modules)
                 self.assertEqual(kwargs["cwd"], output)
                 self.assertEqual(
+                    kwargs["env"]["LEAN_SYSROOT"], str(compiler.parent.parent)
+                )
+                self.assertEqual(
+                    kwargs["env"]["PATH"].split(os.pathsep)[0], str(compiler.parent)
+                )
+                self.assertEqual(
                     kwargs["env"]["LEAN_PATH"].split(os.pathsep),
                     [
                         str(root / "build/research/proof"),
@@ -176,6 +182,9 @@ class ReplayTests(unittest.TestCase):
                 "../escape" if variant == "output_escape" else "check",
             ]
             with (
+                patch.dict(
+                    os.environ, {"LEAN_SYSROOT": str(root / "wrong-installation")}
+                ),
                 patch.object(sys, "argv", argv),
                 patch.object(module.DRIVER, "resolve_environment", resolve_environment),
                 patch.object(module, "bind_proofs", bind_proofs),

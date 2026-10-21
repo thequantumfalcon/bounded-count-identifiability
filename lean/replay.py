@@ -155,6 +155,11 @@ def main() -> int:
     output.mkdir(parents=True, exist_ok=False)
     env = os.environ.copy()
     env["LEAN_NUM_THREADS"] = "2"
+    # LeanChecker.findSysroot otherwise shells out to `lean` from PATH. Outside
+    # the project that may select an Elan shim with no default toolchain, or a
+    # different installation. Bind both lookup routes to the audited compiler.
+    env["LEAN_SYSROOT"] = str(lean.parent.parent)
+    env["PATH"] = str(lean.parent) + os.pathsep + env.get("PATH", "")
     env["LEAN_PATH"] = os.pathsep.join(
         map(
             str,
