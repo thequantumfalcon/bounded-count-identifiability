@@ -49,9 +49,9 @@ jobs:
           ISABELLE_INSTALL: ${{ runner.temp }}/bounded-count-isabelle
         run: |
           mkdir "$ISABELLE_INSTALL"
-          curl --fail --location --proto '=https' --proto-redir '=https' --tlsv1.2 \
-            --connect-timeout 30 --max-time 300 --retry 2 --retry-delay 2 \
-            --retry-max-time 600 \
+          timeout --signal=TERM --kill-after=10s 630s \
+            curl --fail --location --proto '=https' --proto-redir '=https' --tlsv1.2 \
+            --connect-timeout 30 --max-time 600 --retry 0 \
             --output "$ISABELLE_INSTALL/Isabelle2025-2_linux.tar.gz" \
             https://mirror.clarkson.edu/isabelle/dist/Isabelle2025-2_linux.tar.gz \
             2> "$EVIDENCE_DIRECTORY/download.stderr.txt"
