@@ -1,0 +1,17 @@
+theory Count_Sorry_Control
+  imports Count_Endpoints
+begin
+
+declare [[quick_and_dirty = false]]
+
+lemma deliberately_admitted_false: "False"
+  sorry
+
+ML_file "../../endpoint_audit.ML"
+ML \<open>
+  Count_Endpoint_Audit.run @{context}
+    [("Count_Sorry_Control.deliberately_admitted_false",
+      @{thm Count_Sorry_Control.deliberately_admitted_false})]
+\<close>
+
+end

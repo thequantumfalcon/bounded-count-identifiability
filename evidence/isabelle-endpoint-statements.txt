@@ -1,0 +1,108 @@
+Display-only excerpt of the Isabelle audit export; typed constructor records are omitted.
+The complete export hash and reproduction instructions are in isabelle-endpoints-check.json.
+
+ENDPOINT_AUDIT_REPORT_V1
+BASELINE Complex_Main
+QUICK_AND_DIRTY false
+DEFINITION_COMPARISON typed_beta_eta_alpha
+LOCAL_AXIOMS 2
+ENDPOINT_AUDIT_AXIOM Count_Endpoints.feasible_def_raw
+PROPOSITION feasible \<equiv> \<lambda>B a c d e p. Ex (pair_box B a c d e p)
+ENDPOINT_AUDIT_AXIOM Count_Endpoints.pair_box_def_raw
+PROPOSITION pair_box \<equiv> \<lambda>B a c d e p b. 0 \<le> p \<and> p \<le> 1 \<and> 0 \<le> b \<and> b \<le> B \<and> a \<le> p + b \<and> p + b \<le> c \<and> d \<le> b\<^sup>2 + 2 * p * b \<and> b\<^sup>2 + 2 * p * b \<le> e
+ENDPOINT_AUDIT_ROOT Count_Endpoints.mean_one_polynomial_projection
+PROPOSITION feasible 1 1 1 ?u ?v ?p = (0 \<le> ?p \<and> ?p \<le> 1 \<and> ?u \<le> 1 - ?p\<^sup>2 \<and> 1 - ?p\<^sup>2 \<le> ?v)
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoints.mean_one_endpoint_projection
+PROPOSITION \<lbrakk>0 \<le> ?u; ?u \<le> ?v; ?v \<le> 1\<rbrakk> \<Longrightarrow> feasible 1 1 1 ?u ?v ?p = (sqrt (1 - ?v) \<le> ?p \<and> ?p \<le> sqrt (1 - ?u))
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoints.mean_one_constructive_witness
+PROPOSITION \<lbrakk>0 \<le> ?u; ?u \<le> ?v; ?v \<le> 1; sqrt (1 - ?v) \<le> ?p; ?p \<le> sqrt (1 - ?u)\<rbrakk> \<Longrightarrow> pair_box 1 1 1 ?u ?v ?p (1 - ?p)
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoints.illustrative_interval
+PROPOSITION feasible 1 1 1 (1 / 4) (3 / 4) ?p = (1 / 2 \<le> ?p \<and> ?p \<le> sqrt 3 / 2)
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoints.half_singleton
+PROPOSITION feasible 1 1 1 (1 / 2) (1 / 2) ?p = (?p = sqrt (1 / 2))
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoints.half_singleton_exists
+PROPOSITION \<exists>p b. pair_box 1 1 1 (1 / 2) (1 / 2) p b
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoints.full_source_interval
+PROPOSITION feasible 1 1 1 0 1 ?p = (0 \<le> ?p \<and> ?p \<le> 1)
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoints.zero_second_boundary
+PROPOSITION feasible 1 1 1 0 0 ?p = (?p = 1)
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoints.unit_second_boundary
+PROPOSITION feasible 1 1 1 1 1 ?p = (?p = 0)
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoints.zero_background_projection
+PROPOSITION feasible 0 ?a ?c ?d ?e ?p = (0 \<le> ?p \<and> ?p \<le> 1 \<and> ?a \<le> ?p \<and> ?p \<le> ?c \<and> ?d \<le> 0 \<and> 0 \<le> ?e)
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoints.negative_ceiling_empty
+PROPOSITION ?B < 0 \<Longrightarrow> \<not> feasible ?B ?a ?c ?d ?e ?p
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoints.reversed_mean_empty
+PROPOSITION ?c < ?a \<Longrightarrow> \<not> feasible ?B ?a ?c ?d ?e ?p
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoints.reversed_second_empty
+PROPOSITION ?e < ?d \<Longrightarrow> \<not> feasible ?B ?a ?c ?d ?e ?p
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoints.impossible_mean_one_second
+PROPOSITION 1 < ?u \<Longrightarrow> \<not> feasible 1 1 1 ?u ?v ?p
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoints.swapped_illustrative_box_empty
+PROPOSITION \<not> feasible 1 1 1 (3 / 4) (1 / 4) ?p
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoints.upper_endpoint_descriptor
+PROPOSITION (4 / 5 < ?x \<and> ?x < 9 / 10 \<and> 4 * ?x\<^sup>2 - 3 = 0) = (?x = sqrt 3 / 2)
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoints.singleton_endpoint_descriptor
+PROPOSITION (7 / 10 < ?x \<and> ?x < 4 / 5 \<and> 2 * ?x\<^sup>2 - 1 = 0) = (?x = sqrt (1 / 2))
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoints.lower_endpoint_descriptor
+PROPOSITION (0 < ?x \<and> ?x < 1 \<and> 2 * ?x - 1 = 0) = (?x = 1 / 2)
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoints.upper_endpoint_included
+PROPOSITION feasible 1 1 1 (1 / 4) (3 / 4) (sqrt 3 / 2)
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoints.lower_endpoint_included
+PROPOSITION feasible 1 1 1 (1 / 4) (3 / 4) (1 / 2)
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoints.wrong_lower_rejected
+PROPOSITION \<not> feasible 1 1 1 (1 / 4) (3 / 4) (1 / 4)
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoints.wrong_upper_rejected
+PROPOSITION \<not> feasible 1 1 1 (1 / 4) (3 / 4) (9 / 10)
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoints.negative_root_not_endpoint
+PROPOSITION 4 * (- sqrt 3 / 2)\<^sup>2 - 3 = 0 \<and> \<not> (4 / 5 < - sqrt 3 / 2 \<and> - sqrt 3 / 2 < 9 / 10)
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoint_Descriptors.upper_radicand_guard_needed
+PROPOSITION (sqrt (1 - 2) \<le> - 1 \<and> - 1 \<le> sqrt (1 - 2)) \<and> \<not> feasible 1 1 1 2 2 (- 1)
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoint_Descriptors.lower_radicand_guard_needed
+PROPOSITION (sqrt (1 - - 1) \<le> sqrt 2 \<and> sqrt 2 \<le> sqrt (1 - - 1)) \<and> \<not> feasible 1 1 1 (- 1) (- 1) (sqrt 2)
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoint_Descriptors.dyadic_upper_endpoint_descriptor
+PROPOSITION (1859775393 / 2147483648 \<le> ?x \<and> ?x \<le> 3719550787 / 4294967296 \<and> ?x\<^sup>2 = 3 / 4) = (?x = sqrt 3 / 2)
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoint_Descriptors.dyadic_upper_endpoint_unique
+PROPOSITION \<exists>!x. 1859775393 / 2147483648 \<le> x \<and> x \<le> 3719550787 / 4294967296 \<and> x\<^sup>2 = 3 / 4
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoint_Descriptors.dyadic_background_descriptor
+PROPOSITION (575416509 / 4294967296 \<le> ?x \<and> ?x \<le> 287708255 / 2147483648 \<and> ?x\<^sup>2 - 2 * ?x + 1 / 4 = 0) = (?x = 1 - sqrt 3 / 2)
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoint_Descriptors.dyadic_background_unique
+PROPOSITION \<exists>!x. 575416509 / 4294967296 \<le> x \<and> x \<le> 287708255 / 2147483648 \<and> x\<^sup>2 - 2 * x + 1 / 4 = 0
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoint_Descriptors.descriptor_pair_is_feasible
+PROPOSITION \<lbrakk>1859775393 / 2147483648 \<le> ?p; ?p \<le> 3719550787 / 4294967296; ?p\<^sup>2 = 3 / 4; 575416509 / 4294967296 \<le> ?b; ?b \<le> 287708255 / 2147483648; ?b\<^sup>2 - 2 * ?b + 1 / 4 = 0\<rbrakk> \<Longrightarrow> pair_box 1 1 1 (1 / 4) (3 / 4) ?p ?b
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+ENDPOINT_AUDIT_ROOT Count_Endpoint_Descriptors.degenerate_lower_descriptor
+PROPOSITION (1 / 2 \<le> ?x \<and> ?x \<le> 1 / 2 \<and> ?x - 1 / 2 = 0) = (?x = 1 / 2)
+HYPOTHESES 0 TERM_CONSTRAINTS 0
+TRANSITIVE_ORACLES 0
+SKIP_PROOF false
+ENDPOINT_AUDIT_PASS roots=31 local_definitions=2 oracles=0

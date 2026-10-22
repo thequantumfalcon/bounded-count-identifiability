@@ -1,0 +1,6 @@
+session Bounded_Count_Endpoints = HOL +
+  options [document = false, quick_and_dirty = false, record_theories = true]
+  theories
+    Count_Endpoints
+    Count_Endpoint_Descriptors
+    Endpoint_Audit

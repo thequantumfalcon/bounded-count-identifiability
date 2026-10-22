@@ -1,0 +1,32 @@
+theory Count_Endpoints
+  imports Complex_Main
+begin
+
+text \<open>This isolated mutation changes the source upper bound from 1 to 2
+while keeping both original constant and defining-axiom names. It must never
+be combined with, or overwrite, the genuine Count_Endpoints theory.
+\<close>
+
+definition pair_box ::
+  "real \<Rightarrow> real \<Rightarrow> real \<Rightarrow> real \<Rightarrow> real \<Rightarrow> real \<Rightarrow> real \<Rightarrow> bool"
+where
+  "pair_box B a c d e p b \<longleftrightarrow>
+    0 \<le> p \<and> p \<le> 2 \<and> 0 \<le> b \<and> b \<le> B \<and>
+    a \<le> p + b \<and> p + b \<le> c \<and>
+    d \<le> b^2 + 2*p*b \<and> b^2 + 2*p*b \<le> e"
+
+definition feasible ::
+  "real \<Rightarrow> real \<Rightarrow> real \<Rightarrow> real \<Rightarrow> real \<Rightarrow> real \<Rightarrow> bool"
+where
+  "feasible B a c d e p \<longleftrightarrow> (\<exists>b. pair_box B a c d e p b)"
+
+lemma control_reflexive: "feasible 0 0 0 0 0 0"
+  by (simp add: feasible_def pair_box_def)
+
+ML_file "../../endpoint_audit.ML"
+ML \<open>
+  Count_Endpoint_Audit.run @{context}
+    [("Count_Endpoints.control_reflexive", @{thm Count_Endpoints.control_reflexive})]
+\<close>
+
+end

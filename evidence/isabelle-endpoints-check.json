@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "checked_utc": "2026-10-22T01:25:48.470820+00:00",
+  "toolchain": "Isabelle2025-2",
+  "platform": "Windows x86-64",
+  "distribution_sha256": "51f47f3259f168de4517cf6e46e90409ab2c45ab4651d5b793509056571379c5",
+  "source_sha256": {
+    "ROOT": "4052e4accccc577642e83659b513d95a8ccc560429b76174d36c4bc9b4be0fb3",
+    "Count_Endpoints.thy": "456fdc81c9075d8737aed76f123a1fe6e697f10b89973fb68e6dbf5b9c8680ea",
+    "Count_Endpoint_Descriptors.thy": "7a2ee268fd3069869f0da04587043e26fdb753df93debf81fcfd9a302e2906ca",
+    "Endpoint_Audit.thy": "04412e7636f404dfd4489763daf0794d4c6a0854be3afcdd69480a919b83758a",
+    "endpoint_audit.ML": "a648f190aee7c699856680a5b807cde7d62ce6788da165d65ba6815559803ac0",
+    "roots.ML": "55206b035822d26806239122d32203468f4d96f233dcfcfbe1f7ee4b94a17b5c"
+  },
+  "session": "Bounded_Count_Endpoints",
+  "theorem_roots": [
+    "Count_Endpoints.mean_one_polynomial_projection",
+    "Count_Endpoints.mean_one_endpoint_projection",
+    "Count_Endpoints.mean_one_constructive_witness",
+    "Count_Endpoints.illustrative_interval",
+    "Count_Endpoints.half_singleton",
+    "Count_Endpoints.half_singleton_exists",
+    "Count_Endpoints.full_source_interval",
+    "Count_Endpoints.zero_second_boundary",
+    "Count_Endpoints.unit_second_boundary",
+    "Count_Endpoints.zero_background_projection",
+    "Count_Endpoints.negative_ceiling_empty",
+    "Count_Endpoints.reversed_mean_empty",
+    "Count_Endpoints.reversed_second_empty",
+    "Count_Endpoints.impossible_mean_one_second",
+    "Count_Endpoints.swapped_illustrative_box_empty",
+    "Count_Endpoints.upper_endpoint_descriptor",
+    "Count_Endpoints.singleton_endpoint_descriptor",
+    "Count_Endpoints.lower_endpoint_descriptor",
+    "Count_Endpoints.upper_endpoint_included",
+    "Count_Endpoints.lower_endpoint_included",
+    "Count_Endpoints.wrong_lower_rejected",
+    "Count_Endpoints.wrong_upper_rejected",
+    "Count_Endpoints.negative_root_not_endpoint",
+    "Count_Endpoint_Descriptors.upper_radicand_guard_needed",
+    "Count_Endpoint_Descriptors.lower_radicand_guard_needed",
+    "Count_Endpoint_Descriptors.dyadic_upper_endpoint_descriptor",
+    "Count_Endpoint_Descriptors.dyadic_upper_endpoint_unique",
+    "Count_Endpoint_Descriptors.dyadic_background_descriptor",
+    "Count_Endpoint_Descriptors.dyadic_background_unique",
+    "Count_Endpoint_Descriptors.descriptor_pair_is_feasible",
+    "Count_Endpoint_Descriptors.degenerate_lower_descriptor"
+  ],
+  "local_definitions": [
+    "Count_Endpoints.feasible_def_raw",
+    "Count_Endpoints.pair_box_def_raw"
+  ],
+  "transitive_oracles": 0,
+  "skip_proof": false,
+  "hidden_hypotheses": 0,
+  "unresolved_term_pairs": 0,
+  "definition_comparison": "complete typed terms modulo beta/eta conversion and bound-variable naming",
+  "audit_export_sha256": "a86725d0e8bf7b2134d7102874a0f31c2a38f1b481a507f89f90994c5d716b66",
+  "display_excerpt_sha256": "fe56e0c3befd638d250c688130b42b47760b7624d4c9260730a7805d15568c71",
+  "negative_controls": [
+    {
+      "name": "false_endpoint",
+      "exit_code": 1,
+      "timed_out": false,
+      "rejection": "exact normalized False residual at the intended done command",
+      "diagnostic_sha256": "ea15fca2b18223634e7c89e7b6b9bc3b4232f751565e9981d2d72985636cd972",
+      "template_sha256": "b3ee9a1b2a5a5a07fb16a3164c0d514631c76425be076c823b32ea7e7c616e22"
+    },
+    {
+      "name": "sorry",
+      "exit_code": 1,
+      "timed_out": false,
+      "rejection": "strict batch rejection of sorry",
+      "diagnostic_sha256": "c0b3962cf05203bf08b8acc1b6946f76f1a898685fabed7a1cc842d14fbb0942",
+      "template_sha256": "aa31ad4d4e18fd2d09a3019e5424612cad85b03d6a5a5dff391a723b6904cd15"
+    },
+    {
+      "name": "extra_axiom",
+      "exit_code": 1,
+      "timed_out": false,
+      "rejection": "specific extra axiom rejected by inventory guard",
+      "diagnostic_sha256": "e71f060c455c10720825c6b7bd00d0814b1f8a3224b872cdd03d48252f6c46a0",
+      "template_sha256": "2c5139ee342b6dd7b72f6713e3a4257b6a404fb63facf65ef0ddf2358bd55156"
+    },
+    {
+      "name": "changed_definition",
+      "exit_code": 1,
+      "timed_out": false,
+      "rejection": "specific typed defining-equation mismatch after inventory guard",
+      "diagnostic_sha256": "c8565ec6569e40c5576e611af5c6c40934366cc4d752139922b8f0f5965ec92b",
+      "template_sha256": "61a5b651fcd57da8a46431f1a56fbb1736d2f5e6845dc49ff7e5bfae265313cf"
+    }
+  ],
+  "scope": "Universal endpoint formula for the mean-one, ceiling-one algebraic family; selected boundary/empty cases; fixed exact root-isolation descriptors. Separate from Lean root counts. No full Sage/frontend, probability-model, human review, novelty or physical-validation claim.",
+  "trust": "Standard HOL axioms, official prebuilt parent heaps, Isabelle/Pure kernel, Poly/ML, toolchain and operating system remain trusted. Shared specification/development limits independence.",
+  "execution_note": "Final LF-normalized public source bytes compiled and exported locally; the exported report is byte-identical to the independently reviewed frozen build. The final public control runner and all four current control templates were executed. Earlier startup failures, tactic corrections and audit representation diagnostics are retained privately. Hosted Linux runs are separate evidence.",
+  "control_runner_sha256": "3a8f85bb42d2fbc2b04d203674a715c4d463c332fa467f3e3851c231deb22e52",
+  "sage_stdout_sha256": "c134daf674ad9d85128a9ccccb44c953ee8bb96c2577c9bf4c0deb495264db3f",
+  "sage_evidence_sha256": "aaaeb52f12c694f671fc0d789f55ff68c46647d530d84a957cb0df3932c7a152"
+}

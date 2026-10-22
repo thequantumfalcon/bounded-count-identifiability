@@ -1,0 +1,14 @@
+theory Count_Wrong_Endpoint
+  imports Count_Endpoints
+begin
+
+text \<open>Deliberately false control: the second factorial moment would be 15/16,
+which is strictly above the stated upper endpoint 3/4. This theory must fail.
+\<close>
+
+lemma deliberately_wrong_feasibility:
+  "feasible 1 1 1 (1/4) (3/4) (1/4)"
+  apply (simp add: mean_one_polynomial_projection power_divide)
+  done
+
+end

@@ -6,6 +6,11 @@ The Python API is experimental; no stable release has been published.
 
 ## [Unreleased]
 
+- Added an Isabelle/HOL reconstruction of the mean-one, ceiling-one endpoint
+  family and the retained exact algebraic descriptors, with an exported
+  definition/oracle audit and four deliberately invalid controls. This adds a
+  second proof system for the stated family; full Sage verification remains open.
+
 - Updated the hash-pinned development dependency packaging to 26.3, following
   review of the official wheel/source hashes and the routine dependency PR.
 

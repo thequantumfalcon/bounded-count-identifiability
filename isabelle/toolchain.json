@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "isabelle_release": "Isabelle2025-2",
+  "session": "Bounded_Count_Endpoints",
+  "base_session": "HOL",
+  "standard_import": "Complex_Main",
+  "afp_required": false,
+  "checksum_source": "https://isabelle.in.tum.de/website-Isabelle2025-2/dist/index.html",
+  "distributions": [
+    {
+      "platform": "linux-x86_64",
+      "filename": "Isabelle2025-2_linux.tar.gz",
+      "bytes": 1228480874,
+      "sha256": "a20a507bc7c1270d8be96a9f3fbec06345387789d2dc2c4d3df6260d47bfb33c"
+    },
+    {
+      "platform": "windows-x86_64",
+      "filename": "Isabelle2025-2.exe",
+      "bytes": 1069837790,
+      "sha256": "51f47f3259f168de4517cf6e46e90409ab2c45ab4651d5b793509056571379c5"
+    }
+  ],
+  "scope": "Pinned distribution metadata, not a build-success or theorem-acceptance receipt."
+}

@@ -1,0 +1,14 @@
+theory Count_Extra_Axiom
+  imports Count_Endpoints
+begin
+
+axiomatization where deliberately_extra_axiom: "False"
+
+ML_file "../../endpoint_audit.ML"
+ML \<open>
+  Count_Endpoint_Audit.run @{context}
+    [("Count_Endpoints.mean_one_polynomial_projection",
+      @{thm Count_Endpoints.mean_one_polynomial_projection})]
+\<close>
+
+end
