@@ -4,9 +4,10 @@ exclude requirements-dev.lock
 recursive-include docs *.md
 recursive-include .github *.md *.yml
 exclude .github/CODE_OF_CONDUCT.md
-recursive-include evidence *.md *.json
+recursive-include evidence *.md *.json *.txt
 recursive-include examples *.py *.txt
 recursive-include tools *.py
+recursive-include isabelle ROOT *.thy *.ML *.md *.json *.py *.thy.in
 recursive-include tests *.py
 recursive-include fuzz *.py *.json *.md *.txt
 recursive-include lean *.lean *.toml *.json *.txt *.md *.py .gitattributes lean-toolchain

@@ -1,0 +1,235 @@
+name: Isabelle endpoints
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: isabelle-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  isabelle:
+    name: isabelle
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      EVIDENCE_DIRECTORY: ${{ github.workspace }}/build/isabelle-ci
+      CHECKED_GITHUB_SHA: ${{ github.sha }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Snapshot the exact proof sources
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, shutil
+          root = pathlib.Path("isabelle")
+          output = pathlib.Path(os.environ["EVIDENCE_DIRECTORY"])
+          output.mkdir(parents=True, exist_ok=False)
+          rows = []
+          for source in sorted(root.rglob("*")):
+              assert not source.is_symlink(), "Proof inputs must not be symlinks"
+              if source.is_file():
+                  relative = source.relative_to(root)
+                  destination = output / "sources" / relative
+                  destination.parent.mkdir(parents=True, exist_ok=True)
+                  shutil.copyfile(source, destination)
+                  rows.append({"path": relative.as_posix(), "sha256": hashlib.sha256(source.read_bytes()).hexdigest()})
+          assert rows and (root / "ROOT").is_file()
+          (output / "source-manifest.json").write_text(json.dumps(rows, indent=2)+"\n")
+          PY
+      - name: Download the pinned Isabelle distribution
+        env:
+          ISABELLE_INSTALL: ${{ runner.temp }}/bounded-count-isabelle
+        run: |
+          mkdir "$ISABELLE_INSTALL"
+          curl --fail --location --proto '=https' --proto-redir '=https' --tlsv1.2 \
+            --connect-timeout 30 --max-time 300 --retry 2 --retry-delay 2 \
+            --retry-max-time 600 \
+            --output "$ISABELLE_INSTALL/Isabelle2025-2_linux.tar.gz" \
+            https://mirror.clarkson.edu/isabelle/dist/Isabelle2025-2_linux.tar.gz \
+            2> "$EVIDENCE_DIRECTORY/download.stderr.txt"
+      - name: Verify and safely extract the distribution
+        env:
+          ISABELLE_INSTALL: ${{ runner.temp }}/bounded-count-isabelle
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, tarfile
+          base = pathlib.Path(os.environ["ISABELLE_INSTALL"]).resolve()
+          output = pathlib.Path(os.environ["EVIDENCE_DIRECTORY"])
+          archive = base / "Isabelle2025-2_linux.tar.gz"
+          expected_sha = "a20a507bc7c1270d8be96a9f3fbec06345387789d2dc2c4d3df6260d47bfb33c"
+          expected_size = 1228480874
+          receipt = {"status": "FAIL", "release": "Isabelle2025-2", "expected_bytes": expected_size, "expected_sha256": expected_sha}
+          try:
+              metadata = json.loads(pathlib.Path("isabelle/toolchain.json").read_text())
+              selected = [item for item in metadata["distributions"] if item["platform"] == "linux-x86_64"]
+              assert metadata["isabelle_release"] == "Isabelle2025-2" and len(selected) == 1
+              assert selected[0] == {"platform": "linux-x86_64", "filename": archive.name, "bytes": expected_size, "sha256": expected_sha}
+              receipt["actual_bytes"] = archive.stat().st_size
+              with archive.open("rb") as source:
+                  receipt["actual_sha256"] = hashlib.file_digest(source, "sha256").hexdigest()
+              assert receipt["actual_bytes"] == expected_size and receipt["actual_sha256"] == expected_sha
+              distribution = base / "Isabelle2025-2"
+              assert not distribution.exists()
+              def safe_member(member, destination):
+                  path = pathlib.PurePosixPath(member.name)
+                  assert not path.is_absolute() and ".." not in path.parts and "\\" not in member.name
+                  assert path.parts and path.parts[0] == "Isabelle2025-2"
+                  assert member.isfile() or member.isdir() or member.issym() or member.islnk()
+                  checked = tarfile.data_filter(member, destination)
+                  assert checked is not None
+                  target = (pathlib.Path(destination) / checked.name).resolve()
+                  assert target.is_relative_to(distribution)
+                  if checked.issym() or checked.islnk():
+                      link_base = target.parent if checked.issym() else pathlib.Path(destination)
+                      assert (link_base / checked.linkname).resolve().is_relative_to(distribution)
+                  return checked
+              with tarfile.open(archive, "r:gz") as source:
+                  members = []
+                  expanded_bytes = 0
+                  for member in source:
+                      members.append(member)
+                      expanded_bytes += member.size
+                      assert len(members) <= 200000 and expanded_bytes <= 16 * 1024**3
+                      safe_member(member, base)
+                  source.extractall(base, members=members, filter=safe_member)
+              receipt.update(status="PASS", members=len(members), extraction_filter="tarfile.data_filter plus fixed-root/type/path/link checks")
+          except BaseException as error:
+              receipt["error"] = repr(error)
+              raise
+          finally:
+              (output / "distribution.json").write_text(json.dumps(receipt, indent=2)+"\n")
+          PY
+      - name: Build and retrieve the explicit audit export
+        env:
+          ISABELLE_INSTALL: ${{ runner.temp }}/bounded-count-isabelle
+          ISABELLE_USER: ${{ runner.temp }}/bounded-count-isabelle-user
+          USER_HOME: ${{ runner.temp }}/bounded-count-isabelle-user
+        run: |
+          mkdir "$ISABELLE_USER"
+          tool="$ISABELLE_INSTALL/Isabelle2025-2/bin/isabelle"
+          set +e
+          timeout --signal=TERM --kill-after=10s 90s "$tool" version \
+            > "$EVIDENCE_DIRECTORY/version.stdout.txt" 2> "$EVIDENCE_DIRECTORY/version.stderr.txt"
+          version_status=$?
+          export_status=125
+          if [ "$version_status" -eq 0 ]; then
+            timeout --signal=TERM --kill-after=10s 420s "$tool" build \
+              -j 1 -o threads=2 -o timeout=300 -D isabelle \
+              > "$EVIDENCE_DIRECTORY/build.stdout.txt" 2> "$EVIDENCE_DIRECTORY/build.stderr.txt"
+            build_status=$?
+            timeout --signal=TERM --kill-after=10s 90s "$tool" build_log -v Bounded_Count_Endpoints \
+              > "$EVIDENCE_DIRECTORY/theory.stdout.txt" 2> "$EVIDENCE_DIRECTORY/theory.stderr.txt"
+            log_status=$?
+            if [ "$build_status" -eq 0 ]; then
+              timeout --signal=TERM --kill-after=10s 90s "$tool" export -n -d isabelle \
+                -O "$EVIDENCE_DIRECTORY/export" \
+                -x 'Bounded_Count_Endpoints.Endpoint_Audit:endpoint-audit.txt' \
+                Bounded_Count_Endpoints \
+                > "$EVIDENCE_DIRECTORY/export.stdout.txt" 2> "$EVIDENCE_DIRECTORY/export.stderr.txt"
+              export_status=$?
+            fi
+          else
+            build_status=125
+            log_status=125
+          fi
+          set -e
+          printf '%s\n' "$version_status" "$build_status" "$log_status" "$export_status" > "$EVIDENCE_DIRECTORY/statuses.txt"
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, re
+          output = pathlib.Path(os.environ["EVIDENCE_DIRECTORY"])
+          statuses = [int(line) for line in (output / "statuses.txt").read_text().splitlines()]
+          receipt = {"status": "FAIL", "github_sha": os.environ["CHECKED_GITHUB_SHA"], "process_exit_codes": dict(zip(("version", "build", "build_log", "export"), statuses)), "build_log_scope": "Optional diagnostic; not the acceptance marker source.", "scope": "This source-bound endpoint session only; not Sage/frontend verification or physical validation."}
+          try:
+              assert len(statuses) == 4 and statuses[0] == statuses[1] == statuses[3] == 0, "Version, build and export commands must all succeed"
+              assert (output / "version.stdout.txt").read_text().strip() == "Isabelle2025-2"
+              export_root = output / "export"
+              expected_export = export_root / "Bounded_Count_Endpoints.Endpoint_Audit/endpoint-audit.txt"
+              assert sorted(path for path in export_root.rglob("*") if path.is_file()) == [expected_export], "Require exactly the expected audit export"
+              assert not any(path.is_symlink() for path in export_root.rglob("*"))
+              text = expected_export.read_text()
+              lines = text.splitlines()
+              assert "\x05" not in text and "\x06" not in text, "Reject unsanitized YXML display markup"
+              assert not re.search(r"(?i)(?:/cygdrive/|[a-z]:[\\/]|/home/|/Users/)", text), "Reject machine paths in exported statements"
+              assert lines[0] == "ENDPOINT_AUDIT_REPORT_V1"
+              marker = "ENDPOINT_AUDIT_PASS roots=31 local_definitions=2 oracles=0"
+              assert lines.count(marker) == 1, "Require the exact audit marker once"
+              audit_lines = [line for line in lines if "ENDPOINT_AUDIT_PASS" in line]
+              assert audit_lines == [marker], "Reject extra or malformed audit pass markers"
+              for required in ("BASELINE Complex_Main", "QUICK_AND_DIRTY false", "LOCAL_AXIOMS 2", "TRANSITIVE_ORACLES 0", "SKIP_PROOF false"):
+                  assert lines.count(required) == 1, required
+              roots = [line.removeprefix("ENDPOINT_AUDIT_ROOT ") for line in lines if line.startswith("ENDPOINT_AUDIT_ROOT ")]
+              registry = pathlib.Path("isabelle/roots.ML").read_text()
+              declared = re.findall(r'\("([A-Za-z0-9_.]+)",\s*@\{thm ([A-Za-z0-9_.]+)\}\)', registry)
+              assert len(declared) == 31 and all(label == theorem for label, theorem in declared)
+              assert roots == [label for label, theorem in declared], "Exported roots differ from the exact source registry"
+              assert len(roots) == len(set(roots)) == 31
+              assert sum(root.startswith("Count_Endpoints.") for root in roots) == 23
+              assert sum(root.startswith("Count_Endpoint_Descriptors.") for root in roots) == 8
+              axioms = [line.removeprefix("ENDPOINT_AUDIT_AXIOM ") for line in lines if line.startswith("ENDPOINT_AUDIT_AXIOM ")]
+              assert sorted(axioms) == ["Count_Endpoints.feasible_def_raw", "Count_Endpoints.pair_box_def_raw"]
+              assert sum(line.startswith("TYPED_TERM ") for line in lines) == 33
+              rows = json.loads((output / "source-manifest.json").read_text())
+              current = [{"path": path.relative_to("isabelle").as_posix(), "sha256": hashlib.sha256(path.read_bytes()).hexdigest()} for path in sorted(pathlib.Path("isabelle").rglob("*")) if path.is_file()]
+              assert current == rows, "Proof source inventory changed during execution"
+              receipt.update(status="PASS", audited_roots=31, local_definitions=2, transitive_oracles=0)
+          except BaseException as error:
+              receipt["error"] = repr(error)
+              raise
+          finally:
+              receipt["files"] = [{"path": path.relative_to(output).as_posix(), "sha256": hashlib.sha256(path.read_bytes()).hexdigest()} for path in sorted(output.rglob("*")) if path.is_file()]
+              (output / "result.json").write_text(json.dumps(receipt, indent=2)+"\n")
+          PY
+      - name: Require the four meaningful rejection controls
+        env:
+          ISABELLE_INSTALL: ${{ runner.temp }}/bounded-count-isabelle
+          USER_HOME: ${{ runner.temp }}/bounded-count-isabelle-user
+        run: |
+          tool="$ISABELLE_INSTALL/Isabelle2025-2/bin/isabelle"
+          set +e
+          timeout --signal=TERM --kill-after=10s 420s \
+            python3 isabelle/check_controls.py --isabelle "$tool" \
+            --output "$EVIDENCE_DIRECTORY/controls" \
+            > "$EVIDENCE_DIRECTORY/controls.stdout.txt" 2> "$EVIDENCE_DIRECTORY/controls.stderr.txt"
+          control_status=$?
+          set -e
+          printf '%s\n' "$control_status" > "$EVIDENCE_DIRECTORY/controls.status.txt"
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib
+          output = pathlib.Path(os.environ["EVIDENCE_DIRECTORY"])
+          result = {"status": "FAIL", "scope": "Combined positive endpoint audit and four semantic rejection controls; not a full Sage/frontend verification."}
+          try:
+              assert (output / "controls.status.txt").read_text().strip() == "0", "Control runner failed or exceeded its bound"
+              positive = json.loads((output / "result.json").read_text())
+              controls = json.loads((output / "controls/receipt.json").read_text())
+              assert positive["status"] == controls["status"] == "PASS"
+              assert controls["schema_version"] == 1
+              rows = controls["controls"]
+              assert sorted(row["name"] for row in rows) == ["changed_definition", "extra_axiom", "false_endpoint", "sorry"]
+              assert all(row["status"] == "PASS" and not row["timed_out"] for row in rows)
+              expected = json.loads((output / "source-manifest.json").read_text())
+              current = [{"path": path.relative_to("isabelle").as_posix(), "sha256": hashlib.sha256(path.read_bytes()).hexdigest()} for path in sorted(pathlib.Path("isabelle").rglob("*")) if path.is_file()]
+              assert current == expected, "Proof/control sources changed during execution"
+              result.update(status="PASS", positive_receipt_sha256=hashlib.sha256((output / "result.json").read_bytes()).hexdigest(), controls_receipt_sha256=hashlib.sha256((output / "controls/receipt.json").read_bytes()).hexdigest())
+          except BaseException as error:
+              result["error"] = repr(error)
+              raise
+          finally:
+              result["files"] = [{"path": path.relative_to(output).as_posix(), "sha256": hashlib.sha256(path.read_bytes()).hexdigest()} for path in sorted(output.rglob("*")) if path.is_file()]
+              (output / "complete.json").write_text(json.dumps(result, indent=2)+"\n")
+          PY
+      - name: Preserve proof sources and logs
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: isabelle-ci-receipt
+          path: build/isabelle-ci/
+          if-no-files-found: error
+          retention-days: 14

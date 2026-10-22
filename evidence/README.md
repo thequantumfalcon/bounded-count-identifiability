@@ -188,3 +188,13 @@ remain disclosed. The run reused 24 source-bound project objects and the
 upstream runtime. It checks the count-confidence theorems, not the Python frontend,
 Sage execution or model calibration. Lean4Lean's shared kernel ancestry and
 the common exporter limit implementation independence.
+
+## Isabelle endpoint reconstruction
+
+[The local record](isabelle-endpoints-check.json) binds the final Isabelle
+proof and audit sources to a successful 31-root run, two reviewed conservative
+definitions, zero transitive oracle dependencies and four expected rejections.
+[Reproduction instructions](../isabelle/README.md) explain the exact family,
+explicit report export and separate hosted Linux workflow. This is a distinct
+proof implementation with shared project provenance, not outside human review
+or verification of the entire Sage program.

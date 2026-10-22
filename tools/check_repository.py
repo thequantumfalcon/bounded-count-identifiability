@@ -80,6 +80,17 @@ COMMON_REQUIRED = (
         "docs/references.md",
         "docs/reproduction.md",
         "evidence/README.md",
+        "evidence/isabelle-endpoints-check.json",
+        "evidence/isabelle-endpoint-statements.txt",
+        "isabelle/README.md",
+        "isabelle/ROOT",
+        "isabelle/Count_Endpoints.thy",
+        "isabelle/Count_Endpoint_Descriptors.thy",
+        "isabelle/Endpoint_Audit.thy",
+        "isabelle/endpoint_audit.ML",
+        "isabelle/roots.ML",
+        "isabelle/toolchain.json",
+        "isabelle/check_controls.py",
         "src/bounded_counts/__init__.py",
         "src/bounded_counts/core.py",
         "src/bounded_counts/__main__.py",
@@ -111,6 +122,10 @@ COMMON_REQUIRED = (
     }
     | {"lean/" + name for name in MODULES}
     | {
+        f"isabelle/controls/{name}.thy.in"
+        for name in ("false_endpoint", "sorry", "extra_axiom", "changed_definition")
+    }
+    | {
         f"{directory}/{name}"
         for directory, source, _ in EXTENSIONS
         for name in (source, "source_manifest.json")
@@ -133,6 +148,7 @@ REPOSITORY_REQUIRED = {
     ".github/workflows/ci.yml",
     ".github/workflows/dependency-review.yml",
     ".github/workflows/scorecard.yml",
+    ".github/workflows/isabelle.yml",
 }
 ARTIFACT_DIRS = {
     ".venv",
@@ -291,6 +307,52 @@ def action_is_pinned(value: str) -> bool:
     return bool(
         re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_./-]+@[0-9a-fA-F]{40}", value)
     )
+
+
+def endpoint_receipt_problems(record: dict, roots_text: str) -> list[str]:
+    """Check a declared receipt's consistency, without asserting proof validity."""
+    problems = []
+    registry = re.findall(r'\("([^"\n]+)",\s*@\{thm\s+([^}\s]+)\}\)', roots_text)
+    names = [name for name, _ in registry]
+    if (
+        len(names) != 31
+        or len(set(names)) != 31
+        or any(name != theorem for name, theorem in registry)
+        or record.get("theorem_roots") != names
+    ):
+        problems.append("root inventory differs from the exact theorem registry")
+    if record.get("local_definitions") != [
+        "Count_Endpoints.feasible_def_raw",
+        "Count_Endpoints.pair_box_def_raw",
+    ]:
+        problems.append("unexpected local defining-axiom inventory")
+    controls = record.get("negative_controls", [])
+    if (
+        not isinstance(controls, list)
+        or any(not isinstance(row, dict) for row in controls)
+        or [row.get("name") for row in controls]
+        != ["false_endpoint", "sorry", "extra_axiom", "changed_definition"]
+        or any(
+            type(row.get("exit_code")) is not int
+            or row.get("exit_code") != 1
+            or row.get("timed_out") is not False
+            or not HEX64.fullmatch(str(row.get("diagnostic_sha256", "")))
+            or not isinstance(row.get("rejection"), str)
+            or not row["rejection"].strip()
+            for row in controls
+        )
+    ):
+        problems.append("unexpected rejection-control inventory or outcome")
+    if (
+        record.get("status") != "PASS"
+        or record.get("toolchain") != "Isabelle2025-2"
+        or record.get("transitive_oracles") != 0
+        or record.get("skip_proof") is not False
+        or record.get("hidden_hypotheses") != 0
+        or record.get("unresolved_term_pairs") != 0
+    ):
+        problems.append("unexpected acceptance summary")
+    return problems
 
 
 def inventory_files(root: Path, mode: str) -> tuple[list[Path], str]:
@@ -470,6 +532,69 @@ def audit(root: Path, mode: str, private_tokens: list[str]) -> dict:
         fail("LICENSE.txt: missing original-work copyright for the declared persona")
 
     manifest = load_json("lean/source_manifest.json").get("sources", {})
+    endpoint_record = load_json("evidence/isabelle-endpoints-check.json")
+    endpoint_sources = endpoint_record.get("source_sha256", {})
+    expected_endpoint_files = {
+        "ROOT",
+        "Count_Endpoints.thy",
+        "Count_Endpoint_Descriptors.thy",
+        "Endpoint_Audit.thy",
+        "endpoint_audit.ML",
+        "roots.ML",
+    }
+    if set(endpoint_sources) != expected_endpoint_files:
+        fail("Isabelle receipt: unexpected proof/audit source inventory")
+    for name in expected_endpoint_files:
+        path = root / "isabelle" / name
+        if not path.is_file() or hashlib.sha256(
+            path.read_bytes()
+        ).hexdigest() != endpoint_sources.get(name):
+            fail(f"Isabelle receipt: source binding mismatch: {name}")
+    excerpt = root / "evidence/isabelle-endpoint-statements.txt"
+    if not excerpt.is_file() or hashlib.sha256(
+        excerpt.read_bytes()
+    ).hexdigest() != endpoint_record.get("display_excerpt_sha256"):
+        fail("Isabelle receipt: statement excerpt binding mismatch")
+    for problem in endpoint_receipt_problems(
+        endpoint_record, read("isabelle/roots.ML")
+    ):
+        fail("Isabelle receipt: " + problem)
+    control_runner = root / "isabelle/check_controls.py"
+    if not control_runner.is_file() or sha256(control_runner) != endpoint_record.get(
+        "control_runner_sha256"
+    ):
+        fail("Isabelle receipt: control runner binding mismatch")
+    endpoint_controls = endpoint_record.get("negative_controls", [])
+    if isinstance(endpoint_controls, list):
+        for control_name in (
+            "false_endpoint",
+            "sorry",
+            "extra_axiom",
+            "changed_definition",
+        ):
+            rows = [
+                row
+                for row in endpoint_controls
+                if isinstance(row, dict) and row.get("name") == control_name
+            ]
+            template = root / "isabelle/controls" / (control_name + ".thy.in")
+            if (
+                len(rows) != 1
+                or not template.is_file()
+                or sha256(template) != rows[0].get("template_sha256")
+            ):
+                fail(
+                    f"Isabelle receipt: control template binding mismatch: {control_name}"
+                )
+    sage_report = root / "evidence/projection-sage-check.json"
+    if not sage_report.is_file() or sha256(sage_report) != endpoint_record.get(
+        "sage_evidence_sha256"
+    ):
+        fail("Isabelle receipt: retained Sage report binding mismatch")
+    if load_json("evidence/projection-sage-check.json").get(
+        "stdout_sha256"
+    ) != endpoint_record.get("sage_stdout_sha256"):
+        fail("Isabelle receipt: original Sage output binding mismatch")
     if set(manifest) != MODULES:
         fail("lean/source_manifest.json: expected exactly six named proof modules")
     for name in sorted(MODULES):

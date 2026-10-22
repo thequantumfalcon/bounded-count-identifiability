@@ -198,6 +198,14 @@ Earlier committed receipts used the former output-based audit. The
 [red-team follow-up](red-team-followup.md) explains its confirmed defect and why
 those records cannot establish that the repaired gate passed.
 
+## Isabelle endpoint reconstruction
+
+The [separate Isabelle guide](../isabelle/README.md) reproduces a universal
+endpoint theorem for the mean-one, ceiling-one family and exact descriptors
+for the retained Sage example. It uses Isabelle2025-2, an explicit 31-root
+definition/oracle audit and four invalid controls. These checks do not verify
+the full Sage program or establish independent human review.
+
 ## Optional exact Sage projection
 
 With SageMath installed, run from the root:

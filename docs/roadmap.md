@@ -88,6 +88,11 @@ Detector calibration has its own established methods. [Ware and colleagues](http
 
 Preselect the support bound, background ceiling, window duration, sample size, error level, exclusions and diagnostic tests, or supply a valid analysis of their adaptive selection. An uncertain calibration bound needs its own error accounting. Preserve raw observations and provenance so others can assess the assumptions.
 
+The [Isabelle reconstruction](../isabelle/README.md) supplies a second proof
+system for the mean-one, ceiling-one endpoint family and the exact retained
+example descriptors. Arbitrary endpoint serialization, acquisition/parsing and
+full Sage execution remain open; this small reconstruction does not close them.
+
 ## What can be settled in this setting
 
 Further universal mathematics, formal proofs, exact counterexamples, separately written implementations and reproducible synthetic benchmarks are feasible. They can establish conditional results and reveal failures of proposed claims.
