@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f3ed">
+  <meta name="description" content="Explore how higher factorial cumulants identify a bounded count source under independent fixed-rate Poisson background. An interactive mathematical demonstration.">
+  <title>Bounded Counts — What survives the noise</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the demonstration</a>
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="Bounded Counts, back to top">
+      <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path d="M3 27V16h5v11zm10 0V6h5v21zm10 0V12h5v15z" fill="currentColor"/><circle cx="25.5" cy="5" r="2.5" fill="#bb4c2e"/></svg>
+      <span>Bounded <strong>Counts</strong></span>
+    </a>
+    <nav aria-label="Demonstration sections">
+      <a href="#signal"><span>01</span> Signal</a>
+      <a href="#sharpness"><span>02</span> The limit</a>
+      <a href="#recovery"><span>03</span> Recovery</a>
+    </nav>
+    <a class="paper-link" href="https://github.com/thequantumfalcon/bounded-count-identifiability/blob/main/docs/theorem.md">Read the proof <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main id="main">
+    <div id="top" class="hero page-width">
+      <div class="eyebrow"><span class="small-rule"></span> A mathematical explorer <span class="edition">01 / Bounded count laws</span></div>
+      <div class="hero-grid">
+        <h1>What survives<br>the <em>noise.</em></h1>
+        <div class="hero-copy">
+          <p class="hero-lead">The mean can hide the source.<br>Higher factorial cumulants can identify it.</p>
+          <p>When a count source has a known upper bound, a finite set of these quantities determines its law—even with an unknown, independent Poisson background.</p>
+          <a class="text-link" href="#signal">Explore the result <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <div class="model-strip"><span class="model-label">The model</span><span><b>Y</b> = <b>X</b> + <b>Z</b></span><span>Bounded source <b>X ∈ {0, …, D}</b></span><span>Independent background <b>Z ∼ Poisson(b)</b></span><span class="population-tag">Population calculations · no measured data</span></div>
+    </div>
+
+    <section id="signal" class="lab-section page-width" aria-labelledby="signal-title" data-panel="signal">
+      <div class="section-aside">
+        <span class="section-number">01 <span>/ Signal</span></span>
+        <h2 id="signal-title">Change the background.<br>Keep the fingerprint.</h2>
+        <p>Move the slider. The observed distribution changes, and its mean shifts. Every factorial cumulant above first order stays fixed.</p>
+        <div class="aside-equation">κ<sub>r</sub>(Y) = κ<sub>r</sub>(X)<small>for r ≥ 2, under this model</small></div>
+        <details class="plain-details"><summary>What is a factorial cumulant?</summary><p>The rth factorial cumulant is r! times the coefficient of t<sup>r</sup> in log E[(1+t)<sup>X</sup>]. The first is the mean; the second is variance minus mean. Higher orders describe further features of the count law. They are different from ordinary cumulants.</p></details>
+      </div>
+      <div class="instrument light-instrument">
+        <div class="instrument-toolbar">
+          <div><label class="control-label" for="source-select">Choose a bounded source</label><select id="source-select"><option value="bernoulli">Bernoulli · D = 1</option><option value="three-count">Three-count source · D = 3</option><option value="matching">Matching law · D = 3</option></select></div>
+          <button id="exact-toggle" class="quiet-button" type="button" aria-pressed="false">Show fractions</button>
+        </div>
+        <div class="background-control"><div class="slider-heading"><label for="background">Mean background counts per window <span class="math-symbol">b</span></label><output id="background-output" for="background">0.50</output></div><input id="background" type="range" min="0" max="300" step="5" value="50"><div class="range-labels"><span>No background · 0</span><span>3 counts per window</span></div></div>
+        <figure class="distribution-figure">
+          <div class="chart-heading"><span>Population probability</span><div class="legend"><span><i class="source-swatch"></i>Source X</span><span><i class="observed-swatch"></i>Observed Y</span></div></div>
+          <svg id="signal-chart" class="distribution-chart" viewBox="0 0 700 260" role="img" aria-labelledby="signal-chart-title signal-chart-desc"><title id="signal-chart-title">Source and observed count probabilities</title><desc id="signal-chart-desc">The table below gives the displayed probabilities.</desc></svg>
+          <figcaption>Count per window <span>13+ collects the remaining tail. Bars are rounded probabilities, not sampled counts.</span></figcaption>
+        </figure>
+        <div class="metric-strip" aria-label="Observed factorial cumulants"><div class="metric moving"><span>κ₁ <small>Mean · shifts with b</small></span><strong id="signal-k1">—</strong></div><div class="metric"><span>κ₂ <small>Unchanged</small></span><strong id="signal-k2">—</strong></div><div class="metric"><span>κ₃ <small>Unchanged</small></span><strong id="signal-k3">—</strong></div></div>
+        <details id="signal-table" class="data-details"><summary>Inspect the values <span>Exact cumulants &amp; plotted probabilities</span></summary><div id="signal-values"></div></details>
+      </div>
+    </section>
+
+    <section id="sharpness" class="sharpness-section" aria-labelledby="sharpness-title" data-panel="sharpness">
+      <div class="page-width sharpness-layout">
+        <div class="section-aside">
+          <span class="section-number">02 <span>/ The limit</span></span>
+          <h2 id="sharpness-title">One more order<br>makes the difference.</h2>
+          <p>Two different sources can agree in all observed factorial cumulants through order D—even their observed means.</p>
+          <p>Reveal order D + 1 to see where this pair separates.</p>
+          <div class="sharpness-controls"><div><label class="control-label" for="degree">Source support bound D</label><select id="degree"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></div><div class="strength-control"><label class="control-label" for="strength">Family parameter h <output id="strength-output" for="strength">1/2</output></label><input id="strength" type="range" min="10" max="90" step="10" value="50"></div></div>
+          <p class="source-credit">This is an established generalized matching family. <a href="https://arxiv.org/abs/1411.1165">Afendras–Papadatos, citing Niermann ↗</a></p>
+        </div>
+        <div class="comparison-instrument">
+          <div class="scenario-pair"><div class="scenario"><span class="scenario-label"><i class="source-swatch"></i> Model A</span><h3>Bounded source</h3><p>Generalized matching law<br>Poisson background b = 0</p><svg id="source-a-chart" viewBox="0 0 260 90" role="img" aria-label="Model A source probabilities"></svg></div><div class="scenario"><span class="scenario-label"><i class="comparison-swatch"></i> Model B</span><h3>Background alone</h3><p>Source always zero<br>Poisson background b = h</p><svg id="source-b-chart" viewBox="0 0 260 90" role="img" aria-label="Model B source probabilities"></svg></div></div>
+          <div class="comparison-heading"><h3>Observed factorial cumulants</h3><span id="orders-caption">Through order 3</span></div>
+          <div class="table-scroll"><table id="sharpness-table"><caption class="sr-only">Exact observed factorial cumulants for models A and B</caption><thead><tr><th scope="col">Order</th><th scope="col">Model A</th><th scope="col">Model B</th><th scope="col">Comparison</th></tr></thead><tbody id="sharpness-rows"></tbody></table></div>
+          <div class="reveal-area"><button id="reveal" class="accent-button" type="button" aria-expanded="false">Reveal order 4 <span aria-hidden="true">↗</span></button><p id="sharpness-result" role="status">The first three orders agree. Are the sources the same?</p></div>
+          <details class="dark-details"><summary>Inspect the source laws &amp; the general result</summary><div id="sharpness-values"></div><p>This pair demonstrates that order D + 1 can be necessary. The universal theorem proves that orders 2, …, D + 1 suffice for every admissible law on {0, …, D}. Comparing this one pair is an illustration of sharpness, not a proof of the universal theorem.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section id="recovery" class="lab-section page-width recovery-section" aria-labelledby="recovery-title" data-panel="recovery">
+      <div class="section-aside">
+        <span class="section-number">03 <span>/ Recovery</span></span>
+        <h2 id="recovery-title">Work backwards.<br>Recover a simple source.</h2>
+        <p>For a Bernoulli source, a single higher factorial cumulant determines the probability of a source count. The mean then reveals the background rate.</p>
+        <div class="aside-equation">p = √(−κ₂)<br>b = μ − p<small>X ∼ Bernoulli(p), 0 ≤ p ≤ 1<br>Independent Z ∼ Poisson(b), b ≥ 0</small></div>
+        <p class="scope-note">This panel solves the D = 1 population model. It is not a general-D reconstruction solver or an estimator for noisy data.</p>
+      </div>
+      <div class="recovery-instrument">
+        <div class="instrument-toolbar"><div><span class="control-label">A worked inverse problem</span><h3>From observables to parameters</h3></div><span class="small-tag">D = 1</span></div>
+        <form id="recover" novalidate>
+          <fieldset><legend>Enter exact population quantities</legend><div class="input-pair"><div><label for="mean-input">Observed mean <span class="math-symbol">μ</span></label><input id="mean-input" type="text" inputmode="text" value="4/5" maxlength="64" autocomplete="off" spellcheck="false" aria-describedby="input-help"></div><div><label for="k2-input">Second factorial cumulant <span class="math-symbol">κ₂</span></label><input id="k2-input" type="text" inputmode="text" value="-9/100" maxlength="64" autocomplete="off" spellcheck="false" aria-describedby="input-help"></div></div><p id="input-help" class="input-help">Use integers, finite decimals or fractions, such as 4/5. These are exact model inputs.</p></fieldset>
+          <div class="recovery-actions"><button id="recover-button" type="submit" class="primary-button">Recover the parameters <span aria-hidden="true">→</span></button><div class="presets"><span>Try:</span><button id="preset-default" type="button">Default</button><button id="preset-boundary" type="button">Boundary</button><button id="preset-invalid" type="button">Incompatible</button></div></div>
+        </form>
+        <div id="recovery-result" class="recovery-result" role="status" aria-live="polite" aria-atomic="true"></div>
+        <p class="model-caveat">A compatible pair of inputs does not validate the observation model. The support bound, independence and fixed Poisson rate remain assumptions.</p>
+      </div>
+    </section>
+
+    <section class="reading-section page-width" aria-labelledby="reading-title">
+      <div><span class="section-number">Beyond the demonstration</span><h2 id="reading-title">An exact result.<br>A precise boundary.</h2></div>
+      <div class="reading-copy"><p>The theorem concerns exact population cumulants. Finite samples introduce uncertainty; detector response, random background rates and dependence require separate analysis. No physical system is validated here.</p><details class="plain-details"><summary>What about sample size and uncertainty?</summary><p>The repository includes a conditional Bernoulli confidence calculation. Its conservative intervals can be wide even at large sample sizes. Exact identification does not promise an efficient estimator or practical measurement protocol.</p><a class="text-link" href="https://github.com/thequantumfalcon/bounded-count-identifiability/blob/main/docs/claims.md#population-centered-scale-diagnostic">Inspect the uncertainty example ↗</a></details><div class="reading-links"><a href="https://github.com/thequantumfalcon/bounded-count-identifiability/blob/main/docs/theorem.md">Theorem &amp; proof <span>↗</span></a><a href="https://github.com/thequantumfalcon/bounded-count-identifiability/blob/main/docs/claims.md">Claims &amp; evidence <span>↗</span></a><a href="https://github.com/thequantumfalcon/bounded-count-identifiability/blob/main/docs/reviewer-request.md">Mathematical review brief <span>↗</span></a></div></div>
+    </section>
+    <section class="export-bar page-width" aria-label="Save and reset the demonstration"><div><h2>Keep the calculation.</h2><p>Download exact values and assumptions, or share these settings.</p></div><div class="export-actions"><button id="download-json" class="quiet-button" type="button">Download JSON <span aria-hidden="true">↓</span></button><button id="copy-link" class="quiet-button" type="button">Copy link <span aria-hidden="true">↗</span></button><button id="reset-demo" class="text-button" type="button">Reset</button></div><p id="export-status" class="export-status" role="status"></p></section>
+  </main>
+  <footer class="page-width"><div><a class="wordmark" href="#top">Bounded <strong>Counts</strong></a><p>A research artifact by <a href="https://github.com/thequantumfalcon">The Quantum Falcon</a>.</p></div><p class="footer-disclaimer">Illustrative population calculations, not measurements. Mathematical priority remains unresolved. The browser software is tested, not formally verified; errors may remain. <a href="https://github.com/thequantumfalcon/bounded-count-identifiability/blob/main/PROVENANCE.md">Process disclosure &amp; limitations ↗</a></p></footer>
+  <noscript><div class="noscript-note">This interactive demonstration requires JavaScript. The <a href="https://github.com/thequantumfalcon/bounded-count-identifiability/blob/main/docs/theorem.md">written theorem and proof</a> can be read without it.</div></noscript>
+</body>
+</html>

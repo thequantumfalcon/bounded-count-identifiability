@@ -32,6 +32,11 @@ The Python API is experimental; no stable release has been published.
 
 ### Added
 
+- A static interactive companion for Poisson invariance, the sharp order cutoff
+  and the Bernoulli inverse, with exact rational calculations, explicit numerical
+  plot boundaries and a local preview command. Installed-package fixtures,
+  browser interactions and automated accessibility checks run in required CI;
+  these checks do not formally verify the browser program or validate a detector.
 - An Isabelle/HOL reconstruction of the mean-one, ceiling-one endpoint
   family and the retained exact algebraic descriptors, with an exported
   definition/oracle audit and four deliberately invalid controls. This adds a

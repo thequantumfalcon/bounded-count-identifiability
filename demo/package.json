@@ -1,0 +1,19 @@
+{
+  "name": "bounded-count-research-demo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local browser checks for the static bounded-count research demo",
+  "scripts": {
+    "test": "node --test tests/math.test.mjs",
+    "test:browser": "node tests/browser.mjs",
+    "browsers:install": "playwright install chromium firefox webkit"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "axe-core": "4.14.0",
+    "playwright": "1.64.1"
+  }
+}

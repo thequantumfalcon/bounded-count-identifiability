@@ -40,6 +40,15 @@ development assistance and verification limitations.
 
 ## Review and reproduce
 
+Explore the [interactive browser demo](demo/README.md) locally:
+
+```sh
+python -m http.server 8765 --bind 127.0.0.1 --directory demo
+```
+
+Open [127.0.0.1:8765](http://127.0.0.1:8765/) for population illustrations of
+Poisson invariance, the sharp cutoff and the Bernoulli inverse.
+
 Start with the [one-page mathematical review request](docs/reviewer-request.md).
 The [claim map](docs/claims.md) separates the main theorem, extensions, software
 checks and unresolved obligations.

@@ -1,0 +1,7653 @@
+{
+  "schema": 1,
+  "generator": "tools/generate_demo_fixtures.py",
+  "oracle": "installed bounded_counts package",
+  "package_version": "0.1.0.dev0",
+  "scope": "Exact synthetic population cases; finite software comparisons, not a universal proof or measured data.",
+  "cases": [
+    {
+      "name": "matching-D1-h0-b0",
+      "law": [
+        "1",
+        "0"
+      ],
+      "order": 2,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "0",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D1-h0-b1/2",
+      "law": [
+        "1",
+        "0"
+      ],
+      "order": 2,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "1/2",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D1-h0-b3",
+      "law": [
+        "1",
+        "0"
+      ],
+      "order": 2,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "3",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D1-h1/10-b0",
+      "law": [
+        "9/10",
+        "1/10"
+      ],
+      "order": 2,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/10",
+        "-1/100"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D1-h1/10-b1/2",
+      "law": [
+        "9/10",
+        "1/10"
+      ],
+      "order": 2,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "3/5",
+        "-1/100"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D1-h1/10-b3",
+      "law": [
+        "9/10",
+        "1/10"
+      ],
+      "order": 2,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "31/10",
+        "-1/100"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D1-h1/5-b0",
+      "law": [
+        "4/5",
+        "1/5"
+      ],
+      "order": 2,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/5",
+        "-1/25"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D1-h1/5-b1/2",
+      "law": [
+        "4/5",
+        "1/5"
+      ],
+      "order": 2,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "7/10",
+        "-1/25"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D1-h1/5-b3",
+      "law": [
+        "4/5",
+        "1/5"
+      ],
+      "order": 2,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "16/5",
+        "-1/25"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D1-h3/10-b0",
+      "law": [
+        "7/10",
+        "3/10"
+      ],
+      "order": 2,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "3/10",
+        "-9/100"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D1-h3/10-b1/2",
+      "law": [
+        "7/10",
+        "3/10"
+      ],
+      "order": 2,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "4/5",
+        "-9/100"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D1-h3/10-b3",
+      "law": [
+        "7/10",
+        "3/10"
+      ],
+      "order": 2,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "33/10",
+        "-9/100"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D1-h2/5-b0",
+      "law": [
+        "3/5",
+        "2/5"
+      ],
+      "order": 2,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "2/5",
+        "-4/25"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D1-h2/5-b1/2",
+      "law": [
+        "3/5",
+        "2/5"
+      ],
+      "order": 2,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "9/10",
+        "-4/25"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D1-h2/5-b3",
+      "law": [
+        "3/5",
+        "2/5"
+      ],
+      "order": 2,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "17/5",
+        "-4/25"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D1-h1/2-b0",
+      "law": [
+        "1/2",
+        "1/2"
+      ],
+      "order": 2,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/2",
+        "-1/4"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D1-h1/2-b1/2",
+      "law": [
+        "1/2",
+        "1/2"
+      ],
+      "order": 2,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "1",
+        "-1/4"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D1-h1/2-b3",
+      "law": [
+        "1/2",
+        "1/2"
+      ],
+      "order": 2,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "7/2",
+        "-1/4"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D1-h3/5-b0",
+      "law": [
+        "2/5",
+        "3/5"
+      ],
+      "order": 2,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "3/5",
+        "-9/25"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D1-h3/5-b1/2",
+      "law": [
+        "2/5",
+        "3/5"
+      ],
+      "order": 2,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "11/10",
+        "-9/25"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D1-h3/5-b3",
+      "law": [
+        "2/5",
+        "3/5"
+      ],
+      "order": 2,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "18/5",
+        "-9/25"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D1-h7/10-b0",
+      "law": [
+        "3/10",
+        "7/10"
+      ],
+      "order": 2,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "7/10",
+        "-49/100"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D1-h7/10-b1/2",
+      "law": [
+        "3/10",
+        "7/10"
+      ],
+      "order": 2,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "6/5",
+        "-49/100"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D1-h7/10-b3",
+      "law": [
+        "3/10",
+        "7/10"
+      ],
+      "order": 2,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "37/10",
+        "-49/100"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D1-h4/5-b0",
+      "law": [
+        "1/5",
+        "4/5"
+      ],
+      "order": 2,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "4/5",
+        "-16/25"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D1-h4/5-b1/2",
+      "law": [
+        "1/5",
+        "4/5"
+      ],
+      "order": 2,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "13/10",
+        "-16/25"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D1-h4/5-b3",
+      "law": [
+        "1/5",
+        "4/5"
+      ],
+      "order": 2,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "19/5",
+        "-16/25"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D1-h9/10-b0",
+      "law": [
+        "1/10",
+        "9/10"
+      ],
+      "order": 2,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "9/10",
+        "-81/100"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D1-h9/10-b1/2",
+      "law": [
+        "1/10",
+        "9/10"
+      ],
+      "order": 2,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "7/5",
+        "-81/100"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D1-h9/10-b3",
+      "law": [
+        "1/10",
+        "9/10"
+      ],
+      "order": 2,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "39/10",
+        "-81/100"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D1-h1-b0",
+      "law": [
+        "0",
+        "1"
+      ],
+      "order": 2,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "1"
+    },
+    {
+      "name": "matching-D1-h1-b1/2",
+      "law": [
+        "0",
+        "1"
+      ],
+      "order": 2,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "3/2",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "1"
+    },
+    {
+      "name": "matching-D1-h1-b3",
+      "law": [
+        "0",
+        "1"
+      ],
+      "order": 2,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "4",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 1,
+      "strength": "1"
+    },
+    {
+      "name": "matching-D2-h0-b0",
+      "law": [
+        "1",
+        "0",
+        "0"
+      ],
+      "order": 3,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D2-h0-b1/2",
+      "law": [
+        "1",
+        "0",
+        "0"
+      ],
+      "order": 3,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "1/2",
+        "0",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D2-h0-b3",
+      "law": [
+        "1",
+        "0",
+        "0"
+      ],
+      "order": 3,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "3",
+        "0",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D2-h1/10-b0",
+      "law": [
+        "181/200",
+        "9/100",
+        "1/200"
+      ],
+      "order": 3,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/10",
+        "0",
+        "-1/1000"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D2-h1/10-b1/2",
+      "law": [
+        "181/200",
+        "9/100",
+        "1/200"
+      ],
+      "order": 3,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "3/5",
+        "0",
+        "-1/1000"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D2-h1/10-b3",
+      "law": [
+        "181/200",
+        "9/100",
+        "1/200"
+      ],
+      "order": 3,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "31/10",
+        "0",
+        "-1/1000"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D2-h1/5-b0",
+      "law": [
+        "41/50",
+        "4/25",
+        "1/50"
+      ],
+      "order": 3,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/5",
+        "0",
+        "-1/125"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D2-h1/5-b1/2",
+      "law": [
+        "41/50",
+        "4/25",
+        "1/50"
+      ],
+      "order": 3,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "7/10",
+        "0",
+        "-1/125"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D2-h1/5-b3",
+      "law": [
+        "41/50",
+        "4/25",
+        "1/50"
+      ],
+      "order": 3,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "16/5",
+        "0",
+        "-1/125"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D2-h3/10-b0",
+      "law": [
+        "149/200",
+        "21/100",
+        "9/200"
+      ],
+      "order": 3,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "3/10",
+        "0",
+        "-27/1000"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D2-h3/10-b1/2",
+      "law": [
+        "149/200",
+        "21/100",
+        "9/200"
+      ],
+      "order": 3,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "4/5",
+        "0",
+        "-27/1000"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D2-h3/10-b3",
+      "law": [
+        "149/200",
+        "21/100",
+        "9/200"
+      ],
+      "order": 3,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "33/10",
+        "0",
+        "-27/1000"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D2-h2/5-b0",
+      "law": [
+        "17/25",
+        "6/25",
+        "2/25"
+      ],
+      "order": 3,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "2/5",
+        "0",
+        "-8/125"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D2-h2/5-b1/2",
+      "law": [
+        "17/25",
+        "6/25",
+        "2/25"
+      ],
+      "order": 3,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "9/10",
+        "0",
+        "-8/125"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D2-h2/5-b3",
+      "law": [
+        "17/25",
+        "6/25",
+        "2/25"
+      ],
+      "order": 3,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "17/5",
+        "0",
+        "-8/125"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D2-h1/2-b0",
+      "law": [
+        "5/8",
+        "1/4",
+        "1/8"
+      ],
+      "order": 3,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/2",
+        "0",
+        "-1/8"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D2-h1/2-b1/2",
+      "law": [
+        "5/8",
+        "1/4",
+        "1/8"
+      ],
+      "order": 3,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "1",
+        "0",
+        "-1/8"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D2-h1/2-b3",
+      "law": [
+        "5/8",
+        "1/4",
+        "1/8"
+      ],
+      "order": 3,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "7/2",
+        "0",
+        "-1/8"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D2-h3/5-b0",
+      "law": [
+        "29/50",
+        "6/25",
+        "9/50"
+      ],
+      "order": 3,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "3/5",
+        "0",
+        "-27/125"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D2-h3/5-b1/2",
+      "law": [
+        "29/50",
+        "6/25",
+        "9/50"
+      ],
+      "order": 3,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "11/10",
+        "0",
+        "-27/125"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D2-h3/5-b3",
+      "law": [
+        "29/50",
+        "6/25",
+        "9/50"
+      ],
+      "order": 3,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "18/5",
+        "0",
+        "-27/125"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D2-h7/10-b0",
+      "law": [
+        "109/200",
+        "21/100",
+        "49/200"
+      ],
+      "order": 3,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "7/10",
+        "0",
+        "-343/1000"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D2-h7/10-b1/2",
+      "law": [
+        "109/200",
+        "21/100",
+        "49/200"
+      ],
+      "order": 3,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "6/5",
+        "0",
+        "-343/1000"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D2-h7/10-b3",
+      "law": [
+        "109/200",
+        "21/100",
+        "49/200"
+      ],
+      "order": 3,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "37/10",
+        "0",
+        "-343/1000"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D2-h4/5-b0",
+      "law": [
+        "13/25",
+        "4/25",
+        "8/25"
+      ],
+      "order": 3,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "4/5",
+        "0",
+        "-64/125"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D2-h4/5-b1/2",
+      "law": [
+        "13/25",
+        "4/25",
+        "8/25"
+      ],
+      "order": 3,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "13/10",
+        "0",
+        "-64/125"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D2-h4/5-b3",
+      "law": [
+        "13/25",
+        "4/25",
+        "8/25"
+      ],
+      "order": 3,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "19/5",
+        "0",
+        "-64/125"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D2-h9/10-b0",
+      "law": [
+        "101/200",
+        "9/100",
+        "81/200"
+      ],
+      "order": 3,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "9/10",
+        "0",
+        "-729/1000"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D2-h9/10-b1/2",
+      "law": [
+        "101/200",
+        "9/100",
+        "81/200"
+      ],
+      "order": 3,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "7/5",
+        "0",
+        "-729/1000"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D2-h9/10-b3",
+      "law": [
+        "101/200",
+        "9/100",
+        "81/200"
+      ],
+      "order": 3,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "39/10",
+        "0",
+        "-729/1000"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D2-h1-b0",
+      "law": [
+        "1/2",
+        "0",
+        "1/2"
+      ],
+      "order": 3,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1",
+        "0",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "1"
+    },
+    {
+      "name": "matching-D2-h1-b1/2",
+      "law": [
+        "1/2",
+        "0",
+        "1/2"
+      ],
+      "order": 3,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "3/2",
+        "0",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "1"
+    },
+    {
+      "name": "matching-D2-h1-b3",
+      "law": [
+        "1/2",
+        "0",
+        "1/2"
+      ],
+      "order": 3,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "4",
+        "0",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 2,
+      "strength": "1"
+    },
+    {
+      "name": "matching-D3-h0-b0",
+      "law": [
+        "1",
+        "0",
+        "0",
+        "0"
+      ],
+      "order": 4,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D3-h0-b1/2",
+      "law": [
+        "1",
+        "0",
+        "0",
+        "0"
+      ],
+      "order": 4,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "1/2",
+        "0",
+        "0",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D3-h0-b3",
+      "law": [
+        "1",
+        "0",
+        "0",
+        "0"
+      ],
+      "order": 4,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "3",
+        "0",
+        "0",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D3-h1/10-b0",
+      "law": [
+        "5429/6000",
+        "181/2000",
+        "9/2000",
+        "1/6000"
+      ],
+      "order": 4,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/10",
+        "0",
+        "0",
+        "-1/10000"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D3-h1/10-b1/2",
+      "law": [
+        "5429/6000",
+        "181/2000",
+        "9/2000",
+        "1/6000"
+      ],
+      "order": 4,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "3/5",
+        "0",
+        "0",
+        "-1/10000"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D3-h1/10-b3",
+      "law": [
+        "5429/6000",
+        "181/2000",
+        "9/2000",
+        "1/6000"
+      ],
+      "order": 4,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "31/10",
+        "0",
+        "0",
+        "-1/10000"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D3-h1/5-b0",
+      "law": [
+        "307/375",
+        "41/250",
+        "2/125",
+        "1/750"
+      ],
+      "order": 4,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/5",
+        "0",
+        "0",
+        "-1/625"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D3-h1/5-b1/2",
+      "law": [
+        "307/375",
+        "41/250",
+        "2/125",
+        "1/750"
+      ],
+      "order": 4,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "7/10",
+        "0",
+        "0",
+        "-1/625"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D3-h1/5-b3",
+      "law": [
+        "307/375",
+        "41/250",
+        "2/125",
+        "1/750"
+      ],
+      "order": 4,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "16/5",
+        "0",
+        "0",
+        "-1/625"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D3-h3/10-b0",
+      "law": [
+        "1481/2000",
+        "447/2000",
+        "63/2000",
+        "9/2000"
+      ],
+      "order": 4,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "3/10",
+        "0",
+        "0",
+        "-81/10000"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D3-h3/10-b1/2",
+      "law": [
+        "1481/2000",
+        "447/2000",
+        "63/2000",
+        "9/2000"
+      ],
+      "order": 4,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "4/5",
+        "0",
+        "0",
+        "-81/10000"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D3-h3/10-b3",
+      "law": [
+        "1481/2000",
+        "447/2000",
+        "63/2000",
+        "9/2000"
+      ],
+      "order": 4,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "33/10",
+        "0",
+        "0",
+        "-81/10000"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D3-h2/5-b0",
+      "law": [
+        "251/375",
+        "34/125",
+        "6/125",
+        "4/375"
+      ],
+      "order": 4,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "2/5",
+        "0",
+        "0",
+        "-16/625"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D3-h2/5-b1/2",
+      "law": [
+        "251/375",
+        "34/125",
+        "6/125",
+        "4/375"
+      ],
+      "order": 4,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "9/10",
+        "0",
+        "0",
+        "-16/625"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D3-h2/5-b3",
+      "law": [
+        "251/375",
+        "34/125",
+        "6/125",
+        "4/375"
+      ],
+      "order": 4,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "17/5",
+        "0",
+        "0",
+        "-16/625"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D3-h1/2-b0",
+      "law": [
+        "29/48",
+        "5/16",
+        "1/16",
+        "1/48"
+      ],
+      "order": 4,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/2",
+        "0",
+        "0",
+        "-1/16"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D3-h1/2-b1/2",
+      "law": [
+        "29/48",
+        "5/16",
+        "1/16",
+        "1/48"
+      ],
+      "order": 4,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "1",
+        "0",
+        "0",
+        "-1/16"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D3-h1/2-b3",
+      "law": [
+        "29/48",
+        "5/16",
+        "1/16",
+        "1/48"
+      ],
+      "order": 4,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "7/2",
+        "0",
+        "0",
+        "-1/16"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D3-h3/5-b0",
+      "law": [
+        "68/125",
+        "87/250",
+        "9/125",
+        "9/250"
+      ],
+      "order": 4,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "3/5",
+        "0",
+        "0",
+        "-81/625"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D3-h3/5-b1/2",
+      "law": [
+        "68/125",
+        "87/250",
+        "9/125",
+        "9/250"
+      ],
+      "order": 4,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "11/10",
+        "0",
+        "0",
+        "-81/625"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D3-h3/5-b3",
+      "law": [
+        "68/125",
+        "87/250",
+        "9/125",
+        "9/250"
+      ],
+      "order": 4,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "18/5",
+        "0",
+        "0",
+        "-81/625"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D3-h7/10-b0",
+      "law": [
+        "2927/6000",
+        "763/2000",
+        "147/2000",
+        "343/6000"
+      ],
+      "order": 4,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "7/10",
+        "0",
+        "0",
+        "-2401/10000"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D3-h7/10-b1/2",
+      "law": [
+        "2927/6000",
+        "763/2000",
+        "147/2000",
+        "343/6000"
+      ],
+      "order": 4,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "6/5",
+        "0",
+        "0",
+        "-2401/10000"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D3-h7/10-b3",
+      "law": [
+        "2927/6000",
+        "763/2000",
+        "147/2000",
+        "343/6000"
+      ],
+      "order": 4,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "37/10",
+        "0",
+        "0",
+        "-2401/10000"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D3-h4/5-b0",
+      "law": [
+        "163/375",
+        "52/125",
+        "8/125",
+        "32/375"
+      ],
+      "order": 4,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "4/5",
+        "0",
+        "0",
+        "-256/625"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D3-h4/5-b1/2",
+      "law": [
+        "163/375",
+        "52/125",
+        "8/125",
+        "32/375"
+      ],
+      "order": 4,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "13/10",
+        "0",
+        "0",
+        "-256/625"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D3-h4/5-b3",
+      "law": [
+        "163/375",
+        "52/125",
+        "8/125",
+        "32/375"
+      ],
+      "order": 4,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "19/5",
+        "0",
+        "0",
+        "-256/625"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D3-h9/10-b0",
+      "law": [
+        "767/2000",
+        "909/2000",
+        "81/2000",
+        "243/2000"
+      ],
+      "order": 4,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "9/10",
+        "0",
+        "0",
+        "-6561/10000"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D3-h9/10-b1/2",
+      "law": [
+        "767/2000",
+        "909/2000",
+        "81/2000",
+        "243/2000"
+      ],
+      "order": 4,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "7/5",
+        "0",
+        "0",
+        "-6561/10000"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D3-h9/10-b3",
+      "law": [
+        "767/2000",
+        "909/2000",
+        "81/2000",
+        "243/2000"
+      ],
+      "order": 4,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "39/10",
+        "0",
+        "0",
+        "-6561/10000"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D3-h1-b0",
+      "law": [
+        "1/3",
+        "1/2",
+        "0",
+        "1/6"
+      ],
+      "order": 4,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1",
+        "0",
+        "0",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "1"
+    },
+    {
+      "name": "matching-D3-h1-b1/2",
+      "law": [
+        "1/3",
+        "1/2",
+        "0",
+        "1/6"
+      ],
+      "order": 4,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "3/2",
+        "0",
+        "0",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "1"
+    },
+    {
+      "name": "matching-D3-h1-b3",
+      "law": [
+        "1/3",
+        "1/2",
+        "0",
+        "1/6"
+      ],
+      "order": 4,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "4",
+        "0",
+        "0",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 3,
+      "strength": "1"
+    },
+    {
+      "name": "matching-D4-h0-b0",
+      "law": [
+        "1",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "order": 5,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D4-h0-b1/2",
+      "law": [
+        "1",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "order": 5,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "1/2",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D4-h0-b3",
+      "law": [
+        "1",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "order": 5,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "3",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D4-h1/10-b0",
+      "law": [
+        "72387/80000",
+        "5429/60000",
+        "181/40000",
+        "3/20000",
+        "1/240000"
+      ],
+      "order": 5,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/10",
+        "0",
+        "0",
+        "0",
+        "-1/100000"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D4-h1/10-b1/2",
+      "law": [
+        "72387/80000",
+        "5429/60000",
+        "181/40000",
+        "3/20000",
+        "1/240000"
+      ],
+      "order": 5,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "3/5",
+        "0",
+        "0",
+        "0",
+        "-1/100000"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D4-h1/10-b3",
+      "law": [
+        "72387/80000",
+        "5429/60000",
+        "181/40000",
+        "3/20000",
+        "1/240000"
+      ],
+      "order": 5,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "31/10",
+        "0",
+        "0",
+        "0",
+        "-1/100000"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D4-h1/5-b0",
+      "law": [
+        "12281/15000",
+        "307/1875",
+        "41/2500",
+        "2/1875",
+        "1/15000"
+      ],
+      "order": 5,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/5",
+        "0",
+        "0",
+        "0",
+        "-1/3125"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D4-h1/5-b1/2",
+      "law": [
+        "12281/15000",
+        "307/1875",
+        "41/2500",
+        "2/1875",
+        "1/15000"
+      ],
+      "order": 5,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "7/10",
+        "0",
+        "0",
+        "0",
+        "-1/3125"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D4-h1/5-b3",
+      "law": [
+        "12281/15000",
+        "307/1875",
+        "41/2500",
+        "2/1875",
+        "1/15000"
+      ],
+      "order": 5,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "16/5",
+        "0",
+        "0",
+        "0",
+        "-1/3125"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D4-h3/10-b0",
+      "law": [
+        "59267/80000",
+        "4443/20000",
+        "1341/40000",
+        "63/20000",
+        "27/80000"
+      ],
+      "order": 5,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "3/10",
+        "0",
+        "0",
+        "0",
+        "-243/100000"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D4-h3/10-b1/2",
+      "law": [
+        "59267/80000",
+        "4443/20000",
+        "1341/40000",
+        "63/20000",
+        "27/80000"
+      ],
+      "order": 5,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "4/5",
+        "0",
+        "0",
+        "0",
+        "-243/100000"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D4-h3/10-b3",
+      "law": [
+        "59267/80000",
+        "4443/20000",
+        "1341/40000",
+        "63/20000",
+        "27/80000"
+      ],
+      "order": 5,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "33/10",
+        "0",
+        "0",
+        "0",
+        "-243/100000"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D4-h2/5-b0",
+      "law": [
+        "419/625",
+        "502/1875",
+        "34/625",
+        "4/625",
+        "2/1875"
+      ],
+      "order": 5,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "2/5",
+        "0",
+        "0",
+        "0",
+        "-32/3125"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D4-h2/5-b1/2",
+      "law": [
+        "419/625",
+        "502/1875",
+        "34/625",
+        "4/625",
+        "2/1875"
+      ],
+      "order": 5,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "9/10",
+        "0",
+        "0",
+        "0",
+        "-32/3125"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D4-h2/5-b3",
+      "law": [
+        "419/625",
+        "502/1875",
+        "34/625",
+        "4/625",
+        "2/1875"
+      ],
+      "order": 5,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "17/5",
+        "0",
+        "0",
+        "0",
+        "-32/3125"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D4-h1/2-b0",
+      "law": [
+        "233/384",
+        "29/96",
+        "5/64",
+        "1/96",
+        "1/384"
+      ],
+      "order": 5,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/2",
+        "0",
+        "0",
+        "0",
+        "-1/32"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D4-h1/2-b1/2",
+      "law": [
+        "233/384",
+        "29/96",
+        "5/64",
+        "1/96",
+        "1/384"
+      ],
+      "order": 5,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "1",
+        "0",
+        "0",
+        "0",
+        "-1/32"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D4-h1/2-b3",
+      "law": [
+        "233/384",
+        "29/96",
+        "5/64",
+        "1/96",
+        "1/384"
+      ],
+      "order": 5,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "7/2",
+        "0",
+        "0",
+        "0",
+        "-1/32"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D4-h3/5-b0",
+      "law": [
+        "2747/5000",
+        "204/625",
+        "261/2500",
+        "9/625",
+        "27/5000"
+      ],
+      "order": 5,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "3/5",
+        "0",
+        "0",
+        "0",
+        "-243/3125"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D4-h3/5-b1/2",
+      "law": [
+        "2747/5000",
+        "204/625",
+        "261/2500",
+        "9/625",
+        "27/5000"
+      ],
+      "order": 5,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "11/10",
+        "0",
+        "0",
+        "0",
+        "-243/3125"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D4-h3/5-b3",
+      "law": [
+        "2747/5000",
+        "204/625",
+        "261/2500",
+        "9/625",
+        "27/5000"
+      ],
+      "order": 5,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "18/5",
+        "0",
+        "0",
+        "0",
+        "-243/3125"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D4-h7/10-b0",
+      "law": [
+        "39827/80000",
+        "20489/60000",
+        "5341/40000",
+        "343/20000",
+        "2401/240000"
+      ],
+      "order": 5,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "7/10",
+        "0",
+        "0",
+        "0",
+        "-16807/100000"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D4-h7/10-b1/2",
+      "law": [
+        "39827/80000",
+        "20489/60000",
+        "5341/40000",
+        "343/20000",
+        "2401/240000"
+      ],
+      "order": 5,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "6/5",
+        "0",
+        "0",
+        "0",
+        "-16807/100000"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D4-h7/10-b3",
+      "law": [
+        "39827/80000",
+        "20489/60000",
+        "5341/40000",
+        "343/20000",
+        "2401/240000"
+      ],
+      "order": 5,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "37/10",
+        "0",
+        "0",
+        "0",
+        "-16807/100000"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D4-h4/5-b0",
+      "law": [
+        "847/1875",
+        "652/1875",
+        "104/625",
+        "32/1875",
+        "32/1875"
+      ],
+      "order": 5,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "4/5",
+        "0",
+        "0",
+        "0",
+        "-1024/3125"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D4-h4/5-b1/2",
+      "law": [
+        "847/1875",
+        "652/1875",
+        "104/625",
+        "32/1875",
+        "32/1875"
+      ],
+      "order": 5,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "13/10",
+        "0",
+        "0",
+        "0",
+        "-1024/3125"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D4-h4/5-b3",
+      "law": [
+        "847/1875",
+        "652/1875",
+        "104/625",
+        "32/1875",
+        "32/1875"
+      ],
+      "order": 5,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "19/5",
+        "0",
+        "0",
+        "0",
+        "-1024/3125"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D4-h9/10-b0",
+      "law": [
+        "32867/80000",
+        "6903/20000",
+        "8181/40000",
+        "243/20000",
+        "2187/80000"
+      ],
+      "order": 5,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "9/10",
+        "0",
+        "0",
+        "0",
+        "-59049/100000"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D4-h9/10-b1/2",
+      "law": [
+        "32867/80000",
+        "6903/20000",
+        "8181/40000",
+        "243/20000",
+        "2187/80000"
+      ],
+      "order": 5,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "7/5",
+        "0",
+        "0",
+        "0",
+        "-59049/100000"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D4-h9/10-b3",
+      "law": [
+        "32867/80000",
+        "6903/20000",
+        "8181/40000",
+        "243/20000",
+        "2187/80000"
+      ],
+      "order": 5,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "39/10",
+        "0",
+        "0",
+        "0",
+        "-59049/100000"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D4-h1-b0",
+      "law": [
+        "3/8",
+        "1/3",
+        "1/4",
+        "0",
+        "1/24"
+      ],
+      "order": 5,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1",
+        "0",
+        "0",
+        "0",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "1"
+    },
+    {
+      "name": "matching-D4-h1-b1/2",
+      "law": [
+        "3/8",
+        "1/3",
+        "1/4",
+        "0",
+        "1/24"
+      ],
+      "order": 5,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "3/2",
+        "0",
+        "0",
+        "0",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "1"
+    },
+    {
+      "name": "matching-D4-h1-b3",
+      "law": [
+        "3/8",
+        "1/3",
+        "1/4",
+        "0",
+        "1/24"
+      ],
+      "order": 5,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "4",
+        "0",
+        "0",
+        "0",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 4,
+      "strength": "1"
+    },
+    {
+      "name": "matching-D5-h0-b0",
+      "law": [
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "order": 6,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D5-h0-b1/2",
+      "law": [
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "order": 6,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "1/2",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D5-h0-b3",
+      "law": [
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "order": 6,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "3",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D5-h1/10-b0",
+      "law": [
+        "10858049/12000000",
+        "72387/800000",
+        "5429/1200000",
+        "181/1200000",
+        "3/800000",
+        "1/12000000"
+      ],
+      "order": 6,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/1000000"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D5-h1/10-b1/2",
+      "law": [
+        "10858049/12000000",
+        "72387/800000",
+        "5429/1200000",
+        "181/1200000",
+        "3/800000",
+        "1/12000000"
+      ],
+      "order": 6,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "3/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/1000000"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D5-h1/10-b3",
+      "law": [
+        "10858049/12000000",
+        "72387/800000",
+        "5429/1200000",
+        "181/1200000",
+        "3/800000",
+        "1/12000000"
+      ],
+      "order": 6,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "31/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/1000000"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D5-h1/5-b0",
+      "law": [
+        "38378/46875",
+        "12281/75000",
+        "307/18750",
+        "41/37500",
+        "1/18750",
+        "1/375000"
+      ],
+      "order": 6,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/15625"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D5-h1/5-b1/2",
+      "law": [
+        "38378/46875",
+        "12281/75000",
+        "307/18750",
+        "41/37500",
+        "1/18750",
+        "1/375000"
+      ],
+      "order": 6,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "7/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/15625"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D5-h1/5-b3",
+      "law": [
+        "38378/46875",
+        "12281/75000",
+        "307/18750",
+        "41/37500",
+        "1/18750",
+        "1/375000"
+      ],
+      "order": 6,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "16/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/15625"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D5-h3/10-b0",
+      "law": [
+        "2963269/4000000",
+        "177801/800000",
+        "13329/400000",
+        "1341/400000",
+        "189/800000",
+        "81/4000000"
+      ],
+      "order": 6,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "3/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-729/1000000"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D5-h3/10-b1/2",
+      "law": [
+        "2963269/4000000",
+        "177801/800000",
+        "13329/400000",
+        "1341/400000",
+        "189/800000",
+        "81/4000000"
+      ],
+      "order": 6,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "4/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-729/1000000"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D5-h3/10-b3",
+      "law": [
+        "2963269/4000000",
+        "177801/800000",
+        "13329/400000",
+        "1341/400000",
+        "189/800000",
+        "81/4000000"
+      ],
+      "order": 6,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "33/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-729/1000000"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D5-h2/5-b0",
+      "law": [
+        "31421/46875",
+        "838/3125",
+        "502/9375",
+        "68/9375",
+        "2/3125",
+        "4/46875"
+      ],
+      "order": 6,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "2/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-64/15625"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D5-h2/5-b1/2",
+      "law": [
+        "31421/46875",
+        "838/3125",
+        "502/9375",
+        "68/9375",
+        "2/3125",
+        "4/46875"
+      ],
+      "order": 6,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "9/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-64/15625"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D5-h2/5-b3",
+      "law": [
+        "31421/46875",
+        "838/3125",
+        "502/9375",
+        "68/9375",
+        "2/3125",
+        "4/46875"
+      ],
+      "order": 6,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "17/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-64/15625"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D5-h1/2-b0",
+      "law": [
+        "2329/3840",
+        "233/768",
+        "29/384",
+        "5/384",
+        "1/768",
+        "1/3840"
+      ],
+      "order": 6,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/2",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/64"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D5-h1/2-b1/2",
+      "law": [
+        "2329/3840",
+        "233/768",
+        "29/384",
+        "5/384",
+        "1/768",
+        "1/3840"
+      ],
+      "order": 6,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/64"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D5-h1/2-b3",
+      "law": [
+        "2329/3840",
+        "233/768",
+        "29/384",
+        "5/384",
+        "1/768",
+        "1/3840"
+      ],
+      "order": 6,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "7/2",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/64"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D5-h3/5-b0",
+      "law": [
+        "34297/62500",
+        "8241/25000",
+        "306/3125",
+        "261/12500",
+        "27/12500",
+        "81/125000"
+      ],
+      "order": 6,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "3/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-729/15625"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D5-h3/5-b1/2",
+      "law": [
+        "34297/62500",
+        "8241/25000",
+        "306/3125",
+        "261/12500",
+        "27/12500",
+        "81/125000"
+      ],
+      "order": 6,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "11/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-729/15625"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D5-h3/5-b3",
+      "law": [
+        "34297/62500",
+        "8241/25000",
+        "306/3125",
+        "261/12500",
+        "27/12500",
+        "81/125000"
+      ],
+      "order": 6,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "18/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-729/15625"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D5-h7/10-b0",
+      "law": [
+        "5957243/12000000",
+        "278789/800000",
+        "143423/1200000",
+        "37387/1200000",
+        "2401/800000",
+        "16807/12000000"
+      ],
+      "order": 6,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "7/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-117649/1000000"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D5-h7/10-b1/2",
+      "law": [
+        "5957243/12000000",
+        "278789/800000",
+        "143423/1200000",
+        "37387/1200000",
+        "2401/800000",
+        "16807/12000000"
+      ],
+      "order": 6,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "6/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-117649/1000000"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D5-h7/10-b3",
+      "law": [
+        "5957243/12000000",
+        "278789/800000",
+        "143423/1200000",
+        "37387/1200000",
+        "2401/800000",
+        "16807/12000000"
+      ],
+      "order": 6,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "37/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-117649/1000000"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D5-h4/5-b0",
+      "law": [
+        "21047/46875",
+        "3388/9375",
+        "1304/9375",
+        "416/9375",
+        "32/9375",
+        "128/46875"
+      ],
+      "order": 6,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "4/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-4096/15625"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D5-h4/5-b1/2",
+      "law": [
+        "21047/46875",
+        "3388/9375",
+        "1304/9375",
+        "416/9375",
+        "32/9375",
+        "128/46875"
+      ],
+      "order": 6,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "13/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-4096/15625"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D5-h4/5-b3",
+      "law": [
+        "21047/46875",
+        "3388/9375",
+        "1304/9375",
+        "416/9375",
+        "32/9375",
+        "128/46875"
+      ],
+      "order": 6,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "19/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-4096/15625"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D5-h9/10-b0",
+      "law": [
+        "1623667/4000000",
+        "295803/800000",
+        "62127/400000",
+        "24543/400000",
+        "2187/800000",
+        "19683/4000000"
+      ],
+      "order": 6,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "9/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-531441/1000000"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D5-h9/10-b1/2",
+      "law": [
+        "1623667/4000000",
+        "295803/800000",
+        "62127/400000",
+        "24543/400000",
+        "2187/800000",
+        "19683/4000000"
+      ],
+      "order": 6,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "7/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-531441/1000000"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D5-h9/10-b3",
+      "law": [
+        "1623667/4000000",
+        "295803/800000",
+        "62127/400000",
+        "24543/400000",
+        "2187/800000",
+        "19683/4000000"
+      ],
+      "order": 6,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "39/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-531441/1000000"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D5-h1-b0",
+      "law": [
+        "11/30",
+        "3/8",
+        "1/6",
+        "1/12",
+        "0",
+        "1/120"
+      ],
+      "order": 6,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "1"
+    },
+    {
+      "name": "matching-D5-h1-b1/2",
+      "law": [
+        "11/30",
+        "3/8",
+        "1/6",
+        "1/12",
+        "0",
+        "1/120"
+      ],
+      "order": 6,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "3/2",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "1"
+    },
+    {
+      "name": "matching-D5-h1-b3",
+      "law": [
+        "11/30",
+        "3/8",
+        "1/6",
+        "1/12",
+        "0",
+        "1/120"
+      ],
+      "order": 6,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "4",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 5,
+      "strength": "1"
+    },
+    {
+      "name": "matching-D6-h0-b0",
+      "law": [
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "order": 7,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D6-h0-b1/2",
+      "law": [
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "order": 7,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "1/2",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D6-h0-b3",
+      "law": [
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "order": 7,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "3",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D6-h1/10-b0",
+      "law": [
+        "651482941/720000000",
+        "10858049/120000000",
+        "72387/16000000",
+        "5429/36000000",
+        "181/48000000",
+        "3/40000000",
+        "1/720000000"
+      ],
+      "order": 7,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/10000000"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D6-h1/10-b1/2",
+      "law": [
+        "651482941/720000000",
+        "10858049/120000000",
+        "72387/16000000",
+        "5429/36000000",
+        "181/48000000",
+        "3/40000000",
+        "1/720000000"
+      ],
+      "order": 7,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "3/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/10000000"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D6-h1/10-b3",
+      "law": [
+        "651482941/720000000",
+        "10858049/120000000",
+        "72387/16000000",
+        "5429/36000000",
+        "181/48000000",
+        "3/40000000",
+        "1/720000000"
+      ],
+      "order": 7,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "31/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/10000000"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D6-h1/5-b0",
+      "law": [
+        "9210721/11250000",
+        "38378/234375",
+        "12281/750000",
+        "307/281250",
+        "41/750000",
+        "1/468750",
+        "1/11250000"
+      ],
+      "order": 7,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/78125"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D6-h1/5-b1/2",
+      "law": [
+        "9210721/11250000",
+        "38378/234375",
+        "12281/750000",
+        "307/281250",
+        "41/750000",
+        "1/468750",
+        "1/11250000"
+      ],
+      "order": 7,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "7/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/78125"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D6-h1/5-b3",
+      "law": [
+        "9210721/11250000",
+        "38378/234375",
+        "12281/750000",
+        "307/281250",
+        "41/750000",
+        "1/468750",
+        "1/11250000"
+      ],
+      "order": 7,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "16/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/78125"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D6-h3/10-b0",
+      "law": [
+        "59265461/80000000",
+        "8889807/40000000",
+        "533403/16000000",
+        "13329/4000000",
+        "4023/16000000",
+        "567/40000000",
+        "81/80000000"
+      ],
+      "order": 7,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "3/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-2187/10000000"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D6-h3/10-b1/2",
+      "law": [
+        "59265461/80000000",
+        "8889807/40000000",
+        "533403/16000000",
+        "13329/4000000",
+        "4023/16000000",
+        "567/40000000",
+        "81/80000000"
+      ],
+      "order": 7,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "4/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-2187/10000000"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D6-h3/10-b3",
+      "law": [
+        "59265461/80000000",
+        "8889807/40000000",
+        "533403/16000000",
+        "13329/4000000",
+        "4023/16000000",
+        "567/40000000",
+        "81/80000000"
+      ],
+      "order": 7,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "33/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-2187/10000000"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D6-h2/5-b0",
+      "law": [
+        "471319/703125",
+        "62842/234375",
+        "838/15625",
+        "1004/140625",
+        "34/46875",
+        "4/78125",
+        "4/703125"
+      ],
+      "order": 7,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "2/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-128/78125"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D6-h2/5-b1/2",
+      "law": [
+        "471319/703125",
+        "62842/234375",
+        "838/15625",
+        "1004/140625",
+        "34/46875",
+        "4/78125",
+        "4/703125"
+      ],
+      "order": 7,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "9/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-128/78125"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D6-h2/5-b3",
+      "law": [
+        "471319/703125",
+        "62842/234375",
+        "838/15625",
+        "1004/140625",
+        "34/46875",
+        "4/78125",
+        "4/703125"
+      ],
+      "order": 7,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "17/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-128/78125"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D6-h1/2-b0",
+      "law": [
+        "27949/46080",
+        "2329/7680",
+        "233/3072",
+        "29/2304",
+        "5/3072",
+        "1/7680",
+        "1/46080"
+      ],
+      "order": 7,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/2",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/128"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D6-h1/2-b1/2",
+      "law": [
+        "27949/46080",
+        "2329/7680",
+        "233/3072",
+        "29/2304",
+        "5/3072",
+        "1/7680",
+        "1/46080"
+      ],
+      "order": 7,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/128"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D6-h1/2-b3",
+      "law": [
+        "27949/46080",
+        "2329/7680",
+        "233/3072",
+        "29/2304",
+        "5/3072",
+        "1/7680",
+        "1/46080"
+      ],
+      "order": 7,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "7/2",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/128"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D6-h3/5-b0",
+      "law": [
+        "686021/1250000",
+        "102891/312500",
+        "24723/250000",
+        "306/15625",
+        "783/250000",
+        "81/312500",
+        "81/1250000"
+      ],
+      "order": 7,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "3/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-2187/78125"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D6-h3/5-b1/2",
+      "law": [
+        "686021/1250000",
+        "102891/312500",
+        "24723/250000",
+        "306/15625",
+        "783/250000",
+        "81/312500",
+        "81/1250000"
+      ],
+      "order": 7,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "11/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-2187/78125"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D6-h3/5-b3",
+      "law": [
+        "686021/1250000",
+        "102891/312500",
+        "24723/250000",
+        "306/15625",
+        "783/250000",
+        "81/312500",
+        "81/1250000"
+      ],
+      "order": 7,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "18/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-2187/78125"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D6-h7/10-b0",
+      "law": [
+        "357552229/720000000",
+        "41700701/120000000",
+        "1951523/16000000",
+        "1003961/36000000",
+        "261709/48000000",
+        "16807/40000000",
+        "117649/720000000"
+      ],
+      "order": 7,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "7/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-823543/10000000"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D6-h7/10-b1/2",
+      "law": [
+        "357552229/720000000",
+        "41700701/120000000",
+        "1951523/16000000",
+        "1003961/36000000",
+        "261709/48000000",
+        "16807/40000000",
+        "117649/720000000"
+      ],
+      "order": 7,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "6/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-823543/10000000"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D6-h7/10-b3",
+      "law": [
+        "357552229/720000000",
+        "41700701/120000000",
+        "1951523/16000000",
+        "1003961/36000000",
+        "261709/48000000",
+        "16807/40000000",
+        "117649/720000000"
+      ],
+      "order": 7,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "37/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-823543/10000000"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D6-h4/5-b0",
+      "law": [
+        "315961/703125",
+        "84188/234375",
+        "6776/46875",
+        "5216/140625",
+        "416/46875",
+        "128/234375",
+        "256/703125"
+      ],
+      "order": 7,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "4/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-16384/78125"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D6-h4/5-b1/2",
+      "law": [
+        "315961/703125",
+        "84188/234375",
+        "6776/46875",
+        "5216/140625",
+        "416/46875",
+        "128/234375",
+        "256/703125"
+      ],
+      "order": 7,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "13/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-16384/78125"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D6-h4/5-b3",
+      "law": [
+        "315961/703125",
+        "84188/234375",
+        "6776/46875",
+        "5216/140625",
+        "416/46875",
+        "128/234375",
+        "256/703125"
+      ],
+      "order": 7,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "19/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-16384/78125"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D6-h9/10-b0",
+      "law": [
+        "32532389/80000000",
+        "14613003/40000000",
+        "2662227/16000000",
+        "186381/4000000",
+        "220887/16000000",
+        "19683/40000000",
+        "59049/80000000"
+      ],
+      "order": 7,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "9/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-4782969/10000000"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D6-h9/10-b1/2",
+      "law": [
+        "32532389/80000000",
+        "14613003/40000000",
+        "2662227/16000000",
+        "186381/4000000",
+        "220887/16000000",
+        "19683/40000000",
+        "59049/80000000"
+      ],
+      "order": 7,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "7/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-4782969/10000000"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D6-h9/10-b3",
+      "law": [
+        "32532389/80000000",
+        "14613003/40000000",
+        "2662227/16000000",
+        "186381/4000000",
+        "220887/16000000",
+        "19683/40000000",
+        "59049/80000000"
+      ],
+      "order": 7,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "39/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-4782969/10000000"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D6-h1-b0",
+      "law": [
+        "53/144",
+        "11/30",
+        "3/16",
+        "1/18",
+        "1/48",
+        "0",
+        "1/720"
+      ],
+      "order": 7,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "1"
+    },
+    {
+      "name": "matching-D6-h1-b1/2",
+      "law": [
+        "53/144",
+        "11/30",
+        "3/16",
+        "1/18",
+        "1/48",
+        "0",
+        "1/720"
+      ],
+      "order": 7,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "3/2",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "1"
+    },
+    {
+      "name": "matching-D6-h1-b3",
+      "law": [
+        "53/144",
+        "11/30",
+        "3/16",
+        "1/18",
+        "1/48",
+        "0",
+        "1/720"
+      ],
+      "order": 7,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "4",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 6,
+      "strength": "1"
+    },
+    {
+      "name": "matching-D7-h0-b0",
+      "law": [
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "order": 8,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D7-h0-b1/2",
+      "law": [
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "order": 8,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "1/2",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D7-h0-b3",
+      "law": [
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "order": 8,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "3",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D7-h1/10-b0",
+      "law": [
+        "5067089541/5600000000",
+        "651482941/7200000000",
+        "10858049/2400000000",
+        "24129/160000000",
+        "5429/1440000000",
+        "181/2400000000",
+        "1/800000000",
+        "1/50400000000"
+      ],
+      "order": 8,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/100000000"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D7-h1/10-b1/2",
+      "law": [
+        "5067089541/5600000000",
+        "651482941/7200000000",
+        "10858049/2400000000",
+        "24129/160000000",
+        "5429/1440000000",
+        "181/2400000000",
+        "1/800000000",
+        "1/50400000000"
+      ],
+      "order": 8,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "3/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/100000000"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D7-h1/10-b3",
+      "law": [
+        "5067089541/5600000000",
+        "651482941/7200000000",
+        "10858049/2400000000",
+        "24129/160000000",
+        "5429/1440000000",
+        "181/2400000000",
+        "1/800000000",
+        "1/50400000000"
+      ],
+      "order": 8,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "31/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/100000000"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D7-h1/5-b0",
+      "law": [
+        "161187617/196875000",
+        "9210721/56250000",
+        "19189/1171875",
+        "12281/11250000",
+        "307/5625000",
+        "41/18750000",
+        "1/14062500",
+        "1/393750000"
+      ],
+      "order": 8,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/390625"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D7-h1/5-b1/2",
+      "law": [
+        "161187617/196875000",
+        "9210721/56250000",
+        "19189/1171875",
+        "12281/11250000",
+        "307/5625000",
+        "41/18750000",
+        "1/14062500",
+        "1/393750000"
+      ],
+      "order": 8,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "7/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/390625"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D7-h1/5-b3",
+      "law": [
+        "161187617/196875000",
+        "9210721/56250000",
+        "19189/1171875",
+        "12281/11250000",
+        "307/5625000",
+        "41/18750000",
+        "1/14062500",
+        "1/393750000"
+      ],
+      "order": 8,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "16/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/390625"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D7-h3/10-b0",
+      "law": [
+        "4148582027/5600000000",
+        "177796383/800000000",
+        "26669421/800000000",
+        "533403/160000000",
+        "39987/160000000",
+        "12069/800000000",
+        "567/800000000",
+        "243/5600000000"
+      ],
+      "order": 8,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "3/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-6561/100000000"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D7-h3/10-b1/2",
+      "law": [
+        "4148582027/5600000000",
+        "177796383/800000000",
+        "26669421/800000000",
+        "533403/160000000",
+        "39987/160000000",
+        "12069/800000000",
+        "567/800000000",
+        "243/5600000000"
+      ],
+      "order": 8,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "4/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-6561/100000000"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D7-h3/10-b3",
+      "law": [
+        "4148582027/5600000000",
+        "177796383/800000000",
+        "26669421/800000000",
+        "533403/160000000",
+        "39987/160000000",
+        "12069/800000000",
+        "567/800000000",
+        "243/5600000000"
+      ],
+      "order": 8,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "33/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-6561/100000000"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D7-h2/5-b0",
+      "law": [
+        "5498719/8203125",
+        "942638/3515625",
+        "62842/1171875",
+        "1676/234375",
+        "502/703125",
+        "68/1171875",
+        "4/1171875",
+        "8/24609375"
+      ],
+      "order": 8,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "2/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-256/390625"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D7-h2/5-b1/2",
+      "law": [
+        "5498719/8203125",
+        "942638/3515625",
+        "62842/1171875",
+        "1676/234375",
+        "502/703125",
+        "68/1171875",
+        "4/1171875",
+        "8/24609375"
+      ],
+      "order": 8,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "9/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-256/390625"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D7-h2/5-b3",
+      "law": [
+        "5498719/8203125",
+        "942638/3515625",
+        "62842/1171875",
+        "1676/234375",
+        "502/703125",
+        "68/1171875",
+        "4/1171875",
+        "8/24609375"
+      ],
+      "order": 8,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "17/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-256/390625"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D7-h1/2-b0",
+      "law": [
+        "78257/129024",
+        "27949/92160",
+        "2329/30720",
+        "233/18432",
+        "29/18432",
+        "1/6144",
+        "1/92160",
+        "1/645120"
+      ],
+      "order": 8,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/2",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/256"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D7-h1/2-b1/2",
+      "law": [
+        "78257/129024",
+        "27949/92160",
+        "2329/30720",
+        "233/18432",
+        "29/18432",
+        "1/6144",
+        "1/92160",
+        "1/645120"
+      ],
+      "order": 8,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/256"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D7-h1/2-b3",
+      "law": [
+        "78257/129024",
+        "27949/92160",
+        "2329/30720",
+        "233/18432",
+        "29/18432",
+        "1/6144",
+        "1/92160",
+        "1/645120"
+      ],
+      "order": 8,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "7/2",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/256"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D7-h3/5-b0",
+      "law": [
+        "6002623/10937500",
+        "2058063/6250000",
+        "308673/3125000",
+        "24723/1250000",
+        "459/156250",
+        "2349/6250000",
+        "81/3125000",
+        "243/43750000"
+      ],
+      "order": 8,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "3/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-6561/390625"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D7-h3/5-b1/2",
+      "law": [
+        "6002623/10937500",
+        "2058063/6250000",
+        "308673/3125000",
+        "24723/1250000",
+        "459/156250",
+        "2349/6250000",
+        "81/3125000",
+        "243/43750000"
+      ],
+      "order": 8,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "11/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-6561/390625"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D7-h3/5-b3",
+      "law": [
+        "6002623/10937500",
+        "2058063/6250000",
+        "308673/3125000",
+        "24723/1250000",
+        "459/156250",
+        "2349/6250000",
+        "81/3125000",
+        "243/43750000"
+      ],
+      "order": 8,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "18/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-6561/390625"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D7-h7/10-b0",
+      "law": [
+        "1191801547/2400000000",
+        "2502865603/7200000000",
+        "291904907/2400000000",
+        "13660661/480000000",
+        "7027727/1440000000",
+        "1831963/2400000000",
+        "117649/2400000000",
+        "117649/7200000000"
+      ],
+      "order": 8,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "7/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-5764801/100000000"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D7-h7/10-b1/2",
+      "law": [
+        "1191801547/2400000000",
+        "2502865603/7200000000",
+        "291904907/2400000000",
+        "13660661/480000000",
+        "7027727/1440000000",
+        "1831963/2400000000",
+        "117649/2400000000",
+        "117649/7200000000"
+      ],
+      "order": 8,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "6/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-5764801/100000000"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D7-h7/10-b3",
+      "law": [
+        "1191801547/2400000000",
+        "2502865603/7200000000",
+        "291904907/2400000000",
+        "13660661/480000000",
+        "7027727/1440000000",
+        "1831963/2400000000",
+        "117649/2400000000",
+        "117649/7200000000"
+      ],
+      "order": 8,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "37/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-5764801/100000000"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D7-h4/5-b0",
+      "law": [
+        "11057611/24609375",
+        "1263844/3515625",
+        "168376/1171875",
+        "27104/703125",
+        "5216/703125",
+        "1664/1171875",
+        "256/3515625",
+        "1024/24609375"
+      ],
+      "order": 8,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "4/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-65536/390625"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D7-h4/5-b1/2",
+      "law": [
+        "11057611/24609375",
+        "1263844/3515625",
+        "168376/1171875",
+        "27104/703125",
+        "5216/703125",
+        "1664/1171875",
+        "256/3515625",
+        "1024/24609375"
+      ],
+      "order": 8,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "13/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-65536/390625"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D7-h4/5-b3",
+      "law": [
+        "11057611/24609375",
+        "1263844/3515625",
+        "168376/1171875",
+        "27104/703125",
+        "5216/703125",
+        "1664/1171875",
+        "256/3515625",
+        "1024/24609375"
+      ],
+      "order": 8,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "19/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-65536/390625"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D7-h9/10-b0",
+      "law": [
+        "2276735789/5600000000",
+        "292791501/800000000",
+        "131517027/800000000",
+        "7986681/160000000",
+        "1677429/160000000",
+        "1987983/800000000",
+        "59049/800000000",
+        "531441/5600000000"
+      ],
+      "order": 8,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "9/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-43046721/100000000"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D7-h9/10-b1/2",
+      "law": [
+        "2276735789/5600000000",
+        "292791501/800000000",
+        "131517027/800000000",
+        "7986681/160000000",
+        "1677429/160000000",
+        "1987983/800000000",
+        "59049/800000000",
+        "531441/5600000000"
+      ],
+      "order": 8,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "7/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-43046721/100000000"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D7-h9/10-b3",
+      "law": [
+        "2276735789/5600000000",
+        "292791501/800000000",
+        "131517027/800000000",
+        "7986681/160000000",
+        "1677429/160000000",
+        "1987983/800000000",
+        "59049/800000000",
+        "531441/5600000000"
+      ],
+      "order": 8,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "39/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-43046721/100000000"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D7-h1-b0",
+      "law": [
+        "103/280",
+        "53/144",
+        "11/60",
+        "1/16",
+        "1/72",
+        "1/240",
+        "0",
+        "1/5040"
+      ],
+      "order": 8,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "1"
+    },
+    {
+      "name": "matching-D7-h1-b1/2",
+      "law": [
+        "103/280",
+        "53/144",
+        "11/60",
+        "1/16",
+        "1/72",
+        "1/240",
+        "0",
+        "1/5040"
+      ],
+      "order": 8,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "3/2",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "1"
+    },
+    {
+      "name": "matching-D7-h1-b3",
+      "law": [
+        "103/280",
+        "53/144",
+        "11/60",
+        "1/16",
+        "1/72",
+        "1/240",
+        "0",
+        "1/5040"
+      ],
+      "order": 8,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "4",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 7,
+      "strength": "1"
+    },
+    {
+      "name": "matching-D8-h0-b0",
+      "law": [
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "order": 9,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D8-h0-b1/2",
+      "law": [
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "order": 9,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "1/2",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D8-h0-b3",
+      "law": [
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "order": 9,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "3",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "0"
+    },
+    {
+      "name": "matching-D8-h1/10-b0",
+      "law": [
+        "3648304469521/4032000000000",
+        "5067089541/56000000000",
+        "651482941/144000000000",
+        "10858049/72000000000",
+        "24129/6400000000",
+        "5429/72000000000",
+        "181/144000000000",
+        "1/56000000000",
+        "1/4032000000000"
+      ],
+      "order": 9,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/1000000000"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D8-h1/10-b1/2",
+      "law": [
+        "3648304469521/4032000000000",
+        "5067089541/56000000000",
+        "651482941/144000000000",
+        "10858049/72000000000",
+        "24129/6400000000",
+        "5429/72000000000",
+        "181/144000000000",
+        "1/56000000000",
+        "1/4032000000000"
+      ],
+      "order": 9,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "3/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/1000000000"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D8-h1/10-b3",
+      "law": [
+        "3648304469521/4032000000000",
+        "5067089541/56000000000",
+        "651482941/144000000000",
+        "10858049/72000000000",
+        "24129/6400000000",
+        "5429/72000000000",
+        "181/144000000000",
+        "1/56000000000",
+        "1/4032000000000"
+      ],
+      "order": 9,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "31/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/1000000000"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "1/10"
+    },
+    {
+      "name": "matching-D8-h1/5-b0",
+      "law": [
+        "12895009361/15750000000",
+        "161187617/984375000",
+        "9210721/562500000",
+        "19189/17578125",
+        "12281/225000000",
+        "307/140625000",
+        "41/562500000",
+        "1/492187500",
+        "1/15750000000"
+      ],
+      "order": 9,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/1953125"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D8-h1/5-b1/2",
+      "law": [
+        "12895009361/15750000000",
+        "161187617/984375000",
+        "9210721/562500000",
+        "19189/17578125",
+        "12281/225000000",
+        "307/140625000",
+        "41/562500000",
+        "1/492187500",
+        "1/15750000000"
+      ],
+      "order": 9,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "7/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/1953125"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D8-h1/5-b3",
+      "law": [
+        "12895009361/15750000000",
+        "161187617/984375000",
+        "9210721/562500000",
+        "19189/17578125",
+        "12281/225000000",
+        "307/140625000",
+        "41/562500000",
+        "1/492187500",
+        "1/15750000000"
+      ],
+      "order": 9,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "16/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/1953125"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "1/5"
+    },
+    {
+      "name": "matching-D8-h3/10-b0",
+      "law": [
+        "47412366127/64000000000",
+        "12445746081/56000000000",
+        "533389149/16000000000",
+        "26669421/8000000000",
+        "1600209/6400000000",
+        "119961/8000000000",
+        "12069/16000000000",
+        "243/8000000000",
+        "729/448000000000"
+      ],
+      "order": 9,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "3/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-19683/1000000000"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D8-h3/10-b1/2",
+      "law": [
+        "47412366127/64000000000",
+        "12445746081/56000000000",
+        "533389149/16000000000",
+        "26669421/8000000000",
+        "1600209/6400000000",
+        "119961/8000000000",
+        "12069/16000000000",
+        "243/8000000000",
+        "729/448000000000"
+      ],
+      "order": 9,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "4/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-19683/1000000000"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D8-h3/10-b3",
+      "law": [
+        "47412366127/64000000000",
+        "12445746081/56000000000",
+        "533389149/16000000000",
+        "26669421/8000000000",
+        "1600209/6400000000",
+        "119961/8000000000",
+        "12069/16000000000",
+        "243/8000000000",
+        "729/448000000000"
+      ],
+      "order": 9,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "33/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-19683/1000000000"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "3/10"
+    },
+    {
+      "name": "matching-D8-h2/5-b0",
+      "law": [
+        "82480787/123046875",
+        "10997438/41015625",
+        "942638/17578125",
+        "125684/17578125",
+        "838/1171875",
+        "1004/17578125",
+        "68/17578125",
+        "8/41015625",
+        "2/123046875"
+      ],
+      "order": 9,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "2/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-512/1953125"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D8-h2/5-b1/2",
+      "law": [
+        "82480787/123046875",
+        "10997438/41015625",
+        "942638/17578125",
+        "125684/17578125",
+        "838/1171875",
+        "1004/17578125",
+        "68/17578125",
+        "8/41015625",
+        "2/123046875"
+      ],
+      "order": 9,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "9/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-512/1953125"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D8-h2/5-b3",
+      "law": [
+        "82480787/123046875",
+        "10997438/41015625",
+        "942638/17578125",
+        "125684/17578125",
+        "838/1171875",
+        "1004/17578125",
+        "68/17578125",
+        "8/41015625",
+        "2/123046875"
+      ],
+      "order": 9,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "17/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-512/1953125"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "2/5"
+    },
+    {
+      "name": "matching-D8-h1/2-b0",
+      "law": [
+        "6260561/10321920",
+        "78257/258048",
+        "27949/368640",
+        "2329/184320",
+        "233/147456",
+        "29/184320",
+        "1/73728",
+        "1/1290240",
+        "1/10321920"
+      ],
+      "order": 9,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/2",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/512"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D8-h1/2-b1/2",
+      "law": [
+        "6260561/10321920",
+        "78257/258048",
+        "27949/368640",
+        "2329/184320",
+        "233/147456",
+        "29/184320",
+        "1/73728",
+        "1/1290240",
+        "1/10321920"
+      ],
+      "order": 9,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/512"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D8-h1/2-b3",
+      "law": [
+        "6260561/10321920",
+        "78257/258048",
+        "27949/368640",
+        "2329/184320",
+        "233/147456",
+        "29/184320",
+        "1/73728",
+        "1/1290240",
+        "1/10321920"
+      ],
+      "order": 9,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "7/2",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1/512"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "1/2"
+    },
+    {
+      "name": "matching-D8-h3/5-b0",
+      "law": [
+        "960420409/1750000000",
+        "18007869/54687500",
+        "6174189/62500000",
+        "308673/15625000",
+        "74169/25000000",
+        "1377/3906250",
+        "2349/62500000",
+        "243/109375000",
+        "729/1750000000"
+      ],
+      "order": 9,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "3/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-19683/1953125"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D8-h3/5-b1/2",
+      "law": [
+        "960420409/1750000000",
+        "18007869/54687500",
+        "6174189/62500000",
+        "308673/15625000",
+        "74169/25000000",
+        "1377/3906250",
+        "2349/62500000",
+        "243/109375000",
+        "729/1750000000"
+      ],
+      "order": 9,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "11/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-19683/1953125"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D8-h3/5-b3",
+      "law": [
+        "960420409/1750000000",
+        "18007869/54687500",
+        "6174189/62500000",
+        "308673/15625000",
+        "74169/25000000",
+        "1377/3906250",
+        "2349/62500000",
+        "243/109375000",
+        "729/1750000000"
+      ],
+      "order": 9,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "18/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-19683/1953125"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "3/5"
+    },
+    {
+      "name": "matching-D8-h7/10-b0",
+      "law": [
+        "286033194823/576000000000",
+        "8342610829/24000000000",
+        "17520059221/144000000000",
+        "2043334349/72000000000",
+        "95624627/19200000000",
+        "49194089/72000000000",
+        "12823741/144000000000",
+        "117649/24000000000",
+        "823543/576000000000"
+      ],
+      "order": 9,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "7/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-40353607/1000000000"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D8-h7/10-b1/2",
+      "law": [
+        "286033194823/576000000000",
+        "8342610829/24000000000",
+        "17520059221/144000000000",
+        "2043334349/72000000000",
+        "95624627/19200000000",
+        "49194089/72000000000",
+        "12823741/144000000000",
+        "117649/24000000000",
+        "823543/576000000000"
+      ],
+      "order": 9,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "6/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-40353607/1000000000"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D8-h7/10-b3",
+      "law": [
+        "286033194823/576000000000",
+        "8342610829/24000000000",
+        "17520059221/144000000000",
+        "2043334349/72000000000",
+        "95624627/19200000000",
+        "49194089/72000000000",
+        "12823741/144000000000",
+        "117649/24000000000",
+        "823543/576000000000"
+      ],
+      "order": 9,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "37/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-40353607/1000000000"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "7/10"
+    },
+    {
+      "name": "matching-D8-h4/5-b0",
+      "law": [
+        "55288567/123046875",
+        "44230444/123046875",
+        "2527688/17578125",
+        "673504/17578125",
+        "27104/3515625",
+        "20864/17578125",
+        "3328/17578125",
+        "1024/123046875",
+        "512/123046875"
+      ],
+      "order": 9,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "4/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-262144/1953125"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D8-h4/5-b1/2",
+      "law": [
+        "55288567/123046875",
+        "44230444/123046875",
+        "2527688/17578125",
+        "673504/17578125",
+        "27104/3515625",
+        "20864/17578125",
+        "3328/17578125",
+        "1024/123046875",
+        "512/123046875"
+      ],
+      "order": 9,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "13/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-262144/1953125"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D8-h4/5-b3",
+      "law": [
+        "55288567/123046875",
+        "44230444/123046875",
+        "2527688/17578125",
+        "673504/17578125",
+        "27104/3515625",
+        "20864/17578125",
+        "3328/17578125",
+        "1024/123046875",
+        "512/123046875"
+      ],
+      "order": 9,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "19/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-262144/1953125"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "4/5"
+    },
+    {
+      "name": "matching-D8-h9/10-b0",
+      "law": [
+        "182143646089/448000000000",
+        "20490622101/56000000000",
+        "2635123509/16000000000",
+        "394551081/8000000000",
+        "71880129/6400000000",
+        "15096861/8000000000",
+        "5963949/16000000000",
+        "531441/56000000000",
+        "4782969/448000000000"
+      ],
+      "order": 9,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "9/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-387420489/1000000000"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D8-h9/10-b1/2",
+      "law": [
+        "182143646089/448000000000",
+        "20490622101/56000000000",
+        "2635123509/16000000000",
+        "394551081/8000000000",
+        "71880129/6400000000",
+        "15096861/8000000000",
+        "5963949/16000000000",
+        "531441/56000000000",
+        "4782969/448000000000"
+      ],
+      "order": 9,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "7/5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-387420489/1000000000"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D8-h9/10-b3",
+      "law": [
+        "182143646089/448000000000",
+        "20490622101/56000000000",
+        "2635123509/16000000000",
+        "394551081/8000000000",
+        "71880129/6400000000",
+        "15096861/8000000000",
+        "5963949/16000000000",
+        "531441/56000000000",
+        "4782969/448000000000"
+      ],
+      "order": 9,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "39/10",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-387420489/1000000000"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "9/10"
+    },
+    {
+      "name": "matching-D8-h1-b0",
+      "law": [
+        "2119/5760",
+        "103/280",
+        "53/288",
+        "11/180",
+        "1/64",
+        "1/360",
+        "1/1440",
+        "0",
+        "1/40320"
+      ],
+      "order": 9,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "1"
+    },
+    {
+      "name": "matching-D8-h1-b1/2",
+      "law": [
+        "2119/5760",
+        "103/280",
+        "53/288",
+        "11/180",
+        "1/64",
+        "1/360",
+        "1/1440",
+        "0",
+        "1/40320"
+      ],
+      "order": 9,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "3/2",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "1"
+    },
+    {
+      "name": "matching-D8-h1-b3",
+      "law": [
+        "2119/5760",
+        "103/280",
+        "53/288",
+        "11/180",
+        "1/64",
+        "1/360",
+        "1/1440",
+        "0",
+        "1/40320"
+      ],
+      "order": 9,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "4",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "-1"
+      ],
+      "family": "matching",
+      "degree": 8,
+      "strength": "1"
+    },
+    {
+      "name": "rational-law-0",
+      "law": [
+        "1"
+      ],
+      "order": 2,
+      "background": "74/25",
+      "cumulants": [
+        "0",
+        "74/25",
+        "0"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-1",
+      "law": [
+        "9/14",
+        "5/14"
+      ],
+      "order": 3,
+      "background": "6/25",
+      "cumulants": [
+        "0",
+        "209/350",
+        "-25/196",
+        "125/1372"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-2",
+      "law": [
+        "1/3",
+        "1/3",
+        "1/3"
+      ],
+      "order": 4,
+      "background": "1/100",
+      "cumulants": [
+        "0",
+        "101/100",
+        "-1/3",
+        "0",
+        "2/3"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-3",
+      "law": [
+        "17/28",
+        "1/7",
+        "1/28",
+        "3/14"
+      ],
+      "order": 5,
+      "background": "99/100",
+      "cumulants": [
+        "0",
+        "1293/700",
+        "61/98",
+        "-324/343",
+        "-11595/9604",
+        "145044/16807"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-4",
+      "law": [
+        "9/41",
+        "19/41",
+        "3/41",
+        "6/41",
+        "4/41"
+      ],
+      "order": 6,
+      "background": "13/5",
+      "cumulants": [
+        "0",
+        "828/205",
+        "209/1681",
+        "-20480/68921",
+        "-5163882/2825761",
+        "1096233096/115856201",
+        "-94312190640/4750104241"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-5",
+      "law": [
+        "3/59",
+        "6/59",
+        "18/59",
+        "14/59",
+        "0",
+        "18/59"
+      ],
+      "order": 7,
+      "background": "29/50",
+      "cumulants": [
+        "0",
+        "10411/2950",
+        "-1956/3481",
+        "-195108/205379",
+        "6618960/12117361",
+        "9231752016/714924299",
+        "-2216162550240/42180533641",
+        "-538884338978880/2488651484819"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-6",
+      "law": [
+        "11/61",
+        "4/61",
+        "18/61",
+        "11/61",
+        "15/61",
+        "1/61",
+        "1/61"
+      ],
+      "order": 8,
+      "background": "3/4",
+      "cumulants": [
+        "0",
+        "759/244",
+        "-484/3721",
+        "-521970/226981",
+        "120851640/13845841",
+        "-17644504584/844596301",
+        "-606070203960/51520374361",
+        "1872483035772240/3142742836021",
+        "-914084874347400000/191707312997281"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-7",
+      "law": [
+        "1/20",
+        "7/40",
+        "1/40",
+        "3/80",
+        "9/40",
+        "7/80",
+        "1/5",
+        "1/5"
+      ],
+      "order": 9,
+      "background": "17/10",
+      "cumulants": [
+        "0",
+        "239/40",
+        "1359/1600",
+        "-388689/32000",
+        "43911357/1280000",
+        "1414795053/12800000",
+        "-239184728163/102400000",
+        "30333178970919/2048000000",
+        "3853629210049857/81920000000",
+        "-960369096412578447/409600000000"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-8",
+      "law": [
+        "3/83",
+        "5/83",
+        "13/83",
+        "19/83",
+        "13/83",
+        "2/83",
+        "13/83",
+        "14/83",
+        "1/83"
+      ],
+      "order": 10,
+      "background": "16/25",
+      "cumulants": [
+        "0",
+        "9678/2075",
+        "2154/6889",
+        "-2341414/571787",
+        "-95874060/47458321",
+        "289018362456/3939040643",
+        "-44207017196040/326940373369",
+        "-85378289539461840/27136050989627",
+        "69400247420292878880/2252292232139041",
+        "188373164712760460160/186940255267540403",
+        "-42255596207868682092612480/15516041187205853449"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-9",
+      "law": [
+        "1"
+      ],
+      "order": 2,
+      "background": "27/10",
+      "cumulants": [
+        "0",
+        "27/10",
+        "0"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-10",
+      "law": [
+        "6/7",
+        "1/7"
+      ],
+      "order": 3,
+      "background": "9/25",
+      "cumulants": [
+        "0",
+        "88/175",
+        "-1/49",
+        "2/343"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-11",
+      "law": [
+        "11/23",
+        "3/23",
+        "9/23"
+      ],
+      "order": 4,
+      "background": "129/50",
+      "cumulants": [
+        "0",
+        "4017/1150",
+        "-27/529",
+        "-7560/12167",
+        "509814/279841"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-12",
+      "law": [
+        "6/11",
+        "0",
+        "3/11",
+        "2/11"
+      ],
+      "order": 5,
+      "background": "199/100",
+      "cumulants": [
+        "0",
+        "3389/1100",
+        "54/121",
+        "-2220/1331",
+        "30420/14641",
+        "863568/161051"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-13",
+      "law": [
+        "7/57",
+        "6/19",
+        "5/19",
+        "5/19",
+        "2/57"
+      ],
+      "order": 6,
+      "background": "68/25",
+      "cumulants": [
+        "0",
+        "6401/1425",
+        "-1993/3249",
+        "21940/185193",
+        "2010838/3518667",
+        "-280370192/200564019",
+        "-26725671760/11432149083"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-14",
+      "law": [
+        "1/43",
+        "11/43",
+        "1/43",
+        "18/43",
+        "12/43",
+        "0"
+      ],
+      "order": 7,
+      "background": "49/20",
+      "cumulants": [
+        "0",
+        "4407/860",
+        "-2303/1849",
+        "5864/79507",
+        "12131574/3418801",
+        "-1853012280/147008443",
+        "-38794239600/6321363049",
+        "150677177487120/271818611107"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-15",
+      "law": [
+        "1/54",
+        "7/54",
+        "0",
+        "5/54",
+        "1/6",
+        "8/27",
+        "8/27"
+      ],
+      "order": 8,
+      "background": "66/25",
+      "cumulants": [
+        "0",
+        "523/75",
+        "-38/27",
+        "-140/27",
+        "8777/243",
+        "-105344/729",
+        "146350/6561",
+        "51198920/6561",
+        "-6360088630/59049"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-16",
+      "law": [
+        "11/47",
+        "1/47",
+        "9/47",
+        "14/47",
+        "0",
+        "3/47",
+        "0",
+        "9/47"
+      ],
+      "order": 9,
+      "background": "297/100",
+      "cumulants": [
+        "0",
+        "27859/4700",
+        "6059/2209",
+        "-454036/103823",
+        "-111108942/4879681",
+        "13728963936/229345007",
+        "10126398408000/10779215329",
+        "-2542620600153360/506623120463",
+        "-1449103245689781360/23811286661761",
+        "737886548335001748480/1119130473102767"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-17",
+      "law": [
+        "18/85",
+        "1/85",
+        "1/85",
+        "16/85",
+        "0",
+        "12/85",
+        "16/85",
+        "8/85",
+        "13/85"
+      ],
+      "order": 10,
+      "background": "1/10",
+      "cumulants": [
+        "0",
+        "751/170",
+        "25281/7225",
+        "-13800844/614125",
+        "1731799734/52200625",
+        "2515674022968/4437053125",
+        "-463844921348016/75429903125",
+        "33251098236239952/6411541765625",
+        "391964629719880958832/544981050078125",
+        "-448876706990247850188672/46323389256640625",
+        "-87244319458271186357457024/3937488086814453125"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-18",
+      "law": [
+        "1"
+      ],
+      "order": 2,
+      "background": "173/100",
+      "cumulants": [
+        "0",
+        "173/100",
+        "0"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-19",
+      "law": [
+        "3/8",
+        "5/8"
+      ],
+      "order": 3,
+      "background": "57/20",
+      "cumulants": [
+        "0",
+        "139/40",
+        "-25/64",
+        "125/256"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-20",
+      "law": [
+        "16/47",
+        "16/47",
+        "15/47"
+      ],
+      "order": 4,
+      "background": "143/100",
+      "cumulants": [
+        "0",
+        "11321/4700",
+        "-706/2209",
+        "92/103823",
+        "2973684/4879681"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-21",
+      "law": [
+        "4/23",
+        "5/23",
+        "8/23",
+        "6/23"
+      ],
+      "order": 5,
+      "background": "71/25",
+      "cumulants": [
+        "0",
+        "2608/575",
+        "-325/529",
+        "-2250/12167",
+        "686634/279841",
+        "-66211704/6436343"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-22",
+      "law": [
+        "18/49",
+        "11/49",
+        "11/49",
+        "5/49",
+        "4/49"
+      ],
+      "order": 6,
+      "background": "64/25",
+      "cumulants": [
+        "0",
+        "4736/1225",
+        "804/2401",
+        "-113986/117649",
+        "1999152/5764801",
+        "1143646416/282475249",
+        "-164491116840/13841287201"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-23",
+      "law": [
+        "4/61",
+        "14/61",
+        "16/61",
+        "9/61",
+        "14/61",
+        "4/61"
+      ],
+      "order": 7,
+      "background": "1/25",
+      "cumulants": [
+        "0",
+        "3786/1525",
+        "-1827/3721",
+        "-147050/226981",
+        "13327470/13845841",
+        "6213186696/844596301",
+        "-3195274468680/51520374361",
+        "814305067265520/3142742836021"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-24",
+      "law": [
+        "1/81",
+        "14/81",
+        "2/9",
+        "8/81",
+        "17/81",
+        "16/81",
+        "7/81"
+      ],
+      "order": 8,
+      "background": "63/100",
+      "cumulants": [
+        "0",
+        "10501/2700",
+        "-382/729",
+        "-32416/19683",
+        "186700/177147",
+        "168749744/4782969",
+        "-36639063040/129140163",
+        "1351211114720/1162261467",
+        "7664771326240/31381059609"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-25",
+      "law": [
+        "5/31",
+        "13/93",
+        "17/93",
+        "4/93",
+        "4/93",
+        "5/31",
+        "7/93",
+        "6/31"
+      ],
+      "order": 9,
+      "background": "9/100",
+      "cumulants": [
+        "0",
+        "10879/3100",
+        "8824/2883",
+        "-319680/29791",
+        "-62854912/2770563",
+        "30977800712/85887453",
+        "-3324103617680/7987533129",
+        "-1881921753279200/82537842333",
+        "1358594062580787200/7676019336969",
+        "44554413792819508480/26439622160671"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-26",
+      "law": [
+        "19/106",
+        "13/106",
+        "8/53",
+        "9/53",
+        "11/106",
+        "1/53",
+        "5/106",
+        "6/53",
+        "5/53"
+      ],
+      "order": 10,
+      "background": "7/25",
+      "cumulants": [
+        "0",
+        "9417/2650",
+        "41347/11236",
+        "-3243379/595508",
+        "-2868062499/63123848",
+        "253304715591/1672781972",
+        "347115124389705/177314889032",
+        "-129831623911531215/9397689118696",
+        "-151234670726206795035/996155046581776",
+        "27559026088447346437455/13199054367208532",
+        "24696966191689526915521845/1399099762924104392"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-27",
+      "law": [
+        "1"
+      ],
+      "order": 2,
+      "background": "11/20",
+      "cumulants": [
+        "0",
+        "11/20",
+        "0"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-28",
+      "law": [
+        "19/25",
+        "6/25"
+      ],
+      "order": 3,
+      "background": "1/20",
+      "cumulants": [
+        "0",
+        "29/100",
+        "-36/625",
+        "432/15625"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-29",
+      "law": [
+        "8/31",
+        "11/31",
+        "12/31"
+      ],
+      "order": 4,
+      "background": "68/25",
+      "cumulants": [
+        "0",
+        "2983/775",
+        "-481/961",
+        "7630/29791",
+        "272442/923521"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-30",
+      "law": [
+        "7/27",
+        "1/27",
+        "19/54",
+        "19/54"
+      ],
+      "order": 5,
+      "background": "11/100",
+      "cumulants": [
+        "0",
+        "5147/2700",
+        "-1201/2916",
+        "-115379/78732",
+        "10746479/1417176",
+        "-502352843/19131876"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-31",
+      "law": [
+        "1/11",
+        "7/44",
+        "15/44",
+        "3/22",
+        "3/11"
+      ],
+      "order": 6,
+      "background": "8/25",
+      "cumulants": [
+        "0",
+        "2927/1100",
+        "-1369/1936",
+        "-21221/42592",
+        "5494029/1874048",
+        "-158261991/20614528",
+        "8861820105/907039232"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-32",
+      "law": [
+        "3/47",
+        "6/47",
+        "15/47",
+        "7/47",
+        "4/47",
+        "12/47"
+      ],
+      "order": 7,
+      "background": "217/100",
+      "cumulants": [
+        "0",
+        "23499/4700",
+        "-769/2209",
+        "-150484/103823",
+        "6471858/4879681",
+        "3481065312/229345007",
+        "-879176620560/10779215329",
+        "-34845092982000/506623120463"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-33",
+      "law": [
+        "11/67",
+        "5/67",
+        "12/67",
+        "10/67",
+        "19/67",
+        "9/67",
+        "1/67"
+      ],
+      "order": 8,
+      "background": "1/4",
+      "cumulants": [
+        "0",
+        "811/268",
+        "378/4489",
+        "-1366716/300763",
+        "311307756/20151121",
+        "-22591621656/1350125107",
+        "-22569025503600/90458382169",
+        "15597956322383760/6060711605323",
+        "-4733241308131744800/406067677556641"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-34",
+      "law": [
+        "1/23",
+        "14/69",
+        "16/69",
+        "7/69",
+        "5/23",
+        "4/69",
+        "1/69",
+        "3/23"
+      ],
+      "order": 9,
+      "background": "91/100",
+      "cumulants": [
+        "0",
+        "9293/2300",
+        "1514/1587",
+        "-14620/12167",
+        "-10790620/839523",
+        "781357304/19309029",
+        "252461856320/1332323001",
+        "-13606699770880/10214476341",
+        "-6137517492403360/704798867529",
+        "213027278337148800/1801152661463"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-35",
+      "law": [
+        "15/103",
+        "15/103",
+        "13/103",
+        "11/103",
+        "12/103",
+        "10/103",
+        "1/103",
+        "19/103",
+        "7/103"
+      ],
+      "order": 10,
+      "background": "279/100",
+      "cumulants": [
+        "0",
+        "65437/10300",
+        "35879/10609",
+        "-10257298/1092727",
+        "-3630609030/112550881",
+        "3577569057648/11592740743",
+        "656022476082840/1194052296529",
+        "-2819710536070052880/122987386542487",
+        "673255257373882748880/12667700813876161",
+        "3373111759387698946114560/1304773183829244583",
+        "-3228917430189058078222241280/134391637934412192049"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-36",
+      "law": [
+        "1"
+      ],
+      "order": 2,
+      "background": "14/5",
+      "cumulants": [
+        "0",
+        "14/5",
+        "0"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-37",
+      "law": [
+        "7/19",
+        "12/19"
+      ],
+      "order": 3,
+      "background": "261/100",
+      "cumulants": [
+        "0",
+        "6159/1900",
+        "-144/361",
+        "3456/6859"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-38",
+      "law": [
+        "17/33",
+        "14/33",
+        "2/33"
+      ],
+      "order": 4,
+      "background": "41/20",
+      "cumulants": [
+        "0",
+        "571/220",
+        "-64/363",
+        "168/1331",
+        "-6256/43923"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-39",
+      "law": [
+        "4/13",
+        "9/26",
+        "4/13",
+        "1/26"
+      ],
+      "order": 5,
+      "background": "47/50",
+      "cumulants": [
+        "0",
+        "1311/650",
+        "-53/169",
+        "-11/2197",
+        "16101/28561",
+        "-784734/371293"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-40",
+      "law": [
+        "2/37",
+        "2/37",
+        "18/37",
+        "14/37",
+        "1/37"
+      ],
+      "order": 6,
+      "background": "59/50",
+      "cumulants": [
+        "0",
+        "6383/1850",
+        "-2172/1369",
+        "102492/50653",
+        "-5207736/1874161",
+        "-71204544/69343957",
+        "145917460800/2565726409"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-41",
+      "law": [
+        "17/76",
+        "17/76",
+        "9/76",
+        "5/76",
+        "9/38",
+        "5/38"
+      ],
+      "order": 7,
+      "background": "32/25",
+      "cumulants": [
+        "0",
+        "1683/475",
+        "355/361",
+        "-58913/13718",
+        "129744/130321",
+        "149878182/2476099",
+        "-26998131765/94091762",
+        "-567698532255/893871739"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-42",
+      "law": [
+        "1/12",
+        "4/15",
+        "2/15",
+        "3/10",
+        "11/60",
+        "1/60",
+        "1/60"
+      ],
+      "order": 8,
+      "background": "141/50",
+      "cumulants": [
+        "0",
+        "517/100",
+        "-169/400",
+        "-3197/4000",
+        "230317/80000",
+        "-878879/400000",
+        "-67494427/1600000",
+        "6225626347/16000000",
+        "-689381283423/320000000"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-43",
+      "law": [
+        "17/76",
+        "2/19",
+        "7/76",
+        "9/76",
+        "1/19",
+        "9/76",
+        "11/76",
+        "11/76"
+      ],
+      "order": 9,
+      "background": "33/100",
+      "cumulants": [
+        "0",
+        "1738/475",
+        "18679/5776",
+        "-2709659/219488",
+        "-261271539/16681088",
+        "122699832039/316940672",
+        "-24509371831095/24087491072",
+        "-19583947645180335/915324660736",
+        "16829438695541528805/69564674215936",
+        "620754466223076382575/660864405051392"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-44",
+      "law": [
+        "1/24",
+        "19/96",
+        "1/24",
+        "13/96",
+        "3/16",
+        "5/96",
+        "3/32",
+        "7/48",
+        "5/48"
+      ],
+      "order": 10,
+      "background": "99/50",
+      "cumulants": [
+        "0",
+        "14627/2400",
+        "18695/9216",
+        "-4152205/442368",
+        "-120835633/14155776",
+        "84937354715/339738624",
+        "-25421730789965/32614907904",
+        "-5236503355059185/521838526464",
+        "6144024716703736765/50096498540544",
+        "143904771187796549665/601157982486528",
+        "-124065600263828005541675/6412351813189632"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-45",
+      "law": [
+        "1"
+      ],
+      "order": 2,
+      "background": "271/100",
+      "cumulants": [
+        "0",
+        "271/100",
+        "0"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-46",
+      "law": [
+        "6/7",
+        "1/7"
+      ],
+      "order": 3,
+      "background": "51/50",
+      "cumulants": [
+        "0",
+        "407/350",
+        "-1/49",
+        "2/343"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "rational-law-47",
+      "law": [
+        "3/32",
+        "9/16",
+        "11/32"
+      ],
+      "order": 4,
+      "background": "193/100",
+      "cumulants": [
+        "0",
+        "159/50",
+        "-7/8",
+        "85/64",
+        "-813/256"
+      ],
+      "family": "arbitrary"
+    },
+    {
+      "name": "bernoulli-p0-b0",
+      "law": [
+        "1",
+        "0"
+      ],
+      "order": 4,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "family": "bernoulli",
+      "probability": "0"
+    },
+    {
+      "name": "bernoulli-p0-b1/2",
+      "law": [
+        "1",
+        "0"
+      ],
+      "order": 4,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "1/2",
+        "0",
+        "0",
+        "0"
+      ],
+      "family": "bernoulli",
+      "probability": "0"
+    },
+    {
+      "name": "bernoulli-p0-b3",
+      "law": [
+        "1",
+        "0"
+      ],
+      "order": 4,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "3",
+        "0",
+        "0",
+        "0"
+      ],
+      "family": "bernoulli",
+      "probability": "0"
+    },
+    {
+      "name": "bernoulli-p1/10-b0",
+      "law": [
+        "9/10",
+        "1/10"
+      ],
+      "order": 4,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/10",
+        "-1/100",
+        "1/500",
+        "-3/5000"
+      ],
+      "family": "bernoulli",
+      "probability": "1/10"
+    },
+    {
+      "name": "bernoulli-p1/10-b1/2",
+      "law": [
+        "9/10",
+        "1/10"
+      ],
+      "order": 4,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "3/5",
+        "-1/100",
+        "1/500",
+        "-3/5000"
+      ],
+      "family": "bernoulli",
+      "probability": "1/10"
+    },
+    {
+      "name": "bernoulli-p1/10-b3",
+      "law": [
+        "9/10",
+        "1/10"
+      ],
+      "order": 4,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "31/10",
+        "-1/100",
+        "1/500",
+        "-3/5000"
+      ],
+      "family": "bernoulli",
+      "probability": "1/10"
+    },
+    {
+      "name": "bernoulli-p3/10-b0",
+      "law": [
+        "7/10",
+        "3/10"
+      ],
+      "order": 4,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "3/10",
+        "-9/100",
+        "27/500",
+        "-243/5000"
+      ],
+      "family": "bernoulli",
+      "probability": "3/10"
+    },
+    {
+      "name": "bernoulli-p3/10-b1/2",
+      "law": [
+        "7/10",
+        "3/10"
+      ],
+      "order": 4,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "4/5",
+        "-9/100",
+        "27/500",
+        "-243/5000"
+      ],
+      "family": "bernoulli",
+      "probability": "3/10"
+    },
+    {
+      "name": "bernoulli-p3/10-b3",
+      "law": [
+        "7/10",
+        "3/10"
+      ],
+      "order": 4,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "33/10",
+        "-9/100",
+        "27/500",
+        "-243/5000"
+      ],
+      "family": "bernoulli",
+      "probability": "3/10"
+    },
+    {
+      "name": "bernoulli-p1/2-b0",
+      "law": [
+        "1/2",
+        "1/2"
+      ],
+      "order": 4,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1/2",
+        "-1/4",
+        "1/4",
+        "-3/8"
+      ],
+      "family": "bernoulli",
+      "probability": "1/2"
+    },
+    {
+      "name": "bernoulli-p1/2-b1/2",
+      "law": [
+        "1/2",
+        "1/2"
+      ],
+      "order": 4,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "1",
+        "-1/4",
+        "1/4",
+        "-3/8"
+      ],
+      "family": "bernoulli",
+      "probability": "1/2"
+    },
+    {
+      "name": "bernoulli-p1/2-b3",
+      "law": [
+        "1/2",
+        "1/2"
+      ],
+      "order": 4,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "7/2",
+        "-1/4",
+        "1/4",
+        "-3/8"
+      ],
+      "family": "bernoulli",
+      "probability": "1/2"
+    },
+    {
+      "name": "bernoulli-p1-b0",
+      "law": [
+        "0",
+        "1"
+      ],
+      "order": 4,
+      "background": "0",
+      "cumulants": [
+        "0",
+        "1",
+        "-1",
+        "2",
+        "-6"
+      ],
+      "family": "bernoulli",
+      "probability": "1"
+    },
+    {
+      "name": "bernoulli-p1-b1/2",
+      "law": [
+        "0",
+        "1"
+      ],
+      "order": 4,
+      "background": "1/2",
+      "cumulants": [
+        "0",
+        "3/2",
+        "-1",
+        "2",
+        "-6"
+      ],
+      "family": "bernoulli",
+      "probability": "1"
+    },
+    {
+      "name": "bernoulli-p1-b3",
+      "law": [
+        "0",
+        "1"
+      ],
+      "order": 4,
+      "background": "3",
+      "cumulants": [
+        "0",
+        "4",
+        "-1",
+        "2",
+        "-6"
+      ],
+      "family": "bernoulli",
+      "probability": "1"
+    }
+  ]
+}

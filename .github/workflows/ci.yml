@@ -112,6 +112,54 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
 
+  demo:
+    name: demo
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Install locked Python tools and the reference package
+        run: python tools/tasks.py setup
+      - name: Compare browser fixtures with the installed exact package
+        run: python tools/generate_demo_fixtures.py --check
+      - name: Install locked browser test dependencies
+        working-directory: demo
+        run: npm ci --ignore-scripts
+      - name: Check exact browser calculations
+        working-directory: demo
+        run: npm test
+      - name: Install the three browser engines and system dependencies
+        working-directory: demo
+        run: npx --no-install playwright install --with-deps chromium firefox webkit
+      - name: Exercise browser interactions, layout and accessibility
+        env:
+          DEMO_URL: http://127.0.0.1:8765/demo/
+        run: |
+          mkdir -p build/demo-qa
+          python -m http.server 8765 --bind 127.0.0.1 > build/demo-qa/server.log 2>&1 &
+          demo_server_pid=$!
+          trap 'kill "$demo_server_pid"' EXIT
+          curl --fail --silent --show-error --retry 10 --retry-connrefused --retry-delay 1 \
+            http://127.0.0.1:8765/demo/ > /dev/null
+          npm --prefix demo run test:browser
+      - name: Preserve browser checks and available failure diagnostics
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: demo-browser-qa
+          path: build/demo-qa/
+          if-no-files-found: warn
+          retention-days: 14
+
   flint:
     name: flint
     runs-on: ubuntu-24.04
@@ -266,7 +314,7 @@ jobs:
   ci:
     name: ci
     if: always()
-    needs: [quality, python, fuzz, flint, stress, sage, formal]
+    needs: [quality, python, fuzz, demo, flint, stress, sage, formal]
     runs-on: ubuntu-24.04
     timeout-minutes: 2
     steps:
