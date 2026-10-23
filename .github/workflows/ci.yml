@@ -160,6 +160,37 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
 
+  emitters:
+    name: emitters
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+      - name: Install hash-pinned optional study dependencies
+        run: >-
+          python -m pip install --require-hashes --only-binary=:all: --no-deps
+          -r examples/requirements-emitters.txt
+      - name: Check numerical controls and estimator failure reporting
+        run: python examples/test_emitter_study.py
+      - name: Reproduce the synthetic study and retain all diagnostics
+        run: |
+          mkdir -p build/emitter-study
+          python examples/emitter_background_cost.py --json build/emitter-study/background-cost.json
+          python examples/emitter_published_parameters.py --json build/emitter-study/published-parameters.json
+      - name: Preserve study calculations and diagnostic output
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: emitter-study
+          path: build/emitter-study/
+          if-no-files-found: warn
+          retention-days: 14
+
   flint:
     name: flint
     runs-on: ubuntu-24.04
@@ -314,7 +345,7 @@ jobs:
   ci:
     name: ci
     if: always()
-    needs: [quality, python, fuzz, demo, flint, stress, sage, formal]
+    needs: [quality, python, fuzz, demo, emitters, flint, stress, sage, formal]
     runs-on: ubuntu-24.04
     timeout-minutes: 2
     steps:

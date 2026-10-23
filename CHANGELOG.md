@@ -32,6 +32,13 @@ The Python API is experimental; no stable release has been published.
 
 ### Added
 
+- Two labelled synthetic emitter-counting studies with an independent fixed
+  Poisson background: numerical two-point lower-bound comparisons and Monte
+  Carlo comparisons of specified estimators at parameters from the literature.
+  Source-off observations are modelled explicitly; lower-bound ratios do not
+  establish achievable costs, and simulations do not establish unbiasedness
+  or validate a detector. Optional numerical dependencies remain separate from
+  the dependency-free library. The core theorem and proof sources are unchanged.
 - A static interactive companion for Poisson invariance, the sharp order cutoff
   and the Bernoulli inverse, with exact rational calculations, explicit numerical
   plot boundaries and a local preview command. Installed-package fixtures,

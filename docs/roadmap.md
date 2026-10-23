@@ -74,6 +74,16 @@ argument for an uncertain fixed-rate ceiling and a counterexample to uniformly
 estimating arbitrary mixture-rate maxima from finite records. It does not supply
 physical measurements or a formally verified calibration estimator.
 
+The synthetic [emitter-counting comparisons](emitter-counting.md) examine
+identical emitters with an independent fixed Poisson background. Numerical
+two-point lower bounds compare selected alternatives with unknown background,
+known background and additional source-off observations. Their ratios do not
+establish achievable data costs or an optimal calibration allocation. Monte
+Carlo calculations at parameters from the literature compare a background-free
+binomial baseline, a factorial-cumulant estimator and a calibrated moment
+estimator. These finite simulations do not establish unbiasedness, practical
+optimality or physical validity.
+
 The target must first be specified as the bounded count immediately before background addition. Without calibrated efficiency, this need not be the emitted count. A common background parameter is an expected count per observation window: for constant arrival intensity $\lambda$ and duration $T$, $b=\lambda T$. Realized background counts still fluctuate.
 
 | Assumption | Evidence to collect | Limit of that evidence |
