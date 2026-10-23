@@ -40,14 +40,17 @@ development assistance and verification limitations.
 
 ## Review and reproduce
 
-Explore the [interactive browser demo](demo/README.md) locally:
+Explore the [live interactive demo](https://bounded-count-explorer.thomasalbrecht2024.chatgpt.site)
+for population illustrations of Poisson invariance, the sharp cutoff and the
+Bernoulli inverse. No sign-in is required.
+
+To run the [same demo locally](demo/README.md):
 
 ```sh
 python -m http.server 8765 --bind 127.0.0.1 --directory demo
 ```
 
-Open [127.0.0.1:8765](http://127.0.0.1:8765/) for population illustrations of
-Poisson invariance, the sharp cutoff and the Bernoulli inverse.
+Open [127.0.0.1:8765](http://127.0.0.1:8765/).
 
 Start with the [one-page mathematical review request](docs/reviewer-request.md).
 The [claim map](docs/claims.md) separates the main theorem, extensions, software

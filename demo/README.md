@@ -1,5 +1,8 @@
 # Interactive bounded-count demo
 
+[Open the live demo](https://bounded-count-explorer.thomasalbrecht2024.chatgpt.site).
+It is publicly viewable without signing in.
+
 This static browser companion illustrates three population calculations:
 independent fixed-Poisson background leaves higher factorial cumulants unchanged;
 the established generalized matching family explains why order `D+1` is needed
