@@ -8,6 +8,13 @@ The Python API is experimental; no stable release has been published.
 
 ### Changed
 
+- Correct the synthetic cancellation estimator's acceptance rule: inferred
+  negative background is a reported diagnostic, not a reason to discard an
+  emitter estimate based on cumulants 2 and 3. Regenerate the study results and
+  table with separate estimator domains and background-diagnostic counts.
+  Add Kambly–Flindt–Büttiker, Weston and CoPS to the prior-art context; the
+  general theorem and its unresolved priority are unchanged.
+
 - Present the theorem as a short note with attributed sharpness and a
   conditional emitter-counting application. Explain the simpler binomial
   inverse and retain the synthetic study's failure and calibration limits.

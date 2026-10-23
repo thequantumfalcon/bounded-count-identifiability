@@ -36,6 +36,8 @@ verdict. A positive novelty claim requires further evidence.
 | Generalized matching distribution and its matched factorial moments | [Afendras and Papadatos, arXiv:1411.1165](https://arxiv.org/pdf/1411.1165), equation (3.1) and Lemma 3.1, PDF page 7. | Exactly the family used in the order-sharpness example. The source credits Niermann (1999). Neither the family nor its moment matching is new here. |
 | Factorial-moment inversion | The same paper, Lemma 2.1, equation (2.5), PDF page 5. | Recovering probabilities once all required factorial moments are known is established machinery. |
 | Poisson translation and subtraction | [Jørgensen and Kokonendji, arXiv:1409.7482](https://arxiv.org/pdf/1409.7482), section 2.2, equations (2.9)–(2.10). | A fixed independent Poisson contribution changes only the first factorial cumulant. This cancellation is established. |
+| Emitter counting from photon coincidences | [Weston et al. (2002)](https://doi.org/10.1021/ac025730z) and [Kurz et al. (2013), CoPS](https://doi.org/10.1002/smll.201300619), inspected abstracts; [access notes and related CoPS papers](references.md#emitter-counting-by-photon-coincidences). | Inferring emitter numbers from photon statistics is established experimental methodology. Our synthetic binomial-plus-Poisson comparison neither introduces that idea nor reproduces these detector-specific methods. |
+| Factorial cumulants as power sums | [Kambly, Flindt and Büttiker (2011)](https://arxiv.org/pdf/1012.0750v2), equation (14), PDF page 4. | The Bernoulli-sum identity below is established. |
 | Recovery of nonnegative numbers from selected power sums | [Melánová, Sturmfels and Winter, arXiv:2106.13981v1](https://arxiv.org/pdf/2106.13981v1), Proposition 24, PDF page 12. | States a closely related identification result applicable to the Poisson-binomial subclass, as explained below. |
 
 Niermann's [publisher record](https://link.springer.com/article/10.1007/BF02925521)
@@ -84,9 +86,17 @@ P(t)=\prod_{i=1}^{D}(1+p_it),\qquad
 \kappa_r=(-1)^{r-1}(r-1)!\sum_{i=1}^{D}p_i^r.
 $$
 
+This identity is explicit in [Kambly, Flindt and Büttiker (2011), equation
+(14)](https://arxiv.org/pdf/1012.0750v2) for their unidirectional case $Q=0$.
+Their $Q$ denotes deterministic reverse charge transfer, not Poisson background.
+Their generating-function zero diagnostics and asymptotic recovery of a
+dominant singularity pair do not state the exact missing-mean identification
+theorem for every bounded law. This comparison leaves its priority unresolved.
+
 Choosing power orders $2,\ldots,D+1$ therefore identifies the multiset of
 parameters and hence the law. Zero parameters allow fewer than $D$ summands.
-The preprint does not state this application in bounded-count language.
+The *Recovery from Power Sums* preprint does not state this application in
+bounded-count language.
 
 An arbitrary bounded law need not have this factorization. For example,
 $\Pr(X=0)=\Pr(X=2)=1/2$ gives

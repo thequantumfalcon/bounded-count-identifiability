@@ -37,7 +37,7 @@ def metadata(design):
         "requirements-emitters.txt",
     )
     return {
-        "schema_version": 2,
+        "schema_version": 3,
         "scope": NUMERICAL_SCOPE,
         "python": platform.python_version(),
         "numpy": np.__version__,

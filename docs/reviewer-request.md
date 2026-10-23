@@ -45,9 +45,10 @@ family has $P_{D,h}(t)=\sum_{k=0}^{D}(ht)^k/k!$, $0<h<1$, and
 $\kappa_2=\cdots=\kappa_D=0$, while $\kappa_{D+1}=-h^{D+1}$.
 It differs from the point mass at zero. This family is credited to
 [Afendras–Papadatos, equation (3.1) and Lemma 3.1, citing Niermann](https://arxiv.org/pdf/1411.1165).
-[Poisson translation](https://arxiv.org/pdf/1409.7482) and
-[nonnegative power-sum recovery](https://arxiv.org/pdf/2106.13981) are also
-established; the latter covers the Poisson-binomial subclass. The
+[Poisson translation](https://arxiv.org/pdf/1409.7482), the
+[Bernoulli factorial-cumulant power-sum identity](https://arxiv.org/pdf/1012.0750v2)
+and [nonnegative power-sum recovery](https://arxiv.org/pdf/2106.13981v1) are also
+established; together the latter two cover the Poisson-binomial subclass. The
 [originality review](originality-review.md) distinguishes this overlap from
 the arbitrary-law claim.
 

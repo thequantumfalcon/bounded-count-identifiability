@@ -3,8 +3,9 @@
 Parameters (M,p) follow the cited studies; backgrounds and source-off windows
 are synthetic additions, not measurements or a reanalysis of published data.
 E1 fits a pure binomial on an explicitly bounded integer search. E2 and E3 are
-continuous moment estimates subject to exact physical-domain checks. Summaries
-are conditional on successful fits and always give failure denominators.
+continuous moment estimates with exact count/probability checks. E2 retains an
+inferred-background diagnostic; E3 also checks its calibrated background.
+Summaries are conditional on successful fits and always give failure denominators.
 
 The testing calculations evaluate explicit candidate alternatives. Numerical
 search is not a global-optimum certificate; the reported necessary counts are
@@ -57,13 +58,13 @@ def rejected(status, raw_estimate=None, **diagnostics):
     return dict(status=status, estimate=None, raw_estimate=raw_estimate, **diagnostics)
 
 
-def physical_moment_result(M, p, b):
-    """Domain decisions use Fractions; M remains a continuous moment estimate."""
+def moment_result(M, p, b, *, require_nonnegative_background):
+    """Exact estimator-specific guards; M remains a continuous moment estimate."""
     raw = float(M)
     parameters = {"M": str(M), "p": str(p), "background": str(b)}
     if not 0 < p <= 1:
         return rejected("probability_out_of_range", raw, parameters=parameters)
-    if b < 0:
+    if require_nonnegative_background and b < 0:
         return rejected("negative_background", raw, parameters=parameters)
     if M < 1:
         return rejected("count_below_one", raw, parameters=parameters)
@@ -129,7 +130,7 @@ def mle_binomial_M(y, search_span=E1_SEARCH_SPAN, summary=None):
 
 
 def factorial_cumulant_M(y, summary=None):
-    """E2: exact plug-in factorial cumulants; continuous M, physical-domain checks."""
+    """E2: infer M,p from cumulants 2,3; inferred b is a diagnostic, not a guard."""
     summary = count_summary(y) if summary is None else summary
     n, s1, s2, s3 = (summary[key] for key in ("N", "s1", "s2", "s3"))
     a = n * s2 - s1 * s1
@@ -139,7 +140,9 @@ def factorial_cumulant_M(y, summary=None):
     p = Fraction(-c, 2 * n * a)
     M = Fraction(-4 * a**3, c**2)
     b = Fraction(s1 * c - 2 * a**2, n * c)
-    return physical_moment_result(M, p, b)
+    result = moment_result(M, p, b, require_nonnegative_background=False)
+    result["inferred_background_negative"] = b < 0
+    return result
 
 
 def calibrated_M(y, dark, summary=None):
@@ -156,7 +159,7 @@ def calibrated_M(y, dark, summary=None):
     p = 1 - (variance - b) / source_mean
     if p <= 0:
         return rejected("moment_sign_invalid")
-    return physical_moment_result(source_mean / p, p, b)
+    return moment_result(source_mean / p, p, b, require_nonnegative_background=True)
 
 
 def numeric_summary(values, truth):
@@ -186,6 +189,9 @@ def summarize_estimates(results, truth):
     ]
     values = numeric_summary(success, truth)
     search_results = [entry for entry in results if "search_upper" in entry]
+    inferred_backgrounds = [
+        entry for entry in results if "inferred_background_negative" in entry
+    ]
     return {
         "status": "not_run" if not results else "reported",
         "attempted": len(results),
@@ -196,6 +202,18 @@ def summarize_estimates(results, truth):
         "conditional_mean": values["mean"],
         "conditional_rel_rmse": values["rel_rmse"],
         "raw_finite_summary": numeric_summary(raw, truth),
+        "inferred_background_diagnostics": {
+            "evaluated": len(inferred_backgrounds),
+            "negative": sum(
+                entry["inferred_background_negative"] for entry in inferred_backgrounds
+            ),
+            "negative_among_successful": sum(
+                entry["inferred_background_negative"] and entry["status"] == "success"
+                for entry in inferred_backgrounds
+            ),
+        }
+        if inferred_backgrounds
+        else None,
         "search_diagnostics": {
             "cap_hits": failures.get("search_cap", 0),
             "lower_boundary_selections": sum(
@@ -333,7 +351,9 @@ def main():
                 "E1_search_span": E1_SEARCH_SPAN,
                 "E1_max_signal_pulses": 10**5,
                 "E1_scope": "bounded integer search, global optimum not certified; cap hits excluded",
-                "E2_E3_domain": "continuous M>=1, 0<p<=1, background>=0; exact rational guards",
+                "E2_domain": "continuous M>=1, 0<p<=1; exact rational sign and domain guards; inferred background is diagnostic only",
+                "E3_domain": "continuous M>=1, 0<p<=1, background>=0; exact rational guards",
+                "E2_background_diagnostics": "evaluated whenever cumulant signs permit; negative includes p/M failures; negative_among_successful counts retained estimates",
                 "summary_scope": "conditional on success; raw finite summaries also retained; no empirical thresholds gate CI",
             }
         )

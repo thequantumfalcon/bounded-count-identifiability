@@ -154,8 +154,14 @@ only for $N\le10^5$; the two moment procedures cover the full grid. The table
 below displays the $b=0.1,1$ rows at $N=10^5$.
 
 The two moment procedures return continuous $M$ estimates, without rounding
-them to integer emitter counts. Their domain checks require $M\ge1$,
-$0<p\le1$ and $b\ge0$; these checks do not establish statistical accuracy.
+them to integer emitter counts. Both require $M\ge1$ and $0<p\le1$, in
+addition to the signs needed by their formulas. Cancellation estimates $M,p$
+from cumulants 2 and 3 alone. The value $\widehat b=\overline Y-\widehat M\widehat p$
+is retained as a separate diagnostic; a negative value does not discard the
+emitter estimate. Such an estimate is not a jointly admissible fit of all three
+model parameters. Calibration uses the source-off mean and retains its
+nonnegative-background requirement. These checks do not establish statistical
+accuracy.
 The likelihood baseline searches a finite integer range and records a search
 cap hit as a failure. Undefined, inadmissible and capped results are counted,
 not replaced by point estimates. The output also retains finite unfiltered
@@ -173,22 +179,31 @@ on a returned estimate under each procedure's stated domain checks:
 
 | $(M,p)$ | $b$ | Binomial baseline | Cancellation | 10% source-off |
 | --- | --- | --- | --- | --- |
-| (40, 0.2) | 0.1 | 41 (3.18%); 0/200 | 30.9 (26.8%); 89/200 | 40 (1.76%); 0/200 |
-| (40, 0.2) | 1 | 50.7 (27%); 0/200 | 33 (28.6%); 57/200 | 40.1 (1.94%); 0/200 |
-| (100, 0.1) | 0.1 | 102 (4.86%); 0/200 | 43 (61.6%); 108/200 | 100 (4.22%); 0/200 |
-| (100, 0.1) | 1 | 121 (21.4%); 0/200 | 40.6 (64.8%); 96/200 | 99.8 (4.24%); 0/200 |
-| (8, 0.1) | 0.1 | 10.2 (28.5%); 0/200 | 6.36 (30.5%); 66/200 | 8.04 (4.35%); 0/200 |
-| (8, 0.1) | 1 | 40.9 (414%); 0/200 | 7.87 (102%); 83/200 | 8.08 (10%); 0/200 |
+| (40, 0.2) | 0.1 | 41 (3.18%); 0/200 | 46.4 (99.8%); 0/200 | 40 (1.76%); 0/200 |
+| (40, 0.2) | 1 | 50.7 (27%); 0/200 | 47.1 (89.7%); 0/200 | 40.1 (1.94%); 0/200 |
+| (100, 0.1) | 0.1 | 102 (4.86%); 0/200 | 9.92e3 (7.43e4%); 28/200 | 100 (4.22%); 0/200 |
+| (100, 0.1) | 1 | 121 (21.4%); 0/200 | 1.57e3 (1.15e4%); 44/200 | 99.8 (4.24%); 0/200 |
+| (8, 0.1) | 0.1 | 10.2 (28.5%); 0/200 | 10.4 (98.9%); 0/200 | 8.04 (4.35%); 0/200 |
+| (8, 0.1) | 1 | 40.9 (414%); 0/200 | 1.38e3 (1.57e5%); 55/200 | 8.08 (10%); 0/200 |
 
-The guards materially change the cancellation summaries. For example, at
-$(M,p,b)=(100,0.1,0.1)$ the 172 finite moment estimates before the full domain
-checks have mean $9.92\times10^3$ and relative RMSE $7.43\times10^4\%$.
-Only 92 of 200 attempts pass all checks. The largest raw relative RMSE across
-the full grid occurs at $(8,0.1,0.5)$ and $10^5$ pulses: 188 finite estimates
-have mean $1.99\times10^4$ and relative RMSE $2.85\times10^6\%$, whereas
-142 attempts pass all checks. Conditional errors alone therefore hide an
-important part of this estimator's behavior; the unfiltered diagnostics remain
-in the saved results.
+Earlier versions of this table also discarded cancellation estimates when
+$\widehat b<0$. That extra filter was inappropriate for the stated two-cumulant
+procedure and hid large errors. The corrected table retains those estimates:
+the six rows respectively include 89, 57, 80, 52, 66 and 28 negative inferred
+backgrounds among successful cancellation estimates. For example, at
+$(M,p,b)=(100,0.1,0.1)$ all 172 finite estimates now pass the count/probability
+checks, including 80 previously excluded by the background filter. Their mean
+is $9.92\times10^3$ and relative RMSE $7.43\times10^4\%$; the other 28 attempts
+fail the cumulant-sign checks.
+
+The largest corrected conditional relative RMSE across the full grid occurs
+at $(8,0.1,0.5)$ and $10^5$ pulses: 185 estimates have mean
+$2.02\times10^4$ and relative RMSE $2.87\times10^6\%$. Twelve attempts fail
+the sign checks and three give $M<1$. The 188 finite estimates before
+count/probability checks have mean $1.99\times10^4$ and relative RMSE
+$2.85\times10^6\%$. Failure counts, raw summaries and inferred-background
+diagnostics remain in the saved results; conditional errors still omit the
+remaining failed estimates.
 
 For comparison, matching a background-free binomial's population mean and
 variance to $Mp+b$ and $Mp(1-p)+b$ gives a continuous moment estimate
@@ -254,7 +269,11 @@ python examples/emitter_published_parameters.py --part all --json build/emitter-
 The output paths must be new. The published-parameter program also accepts
 `--part bounds` or `--part mc` to run either calculation separately. Result
 metadata records the design, numerical-library versions and calculation-source
-hashes. Numerical agreement is a reproduction check, not independent review.
+hashes. Schema version 3 separates the cancellation and calibration domains
+and adds inferred-background diagnostic counts. Both studies were rerun after
+the correction; all fixed-pair results, baseline/calibration summaries and raw
+cancellation summaries match the previous execution. Numerical agreement is a
+reproduction check, not independent review.
 
 ## Limits
 
@@ -274,11 +293,25 @@ hashes. Numerical agreement is a reproduction check, not independent review.
   be mutually independent. Source-off windows are additional observations;
   their acquisition time and experimental feasibility are not assessed here.
 
-The emitter-counting setting has an active literature. For example,
+Emitter counting from photon coincidences is established experimental work.
+[Weston et al. (2002)](https://doi.org/10.1021/ac025730z) measured independent
+emitter numbers using time-resolved coincidence analysis.
+[Ta, Wolfrum and Herten (2010)](https://doi.org/10.1134/S1054660X09170204)
+developed a four-detector photon-antibunching model, and
+[Kurz et al. (2013)](https://doi.org/10.1002/smll.201300619) tested counting by
+photon statistics (CoPS) on DNA origami with controlled labeling and equal dye
+brightness. [Grußmayer and Herten (2017)](https://doi.org/10.1039/C7CP00363C)
+studied how brightness, photostability and acquisition settings affect CoPS.
+Its detector-specific multiple-photon probabilities include optical geometry
+and a low-probability background component; they should not be equated with
+the ideal additive count model used here.
+
 [Li et al.](https://arxiv.org/abs/2110.03893) use photon-number-resolving
 detection and Cramer-Rao bounds with an ideal binomial model and no background
-term. This calculation complements that setting; it was not compared with
-every related study.
+term. The present synthetic comparisons do not reproduce the Weston or CoPS
+experiments or benchmark their estimators. Their physical demonstrations
+support their studied setups, not detector validation for this repository.
+See the [reference and access notes](references.md) for the inspected sources.
 
 See [research process and limitations](../PROVENANCE.md) for the full
 disclaimer and development-process disclosure.

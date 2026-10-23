@@ -1,13 +1,13 @@
 {
   "metadata": {
-    "schema_version": 2,
+    "schema_version": 3,
     "scope": "Approximate fixed-pair necessary-count calculations, not certified interval bounds, global optima, achievable sample sizes, or measurements.",
     "python": "3.13.12",
     "numpy": "2.5.4",
     "scipy": "1.18.1",
     "source_sha256": {
-      "examples/emitter_background_cost.py": "b033f8c71ac5ee6b1e44f960f6d7e7084b7e48f174f19ea76f025d8e7e16b1c1",
-      "examples/emitter_published_parameters.py": "0c1095f027f84cb97e2562825351c088b1aca3f0fffa530f4b11fd0e244a03f9",
+      "examples/emitter_background_cost.py": "f0625f1c5ee88e7c26af6a8d2e7c1ee51874e9d85be12c6161735d6f229fb7f9",
+      "examples/emitter_published_parameters.py": "e466e9c50d9ca24dabddaf5e840fecd16641c90ef9680492632c1be3d92fbc1c",
       "examples/requirements-emitters.txt": "32a7ca7e3ba4c6f59fc9b4169102d9c4d1d9cad571b9a08bf50b8d130ffc2ffd"
     },
     "design": {

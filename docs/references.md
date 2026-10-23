@@ -40,6 +40,58 @@ Section 2.2, equations (2.9)–(2.10), defines the linear factorial-cumulant con
 
 Appendix B, equations (37) and (39), PDF page 11, gives an unbiased second factorial-cumulant estimator and its exact finite-sample variance in ordinary cumulants. Equations (40)–(41) distinguish the large-sample approximation. This supports the established estimator context, not the bounded-source identification theorem or a claim of competitive performance for this implementation.
 
+## Emitter counting by photon coincidences
+
+**Kenneth D. Weston, Martina Dyck, Philip Tinnefeld, Christian Müller,
+Dirk P. Herten and Markus Sauer.** *Measuring the Number of Independent
+Emitters in Single-Molecule Fluorescence Images and Trajectories Using
+Coincident Photons.* Analytical Chemistry **74**(20), 5342–5349 (2002).
+DOI 10.1021/ac025730z. [Publisher record](https://doi.org/10.1021/ac025730z).
+
+The publisher-indexed abstract and metadata were inspected. The abstract
+reports experimental inference of independent emitter numbers from time-tagged
+coincident photons on two detectors. Full text remained purchase-only or
+inaccessible; no equation-level comparison is claimed. This is an established
+experimental antecedent to the emitter-counting application.
+
+**Haisen Ta, Jürgen Wolfrum and Dirk-Peter Herten.** *An extended scheme for
+counting fluorescent molecules by photon-antibunching.* Laser Physics
+**20**(1), 119–124 (2010); published online 2009.
+DOI 10.1134/S1054660X09170204.
+[Publisher record](https://link.springer.com/article/10.1134/S1054660X09170204).
+
+The inspected publisher abstract describes a statistical counting scheme with
+pulsed excitation and four avalanche photodiodes. Its accuracy statement is
+theoretical, not a measurement reproduced here. Subscription full text was not
+obtained.
+
+**Anton Kurz, Jürgen J. Schmied, Kristin S. Grußmayer, Phil Holzmeister,
+Philip Tinnefeld and Dirk-Peter Herten.** *Counting Fluorescent Dye Molecules
+on DNA Origami by Means of Photon Statistics.* Small **9**(23), 4061–4068
+(2013). DOI 10.1002/smll.201300619.
+[Publisher record](https://onlinelibrary.wiley.com/doi/abs/10.1002/smll.201300619).
+
+Publisher-indexed and author-affiliated abstracts were inspected; the full
+article and supplement were not obtained. The abstracts describe experimental
+counting by photon statistics (CoPS) using DNA origami with controlled labeling
+and equal dye brightness, including counting precision and acquisition
+requirements. These are results for the studied setups, not validation of this
+repository's synthetic model or estimator.
+
+**Kristin S. Grußmayer and Dirk-Peter Herten.** *Time-resolved molecule
+counting by photon statistics across the visible spectrum.* Physical Chemistry
+Chemical Physics **19**(13), 8962–8969 (2017). DOI 10.1039/C7CP00363C.
+[Publisher record](https://doi.org/10.1039/C7CP00363C),
+[primary supplement](https://www.rsc.org/suppdata/c7/cp/c7cp00363c/c7cp00363c1.pdf).
+
+The abstract and indexed opening of the primary supplement were inspected;
+direct full-text retrieval failed. They describe CoPS simulations and
+experiments, four-detector event probabilities, optical geometry and a weak
+background detection component. The supplement's equations S1–S7 were not
+retrieved, so no equation-level equivalence to our additive
+binomial-plus-Poisson model is asserted. The [synthetic study](emitter-counting.md)
+does not reproduce or benchmark the Weston or CoPS methods.
+
 ## Detector assumptions
 
 **Michael Ware, Alan L. Migdall, Joshua Bienfang and Sergey Polyakov.** *Calibrating Photon-Counting Detectors to High Accuracy: Background and Deadtime Issues.* Journal of Modern Optics **54** (2007). [NIST publication record](https://www.nist.gov/publications/calibrating-photon-counting-detectors-high-accuracy-background-and-deadtime-issues-0).
@@ -76,6 +128,18 @@ Definition B.8, Lemma B.9 and Theorem B.10 were inspected. The
 compares their assumptions with this project's finite-order statement.
 
 ## Power sums and injectivity
+
+**Dania Kambly, Christian Flindt and Markus Büttiker.** *Factorial cumulants
+reveal interactions in counting statistics.* Physical Review B **83**, 075432
+(2011). DOI 10.1103/PhysRevB.83.075432.
+[Primary preprint, arXiv:1012.0750v2](https://arxiv.org/pdf/1012.0750v2),
+[publisher record](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.83.075432).
+
+Section II.C, equation (14), PDF page 4, gives the generalized-binomial
+factorial-cumulant power sums. Appendix B, equation (B1), PDF page 11, extracts
+a dominant conjugate singularity pair using high-order asymptotics. These
+locations were inspected on 23 October 2026; see the
+[hypothesis comparison](originality-review.md#a-closer-overlap-the-poisson-binomial-subclass).
 
 **Hana Melánová, Bernd Sturmfels and Rosa Winter.** *Recovery from Power Sums.*
 Experimental Mathematics **33**(2), 225–234 (2024); published online 2022.

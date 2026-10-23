@@ -163,13 +163,30 @@ class EstimatorControls(unittest.TestCase):
         self.assertLess(result["finite_minus_poisson_log_likelihood"], 0)
         self.assertFalse(result["global_optimum_certified"])
 
-    def test_e2_rejects_negative_background_and_probability_above_one(self):
+    def test_e2_retains_cancellation_estimate_with_negative_inferred_background(self):
         negative = study.factorial_cumulant_M(np.array([0, 0, 1, 1, 2]))
-        self.assertEqual(negative["status"], "negative_background")
+        self.assertEqual(negative["status"], "success")
+        self.assertEqual(negative["estimate"], 13.5)
         self.assertEqual(negative["raw_estimate"], 13.5)
-        self.assertEqual(negative["parameters"]["background"], "-1")
+        self.assertEqual(
+            negative["parameters"], {"M": "27/2", "p": "2/15", "background": "-1"}
+        )
+        self.assertTrue(negative["inferred_background_negative"])
+
+    def test_e2_still_rejects_invalid_probability_count_and_cumulant_signs(self):
         invalid_p = study.factorial_cumulant_M(np.array([1, 1, 1, 1, 3]))
         self.assertEqual(invalid_p["status"], "probability_out_of_range")
+        self.assertIsNone(invalid_p["estimate"])
+        self.assertEqual(invalid_p["parameters"]["p"], "103/95")
+        invalid_count = study.factorial_cumulant_M(np.array([1, 1, 1, 3]))
+        self.assertEqual(invalid_count["status"], "count_below_one")
+        self.assertIsNone(invalid_count["estimate"])
+        self.assertEqual(invalid_count["raw_estimate"], 0.75)
+        for record in ([0, 0, 0, 3], [0, 0, 1, 2]):
+            with self.subTest(record=record):
+                result = study.factorial_cumulant_M(np.array(record))
+                self.assertEqual(result["status"], "moment_sign_invalid")
+                self.assertIsNone(result["estimate"])
 
     def test_exact_moment_guards_accept_boundary_without_integer_overflow(self):
         # N^3 exceeds int64. The same empirical Bernoulli law has M=1,b=0.
@@ -187,9 +204,25 @@ class EstimatorControls(unittest.TestCase):
         result = study.calibrated_M(np.array([1, 1]), np.array([0, 1]))
         self.assertEqual(result["status"], "probability_out_of_range")
 
+    def test_e3_requires_nonnegative_calibration_background(self):
+        with self.assertRaises(ValueError):
+            study.calibrated_M(np.array([0, 1]), np.array([-1, 0]))
+        result = study.moment_result(
+            Fraction(27, 2),
+            Fraction(2, 15),
+            Fraction(-1),
+            require_nonnegative_background=True,
+        )
+        self.assertEqual(result["status"], "negative_background")
+        self.assertIsNone(result["estimate"])
+        self.assertEqual(result["raw_estimate"], 13.5)
+
     def test_continuous_count_domain_and_zero_source_mean(self):
-        result = study.physical_moment_result(
-            Fraction(3, 2), Fraction(1, 4), Fraction(1, 2)
+        result = study.moment_result(
+            Fraction(3, 2),
+            Fraction(1, 4),
+            Fraction(1, 2),
+            require_nonnegative_background=True,
         )
         self.assertEqual(result["status"], "success")
         self.assertEqual(result["estimate"], 1.5)
@@ -197,15 +230,49 @@ class EstimatorControls(unittest.TestCase):
         self.assertEqual(result["status"], "zero_source_mean")
 
     def test_failure_denominators_preserve_raw_negative_findings(self):
-        success = study.physical_moment_result(Fraction(2), Fraction(1, 2), Fraction(0))
-        failure = study.rejected("negative_background", 100)
+        success = study.factorial_cumulant_M(np.array([0, 0, 1, 1, 2]))
+        # Inject a failed result to check diagnostic aggregation independently
+        # of the count/probability failure status and conditional summaries.
+        failure = study.rejected(
+            "probability_out_of_range", 100, inferred_background_negative=True
+        )
         result = study.summarize_estimates([success, failure], 2)
         self.assertEqual(
             (result["attempted"], result["successful"], result["failed"]), (2, 1, 1)
         )
-        self.assertEqual(result["conditional_mean"], 2)
-        self.assertEqual(result["raw_finite_summary"]["mean"], 51)
-        self.assertEqual(result["failure_reasons"], {"negative_background": 1})
+        self.assertEqual(result["conditional_mean"], 13.5)
+        self.assertEqual(result["raw_finite_summary"]["mean"], 56.75)
+        self.assertEqual(result["failure_reasons"], {"probability_out_of_range": 1})
+        self.assertEqual(
+            result["inferred_background_diagnostics"],
+            {"evaluated": 2, "negative": 2, "negative_among_successful": 1},
+        )
+        json.dumps(result, allow_nan=False)
+
+    def test_e2_raw_summaries_retain_genuine_domain_failures(self):
+        records = ([0, 0, 1, 1, 2], [1, 1, 1, 1, 3], [1, 1, 1, 3], [0, 0, 1, 2])
+        result = study.summarize_estimates(
+            [study.factorial_cumulant_M(np.array(record)) for record in records], 2
+        )
+        self.assertEqual(
+            (result["attempted"], result["successful"], result["failed"]), (4, 1, 3)
+        )
+        self.assertEqual(
+            result["failure_reasons"],
+            {
+                "count_below_one": 1,
+                "moment_sign_invalid": 1,
+                "probability_out_of_range": 1,
+            },
+        )
+        self.assertEqual(result["raw_finite_summary"]["count"], 3)
+        self.assertAlmostEqual(
+            result["raw_finite_summary"]["mean"], (13.5 + 6859 / 10609 + 0.75) / 3
+        )
+        self.assertEqual(
+            result["inferred_background_diagnostics"],
+            {"evaluated": 3, "negative": 1, "negative_among_successful": 1},
+        )
 
     def test_all_failed_and_not_run_are_distinct(self):
         failure = study.summarize_estimates([study.rejected("moment_sign_invalid")], 2)

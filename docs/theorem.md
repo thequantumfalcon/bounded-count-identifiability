@@ -143,6 +143,9 @@ known bound on $n$. If $p=0$, all emitter counts give the same zero source law,
 so $n$ cannot be recovered. The general sharpness example compares arbitrary
 bounded laws and does not establish sharpness for this binomial subclass.
 
+Emitter counting from photon coincidences is established work, including
+[Weston et al. (2002)](https://doi.org/10.1021/ac025730z) and
+[counting by photon statistics (CoPS)](https://doi.org/10.1002/smll.201300619).
 The [synthetic emitter study](emitter-counting.md) examines specified estimators
 and numerical testing bounds under this model. It retains failed estimates and
 large errors from the cancellation procedure. Neither exact identification nor
@@ -156,7 +159,9 @@ The generalized matching family and its matched factorial moments are
 established prior work, and the lower-order counterexample above follows
 directly from them. Poisson cancellation is also established. For sums of at
 most $D$ independent Bernoulli variables, factorial cumulants are signed,
-scaled power sums of their success probabilities. Consequently, Proposition 24
+scaled power sums of their success probabilities, as explicitly given by
+[Kambly, Flindt and Büttiker (2011), equation (14), unidirectional case](https://arxiv.org/pdf/1012.0750v2).
+Consequently, Proposition 24
 of [Melánová, Sturmfels and Winter, *Recovery from Power Sums*](https://arxiv.org/pdf/2106.13981v1)
 implies identification from orders $2,\ldots,D+1$ for that subclass. This is our
 application of their stated result, not an originality claim.
