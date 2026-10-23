@@ -26,7 +26,7 @@ refer only to their original sources and checks.
 
 ## Reproduce from a fresh checkout
 
-Install Lean's Elan toolchain manager, Git, and Python 3.10 or later. From this directory, run:
+Install Lean's Elan toolchain manager, Git, and Python 3.11.4 or later. From this directory, run:
 
 ```text
 lake exe cache get

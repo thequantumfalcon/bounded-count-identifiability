@@ -1,6 +1,6 @@
-# Originality review and related identification results
+# Internal prior-art comparison and unresolved priority
 
-Review updated 21 October 2026. **The priority of the universal identification
+Literature search updated 21 October 2026. **The priority of the universal identification
 theorem remains unresolved.** A targeted search is not proof of novelty, and no
 independent human literature review is claimed.
 

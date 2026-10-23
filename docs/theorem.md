@@ -4,6 +4,14 @@ A probability law supported on the known set $\lbrace0,\ldots,D\rbrace$ is uniqu
 
 These are exact population statements. The known sharpness distribution is attributed below. Priority for the general sufficient-order theorem remains unresolved; this project does not claim an original discovery.
 
+An intended use is source/background separation in an idealized photon-counting
+model with bounded source counts and independent fixed-rate Poisson background.
+Related [Stegmann–König inverse counting statistics](https://arxiv.org/abs/1611.02043)
+uses generalized factorial cumulants to reconstruct stochastic dynamics; the
+[literature comparison](originality-review.md) distinguishes its assumptions
+and target. Applying the theorem to a detector requires the separate
+[calibration assumptions](calibration.md#photon-counts-and-detector-clicks).
+
 ## Definitions and assumptions
 
 Let $D\geq1$ be an integer and let $X$ be a nonnegative integer random variable with $\Pr(X\leq D)=1$. Its factorial generating polynomial is
@@ -55,6 +63,11 @@ $$
 This contradicts $[t^{D+1}]P=0$. Interchanging $P,Q$ excludes $c<0$. Hence $c=0$ and $P-Q=O(t^{D+2})$. Since both have degree at most $D$, they are equal. Substituting $t=z-1$ recovers the ordinary probability generating polynomials, so every probability agrees. $\square$
 
 For $D=0$ the only admissible law is the point mass at zero; identification is trivial.
+
+Nonnegativity is essential to the coefficient argument. If signed masses were
+allowed, $P(t)=1+t$ and $Q(t)=1-t$ would be distinct degree-one polynomials with
+the same $\kappa_2=-1$. The latter corresponds to masses $(2,-1)$ on $\lbrace0,1\rbrace$,
+so it is excluded by the probability-law assumptions.
 
 ## Unknown Poisson background
 

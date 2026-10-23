@@ -1,19 +1,36 @@
 # Verification record and trust limits
 
-Start with the [dated verification index](verification-index-2026-10-21.json).
-It links the completed 21-module, 124-root milestone at commit `68e644a`, its
-hosted receipts and a fresh repository-settings readback. CodeQL was configured
-and both open CodeQL and Dependabot alert counts were zero at that readback.
-The maintainer's earlier confirmations of account 2FA and Copilot Autofix are
-listed separately; the API capture did not verify them. Settings and alerts can
-change, and a successful Scorecard workflow does not mean a perfect score.
+The [written theorem](../docs/theorem.md) and [claim map](../docs/claims.md)
+state what each proof and calculation establishes. Build records below tie
+checks to particular source versions; they do not establish originality,
+independent human review or physical validation.
 
-The index records a completed earlier milestone, not the later repair commit
-that contains it. It cannot certify its own future commit hash. For that commit,
-inspect its [Actions runs](https://github.com/thequantumfalcon/bounded-count-identifiability/actions)
-and uploaded receipts. The original records below remain unchanged.
+## Latest inspected hosted build
 
-The [red-team follow-up](../docs/red-team-followup.md) documents a confirmed
+Checked on 22 October 2026: commit
+`dab7d860e2778e58b15c19d203afa6c1b0c68d9c` passed
+[CI run 39711032501](https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39711032501)
+and the separate
+[Isabelle run 39711032403](https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39711032403).
+The CI run includes the pinned Lean build, fresh compilation, axiom audits,
+kernel replay, certificate controls, Python package/artifact checks on Linux
+and Windows, fuzzing, FLINT, Sage and the synthetic experiment. GitHub reports
+every component as successful. These results apply to that commit, not to
+subsequent edits; inspect the exact commit's
+[Actions results](https://github.com/thequantumfalcon/bounded-count-identifiability/actions)
+when reproducing a later version.
+
+The current Lean research suite has 25 modules and 158 registered theorem roots.
+The 21 modules and 124 roots in the earlier index describe an older milestone;
+four later modules added 34 roots. Isabelle's 31 roots are counted separately.
+
+Here, a **receipt** means a saved execution record with source hashes and outputs;
+**source-bound** means those hashes identify the files checked. Neither term
+implies independent review. Earlier records retain their original scope.
+
+## Earlier checks and their limits
+
+The [internal tooling cross-checks](../docs/red-team-followup.md) document a confirmed
 weakness in the older verifier: compilation output could forge an allowed
 axiom message, and core theorem coverage was incomplete. Those historical
 receipts do not prove resistance to that attack. The repair separates the
@@ -61,7 +78,7 @@ run in CI; the public verifier separately recompiles the core and both
 extensions. Neither form of checking supplies external human review.
 
 The [research extensions](../docs/probability-extensions.md) have a separate
-portable suite that recompiles all twenty-four project modules. Its receipts belong
+portable suite that recompiles all twenty-five project modules. Its receipts belong
 to their exact sources and verifier. The
 [background-uncertainty checker record](background-uncertainty-kernel-check.json)
 binds that source to an additional local Lean4Lean execution accepting five
@@ -198,3 +215,14 @@ definitions, zero transitive oracle dependencies and four expected rejections.
 explicit report export and separate hosted Linux workflow. This is a distinct
 proof implementation with shared project provenance, not outside human review
 or verification of the entire Sage program.
+
+## Historical repository settings
+
+The [dated verification index](verification-index-2026-10-21.json) links the
+completed 21-module, 124-root milestone at commit `68e644a`, its hosted records
+and a repository-settings readback. CodeQL was configured and both open CodeQL
+and Dependabot alert counts were zero at that readback. The maintainer's earlier
+confirmations of account 2FA and Copilot Autofix are listed separately; the API
+capture did not verify them. Settings and alerts can change, and a successful
+Scorecard workflow does not mean a perfect score. These settings are maintenance
+evidence, not evidence for the mathematical claims.

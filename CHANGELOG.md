@@ -6,10 +6,11 @@ The Python API is experimental; no stable release has been published.
 
 ## [Unreleased]
 
-- Added an Isabelle/HOL reconstruction of the mean-one, ceiling-one endpoint
-  family and the retained exact algebraic descriptors, with an exported
-  definition/oracle audit and four deliberately invalid controls. This adds a
-  second proof system for the stated family; full Sage verification remains open.
+### Changed
+
+- Put the theorem, proof sketch, sharpness and scope first in the README; link
+  the full process disclaimer and one-page review request. Label internal
+  cross-checks explicitly and explain historical versus current proof counts.
 
 - Updated the hash-pinned development dependency packaging to 26.3, following
   review of the official wheel/source hashes and the routine dependency PR.
@@ -26,13 +27,17 @@ The Python API is experimental; no stable release has been published.
   These tools are development/build dependencies; the library has no runtime
   dependencies. Updated download hashes are committed with the version pins.
 
-- Preserved the first successful fresh-host Linux proof build and cross-platform
-  Python artifact checks, bound to the exact initial commit.
 - Used a supported `.txt` requirements filename so Dependabot can discover all
   locked development packages, not just the build-system requirements.
 
 ### Added
 
+- An Isabelle/HOL reconstruction of the mean-one, ceiling-one endpoint
+  family and the retained exact algebraic descriptors, with an exported
+  definition/oracle audit and four deliberately invalid controls. This adds a
+  second proof system for the stated family; full Sage verification remains open.
+- A record of the first successful fresh-host Linux proof build and cross-platform
+  Python artifact checks, bound to the exact initial commit.
 - Natural-count aggregation, exact outward-radius checks and conditional pair,
   projected-source and empty-decision coverage in ten new Lean roots. Small
   explicit records receive kernel-checked mean/radius/endpoint certificates,
@@ -134,6 +139,10 @@ The Python API is experimental; no stable release has been published.
 
 ### Fixed
 
+- Correct the recorded synthetic-run timing and stale Python/module-count
+  guidance; link the inspected hosted runs for commit `dab7d86`. Add a signed-mass
+  example explaining why nonnegativity is required, without changing the theorem
+  assumptions or proof sources.
 - Separate generated import-only axiom queries from proof compilation output,
   so a proof file's messages cannot supply its axiom audit. Require exact unique
   root coverage and an allowed-axiom subset across core and extension checks;

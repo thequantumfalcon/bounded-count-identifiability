@@ -12,7 +12,7 @@ toolchain. Code and documentation are licensed for reuse, while third-party
 notices retain their own terms. A process disclosure is separate from authorship
 metadata. The maintainer is a human using a public pseudonym.
 
-The initial project uses the supplied setup standard's T2 scope. Package-registry
-publication, growth automation, promotional posts, fabricated badges and unsupported
-claims of completeness are outside this setup. Security and CI settings are
-recorded as observed states, not assumed successful because a command was issued.
+Package-registry publication, growth automation, promotional posts, fabricated
+badges and unsupported claims of completeness are outside this scope. Security
+and CI settings are recorded as observed states, not assumed successful because
+a command was issued.

@@ -81,8 +81,8 @@ The [compact execution record](../evidence/count-stress-check.json) binds these
 statistics to a replay of the final public-source bytes, with matching raw-data
 hashes. The original design and first-run outcome were retained.
 
-The initial local Python 3.11 run saved all 1,200,000 counts in 2.77 seconds on
-the development machine. Runtime is descriptive, not a hardware benchmark.
+The recorded local Python 3.11 replay saved all 1,200,000 counts in 2.75 seconds
+on the development machine. Runtime is descriptive, not a hardware benchmark.
 
 | Model | Empirical $m_1$ | Empirical $m_2$ | Empirical $m_3$ |
 | --- | --- | --- | --- |

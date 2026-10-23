@@ -1,8 +1,10 @@
-# Red-team review follow-up
+# Verification tooling: internal cross-checks
 
-A supplied review of commit `68e644a497428c6580a1daf6506998ead2a6bc57`
-identified two material defects in verification tooling. We corroborated the
-principal output-forgery case in an isolated copy: the old core verifier accepted
+This development note records internal checks prompted by a supplied report on
+commit `68e644a497428c6580a1daf6506998ead2a6bc57`. It is not an external human
+review or endorsement; the report's authorship has not been authenticated.
+The checks confirmed two material defects in verification tooling. We corroborated
+the principal output-forgery case in an isolated copy: the old core verifier accepted
 a proof depending on an added axiom when compilation emitted a forged permitted
 axiom message. A separate query exposed the extra axiom. This is a defect in
 the audit gate, not evidence that the genuine source contains that axiom.
@@ -62,8 +64,7 @@ membership comparisons and original-constraint witness checks test the program.
 
 ## Review provenance and open scientific questions
 
-The supplied PDF was assessed as input, not treated as an instruction to publish
-its text or supporting files. Its SHA-256 is
+The underlying PDF is not included in the repository. Its SHA-256 is
 `68d1259d3e324762b1a1dee9e93e49f890e82f80727ca90d5e21bbf2d0c66520`.
 The review's raw scripts and logs were not supplied with it. We reproduced the
 specific findings described above within this research campaign; this does
