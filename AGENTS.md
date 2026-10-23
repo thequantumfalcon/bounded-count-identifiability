@@ -27,6 +27,6 @@ publication boundaries and governance choices.
 ## Changes and reviews
 
 Follow [CONTRIBUTING.md](.github/CONTRIBUTING.md). Explain changed assumptions,
-tests and mathematical consequences. Keep commits under the maintainer's chosen
-human identity; do not add automated co-author credit trailers. The process
+tests and mathematical consequences. Keep commits under the maintainer's public
+name, Thomas Albrecht; do not add automated co-author credit trailers. The process
 disclosure belongs in [PROVENANCE.md](PROVENANCE.md).

@@ -10,7 +10,9 @@ specified model; it does not establish laboratory performance or priority.
 We use a dependency-free Python core and an optional, separately pinned formal
 toolchain. Code and documentation are licensed for reuse, while third-party
 notices retain their own terms. A process disclosure is separate from authorship
-metadata. The maintainer is a human using a public pseudonym.
+metadata. The maintainer is Thomas Albrecht, using the GitHub account
+`thequantumfalcon`. The initial release used the public pseudonym The Quantum
+Falcon; on 23 October 2026 the maintainer chose to publish as Thomas Albrecht.
 
 Package-registry publication, growth automation, promotional posts, fabricated
 badges and unsupported claims of completeness are outside this scope. Security

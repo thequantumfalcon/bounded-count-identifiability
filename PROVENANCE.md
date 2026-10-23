@@ -33,5 +33,8 @@ under the applicable licenses. Corrections, counterexamples and independent
 mathematical or technical scrutiny are welcome.
 
 This statement describes the development process. Authorship and maintenance
-remain with [The Quantum Falcon](https://github.com/thequantumfalcon); AI systems
+remain with [Thomas Albrecht](https://github.com/thequantumfalcon); AI systems
 are not listed as authors or co-authors.
+
+Earlier versions credited the same maintainer as The Quantum Falcon. Historical
+evidence and commit records retain that attribution.

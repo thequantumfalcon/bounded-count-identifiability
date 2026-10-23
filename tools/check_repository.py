@@ -26,7 +26,7 @@ import tempfile
 import tomllib
 from urllib.parse import unquote, urlsplit
 
-PERSONA = "The Quantum Falcon"
+PERSONA = "Thomas Albrecht"
 _policy_spec = importlib.util.spec_from_file_location(
     "repository_proof_audit",
     Path(__file__).resolve().parents[1] / "lean/proof_audit.py",

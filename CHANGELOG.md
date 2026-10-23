@@ -8,6 +8,11 @@ The Python API is experimental; no stable release has been published.
 
 ### Changed
 
+- Use Thomas Albrecht as the public author and maintainer name, retaining the
+  `thequantumfalcon` GitHub account and existing demo address. No ORCID is listed.
+  Refresh the inspected CI and Isabelle links for commit `8061de8`; verification
+  disclosures and mathematical assumptions are unchanged.
+
 - Put the theorem, proof sketch, sharpness and scope first in the README; link
   the full process disclaimer and one-page review request. Label internal
   cross-checks explicitly and explain historical versus current proof counts.

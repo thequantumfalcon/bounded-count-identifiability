@@ -82,7 +82,7 @@ arithmetic. These finite calculations illustrate the proof.
 
 ## Maintenance and reuse
 
-Maintained by [The Quantum Falcon](https://github.com/thequantumfalcon).
+Maintained by [Thomas Albrecht](https://github.com/thequantumfalcon).
 Corrections, counterexamples and independent mathematical review are welcome
 through [Discussions](https://github.com/thequantumfalcon/bounded-count-identifiability/discussions)
 and the issue forms. See [contribution guidance](.github/CONTRIBUTING.md),

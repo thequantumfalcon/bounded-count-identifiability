@@ -13,7 +13,8 @@ are reviewed against upstream releases and tested together, including installed
 wheels and a rebuilt source distribution. The library has no runtime
 dependencies. A version-update pull request is not itself a vulnerability report.
 
-Publication uses a locally signed commit under the maintainer's public persona.
+Publication uses a locally signed commit under the maintainer's public name,
+Thomas Albrecht.
 That exact commit must pass the pull request checks before `main` advances to it.
 Create one final signed commit atop current `main` on the PR branch before
 validation, then advance `main` by a local fast-forward to that same commit.

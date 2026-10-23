@@ -3,7 +3,7 @@ message: "Please cite this repository when using its proof sources or software. 
 type: software
 title: "Bounded count identifiability: formal proofs and exact reproductions"
 authors:
-  - name: "The Quantum Falcon"
+  - name: "Thomas Albrecht"
     website: "https://github.com/thequantumfalcon"
 repository-code: "https://github.com/thequantumfalcon/bounded-count-identifiability"
 url: "https://github.com/thequantumfalcon/bounded-count-identifiability"
