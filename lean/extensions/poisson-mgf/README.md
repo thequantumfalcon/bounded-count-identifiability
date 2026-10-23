@@ -25,4 +25,4 @@ python lean/extensions/d1-law/verify_law_bridge.py --suite research --run extern
 The verifier recompiles project modules with `--trust=0` and checks explicit
 roots, standard axioms and source bindings while reusing pinned dependencies.
 See the [extension guide](../../../docs/probability-extensions.md) for the scope
-and reproduction limits. Earlier hosted receipts do not verify these new bytes.
+and reproduction limits. Earlier hosted verification records do not verify these new bytes.

@@ -2,7 +2,7 @@
 
 This extension proves deterministic error bounds for the algebraic formulas
 `secondCumulant p = -p^2` and `backgroundFromMean mu p = mu-p`.
-It is separate from the six core modules and their historical receipts.
+It is separate from the six core modules and their historical verification records.
 
 For nonnegative real parameters $p,q$,
 

@@ -29,17 +29,17 @@ python lean/extensions/d1-law/verify_law_bridge.py --run local-check
 
 The verifier resolves Lean and dependency paths through `lake env`, excludes
 Lake's cached project library, and invokes the core verifier to
-compile all six core sources afresh. It checks the new core receipt, theorem
+compile all six core sources afresh. It checks the new core verification record, theorem
 root lists, source bindings and artifact hashes before compiling D=1 stability
 and the law bridge in order with `--trust=0`. The extensions import the fresh
 core outputs. Existing project or extension artifacts in dependency search
 directories are rejected. Lean and mathlib dependency caches are still reused;
 this is not a clean rebuild of the entire toolchain.
 
-Portable receipts and logs are written to `build/law-bridge/local-check/` and
+Portable verification records and logs are written to `build/law-bridge/local-check/` and
 `lean/verification/d1-law-local-check/`. Compiled core artifacts are under
 `lean/.verification/d1-law-local-check/`. Run names cannot be reused. CI uploads
-the receipts and logs, not compiled artifacts.
+the verification records and logs, not compiled artifacts.
 
 For an already installed compiler and dependency cache, use `--mode
 existing-cache --lean-executable <compiler> --library <dependency-directory>`

@@ -8,10 +8,10 @@ independent human review or physical validation.
 ## Latest inspected hosted build
 
 Checked on 23 October 2026: commit
-`8061de8418e7fc9555de04f9c2ef89b43efddca9` passed
-[CI run 39908537934](https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39908537934)
+`c180a18fd7ec1d795aafab22f616670d2c405a54` passed
+[CI run 39913785767](https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39913785767)
 and the separate
-[Isabelle run 39908537938](https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39908537938).
+[Isabelle run 39913785768](https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39913785768).
 The CI run includes the pinned Lean build, fresh compilation, axiom audits,
 kernel replay, certificate controls, Python package/artifact checks on Linux
 and Windows, fuzzing, FLINT, Sage, the browser demo, the synthetic count-model
@@ -25,21 +25,21 @@ The current Lean research suite has 25 modules and 158 registered theorem roots.
 The 21 modules and 124 roots in the earlier index describe an older milestone;
 four later modules added 34 roots. Isabelle's 31 roots are counted separately.
 
-Here, a **receipt** means a saved execution record with source hashes and outputs;
-**source-bound** means those hashes identify the files checked. Neither term
-implies independent review. Earlier records retain their original scope.
+Saved execution records include source hashes and outputs, identifying the
+files checked. They do not imply independent review. Earlier records retain
+their original scope.
 
 ## Earlier checks and their limits
 
 The [internal tooling cross-checks](../docs/red-team-followup.md) document a confirmed
 weakness in the older verifier: compilation output could forge an allowed
 axiom message, and core theorem coverage was incomplete. Those historical
-receipts do not prove resistance to that attack. The repair separates the
-generated axiom query from proof compilation and checks an exact root registry;
+verification records do not prove resistance to that attack. The repair separates
+the generated axiom query from proof compilation and checks an exact root registry;
 stored-proof replay adds a different check. Neither is a hostile-code sandbox.
 
 The portable public entry point is the pinned [Lean project](../lean/README.md).
-Its [local receipt](../lean/verification/local-existing-cache-formatted/result.json)
+Its [local verification record](../lean/verification/local-existing-cache-formatted/result.json)
 records fresh compilation of all six modules with `--trust=0`, against existing
 dependency artifacts. Source, verifier, lock and output hashes bind that run
 to their historical bytes, including the earlier verifier. Selected theorem
@@ -49,7 +49,7 @@ relative to the trusted implementation and axioms.
 
 The separate [initial hosted CI run](https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39552914288)
 passed on a fresh Linux runner, including dependency retrieval, the six-module
-build and fresh recompilation. Its [Linux receipt](../lean/verification/github-initial-d720227/result.json)
+build and fresh recompilation. Its [Linux verification record](../lean/verification/github-initial-d720227/result.json)
 is preserved alongside the logs. Python package and artifact checks also passed
 on Linux (3.11 and 3.13) and Windows (3.13). See the
 [hosted validation record](hosted-validation.json) for the checked commit and
@@ -79,8 +79,8 @@ run in CI; the public verifier separately recompiles the core and both
 extensions. Neither form of checking supplies external human review.
 
 The [research extensions](../docs/probability-extensions.md) have a separate
-portable suite that recompiles all twenty-five project modules. Its receipts belong
-to their exact sources and verifier. The
+portable suite that recompiles all twenty-five project modules. Its verification
+records belong to their exact sources and verifier. The
 [background-uncertainty checker record](background-uncertainty-kernel-check.json)
 binds that source to an additional local Lean4Lean execution accepting five
 roots and 10,498 declarations. Lean4Lean shares implementation ancestry with
@@ -134,15 +134,15 @@ inspect the result for the commit being reviewed. These programs are not
 formally verified and could share modeling mistakes. See
 [reproduction commands](../docs/reproduction.md).
 
-CI results belong to the exact commit checked. Historical receipts must not be
-presented as results for changed proof bytes. Proof changes require new checks,
+CI results belong to the exact commit checked. Historical verification records
+must not be presented as results for changed proof bytes. Proof changes require new checks,
 not merely updated hashes. No item proves novelty, physical assumptions,
 practical sample size, external peer review or universal software security.
 Unresolved obligations remain in the [roadmap](../docs/roadmap.md).
 
 The finite-mixture extension adds eight registered roots to the research suite.
 Its fresh compilation, separate axiom audit and bundled-kernel replay are part
-of the current CI, not retroactively part of the earlier 21-module receipts.
+of the current CI, not retroactively part of the earlier 21-module records.
 The separate `flint-ci-receipt` records exact finite calculations with a different
 arithmetic implementation. The `atheris-ci-receipt` records bounded
 coverage-guided software tests and their deliberate-fault control. Neither
@@ -152,7 +152,7 @@ The finite-mixture sampling extension adds eight further roots for actual
 square integrability, total variance, conservative variance ceilings and
 simultaneous moment coverage. They are included in the current 25-module,
 158-root research suite and its CI compilation, separate axiom audits and
-kernel replay. Earlier 21- and 22-module receipts retain their original scope.
+kernel replay. Earlier 21- and 22-module records retain their original scope.
 The expanded FLINT calculation checks total-variance identities and ceilings,
 rejects applying the fixed-rate ceilings to mixtures, and checks the arithmetic
 of the written shared-rate dependence counterexample. These finite controls
@@ -172,23 +172,26 @@ binds the eight finite-mixture sampling roots to fresh compilation, a separate
 axiom audit and Lean4Lean acceptance of 34,903 declarations. The existing
 wrong-type control exited 1 with an explicit kernel type-mismatch diagnosis;
 error-printer panics and a fallback printer remain, so its diagnostics were not
-clean. Twenty-two project dependencies were reused as receipt-bound objects.
+clean. Twenty-two compiled project dependencies were reused, with their hashes
+checked against the earlier verification record.
 Lean4Lean shares Lean kernel ancestry; this local record offers limited
 implementation independence and is not a CI run, outside mathematical review
 or validation of the model's physical assumptions.
 
 The exact rational decision extension adds eight roots for point, pair and global
 real-region decisions. Its concrete certificate runner checks 19 correct queries
-and three deliberately wrong answers, with separate axiom audits and source-bound
-receipts inside the required formal CI job. Historical receipts retain their
-original module lists. See the [query guide](../lean/extensions/confidence-executable/README.md).
+and three deliberately wrong answers, with separate axiom audits and verification
+records identifying the source hashes inside the required formal CI job.
+Historical records retain their original module lists. See the
+[query guide](../lean/extensions/confidence-executable/README.md).
 
 The [local executable-decision checker record](confidence-executable-kernel-check.json)
 binds all eight universal roots to fresh compilation, a separate axiom audit
 and Lean4Lean acceptance of 10,613 declarations. The earlier wrong-type
 control was explicitly rejected; its known error-printer panics and fallback
-remain disclosed. The run reused 21 source-bound project objects and the
-upstream runtime. It checks the decision theorems, not the Python frontend,
+remain disclosed. The run reused 21 compiled project objects tied to their
+source hashes and the upstream runtime. It checks the decision theorems,
+not the Python frontend,
 Sage execution or model calibration. Lean4Lean's shared kernel ancestry and
 the common exporter limit implementation independence.
 
@@ -202,8 +205,9 @@ The [local count-confidence checker record](counts-confidence-kernel-check.json)
 binds all ten universal roots to fresh compilation, a separate axiom audit
 and Lean4Lean acceptance of 34,779 declarations. The earlier wrong-type
 control was explicitly rejected; its known error-printer panics and fallback
-remain disclosed. The run reused 24 source-bound project objects and the
-upstream runtime. It checks the count-confidence theorems, not the Python frontend,
+remain disclosed. The run reused 24 compiled project objects tied to their
+source hashes and the upstream runtime. It checks the count-confidence theorems,
+not the Python frontend,
 Sage execution or model calibration. Lean4Lean's shared kernel ancestry and
 the common exporter limit implementation independence.
 

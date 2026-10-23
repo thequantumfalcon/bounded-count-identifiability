@@ -16,7 +16,7 @@ network access, accelerator or credentials. The fixed design is 200 repetitions
 of 2,000 windows for each of three models: 1,200,000 counts altogether. It uses
 bounded blocks, a cooperative 180-second deadline and a count-overflow error
 rather than clipping. Hosted runs also need an external job timeout. Raw counts
-occupy 2,400,000 bytes; receipts and summaries add a small amount.
+occupy 2,400,000 bytes; execution records and summaries add a small amount.
 
 ## Fixed design and targets
 
@@ -101,11 +101,11 @@ without selecting a new seed or discarding the original outcome.
 ## Outputs and controls
 
 The output directory contains the executed source snapshot, frozen design,
-runtime and hash receipt, all stream seeds, per-repetition integer sums and three
-raw count files. Files ending in `.counts.u16le` contain unsigned 16-bit
+a record of runtime and hashes, all stream seeds, per-repetition integer sums
+and three raw count files. Files ending in `.counts.u16le` contain unsigned 16-bit
 little-endian counts in repetition-major, then window-major order, with shape
-`[200, 2000]` and no header. The receipt records each count file's SHA-256 and
-size; it also hashes the other saved artifacts. Binary readback recomputes all
+`[200, 2000]` and no header. The execution record lists each count file's SHA-256
+and size; it also hashes the other saved artifacts. Binary readback recomputes all
 factorial sums and checks each raw file's hash again.
 
 The hosted `stress` job runs this program as part of required CI, with a

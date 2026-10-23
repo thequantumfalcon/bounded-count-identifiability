@@ -8,6 +8,13 @@ The Python API is experimental; no stable release has been published.
 
 ### Changed
 
+- Present the theorem as a short note with attributed sharpness and a
+  conditional emitter-counting application. Explain the simpler binomial
+  inverse and retain the synthetic study's failure and calibration limits.
+  Replace verification jargon in explanatory prose and sharpen the prior-art
+  comparison and review questions. The universal statement, proof sources and
+  unresolved priority are unchanged.
+
 - Use Thomas Albrecht as the public author and maintainer name, retaining the
   `thequantumfalcon` GitHub account and existing demo address. No ORCID is listed.
   Refresh the inspected CI and Isabelle links for commit `8061de8`; verification

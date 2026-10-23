@@ -1,6 +1,6 @@
 # Internal prior-art comparison and unresolved priority
 
-Literature search updated 21 October 2026. **The priority of the universal identification
+Literature search updated 23 October 2026. **The priority of the universal identification
 theorem remains unresolved.** A targeted search is not proof of novelty, and no
 independent human literature review is claimed.
 
@@ -11,6 +11,24 @@ $\kappa_2,\ldots,\kappa_{D+1}$, without supplying $\kappa_1$. The
 assume the mean, a factorization into Bernoulli laws, or knowledge of the entire
 generating function have different hypotheses.
 
+## Publication decision
+
+Present the [short note](theorem.md) as a theorem with an elementary proof and
+explicit attribution, without claiming a new theorem, a new sharpness family,
+or a new emitter-counting method. The current evidence supports these separate
+decisions:
+
+| Question | Current answer | Consequence for the note |
+| --- | --- | --- |
+| Is the sharpness construction original here? | No. Afendras–Papadatos give the exact generalized matching law and factorial moments, crediting Niermann for the law. | Attribute the construction and its matching property. |
+| Is cancellation of independent fixed Poisson background original here? | No. It is established factorial-cumulant machinery. | State it as the observation-model corollary, with a citation. |
+| Is identification for sums of independent Bernoulli variables already covered? | Yes, as a consequence of Melánová–Sturmfels–Winter, Proposition 24, under the power-sum substitution below. | Acknowledge this subclass overlap; the substitution is our comparison with their statement. |
+| Is the universal theorem for arbitrary laws on $0,\ldots,D$ known or new? | Unresolved. No exact earlier statement or complete reduction was located in the inspected sources. | Make no priority claim. Correctness of the supplied proof does not settle this question. |
+| Does the emitter illustration establish a new measurement method? | No. Its conclusions are conditional on the count model; no physical validation or competitive estimation result is supplied. | Keep it an application under assumptions. |
+
+This is a definite decision about what to publish, not a definitive historical
+verdict. A positive novelty claim requires further evidence.
+
 ## Established ingredients
 
 | Ingredient | Primary source and inspected location | Consequence for attribution |
@@ -18,12 +36,15 @@ generating function have different hypotheses.
 | Generalized matching distribution and its matched factorial moments | [Afendras and Papadatos, arXiv:1411.1165](https://arxiv.org/pdf/1411.1165), equation (3.1) and Lemma 3.1, PDF page 7. | Exactly the family used in the order-sharpness example. The source credits Niermann (1999). Neither the family nor its moment matching is new here. |
 | Factorial-moment inversion | The same paper, Lemma 2.1, equation (2.5), PDF page 5. | Recovering probabilities once all required factorial moments are known is established machinery. |
 | Poisson translation and subtraction | [Jørgensen and Kokonendji, arXiv:1409.7482](https://arxiv.org/pdf/1409.7482), section 2.2, equations (2.9)–(2.10). | A fixed independent Poisson contribution changes only the first factorial cumulant. This cancellation is established. |
-| Recovery of nonnegative numbers from selected power sums | [Melánová, Sturmfels and Winter, arXiv:2106.13981v1](https://arxiv.org/pdf/2106.13981), Proposition 24, PDF page 12. | States a closely related identification result applicable to the Poisson-binomial subclass, as explained below. |
+| Recovery of nonnegative numbers from selected power sums | [Melánová, Sturmfels and Winter, arXiv:2106.13981v1](https://arxiv.org/pdf/2106.13981v1), Proposition 24, PDF page 12. | States a closely related identification result applicable to the Poisson-binomial subclass, as explained below. |
 
 Niermann's [publisher record](https://link.springer.com/article/10.1007/BF02925521)
 was inspected previously, but its restricted full text was not accessed. The
 exact formula attribution above rests on the accessible Afendras–Papadatos
-preprint. Additional references and access boundaries are in
+preprint. On 23 October 2026 the publisher still offered only a subscription
+preview. The [author-affiliated publication list](https://ewas.de/publikationen.html)
+listed the article without a full-text link; no accessible copy was obtained.
+Additional references and access boundaries are in
 [references.md](references.md).
 
 ## Additional terminology: finitized Poisson laws
@@ -74,6 +95,22 @@ as $(1+p_1t)(1+p_2t)$ with real Bernoulli parameters. Thus this application
 does not by itself settle the general theorem's priority. The wider
 power-sum literature is a concrete citation trail for further review.
 
+### Follow-up through the cited injectivity theorem
+
+Proposition 24 cites Müller, Feliu, Regensburger, Conradi, Shiu and Dickenstein's
+[*Sign conditions for injectivity of generalized polynomial maps*](https://arxiv.org/pdf/1311.5493v2),
+Theorem 1.4. Its statement and the preceding definitions were inspected on
+23 October 2026. It characterizes injectivity for a family of generalized
+polynomial maps on the positive orthant, with conditions quantified over all
+positive coefficient parameters. This is an earlier general injectivity result
+and a concrete continuation of the citation trail.
+
+No reduction of the arbitrary bounded-law cumulant map to those hypotheses was
+established in this review. Such a reduction would have to specify the maps and
+parameter domain, verify the sign conditions, and cover boundary laws with zero
+masses. Merely observing a nonzero Jacobian at interior points would not supply
+that comparison. This source is a review lead, not a resolution of priority.
+
 ## Aggregate recovery from full generating functions
 
 Fishman and coauthors' [*Count Bridges*, arXiv:2603.04730v1](https://arxiv.org/html/2603.04730v1),
@@ -112,6 +149,13 @@ sources identified above and compared their hypotheses with the project's
 statement. No exact earlier statement covering every law on $0,\ldots,D$ at
 the cutoff $D+1$ was located in that inspected material.
 
+The 23 October follow-up rechecked the exact Afendras–Papadatos and
+Melánová–Sturmfels–Winter statements, pursued legitimate access to Niermann's
+article, and followed Proposition 24's reference to the earlier injectivity
+theorem. Searches also used “missing mean”, “finite support”, “Poisson
+convolution” and “nonnegative polynomial coefficients”. These steps did not
+change the unresolved-priority conclusion.
+
 This is a bounded search result. It does not establish that no such theorem
 exists, that the positivity proof is new, or that this project has priority.
 Older books, other terminology, non-English work, subscription sources and
@@ -122,3 +166,20 @@ Independent review should resolve both the exact statement and its relationship
 to earlier work. A focused [review request](reviewer-request.md) identifies the
 questions. A citation with a theorem number and a precise hypothesis comparison
 would be more useful than an informal claim that the result is familiar or new.
+
+## Exact questions still requiring review
+
+1. Does an earlier theorem identify **every** law on a known $0,\ldots,D$ from
+   precisely the factorial-cumulant orders $2,\ldots,D+1$, with no supplied
+   mean? A result for generic laws, real-rooted generating polynomials, or an
+   entire generating function does not alone answer this question.
+2. Is the positivity argument in the short note an immediate corollary of an
+   earlier polynomial or injectivity theorem? Supply the theorem number and
+   full substitution, including degenerate support and zero coefficients.
+3. Does Niermann's full article contain an identification statement beyond the
+   known matching family? Direct inspection remains outstanding; the
+   Afendras–Papadatos attribution already settles the family's status.
+4. What publication description best reflects the resulting comparison: an
+   exposition of a known result, a corollary with a short proof, or a result
+   whose priority still needs investigation? Until that comparison is supplied,
+   retain the publication decision above.

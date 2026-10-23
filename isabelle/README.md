@@ -90,7 +90,8 @@ the expected acceptance line is
 The local checked build produced that export and acceptance line.
 The timeout option limits session work; it is not a total
 installation or download deadline. A successful build alone does not replace
-the separate source-bound axiom/oracle audit and negative controls. Local Windows evidence and hosted Linux runs are separate records; inspect
+the separate axiom/oracle audit identifying the checked source hashes and its
+negative controls. Local Windows evidence and hosted Linux runs are separate records; inspect
 the workflow results for the commit being reviewed.
 
 The separate standard-library control harness requires Python 3.11 or later
@@ -105,7 +106,7 @@ python3 isabelle/check_controls.py --isabelle "$(command -v isabelle)" \
 It tests a false endpoint, a skipped proof, an extra axiom and a changed
 defining equation. Expected failures must have the intended mathematical or
 audit diagnostic; missing tools, import failures and timeouts do not count as
-successful rejection controls. Preserve the generated receipt and logs.
+successful rejection controls. Preserve the generated verification record and logs.
 
 ## Independence and trust
 

@@ -11,9 +11,10 @@ the audit gate, not evidence that the genuine source contains that axiom.
 
 As a separate check, a generated import query inspected all 124 theorem roots
 of the genuine 21-module milestone. Only the permitted standard axioms appeared.
-That check reused the existing source-bound project objects; it was not a fresh
-21-module compile or an additional proof-kernel implementation. Successful older
-CI runs did not cover the demonstrated attack and are not presented as doing so.
+That check reused existing compiled project objects identified by source hashes;
+it was not a fresh 21-module compile or an additional proof-kernel implementation.
+Successful older CI runs did not cover the demonstrated attack and are not
+presented as doing so.
 
 ## Disposition of the five findings
 
@@ -22,14 +23,15 @@ CI runs did not cover the demonstrated attack and are not presented as doing so.
 | BCI-01: forgeable axiom audit | Confirmed. Separate generated import-only axiom queries replace reliance on messages emitted during proof compilation. Exact source, artifact and audit bindings accompany the result. | A separate process is not a hostile-code sandbox. Compiler, dependencies, verifier and host remain trusted. |
 | BCI-02: incomplete core audit | Confirmed in substance. Core and extensions use an explicit root registry and shared admission policy. Missing, duplicate or extra roots and unapproved axioms must fail. Valid proofs may use a strict subset of the allowed axioms. | The review's particular single-root deletion example would already fail; a multi-root module supplies the valid missing-root case. Token checks are defense in depth. |
 | BCI-03: historical CI evidence | Preserve the original records and add a [dated index and settings readback](../evidence/verification-index-2026-10-21.json) for the completed 21-module milestone. The earlier documentation already labeled the initial run as historical. | No committed index can contain a completed hosted result for its own future commit hash. Inspect the exact commit's Actions runs and artifacts. |
-| BCI-04: Sage execution checks | Add a hosted Sage projection job, with a digest-pinned runtime and source-bound result artifact. Existing local exact checks were already present; describing execution as entirely unchecked was too strong. | Neither tests nor the Lean interval theorem formally verify the executable program, its input handling or Sage's arithmetic library. |
+| BCI-04: Sage execution checks | Add a hosted Sage projection job, with a digest-pinned runtime and a result artifact recording the checked source hashes. Existing local exact checks were already present; describing execution as entirely unchecked was too strong. | Neither tests nor the Lean interval theorem formally verify the executable program, its input handling or Sage's arithmetic library. |
 | BCI-05: numerical scale | Add a reproducible [population-centered scale diagnostic](claims.md#population-centered-scale-diagnostic), with explicit parameters and exact outward bounds. The reviewed example's large sample counts are corroborated. | These are not universal lower bounds, best-case widths or measured sample requirements. The repository's lack of a general-D solver is not a theorem that none exists. |
 
 The verification changes leave the mathematical proof sources and stated
 assumptions unchanged. Refer to [reproduction](reproduction.md) for commands
 and to the [verification record](../evidence/README.md) for evidence boundaries.
 Workflow configuration describes intended checks; only the completed run and
-its receipts establish that those checks passed for a particular commit.
+its verification records establish that those checks passed for a particular
+commit.
 
 ## What the strengthened checks mean
 

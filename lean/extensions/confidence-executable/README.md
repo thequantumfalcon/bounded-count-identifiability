@@ -41,7 +41,8 @@ separate axiom audit. An incorrect answer must leave exactly the normalized
 goal `False`; a missing import, different unsolved goal or timeout does not count
 as rejection evidence. This failure diagnostic is not itself a negation proof:
 each opposite, correct answer is separately checked as a successful theorem.
-Receipts, source statements and logs are saved under `build/certificates/exact-query`.
+Verification records, source statements and logs are saved under
+`build/certificates/exact-query`.
 Use a fresh run name for every execution. Existing evidence is never replaced.
 
 To certify the irrational-singleton region's nonemptiness:

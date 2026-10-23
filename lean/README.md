@@ -4,14 +4,14 @@ This Lean project contains six proof modules for identification of a count law s
 
 The separate [D=1 extension](extensions/d1/README.md) proves deterministic
 inverse-error bounds. It shares the pinned toolchain and dependencies, but has
-its own manifest, verifier and receipts. The commands below reproduce the six
-core modules; follow the extension guide for its additional check.
+its own manifest, verifier and verification records. The commands below reproduce
+the six core modules; follow the extension guide for its additional check.
 
 The [finite-law connection](extensions/d1-law/README.md) connects these bounds
 to Bernoulli masses and the core formal cumulants. Its verifier freshly
 recompiles the six core modules, the stability module and the new connection,
 then checks the imported artifacts and the six new theorem roots. It has a
-separate manifest and leaves historical core receipts unchanged.
+separate manifest and leaves historical core verification records unchanged.
 
 The [research extensions](../docs/probability-extensions.md) add actual finite
 probability measures, independent Poisson generating identities, conditional confidence bounds,
@@ -21,7 +21,7 @@ also prove the all-order analytic cumulant connection, actual distributional
 moments and variances, and coverage of the exact D=1 projected region.
 From the repository root, `python lean/extensions/d1-law/verify_law_bridge.py
 --suite research --run external-research` checks all twenty-five project modules
-freshly. Each new extension has its own manifest; the historical receipts still
+freshly. Each new extension has its own manifest; the historical records still
 refer only to their original sources and checks.
 
 ## Reproduce from a fresh checkout
@@ -41,8 +41,8 @@ The `BoundedCount` Lake library explicitly includes all six modules and passes
 project modules into fresh output and verifies their source hashes. A generated
 import-only query in a separate Lean process audits the pinned theorem roots;
 messages emitted during proof compilation cannot supply that audit. Exact
-unique root coverage and an allowed-axiom subset are required. The receipt is
-`verification/external-check/result.json`. The verifier resolves Lean through
+unique root coverage and an allowed-axiom subset are required. The verification
+record is `verification/external-check/result.json`. The verifier resolves Lean through
 `lake env`; a separate bare `lean` command on the caller's path is unnecessary.
 Use a new `--run` name for each run, because existing evidence is never overwritten.
 
@@ -59,19 +59,19 @@ This adds a check of saved proof terms, not an independent kernel or sandbox.
 The [dated verification index](../evidence/verification-index-2026-10-21.json)
 links a later completed hosted milestone with all 21 modules and 124 theorem
 roots, plus a separate point-in-time settings readback. It does not substitute
-for the Actions result and receipt of the exact commit under review.
+for the Actions result and verification record of the exact commit under review.
 
-The following two committed receipts describe the original six-module verifier.
+The following two committed records describe the original six-module verifier.
 The [red-team follow-up](../docs/red-team-followup.md) records its confirmed
 output-forgery and root-coverage weaknesses. Its successful historical runs
 are retained as records of those executions, not upgraded to evidence of the
 repaired audit or later proof replay.
 
-The committed receipt at `verification/local-existing-cache-formatted/result.json` records a fresh compilation of the staged project sources against previously installed Lean/mathlib dependency artifacts. No compiled artifact from the original project was supplied as an input. The receipt records source hashes, compiler identity, successful exits, output hashes, and printed axiom lists. The only axioms in those lists are Lean's standard `propext`, `Classical.choice`, and `Quot.sound`.
+The committed verification record at `verification/local-existing-cache-formatted/result.json` documents a fresh compilation of the staged project sources against previously installed Lean/mathlib dependency artifacts. No compiled artifact from the original project was supplied as an input. The record includes source hashes, compiler identity, successful exits, output hashes, and printed axiom lists. The only axioms in those lists are Lean's standard `propext`, `Classical.choice`, and `Quot.sound`.
 
 This local run used existing dependency libraries. By itself it does **not** establish a fresh network checkout or dependency retrieval, and it is not an additional independent proof-kernel check.
 
-A separate [GitHub CI run](https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39552914288) passed on 21 October 2026 for commit `d72022752b4a7bf6349b5a14256cc6e06770e03e`, using a fresh Ubuntu 24.04 runner. It retrieved the pinned dependencies and upstream mathlib cache, built all six modules, and passed the portable verifier. Its [preserved Linux receipt](verification/github-initial-d720227/result.json) and adjacent logs bind the same proof sources, lock and verifier. This closes the fresh-checkout reproduction gap for that commit. It still does not rebuild every upstream dependency from source or provide external human review.
+A separate [GitHub CI run](https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39552914288) passed on 21 October 2026 for commit `d72022752b4a7bf6349b5a14256cc6e06770e03e`, using a fresh Ubuntu 24.04 runner. It retrieved the pinned dependencies and upstream mathlib cache, built all six modules, and passed the portable verifier. Its [preserved Linux verification record](verification/github-initial-d720227/result.json) and adjacent logs bind the same proof sources, lock and verifier. This closes the fresh-checkout reproduction gap for that commit. It still does not rebuild every upstream dependency from source or provide external human review.
 
 The TOML configuration was separately accepted by the installed Lake parser. Dependency pins and license files were checked against the local dependency source snapshots. `source_manifest.json` binds the six proof sources to their finalized bytes; `.gitattributes` preserves those bytes across platforms. Build products under `.verification/` and `.lake/` are intentionally excluded from publication.
 

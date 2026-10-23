@@ -67,8 +67,8 @@ python -m pip install --require-hashes --only-binary=:all: --no-deps -r fuzz/req
 python fuzz/run_atheris.py --output build/atheris-local --seconds 60
 ```
 
-Choose a fresh output directory. The receipt preserves source hashes, engine
-statistics, corpus inputs and process logs. Read the [fuzz guide](../fuzz/README.md)
+Choose a fresh output directory. The execution record preserves source hashes,
+engine statistics, corpus inputs and process logs. Read the [fuzz guide](../fuzz/README.md)
 for resource bounds, replay commands and interpretation. Coverage-guided input
 generation still shares the existing oracle and is a finite software check.
 
@@ -119,9 +119,10 @@ python lean/extensions/d1/verify_stability.py --run external-check
 ```
 
 This compiles the extension freshly with `--trust=0`, separately audits all five
-requested theorem roots and saves a receipt under `build/stability/external-check/`.
+requested theorem roots and saves a verification record under
+`build/stability/external-check/`.
 Use a new run name each time. `python tools/tasks.py formal` checks both the core
-and the extension; the extension does not become part of the frozen core receipt.
+and the extension; the extension does not become part of the frozen core record.
 
 The [finite-law connection](../lean/extensions/d1-law/README.md) adds a separate
 check from the repository root:
@@ -131,8 +132,8 @@ python lean/extensions/d1-law/verify_law_bridge.py --run external-check
 ```
 
 It freshly compiles the six core modules, the unchanged stability source and
-the Bernoulli connection in dependency order. It validates the core receipt
-and imported artifact hashes and separately audits all six new theorem roots.
+the Bernoulli connection in dependency order. It validates the core verification
+record and imported artifact hashes and separately audits all six new theorem roots.
 `python tools/tasks.py formal` includes this check as well. See its extension
 guide for output locations and the offline existing-cache mode.
 
@@ -163,9 +164,9 @@ adds kernel-checked point, pair and global-emptiness certificates:
 python lean/check_certificates.py --proof-run external-research --run external-research
 ```
 
-This checks the stated rational queries against the source-bound compiled
-research objects, with separate axiom audits and deliberately incorrect-answer
-controls. It does not verify the entire Sage or Python runtime.
+This checks the stated rational queries against the compiled research objects
+identified by source hashes, with separate axiom audits and deliberately
+incorrect-answer controls. It does not verify the entire Sage or Python runtime.
 
 The [count-to-box guide](../lean/extensions/counts-confidence/README.md) adds
 explicit-record aggregation, outward radii and endpoint certificates:
@@ -183,18 +184,18 @@ The replay reuses the project artifacts recorded by the named research run and
 the pinned Lean kernel. Imported upstream dependency artifacts remain trusted;
 this is neither an independent implementation nor a from-source rebuild of
 every dependency. It complements the axiom audit and does not replace it.
-Hosted CI uses the corresponding `ci-check` run. A failed or missing receipt is
-not a successful replay. The [shared audit policy](../lean/proof_audit.py) pins
+Hosted CI uses the corresponding `ci-check` run. A failed or missing verification
+record is not a successful replay. The [shared audit policy](../lean/proof_audit.py) pins
 the requested root registry and the defensive source-admission checks.
 
-The committed local receipt used existing dependency artifacts and says so.
+The committed local record used existing dependency artifacts and says so.
 The separate initial hosted run also passed after fresh dependency retrieval;
-its Linux receipt is preserved in the verification record.
+its Linux execution record is preserved with the other verification evidence.
 Git attributes preserve its referenced proof bytes. See
 [the verification record](../evidence/README.md) for extra development checker
 runs and their reproducibility limits.
 
-Earlier committed receipts used the former output-based audit. The
+Earlier committed verification records used the former output-based audit. The
 [red-team follow-up](red-team-followup.md) explains its confirmed defect and why
 those records cannot establish that the repaired gate passed.
 

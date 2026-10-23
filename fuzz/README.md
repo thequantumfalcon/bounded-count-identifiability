@@ -88,7 +88,7 @@ logs. Replay a saved input without the injected fault using:
 python fuzz/atheris_target.py PATH_TO_INPUT -runs=1 -max_len=17 -timeout=5 -rss_limit_mb=512
 ```
 
-The CI job retains the corpus and receipts as an artifact. Its actual run result,
+The CI job retains the corpus and execution records as an artifact. Its actual run result,
 rather than the presence of the configuration, establishes execution evidence.
 CI uses the ordinary unprivileged hosted runner with read-only repository
 permissions. It does not enforce a separate network namespace. Local validation

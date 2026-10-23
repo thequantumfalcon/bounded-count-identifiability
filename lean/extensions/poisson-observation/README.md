@@ -37,4 +37,4 @@ python lean/extensions/d1-law/verify_law_bridge.py --suite research --run extern
 The pinned verifier checks explicit roots, standard axioms and exact source
 bindings with `--trust=0`, reusing compiled dependencies. See the
 [extension guide](../../../docs/probability-extensions.md) for reproduction
-limits. Earlier hosted receipts do not verify these new bytes.
+limits. Earlier hosted verification records do not verify these new bytes.

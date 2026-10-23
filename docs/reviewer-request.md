@@ -4,7 +4,8 @@ We welcome a focused review of the statement below, its formal encoding and its
 relationship to prior work. No independent human review or originality is
 currently claimed. Publishing this invitation does not mean a reviewer has
 accepted it. The [research-process statement](../PROVENANCE.md) explains how the
-material was developed.
+material was developed. The [short note](theorem.md) gives the full argument,
+attributed sharpness and a conditional emitter-counting illustration.
 
 ## Statement to inspect
 
@@ -55,12 +56,16 @@ the arbitrary-law claim.
 1. Does the coefficient argument prove the exact arbitrary-law statement above,
    including boundary cases, without an implicit extra assumption?
 2. Do the Lean definitions and theorem statements in the
-   [formal proof map](theorem.md#what-the-formal-proof-covers) encode that claim
+   [formal proof map](../lean/README.md#statements-and-boundaries) encode that claim
    faithfully? In particular, are any assumptions stronger than the written
    probability-law assumptions?
 3. Is this exact sufficient-order theorem, or a general result implying it,
-   already in the literature? A primary citation and a comparison of hypotheses
-   would help settle attribution.
+   already in the literature? Please give a primary citation, theorem or page
+   number, and explain how its hypotheses cover arbitrary nonnegative masses,
+   the omitted mean, the cutoff $D+1$ and boundary cases. The
+   [prior-art comparison](originality-review.md) separates known ingredients
+   and subclass results from this unresolved question. A search that finds no
+   earlier statement is useful context, but does not certify novelty.
 
 ## Evidence and review boundary
 

@@ -10,7 +10,7 @@ The inspected preprint's equation (3.1) and Lemma 3.1, PDF page 7, give the gene
 
 **Stefan Niermann.** *A generalization of the matching distribution.* Statistical Papers **40**, 233–238 (1999). [Publisher record, DOI 10.1007/BF02925521](https://link.springer.com/article/10.1007/BF02925521).
 
-The publisher metadata and abstract were inspected. The full article was not accessed; the precise formula attribution is supported by the accessible Afendras–Papadatos preprint. This distinction avoids implying a direct full-text check of Niermann's article.
+The publisher metadata and abstract were inspected. The full article was not accessed; the precise formula attribution is supported by the accessible Afendras–Papadatos preprint. A renewed access check on 23 October 2026 still found a subscription preview; the [author-affiliated publication list](https://ewas.de/publikationen.html) supplied no full-text link. This distinction avoids implying a direct full-text check of Niermann's article.
 
 **Saeed Golnabi, Martin S. Levy and James J. Cochran.** *Finitizing power series
 distributions.* Statistics & Probability Letters **79**(17), 1829–1832 (2009).
@@ -75,6 +75,40 @@ Definition B.8, Lemma B.9 and Theorem B.10 were inspected. The
 [originality review](originality-review.md#aggregate-recovery-from-full-generating-functions)
 compares their assumptions with this project's finite-order statement.
 
+## Power sums and injectivity
+
+**Hana Melánová, Bernd Sturmfels and Rosa Winter.** *Recovery from Power Sums.*
+Experimental Mathematics **33**(2), 225–234 (2024); published online 2022.
+DOI 10.1080/10586458.2022.2061650.
+[Inspected preprint, arXiv:2106.13981v1](https://arxiv.org/pdf/2106.13981v1),
+[publisher record](https://doi.org/10.1080/10586458.2022.2061650).
+
+Proposition 24, PDF page 12, identifies a nonnegative $D$-vector up to
+permutation from any $D$ distinct positive-integer power sums. The
+[originality review](originality-review.md#a-closer-overlap-the-poisson-binomial-subclass)
+derives its implication for sums of independent Bernoulli variables and
+explains why that substitution does not cover every bounded law. The statement
+and its cited injectivity source were rechecked on 23 October 2026; no
+independent audit of the proposition's proof is claimed. Direct publisher
+access remained unavailable; the comparison is pinned to the preprint version.
+
+**Stefan Müller, Elisenda Feliu, Georg Regensburger, Carsten Conradi, Anne Shiu
+and Alicia Dickenstein.** *Sign conditions for injectivity of generalized
+polynomial maps with applications to chemical reaction networks and real
+algebraic geometry.* Foundations of Computational Mathematics **16**, 69–97
+(2016). DOI 10.1007/s10208-014-9239-3.
+[Primary preprint, arXiv:1311.5493v2](https://arxiv.org/pdf/1311.5493v2).
+
+Definitions 1.1–1.3 and Theorem 1.4, PDF pages 2–3, were inspected on
+23 October 2026 by following the reference in *Recovery from Power Sums*,
+Proposition 24. The theorem gives equivalent injectivity, Jacobian and sign
+conditions for a family of generalized polynomial maps on the positive
+orthant. Its conditions quantify over all positive coefficient parameters.
+No reduction of the arbitrary bounded-law cumulant map, including its boundary
+laws, to these hypotheses was established. This is an explicit further-review
+lead, not evidence that the universal missing-mean theorem is new or already
+covered.
+
 ## What remains unresolved
 
 **Philipp Stegmann and Jürgen König.** *Inverse counting statistics based on
@@ -85,11 +119,11 @@ Sections 2–3, equations (8)–(13), were inspected. The
 compares the long-time stochastic-generator reconstruction with the bounded
 count-law statement and records the paper's uniqueness limitation.
 
-The [follow-up originality review](originality-review.md) examines
-Melánová, Sturmfels and Winter's *Recovery from Power Sums*, Proposition 24,
-and explains its implication for the Poisson-binomial subclass. That overlap
-does not by itself establish priority for the arbitrary bounded-law statement.
-
 No exact statement of identification of every law on $0,\ldots,D$ from factorial cumulants $2,\ldots,D+1$ was located in the inspected material. That is a report of search scope, not proof of novelty. Full-law generating-function uniqueness, moment inversion and generic polynomial-root recovery must be distinguished from the finite-order positivity argument. The known matching family already supplies the lower-order counterexample by a direct calculation.
+
+The [publication decision](originality-review.md#publication-decision), updated
+23 October 2026, is to present the short proof and attributed sharpness without
+a novelty claim. The review records the exact outstanding questions needed to
+change that decision.
 
 Corrections and primary references that sharpen this attribution are welcome. Mathematical correctness, historical priority, software correctness and physical validity require different evidence.

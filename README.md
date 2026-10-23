@@ -12,7 +12,7 @@ $2,\ldots,D+1$ imply $P=e^{ct}Q+O(t^{D+2})$. If $c>0$, the coefficient of
 $t^{D+1}$ on the right is at least $c^{D+1}/(D+1)!>0$: all coefficients of $Q$
 are nonnegative and $Q(0)=1$. The left coefficient is zero because $\deg P\leq D$.
 Swapping the laws excludes $c<0$. Hence $c=0$, and the two polynomials, and
-therefore the laws, agree. See the [full proof](docs/theorem.md) and
+therefore the laws, agree. See the [short mathematical note](docs/theorem.md) and
 [Lean identification theorem](lean/CountIdentification.lean).
 
 **Sharpness.** The established generalized matching distribution has factorial
@@ -23,7 +23,11 @@ cumulant is $-h^{D+1}$. Thus the general cutoff cannot be lowered. The
 and [Lean sharpness proof](lean/CountSharpness.lean) give the details.
 
 One motivation is separating a bounded source count from independent Poisson
-background in an idealized photon-counting model. Related inverse-counting work
+background in an idealized photon-counting model. The note's
+[emitter-counting application](docs/theorem.md#conditional-emitter-counting-application)
+states its extra assumptions and the simpler binomial recovery formula;
+[synthetic comparisons](docs/emitter-counting.md) retain estimator failures
+and finite-sample limitations. Related inverse-counting work
 by [Stegmann and König](https://arxiv.org/abs/1611.02043) reconstructs features of
 stochastic dynamics from generalized factorial cumulants; its assumptions and
 target differ from this bounded-law result. See the
@@ -52,11 +56,13 @@ python -m http.server 8765 --bind 127.0.0.1 --directory demo
 
 Open [127.0.0.1:8765](http://127.0.0.1:8765/).
 
-Start with the [one-page mathematical review request](docs/reviewer-request.md).
+Read the [short note](docs/theorem.md) for the theorem, proof, sharpness and
+conditional application, or the [one-page review request](docs/reviewer-request.md)
+for the precise mathematical and attribution questions.
 The [claim map](docs/claims.md) separates the main theorem, extensions, software
 checks and unresolved obligations.
 
-- [Theorem and proof](docs/theorem.md), including the role of nonnegativity.
+- [Short mathematical note](docs/theorem.md), including the role of nonnegativity.
 - [Reproduction guide](docs/reproduction.md) and [pinned Lean project](lean/README.md).
 - [Probability, sampling and uncertainty extensions](docs/probability-extensions.md).
 - [Verification record](evidence/README.md), including hosted runs for specific commits.

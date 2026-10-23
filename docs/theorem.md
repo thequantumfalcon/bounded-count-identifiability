@@ -1,16 +1,14 @@
 # Bounded counts from higher factorial cumulants
 
+Thomas Albrecht
+
 A probability law supported on the known set $\lbrace0,\ldots,D\rbrace$ is uniquely determined by its factorial cumulants of orders $2,\ldots,D+1$. The source mean need not be supplied. This gives identification under independent, unknown, fixed-rate Poisson background. The maximum order $D+1$ is sharp for the general class.
 
 These are exact population statements. The known sharpness distribution is attributed below. Priority for the general sufficient-order theorem remains unresolved; this project does not claim an original discovery.
 
-An intended use is source/background separation in an idealized photon-counting
-model with bounded source counts and independent fixed-rate Poisson background.
-Related [Stegmann–König inverse counting statistics](https://arxiv.org/abs/1611.02043)
-uses generalized factorial cumulants to reconstruct stochastic dynamics; the
-[literature comparison](originality-review.md) distinguishes its assumptions
-and target. Applying the theorem to a detector requires the separate
-[calibration assumptions](calibration.md#photon-counts-and-detector-clicks).
+This note gives the proof, the known-family sharpness example and a conditional
+emitter-counting application. The application also illustrates why identifying
+a population law and estimating it from a finite sample are separate questions.
 
 ## Definitions and assumptions
 
@@ -102,7 +100,8 @@ $$
 
 Each alternating partial sum is positive: pair successive even and odd terms, whose absolute values decrease for $0<h<1$, and retain a positive last term when necessary. Normalization follows from $P_{D,h}(0)=1$ after the substitution $t=z-1$.
 
-Expanding the formal logarithm gives
+Since $P_{D,h}(t)=e^{ht}-(ht)^{D+1}/(D+1)!+O(t^{D+2})$, its formal logarithm is
+$ht-(ht)^{D+1}/(D+1)!+O(t^{D+2})$. Thus
 
 $$
 \kappa_1=h,\qquad \kappa_2=\cdots=\kappa_D=0,
@@ -113,31 +112,75 @@ The point mass at zero has the same cumulants $2,\ldots,D$, but is a different l
 
 The claim concerns the full class of laws supported on $0,\ldots,D$. It does not say every pair needs order $D+1$, nor establish the same sharpness for subclasses that exclude the zero source.
 
+## Conditional emitter-counting application
+
+Let $n\geq1$ be an integer. Suppose $n$ identical emitters each independently
+contribute one detected count with probability $p\in(0,1]$ in an observation
+window. With independent fixed Poisson background of mean $b\geq0$, the
+observed count has law
+
+$$
+Y\sim\operatorname{Binomial}(n,p)+\operatorname{Poisson}(b),
+\qquad \log\mathbb E[(1+t)^Y]=n\log(1+pt)+bt.
+$$
+
+The general theorem applies when a known bound $D$ includes every candidate
+emitter count. This subclass also has the simpler identities
+
+$$
+\kappa_2(Y)=-np^2,\qquad \kappa_3(Y)=2np^3.
+$$
+
+$$
+p=-\frac{\kappa_3(Y)}{2\kappa_2(Y)},\qquad
+n=-\frac{4\kappa_2(Y)^3}{\kappa_3(Y)^2}.
+$$
+
+The mean then gives $b=\mathbb EY-np$. These formulas follow directly from the
+binomial generating function and Poisson cancellation; their use here carries
+no originality claim. They require neither the general $D+1$ cutoff nor a
+known bound on $n$. If $p=0$, all emitter counts give the same zero source law,
+so $n$ cannot be recovered. The general sharpness example compares arbitrary
+bounded laws and does not establish sharpness for this binomial subclass.
+
+The [synthetic emitter study](emitter-counting.md) examines specified estimators
+and numerical testing bounds under this model. It retains failed estimates and
+large errors from the cancellation procedure. Neither exact identification nor
+those simulations establish a useful sample size or a validated measurement
+method. Unequal brightness, changing backgrounds and detector effects require
+separate assumptions; see [calibration](calibration.md#photon-counts-and-detector-clicks).
+
+## Attribution and unresolved priority
+
+The generalized matching family and its matched factorial moments are
+established prior work, and the lower-order counterexample above follows
+directly from them. Poisson cancellation is also established. For sums of at
+most $D$ independent Bernoulli variables, factorial cumulants are signed,
+scaled power sums of their success probabilities. Consequently, Proposition 24
+of [Melánová, Sturmfels and Winter, *Recovery from Power Sums*](https://arxiv.org/pdf/2106.13981v1)
+implies identification from orders $2,\ldots,D+1$ for that subclass. This is our
+application of their stated result, not an originality claim.
+
+An arbitrary bounded law need not be a sum of independent Bernoulli variables:
+masses $1/2$ at each of $0$ and $2$ give $P(t)=1+t+t^2/2$, which has no real
+linear factorization. The exact priority question concerns all bounded laws,
+with the mean omitted and the finite cutoff $D+1$. The
+[literature comparison](originality-review.md) records the inspected sources
+and remaining access and review gaps. No original discovery or independent
+human literature review is claimed.
+
 ## What the formal proof covers
 
-The six core Lean modules encode the following chain:
+The [Lean identification theorem](../lean/CountIdentification.lean) and
+[sharpness proof](../lean/CountSharpness.lean) encode the main statements.
+The [formal proof map](../lean/README.md#statements-and-boundaries) describes
+the six core modules; the [probability and analytic extensions](probability-extensions.md)
+connect the formal series to actual laws and logarithm derivatives. The
+emitter formulas above are a written algebraic specialization, with separate
+synthetic software checks; they are not separately formalized here.
 
-| Module | Encoded statement |
-| --- | --- |
-| [CountLawEncoding.lean](../lean/CountLawEncoding.lean) | Actual count probabilities, factorial polynomial coefficients and recovery of the law. |
-| [CountSeriesCore.lean](../lean/CountSeriesCore.lean) | Formal-log cumulants, the finite exponential-shift relation and positivity argument. |
-| [CountIdentification.lean](../lean/CountIdentification.lean) | Equality of arbitrary admissible bounded laws from orders $2,\ldots,D+1$. |
-| [CountPoissonChannel.lean](../lean/CountPoissonChannel.lean) | Multiplication by the formal exponential factor and cancellation above first order. |
-| [CountObservedIdentification.lean](../lean/CountObservedIdentification.lean) | Observed-cumulant source identification and recovery of the background parameter. |
-| [CountSharpness.lean](../lean/CountSharpness.lean) | Validity, distinctness, cumulants and the universal lower-order counterexample. |
-
-The core definitions use mathlib's formal logarithm. The [probability extensions](probability-extensions.md#independent-poisson-observations) construct independent Poisson addition and prove its integrable generating identity. The [analytic connection](probability-extensions.md#analytic-cumulants) proves equality with real logarithm derivatives at every order, including derivatives of the actual generating expectation. It also states source and source/background identification directly in those analytic terms. The algebraic channel accepts real parameters; the probability construction uses nonnegative background rates.
-
-A [separate D=1 extension](../lean/extensions/d1/README.md) proves deterministic
-inverse-error bounds for the algebraic formulas $\kappa_2(p)=-p^2$ and
-$b=\mu-p$. It does not change the six core modules. The probability and analytic
-connections are supplied by other extensions; general-$D$ stability remains separate.
-
-The additional [finite-law connection](../lean/extensions/d1-law/README.md)
-proves validity of Bernoulli masses on the closed interval $p\in[0,1]$ and
-identifies their core formal cumulants as $\kappa_1=p$, $\kappa_2=-p^2$.
-It lifts the deterministic stability bounds to these definitions and to the
-formal observed channel. The subsequent probability and analytic extensions
-connect these definitions to the actual independent-Poisson observation model.
-
-Formal acceptance does not verify a detector, prove a useful finite sample size or establish mathematical priority. The calculation software and confidence-region argument have their own scope; see [claims](claims.md), the [formal reproduction guide](../lean/README.md) and the [next proof obligations](roadmap.md).
+The [claim map](claims.md), [verification records](../evidence/README.md) and
+[process disclosure](../PROVENANCE.md) state the limits of the checks and
+development assistance. Formal verification supports the encoded propositions
+under their assumptions; physical validity, finite-sample performance and
+historical priority require separate evidence.

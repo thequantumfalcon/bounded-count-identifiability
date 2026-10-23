@@ -25,6 +25,26 @@ theorem to $n$ versus $n+1$ emitters requires a bound that includes both models.
 Identification does not specify how many windows are needed to estimate those
 cumulants.
 
+For this binomial subclass, the generating function gives a simpler population
+inverse directly:
+
+$$
+\kappa_2(Y)=-np^2,\qquad \kappa_3(Y)=2np^3,
+$$
+
+$$
+p=-\frac{\kappa_3(Y)}{2\kappa_2(Y)},\qquad
+n=-\frac{4\kappa_2(Y)^3}{\kappa_3(Y)^2},\qquad
+b=\mathbb EY-np.
+$$
+
+Thus orders 2 and 3 identify $n,p$ under the stated binomial assumptions,
+without a known bound on $n$; the mean additionally identifies $b$. This is
+an algebraic consequence of the binomial model and Poisson cancellation, with
+no originality claim. It does not demonstrate a need for order $D+1$ in this
+subclass. The [short note](theorem.md#conditional-emitter-counting-application)
+separates this specialization from the theorem for arbitrary bounded laws.
+
 Fix a signal law $P=\operatorname{Binomial}(n,p)+\operatorname{Poisson}(b)$
 and an alternative
 $Q=\operatorname{Binomial}(n',p')+\operatorname{Poisson}(b')$, with valid
