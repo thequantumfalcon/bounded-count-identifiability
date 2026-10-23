@@ -6,6 +6,7 @@ const defaults = { source: 'bernoulli', background: 50, degree: 3, strength: 50,
 let state = { ...defaults };
 let lastRecovery = null;
 let recoveryComputed = true;
+let recoveryFeedbackTimer;
 const sources = {
   bernoulli: { name: 'Bernoulli', law: bernoulli('3/10') },
   'three-count': { name: 'Three-count source', law: ['1/2', '1/4', '0', '1/4'].map(rational) },
@@ -187,6 +188,28 @@ function renderAll() {
   renderSharpness();
   renderRecovery();
 }
+function resetRecoveryFeedback(message = 'Example result shown below. Recover to check these inputs.') {
+  clearTimeout(recoveryFeedbackTimer);
+  $('recover-button').innerHTML = 'Recover the parameters <span aria-hidden="true">→</span>';
+  $('recovery-feedback').textContent = message;
+}
+function submitRecovery() {
+  // Read the fields at submission too: autofill and browser restoration need not
+  // dispatch the input events that maintain the pending state.
+  state.mean = $('mean-input').value;
+  state.k2 = $('k2-input').value;
+  recoveryComputed = true;
+  renderRecovery();
+  syncUrl();
+  resetRecoveryFeedback(lastRecovery.feasible
+    ? 'Calculation complete. Recovered parameters are shown below.'
+    : 'Inputs checked. See the explanation below.');
+  $('recover-button').innerHTML = `${lastRecovery.feasible ? 'Parameters recovered' : 'Inputs checked'} <span aria-hidden="true">✓</span>`;
+  recoveryFeedbackTimer = setTimeout(() => {
+    $('recover-button').innerHTML = 'Recover the parameters <span aria-hidden="true">→</span>';
+  }, 2000);
+  $('recovery-result').scrollIntoView({ block: 'nearest', behavior: 'instant' });
+}
 function serializeDescriptor(descriptor) {
   return { exact_rational: descriptor.exact === null ? null : fmt(descriptor.exact), exact_expression: descriptor.expression, outward_rational_enclosure: descriptor.enclosure.map(fmt) };
 }
@@ -214,10 +237,10 @@ $('background').addEventListener('input', event => { state.background = Number(e
 $('exact-toggle').addEventListener('click', () => { state.exact = !state.exact; controls(); renderSignal(); renderRecovery(); syncUrl(); });
 for (const id of ['degree', 'strength']) $(id).addEventListener(id === 'strength' ? 'input' : 'change', event => { state[id] = Number(event.target.value); state.revealed = false; renderSharpness(); syncUrl(); });
 $('reveal').addEventListener('click', () => { state.revealed = !state.revealed; renderSharpness(); syncUrl(); });
-for (const [id, key] of [['mean-input', 'mean'], ['k2-input', 'k2']]) $(id).addEventListener('input', event => { state[key] = event.target.value; recoveryComputed = false; lastRecovery = null; renderRecovery(); syncUrl(); });
-$('recover').addEventListener('submit', event => { event.preventDefault(); recoveryComputed = true; renderRecovery(); syncUrl(); });
-for (const [id, mean, k2] of [['preset-default', '4/5', '-9/100'], ['preset-boundary', '1', '-1'], ['preset-invalid', '1/10', '-9/100']]) $(id).addEventListener('click', () => { state.mean = mean; state.k2 = k2; recoveryComputed = true; controls(); renderRecovery(); syncUrl(); });
-$('reset-demo').addEventListener('click', () => { state = { ...defaults }; recoveryComputed = true; renderAll(); syncUrl(); $('export-status').textContent = 'Default examples restored.'; });
+for (const [id, key] of [['mean-input', 'mean'], ['k2-input', 'k2']]) $(id).addEventListener('input', event => { state[key] = event.target.value; recoveryComputed = false; lastRecovery = null; resetRecoveryFeedback('Ready to calculate the changed inputs.'); renderRecovery(); syncUrl(); });
+$('recover').addEventListener('submit', event => { event.preventDefault(); submitRecovery(); });
+for (const [id, mean, k2] of [['preset-default', '4/5', '-9/100'], ['preset-boundary', '1', '-1'], ['preset-invalid', '1/10', '-9/100']]) $(id).addEventListener('click', () => { state.mean = mean; state.k2 = k2; controls(); submitRecovery(); });
+$('reset-demo').addEventListener('click', () => { state = { ...defaults }; recoveryComputed = true; resetRecoveryFeedback(); renderAll(); syncUrl(); $('export-status').textContent = 'Default examples restored.'; });
 $('download-json').addEventListener('click', () => {
   const url = URL.createObjectURL(new Blob([JSON.stringify(calculationRecord(), null, 2) + '\n'], { type: 'application/json' }));
   const a = document.createElement('a');
@@ -229,7 +252,7 @@ $('copy-link').addEventListener('click', async () => {
   try { await navigator.clipboard.writeText(location.href); $('export-status').textContent = 'Link copied with these settings.'; }
   catch { $('export-status').textContent = 'Copy the address from your browser to share these settings.'; }
 });
-window.addEventListener('popstate', () => { state = { ...defaults }; restoreUrl(); recoveryComputed = true; renderAll(); });
+window.addEventListener('popstate', () => { state = { ...defaults }; restoreUrl(); recoveryComputed = true; resetRecoveryFeedback('Select Recover to check the restored inputs.'); renderAll(); });
 
 try {
   restoreUrl(); renderAll();

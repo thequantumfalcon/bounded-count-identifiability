@@ -160,6 +160,22 @@ async function interactions(page, name, touch, engine) {
   assert.equal(await value(page, '#degree'), '3');
   assert.equal(await value(page, '#strength'), '50');
 
+  assert.match(await page.locator('#recovery-feedback').innerText(), /Example result/);
+  await click('#recover-button');
+  assert.match(await page.locator('#recover-button').innerText(), /Parameters recovered/);
+  assert.match(await page.locator('#recovery-feedback').innerText(), /Calculation complete/);
+  await screenshot(page, `${name}-recovery-confirmation`);
+  // A second activation must still acknowledge unchanged inputs.
+  await click('#recover-button');
+  assert.match(await page.locator('#recover-button').innerText(), /Parameters recovered/);
+  // Autofill/restoration may change field values without an input event.
+  await page.locator('#mean-input').evaluate(element => { element.value = '1'; });
+  await page.locator('#k2-input').evaluate(element => { element.value = '-1/4'; });
+  await page.locator('#k2-input').press('Enter');
+  assert.equal(await value(page, '#recovered-p'), '0.5');
+  assert.equal(await value(page, '#recovered-b'), '0.5');
+  await click('#reset-demo');
+
   const initialOutput = await page.locator('#background-output').innerText();
   const initialHigher = await page.locator('#signal-k2, #signal-k3').allTextContents();
   await page.locator('#background').focus();

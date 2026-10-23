@@ -1034,6 +1034,13 @@ legend {
   border:1px solid var(--teal);
   font-size:12px;
   font-weight:550;
+  min-width:188px;
+}
+
+.recovery-feedback {
+  margin:12px 0 0;
+  color:var(--teal);
+  font-size:11px;
 }
 
 .primary-button:hover {
