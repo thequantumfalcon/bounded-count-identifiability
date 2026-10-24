@@ -30,7 +30,7 @@ $$
 \kappa_r(X)=r![t^r]\log P(t),\qquad r\geq1.
 $$
 
-The logarithm may be interpreted as a formal power series at $P(0)=1$. Analytically, the same coefficients are the derivatives of the real logarithm near $t=0$. In particular, $\kappa_1=\mathbb E X$ and $\kappa_2=\operatorname{Var}(X)-\mathbb E X$. Ordinary cumulants are different quantities.
+The logarithm may be interpreted as a formal power series at $P(0)=1$. Analytically, the same coefficients are the derivatives of the real logarithm near $t=0$. In particular, $\kappa_1=\mathbb E X$ and $\kappa_2=\mathrm{Var}(X)-\mathbb E X$. Ordinary cumulants are different quantities.
 
 ## Identification theorem and proof
 
@@ -69,7 +69,7 @@ so it is excluded by the probability-law assumptions.
 
 ## Unknown Poisson background
 
-Suppose $Y=X+Z$, where $Z\sim\operatorname{Poisson}(b)$, $b\geq0$ is fixed, and $X,Z$ are independent. Then
+Suppose $Y=X+Z$, where $Z\sim\mathrm{Poisson}(b)$, $b\geq0$ is fixed, and $X,Z$ are independent. Then
 
 $$
 \mathbb E[(1+t)^Y]=P(t)e^{bt},
@@ -120,7 +120,7 @@ window. With independent fixed Poisson background of mean $b\geq0$, the
 observed count has law
 
 $$
-Y\sim\operatorname{Binomial}(n,p)+\operatorname{Poisson}(b),
+Y\sim\mathrm{Binomial}(n,p)+\mathrm{Poisson}(b),
 \qquad \log\mathbb E[(1+t)^Y]=n\log(1+pt)+bt.
 $$
 

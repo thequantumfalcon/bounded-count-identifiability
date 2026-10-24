@@ -11,7 +11,7 @@ photon each with probability $p$, and an independent Poisson background with
 fixed mean $b$ adds counts:
 
 $$
-Y=\operatorname{Binomial}(n,p)+\operatorname{Poisson}(b).
+Y=\mathrm{Binomial}(n,p)+\mathrm{Poisson}(b).
 $$
 
 Here $n$ is a positive integer, $0<p\le1$ and $b\ge0$. The restriction $p>0$
@@ -45,9 +45,9 @@ no originality claim. It does not demonstrate a need for order $D+1$ in this
 subclass. The [short note](theorem.md#conditional-emitter-counting-application)
 separates this specialization from the theorem for arbitrary bounded laws.
 
-Fix a signal law $P=\operatorname{Binomial}(n,p)+\operatorname{Poisson}(b)$
+Fix a signal law $P=\mathrm{Binomial}(n,p)+\mathrm{Poisson}(b)$
 and an alternative
-$Q=\operatorname{Binomial}(n',p')+\operatorname{Poisson}(b')$, with valid
+$Q=\mathrm{Binomial}(n',p')+\mathrm{Poisson}(b')$, with valid
 probabilities and nonnegative background means. Write
 $A=\sum_{j\ge0}\sqrt{P(j)Q(j)}$ for their Bhattacharyya coefficient and
 $\delta=-\log A$. For $N$ independent signal windows and $K$ independent
@@ -132,7 +132,7 @@ their termination statuses are included in the result file.
 [Li et al. (2022), *Optics Express* 30, 12495–12509](https://doi.org/10.1364/OE.454412)
 estimate $M,p$ using photon-number-resolving detection and a binomial likelihood.
 Their published Section 6 also studies independent additive Poisson noise,
-$Y\sim\operatorname{Binomial}(M,p)+\operatorname{Poisson}(rMp)$, comparing a
+$Y\sim\mathrm{Binomial}(M,p)+\mathrm{Poisson}(rMp)$, comparing a
 likelihood analysis with known relative background $r$ against one that ignores
 the noise. Thus Poisson-contaminated emitter counting is already part of that
 paper; knowing $r$ is a different design from our source-off calibration.

@@ -60,7 +60,7 @@ and the identity
 ```
 
 gives each statistic's variance. For $N=400000$ windows per model, a mean's
-Chebyshev radius is $\sqrt{\operatorname{Var}((Y)_r)/(N\alpha)}$. The difference
+Chebyshev radius is $\sqrt{\mathrm{Var}((Y)_r)/(N\alpha)}$. The difference
 uses the sum of the two model variances divided by $N$, under the prescribed
 independent-model benchmark.
 

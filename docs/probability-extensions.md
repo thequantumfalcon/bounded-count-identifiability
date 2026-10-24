@@ -144,8 +144,8 @@ model. It proves the first four factorial moments and both variances. Writing
 `S=X+Y` for one observation,
 
 $$
-\operatorname{Var}(S)=b+p(1-p),\qquad
-\operatorname{Var}(S(S-1))=4b^3+(12p+2-4p^2)b^2+4pb.
+\mathrm{Var}(S)=b+p(1-p),\qquad
+\mathrm{Var}(S(S-1))=4b^3+(12p+2-4p^2)b^2+4pb.
 $$
 
 With `0 <= b <= B`, the existing ceilings `B+1/4` and
@@ -203,7 +203,7 @@ finite second moment, a background `Z | Λ ~ Poisson(Λ)`, and a Bernoulli sourc
 
 $$
 \mathbb E[X+Z]=p+\mathbb E\Lambda,\qquad
-\operatorname{Var}(X+Z)-\mathbb E[X+Z]=-p^2+\operatorname{Var}\Lambda.
+\mathrm{Var}(X+Z)-\mathbb E[X+Z]=-p^2+\mathrm{Var}(\Lambda).
 $$
 
 Thus a justified bound `Var(Λ) ≤ η` supplies the perturbation allowance. The
@@ -285,10 +285,10 @@ Marginal mixture laws do not establish independence across windows. Take source
 zero, draw one rate $\Lambda\in\lbrace0,1\rbrace$ with equal probabilities for the entire
 record, and conditionally draw independent Poisson($\Lambda$) counts $Z_i$.
 Each window has the same finite-mixture marginal, but distinct windows have
-covariance $\operatorname{Var}(\Lambda)=1/4$. Consequently,
+covariance $\mathrm{Var}(\Lambda)=1/4$. Consequently,
 
 $$
-\operatorname{Var}\left(\frac1N\sum_{i=1}^N Z_i\right)
+\mathrm{Var}\left(\frac1N\sum_{i=1}^N Z_i\right)
 =\frac{1}{2N}+\frac14.
 $$
 

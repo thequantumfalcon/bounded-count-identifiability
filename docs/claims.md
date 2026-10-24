@@ -52,7 +52,7 @@ finite-sample confidence guarantees.
 
 ## D=1 confidence prototype
 
-For $X\sim\operatorname{Bernoulli}(p)$ and independent $Z\sim\operatorname{Poisson}(b)$, set $Y=X+Z$. With $0\leq p\leq1$ and $0\leq b\leq B$,
+For $X\sim\mathrm{Bernoulli}(p)$ and independent $Z\sim\mathrm{Poisson}(b)$, set $Y=X+Z$. With $0\leq p\leq1$ and $0\leq b\leq B$,
 
 $$
 m_1=p+b,
@@ -69,11 +69,11 @@ $$
 Indeed,
 
 $$
-\operatorname{Var}(Y)=b+p(1-p)\leq W_1,
+\mathrm{Var}(Y)=b+p(1-p)\leq W_1,
 $$
 
 $$
-\operatorname{Var}(Y(Y-1))=4b^3+(12p+2-4p^2)b^2+4pb\leq W_2.
+\mathrm{Var}(Y(Y-1))=4b^3+(12p+2-4p^2)b^2+4pb\leq W_2.
 $$
 
 The second variance identity follows from $m_r=b^r+rp b^{r-1}$ for $r\geq1$ and $\mathbb E[(Y(Y-1))^2]=m_4+4m_3+2m_2$. Its bound uses $12p+2-4p^2\leq10$ on $[0,1]$ and $b\leq B$. Chebyshev's inequality and a union bound give simultaneous coverage at least $1-\alpha$ for the moment intervals $[\widehat m_r-\rho_r,\widehat m_r+\rho_r]$. A zero variance ceiling makes that moment deterministic. The proof does not require the two estimators to be independent; it does require the window assumptions.
@@ -143,7 +143,7 @@ not additional Lean theorems or measurements.
 
 A count $Y$ equal to $0$ or $2$ with probability $1/2$ each has mean $1$ and factorial cumulants $(\kappa_2,\kappa_3)=(0,-1)$. A Poisson count of mean $1$ has $(0,0)$. Thus the mean and second factorial cumulant can fit the $D=1$ observation model even when the true distribution is outside it.
 
-Even a Poisson background marginal and zero covariance are insufficient. Let $Z\sim\operatorname{Poisson}(1)$ and specify $\Pr(X=1\mid Z)$ as $5/8,1/4,3/4,1/2$ for $Z=0,1,2,\geq3$, respectively. Then $X\sim\operatorname{Bernoulli}(1/2)$ and $\operatorname{Cov}(X,Z)=0$, but the conditional probabilities show dependence. Direct summation gives
+Even a Poisson background marginal and zero covariance are insufficient. Let $Z\sim\mathrm{Poisson}(1)$ and specify $\Pr(X=1\mid Z)$ as $5/8,1/4,3/4,1/2$ for $Z=0,1,2,\geq3$, respectively. Then $X\sim\mathrm{Bernoulli}(1/2)$ and $\mathrm{Cov}(X,Z)=0$, but the conditional probabilities show dependence. Direct summation gives
 
 $$
 \mathbb E[(1+t)^{X+Z}]=(1+t/2)e^t+\frac{t^3}{8e}.
