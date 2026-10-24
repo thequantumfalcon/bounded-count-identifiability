@@ -8,6 +8,13 @@ The Python API is experimental; no stable release has been published.
 
 ### Changed
 
+- Clarify that raw cancellation summaries already condition on cumulant-sign
+  checks. Add the binomial-parameter estimation literature and the published
+  Li et al. 2022 and 2023 citations. Correct the published figure references and
+  distinguish the 2022 additive-Poisson analysis from the background extension
+  left open by the 2023 multi-species model. The algorithms, saved results and
+  mathematical claims are unchanged.
+
 - Correct the synthetic cancellation estimator's acceptance rule: inferred
   negative background is a reported diagnostic, not a reason to discard an
   emitter estimate based on cumulants 2 and 3. Regenerate the study results and

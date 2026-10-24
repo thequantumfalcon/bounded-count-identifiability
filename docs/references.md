@@ -40,6 +40,92 @@ Section 2.2, equations (2.9)–(2.10), defines the linear factorial-cumulant con
 
 Appendix B, equations (37) and (39), PDF page 11, gives an unbiased second factorial-cumulant estimator and its exact finite-sample variance in ordinary cumulants. Equations (40)–(41) distinguish the large-sample approximation. This supports the established estimator context, not the bounded-source identification theorem or a claim of competitive performance for this implementation.
 
+**Ingram Olkin, A. John Petkau and James V. Zidek.** *A Comparison of n
+Estimators for the Binomial Distribution.* Journal of the American Statistical
+Association **76**(375), 637–642 (1981).
+DOI 10.1080/01621459.1981.10477697.
+[Publisher record](https://www.tandfonline.com/doi/full/10.1080/01621459.1981.10477697).
+
+The publisher-indexed abstract and metadata were inspected on 23 October 2026.
+For replicated binomial counts with unknown success probability, the abstract
+reports unstable moment and maximum-likelihood estimates of $n$ when $p$ is
+small and $n$ large, and simulations of stabilized alternatives. The full
+article was not retrieved. A [Stanford technical-report record](https://statistics.stanford.edu/technical-reports/comparison-n-estimators-binomial-distribution)
+dates an earlier version to February 1980, but its linked repository copy was
+inaccessible. No equation-level attribution to the article is claimed.
+
+**Johannes Schmidt-Hieber, Laura Fee Schneider, Thomas Staudt, Andrea Krajina,
+Timo Aspelmeier and Axel Munk.** *Posterior analysis of n in the binomial (n,p)
+problem with both parameters unknown—with applications to quantitative
+nanoscopy.* The Annals of Statistics **49**(6), 3534–3558 (2021).
+DOI 10.1214/21-AOS2096.
+[Publisher record](https://doi.org/10.1214/21-AOS2096),
+[inspected primary preprint, arXiv:1809.02443v3](https://arxiv.org/pdf/1809.02443v3).
+
+The 2018 first preprint was titled *Posterior consistency for n* and listed
+Schneider first. In the inspected version, equation (1.1), PDF page 2,
+distinguishes consistency for fixed $(n,p)$ from difficult small-$p$ sequences
+approaching a Poisson limit. Section 2, Theorems 1–3, PDF pages 7–9, supplies
+posterior concentration under explicit prior and parameter-rate conditions,
+and lower bounds for exact recovery of $n$. These results assume independent,
+identically distributed binomial observations. They do not give a guarantee
+for this repository's capped likelihood search, additive Poisson background,
+or empirical factorial-cumulant inversion. Section 3 also studies varying
+binomial population sizes; that robustness study is not an additive-background
+theorem. The cited preprint locations were inspected on 23 October 2026.
+
+**Laura Fee Schneider, Thomas Staudt and Axel Munk.** *Posterior Consistency
+in the Binomial Model with Unknown Parameters: A Numerical Study.* In
+*Bayesian Statistics and New Generations*, Springer Proceedings in Mathematics
+& Statistics **296**, 35–42 (2019). DOI 10.1007/978-3-030-30611-3_4.
+[Publisher record](https://link.springer.com/chapter/10.1007/978-3-030-30611-3_4),
+[inspected primary preprint, arXiv:1809.02459v1](https://arxiv.org/pdf/1809.02459v1).
+
+Sections 2–4 of the accessible preprint, PDF pages 3–7, study posterior
+concentration in small-$p$, growing-$n$ regimes. Its numerical exploration of
+consistency beyond the earlier sufficient rate is simulation evidence, not
+an additional theorem. The later six-author paper above gives the stronger
+theoretical analysis. Neither citation establishes the universal bounded-law
+finite-cumulant identification theorem or validates the synthetic emitter
+estimator's performance.
+
+## Photon-number-resolving emitter counting
+
+**Shuo Li, Wenchao Li, Vladislav V. Yakovlev, Allison Kealy and
+Andrew D. Greentree.** *En route to nanoscopic quantum optical imaging:
+counting emitters with photon-number-resolving detectors.* Optics Express
+**30**(8), 12495–12509 (2022). DOI 10.1364/OE.454412.
+[Publisher record](https://doi.org/10.1364/OE.454412),
+[published full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC9363020/),
+[earlier preprint](https://arxiv.org/abs/2110.03893v1).
+
+The published text was inspected. Figure 7(a,b) supplies the two parameter
+settings used here; its figure numbering differs from the earlier preprint.
+Section 6, equations (24)–(25), already models independent binomial counts plus
+Poisson noise with mean $rMp$. Figure 10 compares ignored noise with a
+noise-aware likelihood analysis for known relative background $r$. This is
+prior analysis of the same additive family, with a different estimator and
+calibration design from our synthetic comparisons. Knowing $r$ does not mean
+holding the absolute background $b$ fixed as $M,p$ vary.
+
+**Wenchao Li, Shuo Li, Timothy C. Brown, Qiang Sun, Xuezhi Wang,
+Vladislav V. Yakovlev, Allison Kealy, Bill Moran and Andrew D. Greentree.**
+*Estimation of the number of single-photon emitters for multiple fluorophores
+with the same spectral signature.* AVS Quantum Science **5**(4), 041401 (2023).
+DOI 10.1116/5.0162501.
+[Publisher record](https://doi.org/10.1116/5.0162501),
+[published full text](https://pubs.aip.org/avs/aqs/article-pdf/doi/10.1116/5.0162501/18209737/041401_1_5.0162501.pdf),
+[preprint](https://arxiv.org/abs/2306.05614v2).
+
+The published PDF was inspected. Section II, page 041401-3, omits background
+from the multi-species convolution model (2), mentioning Poisson and mixed
+Poisson–Gaussian possibilities as future extensions. This is a boundary of
+that model, not a claim that earlier emitter-counting work lacked Poisson-noise
+analysis. Section V.A, Figure 3 supplies the single-species $(M,p)=(8,0.1)$
+setting used here. Our study adds a synthetic background and specified
+estimators; it does not reanalyse the paper's data or solve general
+multi-species inference with background.
+
 ## Emitter counting by photon coincidences
 
 **Kenneth D. Weston, Martina Dyck, Philip Tinnefeld, Christian Müller,

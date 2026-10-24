@@ -126,17 +126,27 @@ finite evaluations; their termination statuses are included in the result file.
 
 ## Applied to published emitter-counting parameters
 
-[Li et al. (2022)](https://arxiv.org/abs/2110.03893) count identical emitters
-with a photon-number-resolving detector, using a pure binomial model and a
-maximum-likelihood estimate of $M$ and $p$. Their synthetic examples use the
-binomial sampling fluctuations without an added background term. A follow-up
-[2023 preprint, revised in 2024](https://arxiv.org/abs/2306.05614v2), uses a
-convolution of binomial laws for several species, also without a Poisson
-background term.
+[Li et al. (2022), *Optics Express* 30, 12495–12509](https://doi.org/10.1364/OE.454412)
+estimate $M,p$ using photon-number-resolving detection and a binomial likelihood.
+Their published Section 6 also studies independent additive Poisson noise,
+$Y\sim\operatorname{Binomial}(M,p)+\operatorname{Poisson}(rMp)$, comparing a
+likelihood analysis with known relative background $r$ against one that ignores
+the noise. Thus Poisson-contaminated emitter counting is already part of that
+paper; knowing $r$ is a different design from our source-off calibration.
+
+A follow-up,
+published as [Li et al. (2023), *AVS Quantum Science* 5, 041401](https://doi.org/10.1116/5.0162501)
+([preprint](https://arxiv.org/abs/2306.05614v2)), uses a convolution of binomial
+laws for several species. Its Section II omits background from model (2) and
+leaves a Poisson or mixed Poisson–Gaussian extension for future work. That
+statement concerns the multi-species model, rather than an absence of earlier
+Poisson-noise analysis. The calculation below uses the identical-species model
+with a synthetic fixed Poisson background.
 
 [emitter_published_parameters.py](../examples/emitter_published_parameters.py)
-takes $(M,p)=(40,0.2)$ and $(100,0.1)$ from Figs. 3 and 5 of the 2022 paper,
-and $(8,0.1)$ from the single-species example in Section V.1 of the follow-up.
+takes $(M,p)=(40,0.2)$ and $(100,0.1)$ from Fig. 7(a,b) of the published
+2022 paper, and $(8,0.1)$ from the single-species example in Section V.A,
+Fig. 3 of the published 2023 follow-up.
 It adds an independent Poisson background $b$ per pulse and compares three
 specified estimators of $M$ in 200 Monte Carlo repetitions with seed 2026:
 
@@ -164,14 +174,29 @@ nonnegative-background requirement. These checks do not establish statistical
 accuracy.
 The likelihood baseline searches a finite integer range and records a search
 cap hit as a failure. Undefined, inadmissible and capped results are counted,
-not replaced by point estimates. The output also retains finite unfiltered
-moment summaries as diagnostics of how out-of-domain estimates affect errors.
+not replaced by point estimates. For the moment procedures, the output field
+`raw_finite_summary` retains finite values of the ratios actually computed.
+For cancellation, it already conditions on $\widehat\kappa_2<0$ and
+$\widehat\kappa_3>0$, before the
+count/probability guards. It is not a summary of every algebraically finite
+ratio across all attempts.
 
 For $b>0$ the observed count law has unbounded support, whereas every finite
 binomial law has bounded support. A binomial fit with nonzero likelihood must
 have $M\ge\max Y$ in the sample. This baseline is consequently a finite-sample
 comparison, not a consistent background-misspecified estimator with a claimed
 finite population limit.
+
+Estimating unknown binomial $n$ and $p$ has a substantial statistical literature.
+[Olkin, Petkau and Zidek (1981)](https://doi.org/10.1080/01621459.1981.10477697)
+study instability of moment and likelihood estimates at small $p$.
+[Schmidt-Hieber, Schneider and colleagues (2021)](https://doi.org/10.1214/21-AOS2096)
+give Bayesian concentration results under explicit assumptions, following the
+[Schneider, Staudt and Munk numerical study (2019)](https://doi.org/10.1007/978-3-030-30611-3_4).
+Their core model is independent binomial observations. This synthetic
+comparison uses a capped likelihood baseline and different moment estimators;
+it does not benchmark those proposed estimators or transfer their guarantees
+to Poisson-contaminated counts. See the [reference and access notes](references.md#estimation).
 
 At $10^5$ signal pulses, each cell shows the mean estimate of $M$ (relative
 RMSE), followed by failed attempts out of 200. The mean and RMSE are conditional
@@ -191,16 +216,17 @@ $\widehat b<0$. That extra filter was inappropriate for the stated two-cumulant
 procedure and hid large errors. The corrected table retains those estimates:
 the six rows respectively include 89, 57, 80, 52, 66 and 28 negative inferred
 backgrounds among successful cancellation estimates. For example, at
-$(M,p,b)=(100,0.1,0.1)$ all 172 finite estimates now pass the count/probability
-checks, including 80 previously excluded by the background filter. Their mean
-is $9.92\times10^3$ and relative RMSE $7.43\times10^4\%$; the other 28 attempts
+$(M,p,b)=(100,0.1,0.1)$ all 172 estimates passing the cumulant-sign checks also
+pass the count/probability checks, including 80 previously excluded by the
+background filter. Their mean is $9.92\times10^3$ and relative RMSE
+$7.43\times10^4\%$; the other 28 attempts
 fail the cumulant-sign checks.
 
 The largest corrected conditional relative RMSE across the full grid occurs
 at $(8,0.1,0.5)$ and $10^5$ pulses: 185 estimates have mean
 $2.02\times10^4$ and relative RMSE $2.87\times10^6\%$. Twelve attempts fail
-the sign checks and three give $M<1$. The 188 finite estimates before
-count/probability checks have mean $1.99\times10^4$ and relative RMSE
+the sign checks and three give $M<1$. The 188 estimates passing the sign checks,
+before the count/probability guards, have mean $1.99\times10^4$ and relative RMSE
 $2.85\times10^6\%$. Failure counts, raw summaries and inferred-background
 diagnostics remain in the saved results; conditional errors still omit the
 remaining failed estimates.
@@ -306,12 +332,14 @@ Its detector-specific multiple-photon probabilities include optical geometry
 and a low-probability background component; they should not be equated with
 the ideal additive count model used here.
 
-[Li et al.](https://arxiv.org/abs/2110.03893) use photon-number-resolving
-detection and Cramer-Rao bounds with an ideal binomial model and no background
-term. The present synthetic comparisons do not reproduce the Weston or CoPS
-experiments or benchmark their estimators. Their physical demonstrations
-support their studied setups, not detector validation for this repository.
-See the [reference and access notes](references.md) for the inspected sources.
+[Li et al. (2022)](https://doi.org/10.1364/OE.454412) already analyze additive
+Poisson noise, whereas their [2023 follow-up](https://doi.org/10.1116/5.0162501)
+leaves background outside its multi-species model. The present synthetic
+comparisons do not reproduce the Weston or CoPS experiments or benchmark their
+estimators.
+Their physical demonstrations support their studied setups, not detector
+validation for this repository. See the [reference and access notes](references.md)
+for the inspected sources.
 
 See [research process and limitations](../PROVENANCE.md) for the full
 disclaimer and development-process disclosure.
