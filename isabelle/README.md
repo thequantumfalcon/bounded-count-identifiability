@@ -26,7 +26,7 @@ For the mean-one, ceiling-one family, set $B=a=c=1$ and
 $d=u,e=v$, with $0\le u\le v\le1$. The endpoint theorem states
 
 $$
-\exists b\quad\operatorname{pairbox}(1,1,1,u,v,p,b)
+\exists b\quad\mathrm{pairbox}(1,1,1,u,v,p,b)
 \quad\Longleftrightarrow\quad
 \sqrt{1-v}\le p\le\sqrt{1-u}.
 $$

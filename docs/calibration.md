@@ -44,7 +44,7 @@ $\alpha=0.04$ and $\delta=0.01$ give a total failure allowance of $0.05$.
 
 Assume $M\ge1$ preselected equal-duration source-off windows are independent
 Poisson counts with the same fixed mean $b$ as the study background. Their sum
-$K$ has law $\operatorname{Poisson}(Mb)$. For $0<\delta<1$, the standard one-sided
+$K$ has law $\mathrm{Poisson}(Mb)$. For $0<\delta<1$, the standard one-sided
 upper limit uses the root
 
 ```math
@@ -93,8 +93,8 @@ reconstructed mean photon numbers for 15 configurations, without the raw
 time-ordered count windows needed for our sampling diagnostics.
 
 The observation model matters even with ideal threshold detection. If
-$Z\sim\operatorname{Poisson}(b)$ becomes the binary click
-$C=\mathbf 1_{Z\geq1}$, then $C\sim\operatorname{Bernoulli}(q)$ with
+$Z\sim\mathrm{Poisson}(b)$ becomes the binary click
+$C=\mathbf 1_{Z\geq1}$, then $C\sim\mathrm{Bernoulli}(q)$ with
 $q=1-\exp(-b)$, and its second factorial cumulant is $-q^2$. The identical click
 law arises from a Bernoulli$(q)$ source with zero background. In particular,
 a pure Poisson input with $b=\log 2$ and a Bernoulli$(1/2)$ input give identical

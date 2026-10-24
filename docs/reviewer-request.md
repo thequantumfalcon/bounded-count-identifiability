@@ -35,7 +35,7 @@ is nonnegative. The left coefficient is zero. Swapping the laws excludes
 $c<0$. Thus $c=0$ and the two degree-at-most-$D$ polynomials agree.
 Here the $O$ notation means equality of coefficients below the indicated degree.
 
-For $Y=X+Z$ with independent $Z\sim\operatorname{Poisson}(b)$ and fixed
+For $Y=X+Z$ with independent $Z\sim\mathrm{Poisson}(b)$ and fixed
 $b\geq0$, the factorial generating function is $e^{bt}P(t)$. Higher factorial
 cumulants therefore identify $X$; the observed mean then identifies $b$.
 Random rates and source–background dependence are excluded.
