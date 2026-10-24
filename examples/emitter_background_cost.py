@@ -37,11 +37,19 @@ def metadata(design):
         "requirements-emitters.txt",
     )
     return {
-        "schema_version": 3,
+        "schema_version": 4,
         "scope": NUMERICAL_SCOPE,
         "python": platform.python_version(),
+        "python_implementation": platform.python_implementation(),
+        "platform": {"system": platform.system(), "machine": platform.machine()},
         "numpy": np.__version__,
         "scipy": scipy.__version__,
+        "optimizer_diagnostics_scope": (
+            "Termination statuses, iteration counts and evaluation counts describe "
+            "this execution and can vary across platforms even with pinned library "
+            "versions. They are not reproducibility thresholds or certificates of "
+            "global optimality; retained candidates are evaluated separately."
+        ),
         "source_sha256": {
             "examples/" + name: hashlib.sha256(
                 (directory / name).read_bytes()

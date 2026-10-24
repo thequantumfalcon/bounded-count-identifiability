@@ -8,6 +8,13 @@ The Python API is experimental; no stable release has been published.
 
 ### Changed
 
+- Report synthetic cancellation estimates by their conditional median and
+  interquartile range, retaining failure denominators and unstable mean/RMSE
+  diagnostics in the saved results. Regenerate both studies with schema 4,
+  platform metadata and explicit limits on reproducing optimizer counts.
+  Add Johnson–Kemp–Kotz and Teicher references with access and scope notes.
+  Mathematical assumptions, proof sources and unresolved priority are unchanged.
+
 - Clarify that raw cancellation summaries already condition on cumulant-sign
   checks. Add the binomial-parameter estimation literature and the published
   Li et al. 2022 and 2023 citations. Correct the published figure references and
@@ -31,8 +38,12 @@ The Python API is experimental; no stable release has been published.
 
 - Use Thomas Albrecht as the public author and maintainer name, retaining the
   `thequantumfalcon` GitHub account and existing demo address. No ORCID is listed.
-  Refresh the inspected CI and Isabelle links for commit `8061de8`; verification
-  disclosures and mathematical assumptions are unchanged.
+  Align the [inspected hosted build](evidence/README.md#latest-inspected-hosted-build)
+  with commit `45ad4511725bf5f77be34197dad6208f7a9b9b63`:
+  [CI run 40049548994](https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/40049548994)
+  and [Isabelle run 40049548989](https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/40049548989)
+  passed. These results cover that commit only; verification disclosures and
+  mathematical assumptions are unchanged.
 
 - Put the theorem, proof sketch, sharpness and scope first in the README; link
   the full process disclaimer and one-page review request. Label internal
@@ -178,9 +189,8 @@ The Python API is experimental; no stable release has been published.
 ### Fixed
 
 - Correct the recorded synthetic-run timing and stale Python/module-count
-  guidance; link the inspected hosted runs for commit `dab7d86`. Add a signed-mass
-  example explaining why nonnegativity is required, without changing the theorem
-  assumptions or proof sources.
+  guidance. Add a signed-mass example explaining why nonnegativity is required,
+  without changing the theorem assumptions or proof sources.
 - Separate generated import-only axiom queries from proof compilation output,
   so a proof file's messages cannot supply its axiom audit. Require exact unique
   root coverage and an allowed-axiom subset across core and extension checks;

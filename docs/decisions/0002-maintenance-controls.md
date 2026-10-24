@@ -20,8 +20,8 @@ Create one final signed commit atop current `main` on the PR branch before
 validation, then advance `main` by a local fast-forward to that same commit.
 Any subsequent squash, amendment or source change creates a different commit
 that needs its own checks. The non-bypassable rules require signed linear
-history, prevent deletion and force pushes, and require `ci` and
-`dependency-review` from GitHub Actions. The pull-request ruleset also has no
+history, prevent deletion and force pushes, and require `ci`,
+`dependency-review` and `isabelle` from GitHub Actions. The pull-request ruleset also has no
 administrator bypass. PR 16's single-commit promotion passed every applicable
 rule without using the former exception; the exception was then removed.
 If `main` advances during review, rebuild the final commit and repeat checks.

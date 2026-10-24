@@ -28,6 +28,23 @@ formula support the additional terminology. The accessible Afendras–Papadatos
 preprint remains the full-text source for the exact formula and factorial
 moments. See the [comparison](originality-review.md#additional-terminology-finitized-poisson-laws).
 
+## Classical count-distribution reference
+
+**Norman L. Johnson, Adrienne W. Kemp and Samuel Kotz.** *Univariate Discrete
+Distributions*, third edition. Wiley, 2005. DOI 10.1002/0471715816.
+ISBN 978-0-471-27246-5.
+[Publisher record](https://onlinelibrary.wiley.com/doi/book/10.1002/0471715816),
+[publisher table of contents](https://www.wiley.com/en-jp/univariate-discrete-distributions-3rd-edition-p-9780471715818).
+
+The publisher metadata and indexed contents were inspected on 23 October 2026.
+Relevant locations are sections 1.2.7–1.2.8 (moments and cumulants, pp. 50–56),
+1.2.11 (probability generating functions, pp. 58–61), 3.8 (binomial estimation,
+pp. 126–134), and 8.2.5–8.2.6 (finite Poisson and binomial mixtures,
+pp. 357–359). These are background references for established count-law and
+estimation machinery. The chapter text was not retrieved; no particular
+formula or missing-mean identification theorem is attributed to it on the
+basis of its contents alone.
+
 ## Factorial cumulants and Poisson translation
 
 **Bent Jørgensen and Célestin C. Kokonendji.** *Discrete Dispersion Models and their Tweedie Asymptotics.* arXiv:1409.7482. [Primary preprint](https://arxiv.org/pdf/1409.7482).
@@ -187,6 +204,32 @@ The NIST abstract describes calibration that accounts for background, dead time,
 **Michael Wayne, Joshua Bienfang and Sergey Polyakov.** *A simple autocorrelation method for thoroughly characterizing single-photon detectors.* Optics Express **25**(17) (2017). DOI 10.1364/OE.25.020352. [NIST publication record](https://www.nist.gov/publications/simple-autocorrelation-method-thoroughly-characterizing-single-photon-detectors).
 
 The inspected NIST record describes multi-order correlations of time-tagged events under calibrated illumination. This is a physical-method reference, not evidence from an experiment performed by this project.
+
+## Classical mixture identifiability
+
+**Henry Teicher.** *Identifiability of Mixtures.* The Annals of Mathematical
+Statistics **32**(1), 244–248 (1961). DOI 10.1214/aoms/1177705155.
+[Publisher record](https://doi.org/10.1214/aoms/1177705155).
+
+The publisher-indexed abstract was inspected on 23 October 2026. It states
+identifiability of mixtures of a one-parameter additively closed family, and
+gives a condition for scale-parameter mixtures. The full paper was not
+retrieved. This is classical context for identification of a mixing law from
+the mixture distribution; no theorem-level reduction of this project's
+finite-cumulant problem to that result is claimed.
+
+**Henry Teicher.** *Identifiability of Finite Mixtures.* The Annals of
+Mathematical Statistics **34**(4), 1265–1269 (1963).
+DOI 10.1214/aoms/1177703862.
+[Publisher record](https://doi.org/10.1214/aoms/1177703862).
+
+The publisher-deposited Crossref metadata was checked on 23 October 2026.
+Direct publisher and PDF access returned an access challenge, so the theorem
+statements were not inspected. This is a further classical reference for the
+mixture-identifiability comparison, with that access limitation retained.
+The [originality review](originality-review.md#classical-count-laws-and-mixture-identifiability)
+separates full-distribution mixture recovery from the bounded-law theorem's
+specified cumulant orders. Neither citation resolves priority for that theorem.
 
 ## Aggregate recovery
 

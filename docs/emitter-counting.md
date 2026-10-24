@@ -120,9 +120,12 @@ allowances and compares candidate evaluations with higher-precision decimal
 arithmetic. Floating-point and decimal calculations are not certified interval
 arithmetic: the tables are numerical approximations to the fixed-pair bounds,
 not machine-certified inequalities or proofs of global optimality.
-In the first grid, 73 of 168 two-parameter local refinements reached their
-iteration limit. The retained candidates still have valid model parameters and
-finite evaluations; their termination statuses are included in the result file.
+In the recorded first-grid execution, 73 of 168 two-parameter local refinements
+reached their iteration limit. This is a diagnostic of that execution, not a
+reproduction target: termination statuses, iteration counts and evaluation
+counts can vary across platforms even with pinned library versions. The
+retained candidates still have valid model parameters and finite evaluations;
+their termination statuses are included in the result file.
 
 ## Applied to published emitter-counting parameters
 
@@ -188,6 +191,9 @@ comparison, not a consistent background-misspecified estimator with a claimed
 finite population limit.
 
 Estimating unknown binomial $n$ and $p$ has a substantial statistical literature.
+[Johnson–Kemp–Kotz (2005), section 3.8](references.md#classical-count-distribution-reference)
+is a standard reference for binomial estimation; the access notes distinguish
+the inspected contents from the chapter text.
 [Olkin, Petkau and Zidek (1981)](https://doi.org/10.1080/01621459.1981.10477697)
 study instability of moment and likelihood estimates at small $p$.
 [Schmidt-Hieber, Schneider and colleagues (2021)](https://doi.org/10.1214/21-AOS2096)
@@ -198,18 +204,30 @@ comparison uses a capped likelihood baseline and different moment estimators;
 it does not benchmark those proposed estimators or transfer their guarantees
 to Poisson-contaminated counts. See the [reference and access notes](references.md#estimation).
 
-At $10^5$ signal pulses, each cell shows the mean estimate of $M$ (relative
-RMSE), followed by failed attempts out of 200. The mean and RMSE are conditional
-on a returned estimate under each procedure's stated domain checks:
+At $10^5$ signal pulses, the cancellation column shows the median estimate of
+$M$ and the interquartile range [25th, 75th percentile]. The other columns show
+the mean (relative RMSE). Every cell gives failed attempts out of 200. All
+summaries condition on a returned estimate under the stated domain checks;
+quartiles use linear interpolation (`numpy.quantile`, `method="linear"`).
+These ranges describe the central half of the successful synthetic estimates,
+not confidence intervals or uncertainty bounds for the median.
 
-| $(M,p)$ | $b$ | Binomial baseline | Cancellation | 10% source-off |
+| $(M,p)$ | $b$ | Binomial baseline: mean (relative RMSE) | Cancellation: median [Q25, Q75] | 10% source-off: mean (relative RMSE) |
 | --- | --- | --- | --- | --- |
-| (40, 0.2) | 0.1 | 41 (3.18%); 0/200 | 46.4 (99.8%); 0/200 | 40 (1.76%); 0/200 |
-| (40, 0.2) | 1 | 50.7 (27%); 0/200 | 47.1 (89.7%); 0/200 | 40.1 (1.94%); 0/200 |
-| (100, 0.1) | 0.1 | 102 (4.86%); 0/200 | 9.92e3 (7.43e4%); 28/200 | 100 (4.22%); 0/200 |
-| (100, 0.1) | 1 | 121 (21.4%); 0/200 | 1.57e3 (1.15e4%); 44/200 | 99.8 (4.24%); 0/200 |
-| (8, 0.1) | 0.1 | 10.2 (28.5%); 0/200 | 10.4 (98.9%); 0/200 | 8.04 (4.35%); 0/200 |
-| (8, 0.1) | 1 | 40.9 (414%); 0/200 | 1.38e3 (1.57e5%); 55/200 | 8.08 (10%); 0/200 |
+| (40, 0.2) | 0.1 | 41 (3.18%); 0/200 | 38.5 [31, 51.9]; 0/200 | 40 (1.76%); 0/200 |
+| (40, 0.2) | 1 | 50.7 (27%); 0/200 | 38.4 [29.1, 56]; 0/200 | 40.1 (1.94%); 0/200 |
+| (100, 0.1) | 0.1 | 102 (4.86%); 0/200 | 86.5 [34.8, 261]; 28/200 | 100 (4.22%); 0/200 |
+| (100, 0.1) | 1 | 121 (21.4%); 0/200 | 55 [27, 223]; 44/200 | 99.8 (4.24%); 0/200 |
+| (8, 0.1) | 0.1 | 10.2 (28.5%); 0/200 | 7.82 [5.55, 12.4]; 0/200 | 8.04 (4.35%); 0/200 |
+| (8, 0.1) | 1 | 40.9 (414%); 0/200 | 6.34 [2.69, 22.1]; 55/200 | 8.08 (10%); 0/200 |
+
+The cancellation mean is unstable: rare estimates with
+$\widehat\kappa_3$ close to zero dominate the mean and RMSE through
+$\widehat M=-4\widehat\kappa_2^3/\widehat\kappa_3^2$. These diagnostics can
+change by orders of magnitude between random seeds and are not reliable
+summaries of typical performance. The median and interquartile range still
+have Monte Carlo uncertainty and exclude failures. The saved JSON retains
+means and RMSEs as tail diagnostics; no estimates are trimmed or winsorized.
 
 Earlier versions of this table also discarded cancellation estimates when
 $\widehat b<0$. That extra filter was inappropriate for the stated two-cumulant
@@ -218,18 +236,18 @@ the six rows respectively include 89, 57, 80, 52, 66 and 28 negative inferred
 backgrounds among successful cancellation estimates. For example, at
 $(M,p,b)=(100,0.1,0.1)$ all 172 estimates passing the cumulant-sign checks also
 pass the count/probability checks, including 80 previously excluded by the
-background filter. Their mean is $9.92\times10^3$ and relative RMSE
-$7.43\times10^4\%$; the other 28 attempts
-fail the cumulant-sign checks.
+background filter. Their median is 86.5 with interquartile range [34.8, 261],
+while the unstable mean is $9.92\times10^3$ and relative RMSE
+$7.43\times10^4\%$. The other 28 attempts fail the cumulant-sign checks.
 
-The largest corrected conditional relative RMSE across the full grid occurs
-at $(8,0.1,0.5)$ and $10^5$ pulses: 185 estimates have mean
-$2.02\times10^4$ and relative RMSE $2.87\times10^6\%$. Twelve attempts fail
-the sign checks and three give $M<1$. The 188 estimates passing the sign checks,
-before the count/probability guards, have mean $1.99\times10^4$ and relative RMSE
-$2.85\times10^6\%$. Failure counts, raw summaries and inferred-background
-diagnostics remain in the saved results; conditional errors still omit the
-remaining failed estimates.
+At $(8,0.1,0.5)$ and $10^5$ pulses, 185 successful estimates have median 8.14
+and interquartile range [3.96, 19.7]. Twelve attempts fail the sign checks and
+three give $M<1$. The tail is not captured by this central range: the unstable
+mean is $2.02\times10^4$ and relative RMSE is $2.87\times10^6\%$, the largest
+in this particular run. Before the count/probability guards, the 188 estimates
+passing the sign checks have median 8.01 and interquartile range [3.82, 19.6].
+Failure counts, raw mean/RMSE diagnostics and inferred-background diagnostics
+remain in the saved results; conditional summaries still omit failed estimates.
 
 For comparison, matching a background-free binomial's population mean and
 variance to $Mp+b$ and $Mp(1-p)+b$ gives a continuous moment estimate
@@ -261,8 +279,10 @@ Columns give rounded numerical lower bounds on signal pulses:
 | (8, 0.1) | 0.1 | 9 | 1.04e5 | 1.06e5 | 1.83e7 (177x) |
 | (8, 0.1) | 1 | 9 | 4.9e5 | 5.17e5 | 2.28e8 (466x) |
 
-Here 10 of 20 two-parameter local refinements reached their iteration limit;
-the saved candidates and termination statuses remain available for inspection.
+In this recorded execution, 10 of 20 two-parameter local refinements reached
+their iteration limit. This total can vary across platforms; the saved
+candidates and termination statuses remain available for inspection and are
+not reproduction thresholds.
 
 Large lower bounds exhibit difficult pairs under the assumed observation model.
 Small lower bounds do not prove that a good estimator exists or exclude other
@@ -295,11 +315,11 @@ python examples/emitter_published_parameters.py --part all --json build/emitter-
 The output paths must be new. The published-parameter program also accepts
 `--part bounds` or `--part mc` to run either calculation separately. Result
 metadata records the design, numerical-library versions and calculation-source
-hashes. Schema version 3 separates the cancellation and calibration domains
-and adds inferred-background diagnostic counts. Both studies were rerun after
-the correction; all fixed-pair results, baseline/calibration summaries and raw
-cancellation summaries match the previous execution. Numerical agreement is a
-reproduction check, not independent review.
+hashes. Schema version 4 adds conditional and raw medians/quartiles, records
+the platform and interpreter, and labels optimizer counts as execution-specific
+diagnostics. Both studies were rerun with the original seed and design; no
+random seed was selected to improve the reported summaries. Numerical
+agreement is a reproduction check, not independent review.
 
 ## Limits
 
@@ -307,7 +327,8 @@ reproduction check, not independent review.
   not achievable rates, an optimal estimator or an optimal calibration design.
   Numerical optimization and floating-point probability calculations are not
   formally verified.
-- Finite Monte Carlo means and relative RMSEs have simulation uncertainty.
+- Finite Monte Carlo summaries have simulation uncertainty; the cancellation
+  mean and RMSE are particularly unstable because of rare extreme ratios.
   Conditional summaries exclude failed estimates and do not measure the
   unconditional risk of a procedure that can fail. They do not prove
   unbiasedness, coverage or practical superiority beyond the reported cells.

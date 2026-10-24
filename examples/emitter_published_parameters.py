@@ -6,6 +6,8 @@ E1 fits a pure binomial on an explicitly bounded integer search. E2 and E3 are
 continuous moment estimates with exact count/probability checks. E2 retains an
 inferred-background diagnostic; E3 also checks its calibrated background.
 Summaries are conditional on successful fits and always give failure denominators.
+Cancellation is displayed as median and interquartile range; its mean and RMSE
+are unstable tail diagnostics retained in the JSON output.
 
 The testing calculations evaluate explicit candidate alternatives. Numerical
 search is not a global-optimum certificate; the reported necessary counts are
@@ -164,10 +166,14 @@ def calibrated_M(y, dark, summary=None):
 
 def numeric_summary(values, truth):
     if not values:
-        return dict(count=0, mean=None, rel_rmse=None)
+        return dict(count=0, median=None, q25=None, q75=None, mean=None, rel_rmse=None)
     values = np.array(values, dtype=float)
+    q25, median, q75 = np.quantile(values, [0.25, 0.5, 0.75], method="linear")
     return dict(
         count=len(values),
+        median=float(median),
+        q25=float(q25),
+        q75=float(q75),
         mean=float(values.mean()),
         rel_rmse=float(np.sqrt(np.mean((values - truth) ** 2)) / truth),
     )
@@ -199,6 +205,9 @@ def summarize_estimates(results, truth):
         "failed": sum(failures.values()),
         "failure_reasons": dict(sorted(failures.items())),
         "success_fraction": len(success) / len(results) if results else None,
+        "conditional_median": values["median"],
+        "conditional_q25": values["q25"],
+        "conditional_q75": values["q75"],
         "conditional_mean": values["mean"],
         "conditional_rel_rmse": values["rel_rmse"],
         "raw_finite_summary": numeric_summary(raw, truth),
@@ -237,7 +246,10 @@ def monte_carlo(reps=REPS):
     rng = np.random.default_rng(SEED)
     rows = []
     print(
-        "Synthetic conditional mean, relative RMSE, failed/attempted; simulation outcomes are not CI gates."
+        "Synthetic conditional summaries: E2 median [Q25, Q75]; E1/E3 mean (relative RMSE); all give failed/attempted."
+    )
+    print(
+        "E2 mean and RMSE are unstable tail diagnostics retained in JSON; outcomes are not CI gates."
     )
     print(
         f"{'M':>4} {'p':>5} {'b':>5} {'pulses':>8} | {'E1 bounded binomial':>26} | {'E2 cumulants':>26} | {'E3 10% source-off':>26}"
@@ -264,6 +276,10 @@ def monte_carlo(reps=REPS):
                     elif result["successful"] == 0:
                         cells.append(
                             f"{'no successful fits':>18} {result['failed']:3}/{result['attempted']}"
+                        )
+                    elif key == "E2":
+                        cells.append(
+                            f"{result['conditional_median']:.3g} [{result['conditional_q25']:.3g}, {result['conditional_q75']:.3g}] {result['failed']:3}/{result['attempted']}"
                         )
                     else:
                         cells.append(
@@ -355,6 +371,8 @@ def main():
                 "E3_domain": "continuous M>=1, 0<p<=1, background>=0; exact rational guards",
                 "E2_background_diagnostics": "evaluated whenever cumulant signs permit; negative includes p/M failures; negative_among_successful counts retained estimates",
                 "summary_scope": "conditional on success; raw finite summaries also retained; no empirical thresholds gate CI",
+                "quantiles": "Q25, median, Q75; numpy.quantile method=linear; conditional on the same successes as the mean/RMSE",
+                "E2_reporting": "median and interquartile range are primary; mean and RMSE are unstable tail diagnostics, not reliable typical-error summaries",
             }
         )
     }

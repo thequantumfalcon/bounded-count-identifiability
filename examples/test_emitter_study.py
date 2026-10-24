@@ -126,6 +126,32 @@ class AffinityControls(unittest.TestCase):
         self.assertFalse(result["search"]["global_optimum_certified"])
         self.assertGreater(result["necessary_windows_approximation"], 0)
 
+    def test_optimizer_status_does_not_change_fixed_candidate_evaluation(self):
+        results = []
+        for success, iterations, evaluations in ((True, 21, 40), (False, 3000, 12000)):
+            optimizer = SimpleNamespace(
+                x=np.array([0.1, 0.2]),
+                fun=0.0,
+                success=success,
+                message="injected termination status",
+                nit=iterations,
+                nfev=evaluations,
+            )
+            with patch.object(cost, "minimize", return_value=optimizer):
+                result = cost.search_pair(2, 0.2, 0.1, 3, 0, [0.1, 0.2], [0, 0.2])
+            self.assertEqual(result["search"]["optimizer_success"], success)
+            self.assertEqual(result["search"]["optimizer_iterations"], iterations)
+            self.assertEqual(result["search"]["optimizer_evaluations"], evaluations)
+            self.assertTrue(result["search"]["optimizer_candidate_valid"])
+            self.assertFalse(result["search"]["global_optimum_certified"])
+            self.assertGreater(result["search"]["optimizer_recomputed_objective"], 0)
+            results.append(result)
+        self.assertEqual(results[0]["candidate"], results[1]["candidate"])
+        self.assertEqual(
+            results[0]["necessary_windows_approximation"],
+            results[1]["necessary_windows_approximation"],
+        )
+
     def test_scalar_optimizer_failure_keeps_finite_witness(self):
         failed = SimpleNamespace(
             x=math.nan, fun=math.nan, success=False, message="injected failure", nfev=1
@@ -282,7 +308,40 @@ class EstimatorControls(unittest.TestCase):
         self.assertEqual(absent["status"], "not_run")
         self.assertIsNone(failure["conditional_mean"])
         self.assertIsNone(absent["conditional_mean"])
+        for key in ("conditional_median", "conditional_q25", "conditional_q75"):
+            self.assertIsNone(failure[key])
+            self.assertIsNone(absent[key])
         json.dumps([failure, absent], allow_nan=False)
+
+    def test_quantiles_preserve_tail_and_failure_diagnostics(self):
+        # One huge successful ratio must not dominate the central summary;
+        # a rejected finite ratio belongs only to the raw diagnostics.
+        results = [
+            dict(status="success", estimate=value, raw_estimate=value)
+            for value in (1, 2, 3, 4, 1_000_000)
+        ]
+        results.append(study.rejected("count_below_one", 0.5))
+        result = study.summarize_estimates(results, 2)
+        self.assertEqual(
+            (result["attempted"], result["successful"], result["failed"]), (6, 5, 1)
+        )
+        self.assertEqual(result["conditional_median"], 3)
+        self.assertEqual(result["conditional_q25"], 2)
+        self.assertEqual(result["conditional_q75"], 4)
+        self.assertEqual(result["conditional_mean"], 200002)
+        self.assertGreater(result["conditional_rel_rmse"], 100_000)
+        self.assertEqual(result["raw_finite_summary"]["count"], 6)
+        self.assertEqual(result["raw_finite_summary"]["median"], 2.5)
+        self.assertEqual(result["raw_finite_summary"]["q25"], 1.25)
+        self.assertEqual(result["raw_finite_summary"]["q75"], 3.75)
+        json.dumps(result, allow_nan=False)
+
+    def test_single_success_quantiles_coincide(self):
+        result = study.summarize_estimates(
+            [study.factorial_cumulant_M(np.array([0, 0, 1, 1, 2]))], 2
+        )
+        for key in ("conditional_median", "conditional_q25", "conditional_q75"):
+            self.assertEqual(result[key], 13.5)
 
 
 if __name__ == "__main__":

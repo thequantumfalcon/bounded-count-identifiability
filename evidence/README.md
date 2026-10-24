@@ -8,16 +8,16 @@ independent human review or physical validation.
 ## Latest inspected hosted build
 
 Checked on 23 October 2026: commit
-`c180a18fd7ec1d795aafab22f616670d2c405a54` passed
-[CI run 39913785767](https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39913785767)
+`45ad4511725bf5f77be34197dad6208f7a9b9b63` passed
+[CI run 40049548994](https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/40049548994)
 and the separate
-[Isabelle run 39913785768](https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/39913785768).
+[Isabelle run 40049548989](https://github.com/thequantumfalcon/bounded-count-identifiability/actions/runs/40049548989).
 The CI run includes the pinned Lean build, fresh compilation, axiom audits,
 kernel replay, certificate controls, Python package/artifact checks on Linux
 and Windows, fuzzing, FLINT, Sage, the browser demo, the synthetic count-model
-experiment and synthetic emitter-counting comparisons. GitHub reports every
-job in both runs as successful. These results apply to that commit, not to
-subsequent edits; inspect the exact commit's
+experiment and synthetic emitter-counting comparisons. GitHub reports all 12
+CI jobs and the Isabelle job as successful. These results apply to that commit,
+not to subsequent edits; inspect the exact commit's
 [Actions results](https://github.com/thequantumfalcon/bounded-count-identifiability/actions)
 when reproducing a later version.
 

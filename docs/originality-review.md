@@ -50,6 +50,37 @@ listed the article without a full-text link; no accessible copy was obtained.
 Additional references and access boundaries are in
 [references.md](references.md).
 
+## Classical count laws and mixture identifiability
+
+[Johnson, Kemp and Kotz, *Univariate Discrete Distributions*, third edition
+(2005)](https://onlinelibrary.wiley.com/doi/book/10.1002/0471715816) supplies a
+standard reference for the count-distribution background. Its publisher's
+contents locate moments and cumulants in sections 1.2.7–1.2.8, probability
+generating functions in 1.2.11, binomial estimation in 3.8, and finite Poisson
+and binomial mixtures in 8.2.5–8.2.6. Only the metadata and contents were
+inspected; those headings do not establish that the book contains or excludes
+the precise missing-mean theorem.
+
+Teicher's [*Identifiability of Mixtures*
+(1961)](https://doi.org/10.1214/aoms/1177705155) and
+[*Identifiability of Finite Mixtures*
+(1963)](https://doi.org/10.1214/aoms/1177703862) are classical references for
+mixture identifiability. The 1961 publisher-indexed abstract gives a positive
+result for mixtures of a one-parameter additively closed family. The 1963
+bibliographic metadata was verified; neither full paper was retrieved. The
+[reference entries](references.md#classical-mixture-identifiability) retain
+these access boundaries rather than asserting an inspected theorem comparison.
+
+The distinction relevant here is between identifying a mixing measure from
+its full mixture distribution and identifying an arbitrary bounded count law
+from only factorial-cumulant orders $2,\ldots,D+1$. Independent addition of a
+fixed Poisson variable is a convolution; a random mixture of Poisson rates is
+a different model. A reduction between these identification questions would
+have to specify its component family, its allowed mixing laws and why the
+stated finite set of cumulants suffices. These references acknowledge the
+classical background and an unfinished comparison; they do not change the
+publication decision or establish a mixed-background extension.
+
 ## Additional terminology: finitized Poisson laws
 
 Another established name for the sharpness family is **finitized Poisson**.
