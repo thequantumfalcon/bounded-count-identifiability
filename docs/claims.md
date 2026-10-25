@@ -7,6 +7,8 @@ The central result is the [bounded-count identification theorem](theorem.md). Th
 | Orders $2,\ldots,D+1$ identify any law on a known $0,\ldots,D$. | Universal proof in [theorem.md](theorem.md); [CountIdentification.lean](../lean/CountIdentification.lean). | Exact population cumulants and the stated support bound. |
 | Independent fixed Poisson background preserves the identifying orders; adding the mean identifies its rate. | Generating-function proof, core Lean modules and [analytic connection](probability-extensions.md#analytic-cumulants). | Actual marginal laws, source–background independence and fixed nonnegative rates are explicit. Analytic expectation derivatives agree with formal cumulants at every order. |
 | The general maximum order $D+1$ cannot be lowered. | Valid-law construction and matching cumulants in [CountSharpness.lean](../lean/CountSharpness.lean). | Uses an established generalized matching distribution; the comparison law is a point mass. |
+| The source mean is the largest real root of an explicit cumulant polynomial; coefficient inversion reconstructs its law and gives an exact admissibility criterion. | Written proof in [reconstruction.md](reconstruction.md); [finite exact identity controls](../examples/largest_root_identity.py). | Exact inputs and known support bound. Not yet formalized in Lean; the example starts from known laws and is not a general root-isolation solver. |
+| The inverse on admissible bounded laws has sharp uniform Hölder exponent $1/(D+1)$ for mean and total variation. | Written majorant proof and attributed sharpness family in [reconstruction.md](reconstruction.md#the-exponent-is-sharp). | Two admissible laws with the same fixed bound $D$; conservative dimension-dependent constants. No sampling-error guarantee or formalization of this general-$D$ result. |
 | Exact arithmetic reproduces population cumulants and the known-family collision. | [Population calculation code](../src/bounded_counts/) and [examples](../examples/). | Finite exact cases supplement the universal proof. The software is not formally verified. |
 | For nonnegative parameters in the algebraic $D=1$ model, second-cumulant error at most $\varepsilon$ gives parameter error at most $\sqrt{\varepsilon}$; mean error at most $\delta$ additionally gives background error at most $\delta+\sqrt{\varepsilon}$. | [CountD1Stability.lean](../lean/extensions/d1/CountD1Stability.lean), separately compiled with explicit axiom checks. | Defines $\kappa_2(p)=-p^2$ and $b(\mu,p)=\mu-p$ algebraically. The probability bridge and data-error guarantees are separate. |
 | The $D=1$ bounds apply to the cumulants of Bernoulli masses and their independent-Poisson observation channel. | [CountD1LawBridge.lean](../lean/extensions/d1-law/CountD1LawBridge.lean), including endpoint laws, and the probability/analytic extensions. | $p,q\in[0,1]$; actual background rates are nonnegative. Observation-error guarantees must be supplied separately. |
@@ -152,6 +154,12 @@ $$
 The extra term changes the third factorial cumulant by $3/(4e)$ while preserving the first two. The independent-addition formula therefore fails despite the correct marginals and zero covariance.
 
 ## Claims not made
+
+The [counting-model comparison](counting-models.md) distinguishes this additive
+bounded-source model from a Poisson mixture driven by a random intensity. Their
+cumulant identities concern different latent quantities. Agreement of a few
+moments is weaker than agreement of a full count law, and background-invariant
+population quantities can still be difficult to estimate from noisy data.
 
 The project establishes no laboratory validation, new particle interpretation, efficient acquisition protocol, optimal estimator or unconditional finite-data guarantee. It does not identify an emitted source separately from an unknown detection efficiency. A compatible finite list of moments cannot certify the entire noise model. Zero covariance cannot certify independence, and observing no source-support violation cannot prove its probability is exactly zero.
 

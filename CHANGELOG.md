@@ -8,6 +8,11 @@ The Python API is experimental; no stable release has been published.
 
 ### Changed
 
+- Distinguish additive bounded counts from random-intensity Poisson mixtures,
+  including the limits of moment matching, detector calibration and finite-data
+  inference. Explain the role and limits of REA execution records in the
+  research-process disclosure.
+
 - Report synthetic cancellation estimates by their conditional median and
   interquartile range, retaining failure denominators and unstable mean/RMSE
   diagnostics in the saved results. Regenerate both studies with schema 4,
@@ -68,6 +73,12 @@ The Python API is experimental; no stable release has been published.
   locked development packages, not just the build-system requirements.
 
 ### Added
+
+- Written largest-real-root reconstruction and exact admissibility criterion,
+  with support-dependent root multiplicity and a sharp uniform Hölder exponent
+  for mean and total variation. Exact rational examples check the identities
+  and reject a changed coefficient in installed-artifact tests. These additions
+  are not yet formalized in Lean; noisy-data inference and priority remain open.
 
 - Two labelled synthetic emitter-counting studies with an independent fixed
   Poisson background: numerical two-point lower-bound comparisons and Monte

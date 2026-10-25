@@ -2,7 +2,8 @@
 
 Literature search updated 23 October 2026. **The priority of the universal identification
 theorem remains unresolved.** A targeted search is not proof of novelty, and no
-independent human literature review is claimed.
+independent human literature review is claimed. A limited proof-step review of
+the cited *Recovery from Power Sums* preprint was added on 25 October 2026 below.
 
 The exact question is whether every probability law on a known
 $\lbrace0,\ldots,D\rbrace$ is determined by factorial cumulants
@@ -22,7 +23,7 @@ decisions:
 | --- | --- | --- |
 | Is the sharpness construction original here? | No. Afendras–Papadatos give the exact generalized matching law and factorial moments, crediting Niermann for the law. | Attribute the construction and its matching property. |
 | Is cancellation of independent fixed Poisson background original here? | No. It is established factorial-cumulant machinery. | State it as the observation-model corollary, with a citation. |
-| Is identification for sums of independent Bernoulli variables already covered? | Yes, as a consequence of Melánová–Sturmfels–Winter, Proposition 24, under the power-sum substitution below. | Acknowledge this subclass overlap; the substitution is our comparison with their statement. |
+| Is identification for sums of independent Bernoulli variables already covered? | Yes, as a consequence of the stated Melánová–Sturmfels–Winter Proposition 24, under the power-sum substitution below. | Acknowledge this subclass overlap and the limited v1 proof-step concern below; the substitution is our comparison with their statement. |
 | Is the universal theorem for arbitrary laws on $0,\ldots,D$ known or new? | Unresolved. No exact earlier statement or complete reduction was located in the inspected sources. | Make no priority claim. Correctness of the supplied proof does not settle this question. |
 | Does the emitter illustration establish a new measurement method? | No. Its conclusions are conditional on the count model; no physical validation or competitive estimation result is supplied. | Keep it an application under assumptions. |
 
@@ -106,8 +107,9 @@ from orders $2,\ldots,D+1$ with the mean omitted.
 Proposition 24 of *Recovery from Power Sums* states that any $D$ distinct
 positive-integer power sums determine a nonnegative $D$-vector up to permutation.
 This is a relevant existing result even when the first power sum is omitted.
-This comparison uses the stated proposition; it is not an independent audit of
-its proof. The accessible preprint was inspected; direct access to the
+This comparison uses the stated proposition. A limited review of one step in
+its v1 proof is recorded below; no complete verification of that proof is
+claimed. The accessible preprint was inspected; direct access to the
 [journal PDF](https://doi.org/10.1080/10586458.2022.2061650) returned HTTP 403.
 
 The following application is our comparison with that result. For a sum of $D$
@@ -136,6 +138,36 @@ $P(t)=1+t+t^2/2$, whose quadratic discriminant is $-1$. It cannot be written
 as $(1+p_1t)(1+p_2t)$ with real Bernoulli parameters. Thus this application
 does not by itself settle the general theorem's priority. The wider
 power-sum literature is a concrete citation trail for further review.
+
+### A proof-step concern in the inspected version
+
+The proof of Proposition 24 in
+[arXiv:2106.13981v1, PDF page 12](https://arxiv.org/pdf/2106.13981v1)
+infers from a nonzero Jacobian determinant that every coordinate of the
+directional derivative along the chosen segment is nonzero. This inference
+fails even for a segment satisfying the proof's stated chamber assumptions.
+For $A=\lbrace1,2\rbrace$, set
+
+$$
+\phi(x_1,x_2)=(x_1+x_2,x_1^2+x_2^2),\qquad
+x(t)=(3-t,3t/2),\quad 0\leq t\leq1.
+$$
+
+Here $x_1(t)>x_2(t)\geq0$, the second endpoint has positive second coordinate,
+and
+
+$$
+\det J_\phi(x(t))=5t-6\ne0,\qquad
+J_\phi(x(t))\begin{pmatrix}-1\\3/2\end{pmatrix}
+=\begin{pmatrix}1/2\\-6+13t/2\end{pmatrix}.
+$$
+
+At $t=12/13$ the second coordinate of this derivative vanishes while the
+determinant is $-18/13$. This refutes the indicated intermediate inference,
+not injectivity in this example or Proposition 24 itself. The proposition
+remains attributed as stated prior work. This review makes no assertion about
+the inaccessible published version's proof, and the repository's elementary
+bounded-count proof does not depend on Proposition 24.
 
 ### Follow-up through the cited injectivity theorem
 

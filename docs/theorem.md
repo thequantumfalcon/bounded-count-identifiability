@@ -67,6 +67,13 @@ allowed, $P(t)=1+t$ and $Q(t)=1-t$ would be distinct degree-one polynomials with
 the same $\kappa_2=-1$. The latter corresponds to masses $(2,-1)$ on $\lbrace0,1\rbrace$,
 so it is excluded by the probability-law assumptions.
 
+The [reconstruction and stability note](reconstruction.md) makes this inverse
+explicit: the source mean is the largest real root of a known polynomial,
+followed by coefficient inversion for its probabilities. It also proves a
+sharp uniform Hölder exponent $1/(D+1)$ between admissible laws. Those
+additional statements have written proofs and finite exact checks; they are
+not yet included in the Lean formalization.
+
 ## Unknown Poisson background
 
 Suppose $Y=X+Z$, where $Z\sim\mathrm{Poisson}(b)$, $b\geq0$ is fixed, and $X,Z$ are independent. Then

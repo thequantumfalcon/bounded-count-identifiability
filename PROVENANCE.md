@@ -19,6 +19,12 @@ review. Formal verification supports the propositions actually encoded, subject
 to their stated assumptions and trusted components; it does not automatically
 verify every statement in this repository.
 
+REA process captures are used for selected executable checks during development.
+They can bind an observed run to its inputs and outputs; a successful capture or
+an intact evidence log does not establish a theorem, authenticate measurements,
+or supply an independent review. Reproduction commands and the scope of each
+mathematical argument remain the public basis for checking the results.
+
 The mathematical results concern bounded count laws and the observation models
 specified here. The sharpness family is established prior art and is credited
 accordingly. Originality of the general identification result remains unresolved.

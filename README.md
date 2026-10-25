@@ -63,6 +63,11 @@ The [claim map](docs/claims.md) separates the main theorem, extensions, software
 checks and unresolved obligations.
 
 - [Short mathematical note](docs/theorem.md), including the role of nonnegativity.
+- [Explicit reconstruction and sharp inverse stability](docs/reconstruction.md),
+  with written proofs and finite exact controls; these additions are not yet in Lean.
+- [Which counting model applies?](docs/counting-models.md), comparing bounded
+  source counts with random-intensity Poisson mixtures and their different
+  identification, calibration and sampling assumptions.
 - [Reproduction guide](docs/reproduction.md) and [pinned Lean project](lean/README.md).
 - [Probability, sampling and uncertainty extensions](docs/probability-extensions.md).
 - [Verification record](evidence/README.md), including hosted runs for specific commits.
