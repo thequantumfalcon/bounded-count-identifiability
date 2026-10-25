@@ -276,14 +276,20 @@ DOI 10.1080/10586458.2022.2061650.
 [Inspected preprint, arXiv:2106.13981v1](https://arxiv.org/pdf/2106.13981v1),
 [publisher record](https://doi.org/10.1080/10586458.2022.2061650).
 
-Proposition 24, PDF page 12, identifies a nonnegative $D$-vector up to
+Proposition 24, PDF page 12, states that a nonnegative $D$-vector is identified up to
 permutation from any $D$ distinct positive-integer power sums. The
 [originality review](originality-review.md#a-closer-overlap-the-poisson-binomial-subclass)
 derives its implication for sums of independent Bernoulli variables and
 explains why that substitution does not cover every bounded law. The statement
-and its cited injectivity source were rechecked on 23 October 2026; no
-independent audit of the proposition's proof is claimed. Direct publisher
-access remained unavailable; the comparison is pinned to the preprint version.
+and its cited injectivity source were rechecked on 23 October 2026. A limited
+proof-step review on 25 October 2026 found that the inspected v1 proof's
+nonzero-determinant argument does not imply that every coordinate of the
+directional derivative is nonzero; an
+[exact two-variable counterexample](originality-review.md#a-proof-step-concern-in-the-inspected-version)
+is given in the comparison. This observation does not disprove Proposition 24.
+Its attribution is retained, and the bounded-count proof does not depend on it.
+Direct publisher access remained unavailable; no claim is made about the
+published version's proof.
 
 **Stefan Müller, Elisenda Feliu, Georg Regensburger, Carsten Conradi, Anne Shiu
 and Alicia Dickenstein.** *Sign conditions for injectivity of generalized
