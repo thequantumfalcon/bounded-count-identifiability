@@ -8,6 +8,12 @@ The Python API is experimental; no stable release has been published.
 
 ### Changed
 
+- Add a finite-jet Lean extension for mean and total-variation stability of
+  actual bounded laws, with explicit coarse constants and binomial-moment
+  assumptions. Keep the sharper written constants, sharpness path and
+  measurement-calibration obligations separate. Register all fifteen roots in
+  the shared source, axiom and replay checks.
+
 - Distinguish additive bounded counts from random-intensity Poisson mixtures,
   including the limits of moment matching, detector calibration and finite-data
   inference. Explain the role and limits of REA execution records in the

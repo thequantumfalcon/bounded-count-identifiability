@@ -144,7 +144,7 @@ uses the same verifier with `--suite research`:
 python lean/extensions/d1-law/verify_law_bridge.py --suite research --run external-research
 ```
 
-It freshly checks the six core modules and all twenty-two extensions, including
+It freshly checks the six core modules and all twenty-three extensions, including
 the [largest-root, derivative and conditional admissibility lemmas](../lean/extensions/largest-root/README.md).
 Their source
 manifests and theorem-root lists are checked separately. A valid axiom list may

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "description": "Exact-byte source binding for finite-jet mean and total-variation stability on actual bounded laws, with explicit coarse constants. Sharpness and sharper constants remain separate.",
+  "sources": {
+    "CountQuantitativeJets.lean": {
+      "sha256": "a43b74f5a214a4abbc002ca0cc7e8b774b5791b61fa1c8db710c999117a91888",
+      "bytes": 33711
+    }
+  },
+  "theorem_roots": [
+    "CountQuantitativeJets.ode_coefficient_stability",
+    "CountQuantitativeJets.log_derivative_coefficient_bound",
+    "CountQuantitativeJets.normalized_log_recurrence",
+    "CountQuantitativeJets.normalized_log_bound",
+    "CountQuantitativeJets.shifted_coefficient_bound",
+    "CountQuantitativeJets.shifted_recurrence",
+    "CountQuantitativeJets.support_power_bound",
+    "CountQuantitativeJets.law_coefficient_bounds",
+    "CountQuantitativeJets.ordered_law_mean_power_bound",
+    "CountQuantitativeJets.law_mean_power_bound",
+    "CountQuantitativeJets.law_mean_holder_bound",
+    "CountQuantitativeJets.binomial_inverse_stability",
+    "CountQuantitativeJets.law_moment_difference_bound",
+    "CountQuantitativeJets.law_tv_mean_bound",
+    "CountQuantitativeJets.law_tv_holder_bound"
+  ]
+}

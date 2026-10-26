@@ -11,7 +11,9 @@ of one polynomial** in those cumulants, then recovers the probabilities by
 coefficient inversion. The [reconstruction note](docs/reconstruction.md) gives
 an exact admissibility criterion and sharp uniform inverse bounds, with
 [partial formal coverage](docs/reconstruction.md#formal-coverage) in three
-Lean extensions.
+Lean extensions. A separate [finite-jet stability proof](lean/extensions/quantitative-jets/README.md)
+formalizes general-support mean and total-variation bounds with explicit coarse
+constants under stated binomial-moment lower bounds.
 
 **Proof sketch.** Write $P(t)=\mathbb E[(1+t)^X]$ and $Q(t)$ for two candidate
 laws, and let $c$ be their mean difference. Equal factorial cumulants of orders
