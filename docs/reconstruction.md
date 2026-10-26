@@ -6,11 +6,14 @@ The probabilities then follow by a finite coefficient inversion.
 Across this class the inverse has a uniform Hölder bound with exponent
 $1/(D+1)$, and no larger exponent works uniformly.
 
-These are written consequences of the [identification argument](theorem.md).
-They are not yet formalized in Lean. The constants below are conservative;
-the results compare exact admissible population laws and do not supply
-sampling errors, detector calibration or a practical reconstruction algorithm.
-No historical-priority claim is made.
+These consequences of the [identification argument](theorem.md) have written
+proofs below. Three Lean extensions formalize the location and largest-root
+properties, derivative identities and conditional mass reconstruction.
+The [formal coverage](#formal-coverage) section states which connections remain
+written. The stability constants are conservative; the results compare exact
+admissible population laws and do not supply sampling errors, detector
+calibration or a practical reconstruction algorithm. No historical-priority
+claim is made.
 
 ## The largest real root
 
@@ -98,6 +101,32 @@ proposed $\kappa_2$ gives $F(u)=u^2+\kappa_2$ with no real root. Even a real
 root does not establish nonnegative reconstructed masses. Certified root
 isolation and sign decisions for rational or algebraic inputs remain
 computational obligations; approximate roots are not exact certificates.
+
+## Formal coverage
+
+The three extensions use the same formal-series definitions as the core
+identification proof. Their scope is narrower than the complete reconstruction
+procedure from an arbitrary supplied cumulant vector.
+
+| Extension | Formal statement | Remaining written connection |
+| --- | --- | --- |
+| [Largest root](../lean/extensions/largest-root/README.md) | For a supplied normalized series $Q$, the degree-$n$ coefficient after changing its first log coefficient has an explicit location identity. Nonnegative coefficients and a zero degree-$n$ coefficient make the original first log coefficient its largest real root. A bounded-law specialization identifies that coefficient with the mean. | Construct the explicit polynomial $F$ directly from arbitrary inputs $\kappa_2,\ldots,\kappa_n$ and connect its Bell-polynomial coefficients to this series formulation. |
+| [Root structure](../lean/extensions/root-structure/README.md) | The normalized location polynomial has $k$th derivative at zero equal to $[t^{n-k}]Q$ for $0\leq k\leq n$. For a bounded law, its first derivative is $p_D$. | State and prove the exact root multiplicity $n-\max\operatorname{supp}X$ and the implicit-function sensitivity formula in Lean. |
+| [Admissibility](../lean/extensions/admissibility/README.md) | A normalized series $S$ with $[t^n]S=0$ and nonnegative reconstructed masses gives a bounded law matching its cumulants through order $n$. Recovery of an existing bounded law is proved when the higher log coefficients match and the first log coefficient of $S$ is at least that law's mean. | Construct $S$ from arbitrary cumulant inputs and the selected largest root, discharge those hypotheses, and assemble the full admissibility equivalence stated above. |
+
+The normalization matters. With $Q=P$ from the largest-root argument, Lean's
+`topCoeff D Q u` is the coefficient before multiplication by $n!$. Its shifted
+polynomial `locPoly D Q` corresponds in the written argument to
+
+$$
+f(h)=\frac{F(\mu+h)}{n!}
+=\sum_{j=0}^{D}\frac{m_j}{j!}\frac{h^{n-j}}{(n-j)!}.
+$$
+
+Thus $f'(0)=p_D$ agrees with $F'(\mu)=n!p_D$; these are two normalizations
+of the same written identity. The general-$D$ Hölder bounds below remain
+written proofs. No extension verifies a numerical root solver, estimated
+cumulants, sampling coverage for general $D$, or detector assumptions.
 
 ## A uniform inverse bound
 
@@ -225,4 +254,5 @@ and on the attributed sharpness family. It checks the two displayed
 polynomials and rejects a deliberately changed constant coefficient.
 It starts from known laws to check the identity; it is not a general
 root-isolation or noisy-data solver. These finite software checks supplement
-the written proofs and do not formalize them.
+the written proofs and the scoped Lean extensions; the example program itself
+is not formally verified.

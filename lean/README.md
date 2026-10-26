@@ -19,8 +19,13 @@ sample-mean variance formulas, transformed-observation independence, coverage
 with zero ceilings and a bounded second-cumulant perturbation theorem. They
 also prove the all-order analytic cumulant connection, actual distributional
 moments and variances, and coverage of the exact D=1 projected region.
+The [reconstruction extensions](extensions/largest-root/README.md) add the
+largest-root location property on the core series/law definitions, coefficient
+and derivative identities, and conditional admissibility/recovery lemmas.
+The complete arbitrary-cumulant construction, support-multiplicity statement
+and general Hölder theorem still have written proofs only.
 From the repository root, `python lean/extensions/d1-law/verify_law_bridge.py
---suite research --run external-research` checks all twenty-five project modules
+--suite research --run external-research` checks all twenty-eight project modules
 freshly. Each new extension has its own manifest; the historical records still
 refer only to their original sources and checks.
 
@@ -46,7 +51,7 @@ record is `verification/external-check/result.json`. The verifier resolves Lean 
 `lake env`; a separate bare `lean` command on the caller's path is unnecessary.
 Use a new `--run` name for each run, because existing evidence is never overwritten.
 
-The shared [audit policy](proof_audit.py) supplies the complete registry of 158
+The shared [audit policy](proof_audit.py) supplies the complete registry of 173
 roots across the research suite, the allowed axioms and defensive source checks.
 Valid roots need not use all three allowed axioms. The separate
 [stored-proof replay](replay.py) consumes a completed research run; see

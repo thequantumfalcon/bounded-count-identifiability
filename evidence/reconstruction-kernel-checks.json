@@ -1,0 +1,363 @@
+{
+  "schema_version": 1,
+  "record_type": "source-bound-development-kernel-checks",
+  "check_date_utc": "2026-10-26",
+  "status": "PASS",
+  "description": "Sanitized summary of a completed fresh compilation and proof-export audit. The final canonical-LF source bytes match; the shared public verifier supplies separate integrated checks.",
+  "toolchain": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+  "executable_sha256": {
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "f6a6483d518a11b323c28b9bac176d2220df0e9fc3230833815db9586669c074",
+    "nanoda_bin": "cbf13950fc4a48f635a0beceeb5ed32dd82568b870cfd081b6391c1f2cf02ba5",
+    "con-leche": "23a32522ea2c79f4ec8b48916272b37a423bda171e57cd83cfcf142eec50e621",
+    "con-ron": "60f4ca9fb9436c323789fa49aae33af6dcd1b9b54b43a66b461779ce79fd8eec"
+  },
+  "sources": [
+    {
+      "path": "lean/CountSeriesCore.lean",
+      "sha256": "54ae55d89aa3458138f85f1ba22859dc51a52829bf0888045bd03a74d3589e5e",
+      "bytes": 7933,
+      "fresh_compile_exit_code": 0
+    },
+    {
+      "path": "lean/CountLawEncoding.lean",
+      "sha256": "a938365e56aada63951f493334e9227a1e054010a4782a9182b1206c44713c9f",
+      "bytes": 2818,
+      "fresh_compile_exit_code": 0
+    },
+    {
+      "path": "lean/CountIdentification.lean",
+      "sha256": "fd1bb4c2d795d40a982d23b7cd0129daac222dbcb4d897f85f9523162de568f6",
+      "bytes": 2146,
+      "fresh_compile_exit_code": 0
+    },
+    {
+      "path": "lean/extensions/largest-root/CountLargestRoot.lean",
+      "sha256": "ecd4810201d2cb7b6a0fb1038ad3497a7974c69706d0f0245af48abe829239ee",
+      "bytes": 4272,
+      "fresh_compile_exit_code": 0
+    },
+    {
+      "path": "lean/extensions/root-structure/CountRootStructure.lean",
+      "sha256": "6515dfe7bb060602e1044aeba40442784d87888b2a1579b677b78f09c914c35a",
+      "bytes": 3088,
+      "fresh_compile_exit_code": 0
+    },
+    {
+      "path": "lean/extensions/admissibility/CountAdmissibility.lean",
+      "sha256": "7bc4fcec0e72dcf5e35342eb9c44e2a92f75ebaefd31f88ebf5080714f9e5a5d",
+      "bytes": 8036,
+      "fresh_compile_exit_code": 0
+    }
+  ],
+  "dependency_revisions": [
+    {
+      "name": "mathlib",
+      "rev": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+      "tracked_clean": true
+    },
+    {
+      "name": "plausible",
+      "rev": "dfa4f38190d07c37e315953e08b90fe2d95b3c24",
+      "tracked_clean": true
+    },
+    {
+      "name": "LeanSearchClient",
+      "rev": "d6b4c7be5be75ec4917c873ac50c756dc1436372",
+      "tracked_clean": true
+    },
+    {
+      "name": "importGraph",
+      "rev": "a41f0e9a4dea23188ea9cc1c41ac9f8bbafe0b93",
+      "tracked_clean": true
+    },
+    {
+      "name": "proofwidgets",
+      "rev": "df72b022e558978a1c50264cfc4d7fec86fa8e04",
+      "tracked_clean": true
+    },
+    {
+      "name": "aesop",
+      "rev": "4a174c490d8707121c4a9290800489f105d85e07",
+      "tracked_clean": true
+    },
+    {
+      "name": "Qq",
+      "rev": "dce0ad79c486cb1fb504af04f953c3466b0c6db8",
+      "tracked_clean": true
+    },
+    {
+      "name": "batteries",
+      "rev": "66e469188fe07963e5cf666c7d4433f45b8131c5",
+      "tracked_clean": true
+    },
+    {
+      "name": "Cli",
+      "rev": "c24fe6078c630e89b489bffe59b3e20ac30d12c8",
+      "tracked_clean": true
+    }
+  ],
+  "new_theorem_declarations": [
+    "CountLargestRoot.top_coeff_at_mean",
+    "CountLargestRoot.top_coeff_of_matching_cumulants",
+    "CountLargestRoot.law_mean_is_largest_root",
+    "CountLargestRoot.top_coeff_location",
+    "CountLargestRoot.mean_is_largest_root",
+    "CountLargestRoot.top_coeff_pos_above_mean",
+    "CountRootStructure.locPoly_coeff",
+    "CountRootStructure.locPoly_iterate_derivative_eval_zero",
+    "CountRootStructure.locPoly_eval",
+    "CountRootStructure.law_derivative_at_mean",
+    "CountRootStructure.locPoly.eq_1",
+    "CountAdmissibility.mass.eq_1",
+    "CountAdmissibility.logOf_coeff_congr",
+    "CountAdmissibility.mass_eq_of_admissible",
+    "CountAdmissibility.admissible_of_nonneg_masses",
+    "CountAdmissibility.natDegree_shifted_le",
+    "CountAdmissibility.factorialPGF_mass"
+  ],
+  "separate_axiom_audits": {
+    "CountLargestRoot.top_coeff_at_mean": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CountLargestRoot.top_coeff_of_matching_cumulants": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CountLargestRoot.law_mean_is_largest_root": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CountLargestRoot.top_coeff_location": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CountLargestRoot.mean_is_largest_root": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CountLargestRoot.top_coeff_pos_above_mean": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CountRootStructure.locPoly_coeff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CountRootStructure.locPoly_iterate_derivative_eval_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CountRootStructure.locPoly_eval": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CountRootStructure.law_derivative_at_mean": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CountRootStructure.locPoly.eq_1": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CountAdmissibility.mass.eq_1": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CountAdmissibility.logOf_coeff_congr": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CountAdmissibility.mass_eq_of_admissible": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CountAdmissibility.admissible_of_nonneg_masses": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CountAdmissibility.natDegree_shifted_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "CountAdmissibility.factorialPGF_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "export": {
+    "sha256": "d05dc177e858de6323cf5c68774ecdd8513bdd8c321f085793fe2b875d94cba8",
+    "bytes": 83580071,
+    "axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "unsafe_records": 0
+  },
+  "checker_results": {
+    "nanoda": {
+      "code": 0,
+      "s": 10.4,
+      "out": [
+        "Checked 18090 declarations with no typechecker errors, 1 pretty printer errors: [",
+        "    \"Unable to print axioms\",",
+        "]"
+      ],
+      "err": []
+    },
+    "con-ron": {
+      "code": 0,
+      "s": 3.4,
+      "out": [
+        "con-ron: accepted 16915 declarations (--verified)"
+      ],
+      "err": [
+        "con-ron: 2 declarations hoisted ahead of the pinned Nat operations they ground: Nat.mul._f, Nat.mul"
+      ]
+    },
+    "con-leche": {
+      "code": 0,
+      "s": 5.2,
+      "out": [
+        "con-leche: accepted 16915 declarations (--verified)"
+      ],
+      "err": [
+        "con-leche: 2 declarations hoisted ahead of the pinned Nat operations they ground: Nat.mul._f, Nat.mul"
+      ]
+    }
+  },
+  "known_answer_controls": {
+    "probe": {
+      "nanoda": {
+        "code": 0,
+        "s": 0.0,
+        "out": [
+          "Checked 38 declarations with no typechecker errors, 1 pretty printer errors: [",
+          "    \"Unable to print axioms\",",
+          "]"
+        ],
+        "err": []
+      },
+      "con-ron": {
+        "code": 0,
+        "s": 0.1,
+        "out": [
+          "con-ron: accepted 23 declarations (--verified)"
+        ],
+        "err": []
+      },
+      "con-leche": {
+        "code": 0,
+        "s": 0.0,
+        "out": [
+          "con-leche: accepted 23 declarations (--verified)"
+        ],
+        "err": []
+      }
+    },
+    "tampered": {
+      "nanoda": {
+        "code": 101,
+        "s": 0.0,
+        "out": [],
+        "err": [
+          "thread 'main' (1018) panicked at src/tc.rs:955:71:",
+          "assertion failed: self.def_eq(u, v)",
+          "note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace"
+        ]
+      },
+      "con-ron": {
+        "code": 1,
+        "s": 0.1,
+        "out": [],
+        "err": [
+          "con-ron: rejected: type mismatch in theorem [at theorem probe_add, fold position 31] (--verified) t=0.059s"
+        ]
+      },
+      "con-leche": {
+        "code": 1,
+        "s": 0.0,
+        "out": [],
+        "err": [
+          "con-leche: invalid: type mismatch in theorem probe_add [at theorem probe_add, fold position 31] (--verified) t=0.0s"
+        ]
+      }
+    },
+    "bad": {
+      "nanoda": {
+        "code": 1,
+        "s": 0.0,
+        "out": [],
+        "err": [
+          "Error: export file declares unpermitted axiom \"planted_bad\"",
+          "",
+          "run with `-h` or `--help` for help"
+        ]
+      },
+      "con-ron": {
+        "code": 2,
+        "s": 0.0,
+        "out": [],
+        "err": [
+          "con-ron: declined: non-standard axiom [at axiom planted_bad, fold position 11] (--verified) t=0.042s"
+        ]
+      },
+      "con-leche": {
+        "code": 2,
+        "s": 0.0,
+        "out": [],
+        "err": [
+          "con-leche: not implemented yet: non-standard axiom (planted_bad) [at axiom planted_bad, fold position 11] (--verified) t=0.0s"
+        ]
+      }
+    }
+  },
+  "checker_options": {
+    "nanoda": {
+      "permitted_axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "unpermitted_axiom_hard_error": true,
+      "nat_extension": true,
+      "string_extension": true
+    },
+    "con-leche": [
+      "--verified",
+      "--jobs=6"
+    ],
+    "con-ron": [
+      "--verified",
+      "--jobs=6"
+    ]
+  },
+  "scope": "Fresh checks of the encoded series/law, derivative and conditional admissibility lemmas. Does not formalize the full arbitrary-cumulant Bell-polynomial inverse, exact multiplicity or general Holder theorem. Standard axioms, shared exporter/specification and prebuilt pinned dependency libraries remain trusted; con-leche and con-ron share a checker family.",
+  "limits": [
+    "Core and extension project sources were compiled afresh; pinned prebuilt dependency libraries were reused.",
+    "Nanoda and the con family are separate checker implementations; con-leche and con-ron share a family. The exporter, specification, dependencies and host remain shared trusted inputs.",
+    "Nanoda reports one axiom pretty-printer error separately from zero typechecker errors. The con checkers report reordering two Nat multiplication declarations.",
+    "Control refusal does not prove checker correctness: Nanoda uses an assertion failure for the altered proof, and the con family declines the unpermitted axiom.",
+    "The large export, tool installations and private REA capture are not bundled. This summary is not an independently authenticated attestation or a hosted CI run.",
+    "No external human review, historical-priority finding, finite-data guarantee or physical validation is established."
+  ]
+}

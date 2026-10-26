@@ -74,11 +74,20 @@ The Python API is experimental; no stable release has been published.
 
 ### Added
 
+- Three Lean extensions for the largest-root location identity, root-derivative
+  identities and conditional mass reconstruction, with separate source manifests
+  and axiom-query checks. Document the normalization of the location polynomial
+  and distinguish these proofs from the remaining arbitrary-cumulant
+  construction, complete admissibility equivalence, support-dependent
+  multiplicity and general-$D$ Hölder proof obligations. No new finite-sample
+  estimator, physical validation or priority claim is added.
+
 - Written largest-real-root reconstruction and exact admissibility criterion,
   with support-dependent root multiplicity and a sharp uniform Hölder exponent
   for mean and total variation. Exact rational examples check the identities
   and reject a changed coefficient in installed-artifact tests. These additions
-  are not yet formalized in Lean; noisy-data inference and priority remain open.
+  now have the partial formal coverage described above; noisy-data inference
+  and priority remain open.
 
 - Two labelled synthetic emitter-counting studies with an independent fixed
   Poisson background: numerical two-point lower-bound comparisons and Monte

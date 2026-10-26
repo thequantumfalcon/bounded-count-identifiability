@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "description": "Exact-byte source binding for normalized-series admissibility and conditional mass recovery. The full arbitrary-cumulant largest-root equivalence is not encoded here.",
+  "sources": {
+    "CountAdmissibility.lean": {
+      "sha256": "7bc4fcec0e72dcf5e35342eb9c44e2a92f75ebaefd31f88ebf5080714f9e5a5d",
+      "bytes": 8036
+    }
+  },
+  "theorem_roots": [
+    "CountAdmissibility.logOf_coeff_congr",
+    "CountAdmissibility.natDegree_shifted_le",
+    "CountAdmissibility.factorialPGF_mass",
+    "CountAdmissibility.admissible_of_nonneg_masses",
+    "CountAdmissibility.mass_eq_of_admissible"
+  ]
+}

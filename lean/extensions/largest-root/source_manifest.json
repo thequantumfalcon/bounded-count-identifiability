@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "description": "Exact-byte source binding for the largest-root location and bounded-law mean lemmas. The arbitrary-input cumulant-polynomial construction is a separate bridge.",
+  "sources": {
+    "CountLargestRoot.lean": {
+      "sha256": "ecd4810201d2cb7b6a0fb1038ad3497a7974c69706d0f0245af48abe829239ee",
+      "bytes": 4272
+    }
+  },
+  "theorem_roots": [
+    "CountLargestRoot.top_coeff_of_matching_cumulants",
+    "CountLargestRoot.top_coeff_location",
+    "CountLargestRoot.top_coeff_at_mean",
+    "CountLargestRoot.top_coeff_pos_above_mean",
+    "CountLargestRoot.mean_is_largest_root",
+    "CountLargestRoot.law_mean_is_largest_root"
+  ]
+}

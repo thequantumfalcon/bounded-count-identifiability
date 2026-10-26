@@ -78,6 +78,27 @@ ROOTS = {
 }
 
 RESEARCH_ROOTS = {
+    "CountLargestRoot": (
+        "top_coeff_of_matching_cumulants",
+        "top_coeff_location",
+        "top_coeff_at_mean",
+        "top_coeff_pos_above_mean",
+        "mean_is_largest_root",
+        "law_mean_is_largest_root",
+    ),
+    "CountRootStructure": (
+        "locPoly_eval",
+        "locPoly_coeff",
+        "locPoly_iterate_derivative_eval_zero",
+        "law_derivative_at_mean",
+    ),
+    "CountAdmissibility": (
+        "logOf_coeff_congr",
+        "natDegree_shifted_le",
+        "factorialPGF_mass",
+        "admissible_of_nonneg_masses",
+        "mass_eq_of_admissible",
+    ),
     "CountProbabilityBridge": (
         "boundedPMF_mass",
         "boundedMeasure_isProbability",
@@ -239,6 +260,9 @@ RESEARCH_ROOTS = {
 DIRECTORIES = {
     "CountD1Stability": "d1",
     "CountD1LawBridge": "d1-law",
+    "CountLargestRoot": "largest-root",
+    "CountRootStructure": "root-structure",
+    "CountAdmissibility": "admissibility",
     "CountProbabilityBridge": "probability",
     "CountD1VarianceCoverage": "finite-sample",
     "CountD1BackgroundUncertainty": "background-uncertainty",

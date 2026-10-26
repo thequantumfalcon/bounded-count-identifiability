@@ -6,6 +6,13 @@ its mean.
 Independent Poisson background with an unknown **fixed** rate preserves these
 cumulants. The observed mean then determines the background rate.
 
+An explicit reconstruction obtains the source mean as the **largest real root
+of one polynomial** in those cumulants, then recovers the probabilities by
+coefficient inversion. The [reconstruction note](docs/reconstruction.md) gives
+an exact admissibility criterion and sharp uniform inverse bounds, with
+[partial formal coverage](docs/reconstruction.md#formal-coverage) in three
+Lean extensions.
+
 **Proof sketch.** Write $P(t)=\mathbb E[(1+t)^X]$ and $Q(t)$ for two candidate
 laws, and let $c$ be their mean difference. Equal factorial cumulants of orders
 $2,\ldots,D+1$ imply $P=e^{ct}Q+O(t^{D+2})$. If $c>0$, the coefficient of
@@ -64,7 +71,8 @@ checks and unresolved obligations.
 
 - [Short mathematical note](docs/theorem.md), including the role of nonnegativity.
 - [Explicit reconstruction and sharp inverse stability](docs/reconstruction.md),
-  with written proofs and finite exact controls; these additions are not yet in Lean.
+  with written proofs, finite exact controls and scoped Lean proofs of location,
+  largest-root, derivative and conditional admissibility statements.
 - [Which counting model applies?](docs/counting-models.md), comparing bounded
   source counts with random-intensity Poisson mixtures and their different
   identification, calibration and sampling assumptions.

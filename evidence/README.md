@@ -5,7 +5,7 @@ state what each proof and calculation establishes. Build records below tie
 checks to particular source versions; they do not establish originality,
 independent human review or physical validation.
 
-## Latest inspected hosted build
+## Recorded hosted build
 
 Checked on 23 October 2026: commit
 `45ad4511725bf5f77be34197dad6208f7a9b9b63` passed
@@ -21,9 +21,10 @@ not to subsequent edits; inspect the exact commit's
 [Actions results](https://github.com/thequantumfalcon/bounded-count-identifiability/actions)
 when reproducing a later version.
 
-The current Lean research suite has 25 modules and 158 registered theorem roots.
+The current Lean research suite has 28 modules and 173 registered theorem roots.
 The 21 modules and 124 roots in the earlier index describe an older milestone;
-four later modules added 34 roots. Isabelle's 31 roots are counted separately.
+four later modules added 34 roots and the reconstruction extensions add another
+three modules and 15 roots. Isabelle's 31 roots are counted separately.
 
 Saved execution records include source hashes and outputs, identifying the
 files checked. They do not imply independent review. Earlier records retain
@@ -79,13 +80,25 @@ run in CI; the public verifier separately recompiles the core and both
 extensions. Neither form of checking supplies external human review.
 
 The [research extensions](../docs/probability-extensions.md) have a separate
-portable suite that recompiles all twenty-five project modules. Its verification
+portable suite that recompiles all twenty-eight project modules. Its verification
 records belong to their exact sources and verifier. The
 [background-uncertainty checker record](background-uncertainty-kernel-check.json)
 binds that source to an additional local Lean4Lean execution accepting five
 roots and 10,498 declarations. Lean4Lean shares implementation ancestry with
 Lean; the exporter, dependencies and runtime remain trusted. That run included
 no fresh invalid-export rejection test, and it does not run in CI.
+
+The [reconstruction checker record](reconstruction-kernel-checks.json) binds the
+three added reconstruction sources and their three core imports to a fresh
+development compilation. All 17 non-internal theorem declarations, including
+two generated equation theorems, were exported and checked by Nanoda and the
+related con-leche/con-ron family. Positive, altered-proof and unpermitted-axiom
+controls were run in the same audit. Nanoda's axiom-printer diagnostic and the
+con checkers' declaration-order diagnostics are retained. This record establishes
+the encoded series/law, derivative and conditional admissibility lemmas, not the
+complete arbitrary-cumulant inverse or a physical model. The record does not
+bundle the checker installations or large proof export; the standard Lean
+verification and replay commands above are the portable public reproduction.
 
 A subsequent [probability and sampling checker record](probability-sampling-kernel-checks.json)
 covers 26 roots across the four probability, variance, sample-mean and uncertainty
@@ -150,8 +163,8 @@ artifact is an external mathematical review or a physical measurement.
 
 The finite-mixture sampling extension adds eight further roots for actual
 square integrability, total variance, conservative variance ceilings and
-simultaneous moment coverage. They are included in the current 25-module,
-158-root research suite and its CI compilation, separate axiom audits and
+simultaneous moment coverage. They are included in the current 28-module,
+173-root research suite and its CI compilation, separate axiom audits and
 kernel replay. Earlier 21- and 22-module records retain their original scope.
 The expanded FLINT calculation checks total-variance identities and ceilings,
 rejects applying the fixed-rate ceilings to mixtures, and checks the arithmetic

@@ -47,6 +47,9 @@ INPUTS = (
 RESEARCH_INPUTS = tuple(
     f"lean/extensions/{directory}/{filename}"
     for directory, name in (
+        ("largest-root", "CountLargestRoot"),
+        ("root-structure", "CountRootStructure"),
+        ("admissibility", "CountAdmissibility"),
         ("probability", "CountProbabilityBridge"),
         ("finite-sample", "CountD1VarianceCoverage"),
         ("background-uncertainty", "CountD1BackgroundUncertainty"),
@@ -70,7 +73,7 @@ RESEARCH_INPUTS = tuple(
 
 
 class LawBridgeVerifierTests(unittest.TestCase):
-    def run_case(self, variant, suite="law"):
+    def run_case(self, variant, suite="law", focus_module=None):
         with tempfile.TemporaryDirectory(prefix="law-bridge-test-") as temporary:
             root = Path(temporary).resolve()
             for relative in INPUTS + (RESEARCH_INPUTS if suite == "research" else ()):
@@ -85,7 +88,7 @@ class LawBridgeVerifierTests(unittest.TestCase):
             spec.loader.exec_module(module)
             inputs = module.source_inputs(suite)
             roots_for_suite = module.selected_roots(suite)
-            focus = (
+            focus = focus_module or (
                 "CountD1LawBridge"
                 if suite == "law"
                 else next(reversed(roots_for_suite))
@@ -616,6 +619,9 @@ class LawBridgeVerifierTests(unittest.TestCase):
             with self.subTest(case=case):
                 self.run_case(case, "research")
         for name in (
+            "CountLargestRoot",
+            "CountRootStructure",
+            "CountAdmissibility",
             "CountProbabilityBridge",
             "CountD1VarianceCoverage",
             "CountD1BackgroundUncertainty",
@@ -638,6 +644,51 @@ class LawBridgeVerifierTests(unittest.TestCase):
                 with self.subTest(module=name, prefix=prefix):
                     self.run_case(prefix + name, "research")
 
+    def test_reconstruction_roots_and_dependency_order_are_required(self):
+        spec = importlib.util.spec_from_file_location(
+            "reconstruction_registry_fixture", REPOSITORY / VERIFIER
+        )
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        expected = {
+            "CountLargestRoot": (
+                "top_coeff_of_matching_cumulants",
+                "top_coeff_location",
+                "top_coeff_at_mean",
+                "top_coeff_pos_above_mean",
+                "mean_is_largest_root",
+                "law_mean_is_largest_root",
+            ),
+            "CountRootStructure": (
+                "locPoly_eval",
+                "locPoly_coeff",
+                "locPoly_iterate_derivative_eval_zero",
+                "law_derivative_at_mean",
+            ),
+            "CountAdmissibility": (
+                "logOf_coeff_congr",
+                "natDegree_shifted_le",
+                "factorialPGF_mass",
+                "admissible_of_nonneg_masses",
+                "mass_eq_of_admissible",
+            ),
+        }
+        selected = module.selected_roots("research")
+        self.assertEqual(
+            [name for name in selected if name in expected], list(expected)
+        )
+        for name, roots in expected.items():
+            with self.subTest(module=name):
+                self.assertEqual(selected[name], roots)
+                self.assertNotIn(name, module.selected_roots("law"))
+        module.check_sources(module.source_inputs("research"), "research")
+
+    def test_reconstruction_manifest_and_axiom_roots_cannot_be_weakened(self):
+        for name in ("CountLargestRoot", "CountRootStructure", "CountAdmissibility"):
+            for case in ("manifest_roots", "missing_root", "unexpected_axiom"):
+                with self.subTest(module=name, case=case):
+                    self.run_case(case, "research", focus_module=name)
+
     def test_research_suite_rejects_incomplete_or_changed_proofs(self):
         for case in (
             "missing_root",
@@ -651,6 +702,9 @@ class LawBridgeVerifierTests(unittest.TestCase):
             "core_changed_after",
             "stability_changed_after",
             "snapshot_changed",
+            "CountLargestRoot_changed",
+            "CountRootStructure_changed",
+            "CountAdmissibility_changed",
             "CountProbabilityBridge_changed",
             "CountD1VarianceCoverage_changed",
             "CountD1BackgroundUncertainty_changed",

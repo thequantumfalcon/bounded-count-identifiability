@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "description": "Exact-byte source binding for location-polynomial coefficient and derivative identities. The support-based multiplicity theorem is not encoded here.",
+  "sources": {
+    "CountRootStructure.lean": {
+      "sha256": "6515dfe7bb060602e1044aeba40442784d87888b2a1579b677b78f09c914c35a",
+      "bytes": 3088
+    }
+  },
+  "theorem_roots": [
+    "CountRootStructure.locPoly_eval",
+    "CountRootStructure.locPoly_coeff",
+    "CountRootStructure.locPoly_iterate_derivative_eval_zero",
+    "CountRootStructure.law_derivative_at_mean"
+  ]
+}
