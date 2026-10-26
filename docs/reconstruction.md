@@ -124,8 +124,13 @@ f(h)=\frac{F(\mu+h)}{n!}
 $$
 
 Thus $f'(0)=p_D$ agrees with $F'(\mu)=n!p_D$; these are two normalizations
-of the same written identity. The general-$D$ Hölder bounds below remain
-written proofs. No extension verifies a numerical root solver, estimated
+of the same written identity. The particular majorant constants and sharpness
+argument below remain written proofs. The [finite-jet extension](../lean/extensions/quantitative-jets/README.md)
+separately proves mean and total-variation bounds on actual bounded laws with
+coarser constants. Its mean exponent is $1/(D+1-d)$ when both $d$th binomial
+moments are bounded below by $\eta>0$; its TV conclusion is an explicit
+root-plus-linear modulus. Choosing $d=0$ and $\eta=1$ gives the uniform
+support class. No extension verifies a numerical root solver, estimated
 cumulants, sampling coverage for general $D$, or detector assumptions.
 
 ## A uniform inverse bound

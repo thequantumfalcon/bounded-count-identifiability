@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "status": "PASS_FOR_DECLARED_COARSE_LAW_BOUNDS",
+  "candidate_base_commit": "c4def44f9d449d84a3894c542e85cefa1cea5d9f",
+  "sources": {
+    "lean/extensions/quantitative-jets/CountQuantitativeJets.lean": {
+      "sha256": "a43b74f5a214a4abbc002ca0cc7e8b774b5791b61fa1c8db710c999117a91888",
+      "bytes": 33711
+    },
+    "lean/extensions/quantitative-jets/source_manifest.json": {
+      "sha256": "25acbaa273f1cb4a011ce80f6ada21dcde257e4e167f5d3b41bf2048c17cdfe7",
+      "bytes": 1240
+    },
+    "lean/extensions/quantitative-jets/README.md": {
+      "sha256": "175557f3ebb8247b31ac901100f240d5aea25b48e01dbd925c886be9345959a1",
+      "bytes": 4371
+    },
+    "lean/proof_audit.py": {
+      "sha256": "abbaeeddf2728fcd30464b812e382246c6b99bb8979c29a4c92bc5a6a988d4bb",
+      "bytes": 18479
+    },
+    "lean/CountSeriesCore.lean": {
+      "sha256": "54ae55d89aa3458138f85f1ba22859dc51a52829bf0888045bd03a74d3589e5e",
+      "bytes": 7933
+    },
+    "lean/CountLawEncoding.lean": {
+      "sha256": "a938365e56aada63951f493334e9227a1e054010a4782a9182b1206c44713c9f",
+      "bytes": 2818
+    },
+    "lean/CountIdentification.lean": {
+      "sha256": "fd1bb4c2d795d40a982d23b7cd0129daac222dbcb4d897f85f9523162de568f6",
+      "bytes": 2146
+    },
+    "lean/lean-toolchain": {
+      "sha256": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c",
+      "bytes": 25
+    },
+    "lean/lake-manifest.json": {
+      "sha256": "6e9ffc81bbf9ca3f550b23770d638e6bd0f0aee51d1e9983444726307b4aef52",
+      "bytes": 3683
+    }
+  },
+  "scope": "Finite-jet stability for actual bounded mass functions; explicit coarse mean power/Holder and total-variation root-plus-linear bounds. No optimal constant, sampling or physical claim.",
+  "theorem_roots": [
+    "CountQuantitativeJets.ode_coefficient_stability",
+    "CountQuantitativeJets.log_derivative_coefficient_bound",
+    "CountQuantitativeJets.normalized_log_recurrence",
+    "CountQuantitativeJets.normalized_log_bound",
+    "CountQuantitativeJets.shifted_coefficient_bound",
+    "CountQuantitativeJets.shifted_recurrence",
+    "CountQuantitativeJets.support_power_bound",
+    "CountQuantitativeJets.law_coefficient_bounds",
+    "CountQuantitativeJets.ordered_law_mean_power_bound",
+    "CountQuantitativeJets.law_mean_power_bound",
+    "CountQuantitativeJets.law_mean_holder_bound",
+    "CountQuantitativeJets.binomial_inverse_stability",
+    "CountQuantitativeJets.law_moment_difference_bound",
+    "CountQuantitativeJets.law_tv_mean_bound",
+    "CountQuantitativeJets.law_tv_holder_bound"
+  ],
+  "assumptions": [
+    "D,d natural,d<=D; both laws supported on0..D",
+    "epsilon>=0,eta>0; both dth binomial moments>=eta",
+    "factorial-cumulant errors2..D+1<=epsilon"
+  ],
+  "formal_run": {
+    "modules": 29,
+    "audited_roots": 188,
+    "pinned_dependencies": 9,
+    "fresh_source_compilation": true,
+    "separate_import_axiom_audits": true,
+    "same_kernel_replay": true,
+    "stages": [
+      {
+        "stage": "research",
+        "exit_code": 0,
+        "seconds": 151.341
+      },
+      {
+        "stage": "replay",
+        "exit_code": 0,
+        "seconds": 90.684
+      },
+      {
+        "stage": "certificates",
+        "exit_code": 0,
+        "seconds": 60.765
+      },
+      {
+        "stage": "counts-certificates",
+        "exit_code": 0,
+        "seconds": 42.807
+      }
+    ],
+    "receipt_sha256": "88a0b4479aee57a50df97b1a49b4216070f8e03ddca3a01964b9c7a142b696a4"
+  },
+  "selected_export": {
+    "roots": 15,
+    "sha256": "e8ad2aee6db05c148bcde51adc8b47ba791c0125255f97ecf08b2ab6ade84ea0",
+    "axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "unsafe_declarations": 0,
+    "receipt_sha256": "d4644a956e59f325f71702e20dfdfc98c7221cd6a4a59616eb4969512d66d465"
+  },
+  "external_checkers": {
+    "nanoda": {
+      "binary_sha256": "cbf13950fc4a48f635a0beceeb5ed32dd82568b870cfd081b6391c1f2cf02ba5",
+      "subject_exit": 0,
+      "positive_control_exit": 0,
+      "unlisted_axiom_control_exit": 1,
+      "tampered_proof_control_exit": 101
+    },
+    "con-ron": {
+      "binary_sha256": "60f4ca9fb9436c323789fa49aae33af6dcd1b9b54b43a66b461779ce79fd8eec",
+      "subject_exit": 0,
+      "positive_control_exit": 0,
+      "unlisted_axiom_control_exit": 2,
+      "tampered_proof_control_exit": 1
+    },
+    "con-leche": {
+      "binary_sha256": "23a32522ea2c79f4ec8b48916272b37a423bda171e57cd83cfcf142eec50e621",
+      "subject_exit": 0,
+      "positive_control_exit": 0,
+      "unlisted_axiom_control_exit": 2,
+      "tampered_proof_control_exit": 1
+    }
+  },
+  "checker_independence": {
+    "executables": 3,
+    "families": 2,
+    "shared_exporter": true,
+    "lean_replay_is_independent_kernel": false
+  },
+  "missing_initial_control": {
+    "source_sha256": "166865d8fca933d34eb0bd25f36c3b8543ae0cecf117d60188480e91742a5f89",
+    "exit": 1,
+    "false_conclusion_rejected": true
+  },
+  "limits": [
+    "Pinned upstream dependency artifacts and runtimes remain trusted; no full dependency-source rebuild.",
+    "Pure-power TV simplification, sharper majorant constants and support-stratum sharpness are written, not additional exported roots.",
+    "The source module filename changed to match its existing theorem namespace; proof bytes did not change.",
+    "Fresh candidate verification is distinct from a published commit or hosted CI result.",
+    "No software acceptance establishes physical model assumptions, originality or external human peer review."
+  ],
+  "package_validation_before_documentation_finalization": {
+    "status": "PASS",
+    "receipt_sha256": "a97672d36c89d426616b973fe8bdbde49ffac7b730c10b57c292998584167b2e",
+    "log_sha256": "fcf2b3047c588d5d352863e530770778ce2db122becb7a4e118c8a287ed070cf",
+    "source_inputs_unchanged": 257,
+    "installed_dev_package_matches_candidate": true,
+    "tests_per_environment": 92,
+    "environments": [
+      "installed development package",
+      "built wheel",
+      "sdist-rebuilt wheel"
+    ],
+    "development_coverage_percent": 99,
+    "exact_fuzz_iterations": {
+      "development": 1000,
+      "wheel": 100,
+      "sdist_rebuilt_wheel": 100
+    },
+    "artifacts": [
+      {
+        "filename": "bounded_count_identifiability-0.1.0.dev0-py3-none-any.whl",
+        "sha256": "c9515787db09c05f9218551c279dc7fb7c4b025ca3120079f305e1a2a70ca2bc",
+        "bytes": 10294
+      },
+      {
+        "filename": "bounded_count_identifiability-0.1.0.dev0.tar.gz",
+        "sha256": "b74be6008c610338088fc3abb7d8cc57575a9abd47dcbf609c99ecbf91f11681",
+        "bytes": 514598
+      }
+    ],
+    "scope": "These package tests and artifact hashes precede the explicitly listed documentation/evidence-only finalization. They are retained historical results, not the identities of rebuilt final distributions."
+  },
+  "documentation_finalization": {
+    "changes": [
+      "Grammar-only correction in lean/README.md",
+      "Link this record from the extension README",
+      "Add this source-bound record under evidence/quantitative-jets-check.json"
+    ],
+    "proof_sources_changed": false,
+    "proof_inputs_reused_by_exact_hash": 58,
+    "lean_readme": {
+      "before_sha256": "18d207fe14591bb4df2806bde241b1acabab3953742febc754eb75bd9e44ba2d",
+      "after_sha256": "9d630b1ef97cabbd3fd2ed4b336bf88b674880b09b5a3becf012598a430e6c9e"
+    },
+    "extension_readme": {
+      "before_sha256": "2d6caf3d9315db6bbf0f7b00e3988618e56e2d39995b677945fcbc282ac90342",
+      "after_sha256": "175557f3ebb8247b31ac901100f240d5aea25b48e01dbd925c886be9345959a1"
+    },
+    "final_distribution_receipts": "Retained separately from the distributions so this record does not claim a circular hash of its containing source archive."
+  }
+}

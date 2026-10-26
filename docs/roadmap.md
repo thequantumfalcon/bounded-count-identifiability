@@ -38,7 +38,10 @@ the location and largest-root properties relative to a supplied formal series,
 the derivative identities, and conditional mass reconstruction. They do not
 yet connect arbitrary cumulant inputs to the explicit Bell-polynomial formula,
 assemble the complete admissibility equivalence, or formalize exact
-support-dependent multiplicity and general-$D$ Hölder stability.
+support-dependent multiplicity. The [finite-jet extension](../lean/extensions/quantitative-jets/README.md)
+now proves coarse general-$D$ law bounds, including a support-stratum mean
+exponent and a TV root-plus-linear modulus. The sharper constants and
+sharpness path remain written.
 
 The [originality follow-up](originality-review.md) distinguishes related
 results from established priority. A [focused review request](reviewer-request.md)
@@ -49,7 +52,7 @@ preparing or publishing that request is not evidence that review has occurred.
 | --- | --- | --- |
 | 1 | Extend verification beyond exact rational decisions and encoded-count boxes. | The [decision proofs](../lean/extensions/confidence-executable/README.md) and [count-to-box extension](../lean/extensions/counts-confidence/README.md) cover rational feasibility, global real-region emptiness, finite natural-count aggregation, outward radii and conditional coverage. Verify acquisition/parsing, scalable large-record certificates, algebraic endpoint output and full Sage execution; the arithmetic libraries and compiler/runtime remain trusted. |
 | 2 | Prove robustness to specified deviations. | Extend the actual finite-mixture construction to general mixing laws and justify the rate range or variance allowance from calibration, including its uncertainty. Extend the finite-mixture sampling bounds to more general random-rate backgrounds and justify any dependent-window analysis. Extend to stated tail-moment, detector-response or temporal-dependence conditions. Identify nonidentifiability when assumptions are insufficient. |
-| 3 | Extend constructive inference. | Complete the [remaining formal connections](reconstruction.md#formal-coverage): construct the polynomial from arbitrary cumulant inputs, assemble exact admissibility, and prove support-dependent multiplicity and sharp uniform Hölder bounds. Implement a general-$D$ feasible-region solver with checkable witnesses or emptiness certificates. State arithmetic precision, termination and complexity limits. |
+| 3 | Extend constructive inference. | Complete the [remaining formal connections](reconstruction.md#formal-coverage): construct the polynomial from arbitrary cumulant inputs, assemble exact admissibility, and prove support-dependent multiplicity, the sharper stability constants and the admissible sharpness path. Implement a general-$D$ feasible-region solver with checkable witnesses or emptiness certificates. State arithmetic precision, termination and complexity limits. |
 | 4 | Improve statistical efficiency. | Compare justified confidence procedures on identical, saved synthetic data; then derive sharper concentration or likelihood guarantees. Keep coverage, computation time and interval width separate. Do not infer optimality from a favorable simulation. |
 | 5 | Broaden prior-art and external review. | Obtain independent scrutiny of the exact theorem, proof, formal statement and references. Search older and differently named results. Attribute the established sharpness construction throughout. No originality conclusion follows from an unsuccessful search. |
 

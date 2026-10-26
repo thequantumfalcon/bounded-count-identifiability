@@ -50,6 +50,7 @@ RESEARCH_INPUTS = tuple(
         ("largest-root", "CountLargestRoot"),
         ("root-structure", "CountRootStructure"),
         ("admissibility", "CountAdmissibility"),
+        ("quantitative-jets", "CountQuantitativeJets"),
         ("probability", "CountProbabilityBridge"),
         ("finite-sample", "CountD1VarianceCoverage"),
         ("background-uncertainty", "CountD1BackgroundUncertainty"),
@@ -622,6 +623,7 @@ class LawBridgeVerifierTests(unittest.TestCase):
             "CountLargestRoot",
             "CountRootStructure",
             "CountAdmissibility",
+            "CountQuantitativeJets",
             "CountProbabilityBridge",
             "CountD1VarianceCoverage",
             "CountD1BackgroundUncertainty",
@@ -683,6 +685,37 @@ class LawBridgeVerifierTests(unittest.TestCase):
                 self.assertNotIn(name, module.selected_roots("law"))
         module.check_sources(module.source_inputs("research"), "research")
 
+    def test_quantitative_law_roots_cannot_be_weakened(self):
+        spec = importlib.util.spec_from_file_location(
+            "quantitative_registry_fixture", REPOSITORY / VERIFIER
+        )
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        expected = (
+            "ode_coefficient_stability",
+            "log_derivative_coefficient_bound",
+            "normalized_log_recurrence",
+            "normalized_log_bound",
+            "shifted_coefficient_bound",
+            "shifted_recurrence",
+            "support_power_bound",
+            "law_coefficient_bounds",
+            "ordered_law_mean_power_bound",
+            "law_mean_power_bound",
+            "law_mean_holder_bound",
+            "binomial_inverse_stability",
+            "law_moment_difference_bound",
+            "law_tv_mean_bound",
+            "law_tv_holder_bound",
+        )
+        self.assertEqual(
+            module.selected_roots("research")["CountQuantitativeJets"], expected
+        )
+        self.assertNotIn("CountQuantitativeJets", module.selected_roots("law"))
+        for case in ("manifest_roots", "missing_root", "unexpected_axiom"):
+            with self.subTest(case=case):
+                self.run_case(case, "research", focus_module="CountQuantitativeJets")
+
     def test_reconstruction_manifest_and_axiom_roots_cannot_be_weakened(self):
         for name in ("CountLargestRoot", "CountRootStructure", "CountAdmissibility"):
             for case in ("manifest_roots", "missing_root", "unexpected_axiom"):
@@ -705,6 +738,7 @@ class LawBridgeVerifierTests(unittest.TestCase):
             "CountLargestRoot_changed",
             "CountRootStructure_changed",
             "CountAdmissibility_changed",
+            "CountQuantitativeJets_changed",
             "CountProbabilityBridge_changed",
             "CountD1VarianceCoverage_changed",
             "CountD1BackgroundUncertainty_changed",
